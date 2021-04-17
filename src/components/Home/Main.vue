@@ -8,7 +8,8 @@
                     <div>
                         {{ note.title }}
                     </div>
-                    <NOTEBACKGROUND class="testSvg"/>
+                    
+                    <NOTEBACKGROUND @click="$router.push({name: 'NoteID', params: { noteID : note.id }})" class="testSvg" />
                     
                 </v-col>
               </v-row>

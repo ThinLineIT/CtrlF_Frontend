@@ -20,6 +20,7 @@ export default {
     NoteContent,
   },
   methods() {},
+  
 };
 </script>
 

@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg"
+import { mapGetters } from "vuex";
 
 export default {
   components:{
