@@ -16,6 +16,11 @@
                        </v-list-item-content>
                     </v-list-item>
                    </v-list>
+                   <v-card>
+                        <router-link :to = "{name: 'Create'}">
+                            Add Topic
+                        </router-link>
+                   </v-card>
                </v-col>
                <v-col>
                 <v-list flat>
@@ -27,6 +32,10 @@
                             <v-list-item-title>sub Title</v-list-item-title>
                        </v-list-item-content>
                     </v-list-item>
+                    <v-card>
+                        add page
+                        <!-- TODO: Show popup to nmae a new topic-->
+                   </v-card>
                    </v-list>
                </v-col>
            </v-row>
