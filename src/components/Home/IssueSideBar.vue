@@ -1,8 +1,11 @@
 <template>
   <v-container>
-    
-      
-    
+       <v-card v-for="issue in getIssue" :key="issue">
+      {{ issue.title }}
+       <MEMOPREVIEW/>
+    </v-card>            
+
+<!--
     <v-list>
         <v-list-item
             v-for="issue in getIssue"
@@ -18,18 +21,20 @@
             </v-list-item-content>
         </v-list-item>
     </v-list>
+    -->
   </v-container>
 </template>
 
 <script>
-import NOTEBACKGROUND from "../../assets/noteBack.svg"
-import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg"
 import { mapGetters } from "vuex";
+import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg"
+
 export default {
+  components:{
+    MEMOPREVIEW
+  },
   computed: {
-        ...mapGetters(["getIssue"]),
-        MEMOPREVIEW,
-        NOTEBACKGROUND
+        ...mapGetters(["getIssue"])
     },  
   name: "IssueSideBar",
 };

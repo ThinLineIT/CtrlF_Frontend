@@ -1,9 +1,8 @@
 <template>
   <div class="home">
     <div class="homeBar">
-      <v-card class="logo" rounded="pill">
-        LOGO
-      </v-card>
+      <!--TODO: 위치조정-->
+      <v-img class="logo"><LOGO/></v-img>
       <v-card class="countBar" rounded="pill">
         <CountBar />
       </v-card>
@@ -29,9 +28,13 @@ import axios from "axios";
 // import IssueSideBar from "../components/Home/IssueSideBar";
 // import MainSearch from "../components/Home/MainSearch";
 import { mapActions } from "vuex";
+import LOGO from "../assets/logo.svg"
 
 export default {
-  components: { CountBar},
+  components: { 
+      CountBar,
+      LOGO
+    },
   methods: {
     ...mapActions(["dataLoad"]),
     apiTest() {
@@ -67,10 +70,10 @@ export default {
 }
 
 .logo {
-  width: 300px;
+  width: 200px;
   padding: 10px 20px 10px 20px;
   margin: 40px 20px 0px 130px;
-  height: 60px;
+  height: 80px;
 }
 .countBar {
   height: 60px;
