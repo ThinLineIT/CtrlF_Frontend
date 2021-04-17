@@ -5,10 +5,23 @@ import axios from "axios";
 Vue.use(Vuex);
 
 const noteModule = {
-  state: () => ({}),
-  mutations: {},
-  actions: {},
+  state: {
+    noteLoading: false,
+    noteDetail: []
+  },
   getters: {},
+  mutations: {},
+  actions: {
+    noteLoad : ( noteID) => {
+      axios.get(`http://thkwon.pythonanywhere.com/api/notes/${noteID}`)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  },
 };
 
 const issueModule = {
@@ -73,7 +86,8 @@ const issueModule = {
         })  
         .catch((err) => {
           console.log(err);
-        }); 
+        });
+       
     },
   },
 };

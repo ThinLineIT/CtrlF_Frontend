@@ -22,14 +22,12 @@
 </template>
 
 <script>
-import NOTEBACKGROUND from "../../assets/noteBack.svg"
 import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg"
 import { mapGetters } from "vuex";
 export default {
+  components : { MEMOPREVIEW },
   computed: {
         ...mapGetters(["getIssue"]),
-        MEMOPREVIEW,
-        NOTEBACKGROUND
     },  
   name: "IssueSideBar",
 };
