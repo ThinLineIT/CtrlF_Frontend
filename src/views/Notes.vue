@@ -32,5 +32,6 @@ export default {
 }
 .noteContent {
     margin-left: 30px;
+    width: calc(100% - 400px);
 }
 </style>

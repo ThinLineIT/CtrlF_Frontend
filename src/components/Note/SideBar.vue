@@ -1,7 +1,7 @@
 <template>
    <div class = "pageSideBar">
        <v-card class="mainTitle">
-           여기는 메인타이틀입니다
+           NOTE
        </v-card>
        <v-card class="titleList">
            <v-row>
@@ -12,7 +12,7 @@
                         :key="i"
                     >
                         <v-list-item-content>
-                            <v-list-item-title>sub Title</v-list-item-title>
+                            <v-list-item-title class="topic">TOPIC</v-list-item-title>
                        </v-list-item-content>
                     </v-list-item>
                    </v-list>
@@ -45,15 +45,38 @@ export default {
 
 <style scoped>
 .mainTitle {
-    background-color: blue;
     height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .pageSideBar {
-    margin: 30px;
+    padding: 30px;
+    background-color: #43AF83;
+    min-height: 969px;
 }
 .titleList {
-    margin-top: 10px;
-    background-color: blueviolet;
+    border-top: 12px solid #43AF83;
+}
+
+.live {
+    background-color: #43AF83 !important;
+}
+
+.topic {
+    background-color: #8ECFB5;
+    color: #ffffff;    
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 15px;
+    border-top-left-radius: 15px;
+    border-end-start-radius: 15px;
+}
+
+.col {
+    height: inherit;
 }
 
 </style>

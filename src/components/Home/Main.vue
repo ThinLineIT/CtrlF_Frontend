@@ -5,9 +5,11 @@
           <v-col>
               <v-row>
                 <v-col v-for="note in getTitles" :key="note.id" cols="3">
-                    <v-card height="200">
-                      {{ note.title }}
-                    </v-card>
+                    <div>
+                        {{ note.title }}
+                    </div>
+                    <NOTEBACKGROUND class="testSvg"/>
+                    
                 </v-col>
               </v-row>
           </v-col>
@@ -26,15 +28,22 @@
 <script>
 import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
- import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
+import NOTEBACKGROUND from "../../assets/noteBack.svg"
 
 export default {
     computed: {
         ...mapGetters(["getTitles"]),
+
     },
     components: {
         IssueSideBar, 
-        MainSearch
+        MainSearch,
+        NOTEBACKGROUND
     },
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -3,10 +3,10 @@
     <div class="notebar">
         <div class="noteContent__title">
             <span class="noteContent__title-sub" >
-                SUB TITLE
+                TOPIC
             </span>
             <span class="noteContent__title-content">
-                CONTENT TITLE
+                PAGE
             </span>
         </div>
         <div class="noteBtn">
@@ -19,7 +19,33 @@
 
         </div>
     </div>
-    <div class="noteContent__text">여기는 노트텍스트입니다.</div>
+    <div class="noteContent__text">
+        <span class="text__row">여기는 노트텍스트입니다.</span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>        
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+        <span class="text__row"></span>
+    </div>
   </div>
 </template>
 
@@ -39,30 +65,34 @@ export default {
 
 <style scoped>
 .noteContent {
-  margin-right: 100px;
   margin-top: 50px;
+  width: 80% !important;
 }
 .noteContent__title {
     display: flex;
-    margin-right: 400px;
 }
 .noteContent__title-sub {
-    background-color: grey;
-    padding: 5px;
-    border-top: solid;
-    border-left: solid;
-    border-bottom: solid;
-    border-radius: 10px 0px 0px 10px;;
+    background-color: #43AF83;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px 0px 0px 20px;
+    width: 120px;
+    text-align: center;
+    color: #FFFFFF;
 }
 .noteContent__title-content {
-    padding: 5px;
-    border-top: solid;
-    border-right: solid;
-    border-bottom: solid;
-    border-radius: 0px 10px 10px 0px;;
+    border-radius: 0px 20px 20px 0px;
+    height: 38px;
+    line-height: 38px;
+    padding: 1px 0px 0px 24px;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
+    width: 700px;
 }
 .noteContent__text {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .search {
@@ -91,6 +121,19 @@ export default {
 .notebar {
     display: flex;
     justify-content: space-between;
+}
+
+.noteBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+}
+
+.text__row {
+    border-bottom: 1px solid black;
+    height: 30px;
+    line-height: 35px;
 }
 
 </style>
