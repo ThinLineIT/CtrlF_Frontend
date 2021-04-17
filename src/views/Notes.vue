@@ -1,15 +1,22 @@
 <template>
+  <div class="note">
     <v-container>
-        <router-view></router-view>
-        <v-btn router :to = "{name : 'Create'}" exact >노트 Create</v-btn>
-
-    </v-container>    
+      <SideBar />
+      <router-view />
+    </v-container>
+  </div>
+  <!-- <v-btn router :to="{ name: 'Create' }" exact>노트 Create</v-btn> -->
 </template>
 
 <script>
+import SideBar from "@/components/Note/SideBar.vue";
+
 export default {
-    methods() {
-        
-    },
-}
+  components: {
+    SideBar,
+  },
+  methods() {},
+};
 </script>
+
+<style scoped></style>

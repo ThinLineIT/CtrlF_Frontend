@@ -7,8 +7,24 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () =>
-      import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
+    redirect: "/main",
+    component: () => import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
+    children: [
+      {
+        path: "main",
+        name: "Main",
+        component: () =>
+          import(/* webpackChunkName: "main" */ "../components/Home/Main.vue"),
+      },
+      {
+        path: "issue",
+        name: "Issue",
+        component: () =>
+          import(
+            /* webpackChunkName: "HomeIssue" */ "../components/Home/HomeIssues.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/notes",
@@ -18,18 +34,24 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "Notes" */ "../views/Notes.vue"),
-      children : [{
+    children: [
+      {
         path: "create",
         name: "Create",
         component: () =>
-          import(/* webpackChunkName: "NoteCreate" */ "../components/Note/NoteCreate.vue"),
-      }]
+          import(
+            /* webpackChunkName: "NoteCreate" */ "../components/Note/NoteCreate.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/issues",
     name: "Issue",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../components/Home/HomeIssues.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../components/Home/HomeIssues.vue"
+      ),
   },
 ];
 
