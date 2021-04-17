@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import axios from "axios";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -12,9 +12,40 @@ const noteModule = {
 };
 
 const issueModule = {
-  state: () => ({}),
-  mutations: {},
-  actions: {},
+  state: {
+    isLoadingCount: false,
+    pageCount: -1,
+  },
+  getters: {
+    getCounter: function (state) {
+      return state.pageCount;
+    },
+  },
+  mutations: {
+    GET_COUNT_PENDING(state) {
+      state.isLoadingCount = true;
+    },
+    GET_COUNT_SUCCESS(state, count) {
+      state.isLoadingCount = false;
+      state.pageCount = count;
+    },
+    GET_COUNT_FAIL(state) {
+      state.isLoadingCount = false;
+    },
+  },
+  actions: {
+    dataLoad: ({ commit }) => {
+      axios
+        .get("http://thkwon.pythonanywhere.com/api/all_page_count/")
+        .then((res) => {
+          commit("GET_COUNT_SUCCESS", res.data.count);
+        })
+        .catch((err) => {
+          commit("GET_COUNT_FAIL");
+          console.log(err);
+        });
+    },
+  },
 };
 
 const store = new Vuex.Store({

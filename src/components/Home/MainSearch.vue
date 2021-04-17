@@ -1,5 +1,8 @@
 <template>
-  <div>여기는 메인 검색창입니다.</div>
+    <v-text-field
+        outlined
+        append-icon="mdi-card-search-outline"
+    ></v-text-field>
 </template>
 
 <script>

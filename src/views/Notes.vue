@@ -1,22 +1,36 @@
 <template>
   <div class="note">
-    <v-container>
+    <div class="sideBar">
       <SideBar />
-      <router-view />
-    </v-container>
+    </div>
+    <div class="noteContent">
+        <NoteContent />
+    </div>
   </div>
   <!-- <v-btn router :to="{ name: 'Create' }" exact>노트 Create</v-btn> -->
 </template>
 
 <script>
 import SideBar from "@/components/Note/SideBar.vue";
+import NoteContent from "@/components/Note/NoteContent";
 
 export default {
   components: {
     SideBar,
+    NoteContent,
   },
   methods() {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.note {
+  display: flex;
+}
+.sideBar {
+  height: 100px;
+}
+.noteContent {
+    margin-left: 30px;
+}
+</style>
