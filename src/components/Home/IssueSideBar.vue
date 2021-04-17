@@ -5,11 +5,13 @@
     </v-card-title>
     <v-list>
         <v-list-item
-            v-for="i in 5"
-            :key="i"
+            v-for="issue in getIssue"
+            :key="issue"
+            two-line
         >
             <v-list-item-content>
-                <v-list-item-title>Tile</v-list-item-title>
+              <v-list-item-title>{{ issue.title }}</v-list-item-title>
+              <v-list-item-subtitle>{{ issue.registration_date }}</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
     </v-list>
@@ -17,7 +19,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+        ...mapGetters(["getIssue"]),
+    },  
   name: "IssueSideBar",
 };
 </script>

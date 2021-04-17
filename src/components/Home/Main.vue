@@ -4,8 +4,10 @@
       <v-row>
           <v-col>
               <v-row>
-                <v-col v-for="n in 12" :key="n" cols="3">
-                    <v-card height="200"></v-card>
+                <v-col v-for="note in getTitles" :key="note.id" cols="3">
+                    <v-card height="200">
+                      {{ note.title }}
+                    </v-card>
                 </v-col>
               </v-row>
           </v-col>
@@ -24,7 +26,12 @@
 <script>
 import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
+ import { mapGetters } from "vuex";
+
 export default {
+    computed: {
+        ...mapGetters(["getTitles"]),
+    },
     components: {
         IssueSideBar, 
         MainSearch

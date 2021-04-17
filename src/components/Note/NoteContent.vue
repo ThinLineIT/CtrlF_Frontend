@@ -10,9 +10,13 @@
             </span>
         </div>
         <div class="noteBtn">
-            <v-icon>mdi-home</v-icon>
-            <v-icon>mdi-pencil</v-icon>
-            <v-icon>mdi-text-search</v-icon>
+            <SearchIcon class="search" />
+            <RequestIcon class="request" />
+            <LoginIcon class="login" />
+            <router-link :to = "{name: 'Home'}">
+                <HomeIcon class="home" />
+            </router-link>
+
         </div>
     </div>
     <div class="noteContent__text">여기는 노트텍스트입니다.</div>
@@ -20,8 +24,16 @@
 </template>
 
 <script>
+import SearchIcon from "../../assets/SEARCH BUTTON.svg"
+import RequestIcon from "../../assets/REQUEST BUTTON.svg"
+import LoginIcon from "../../assets/LOGIN BUTTON.svg"
+import HomeIcon from "../../assets/HOME BUTTON.svg" 
+
 export default {
   name: "NoteContent",
+  components : {
+      SearchIcon,RequestIcon,LoginIcon,HomeIcon
+  }
 };
 </script>
 
@@ -52,9 +64,35 @@ export default {
 .noteContent__text {
     margin-top: 30px;
 }
+
+.search {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+}
+.request {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+}
+
+.login {
+    width: 30px;
+    height: 30px;
+    color: grey;
+}
+
+.home {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+}
+
 .notebar {
     display: flex;
+    justify-content: space-between;
 }
+
 </style>
 
 

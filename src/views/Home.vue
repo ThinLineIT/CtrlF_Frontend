@@ -25,6 +25,7 @@
 
 <script>
 import CountBar from "../components/Home/CountBar";
+import axios from "axios";
 // import IssueSideBar from "../components/Home/IssueSideBar";
 // import MainSearch from "../components/Home/MainSearch";
 import { mapActions } from "vuex";
@@ -33,7 +34,15 @@ export default {
   components: { CountBar},
   methods: {
     ...mapActions(["dataLoad"]),
-    apiTest() {},
+    apiTest() {
+      axios.get("http://thkwon.pythonanywhere.com/api/notes/")
+        .then(res => {
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
   },
   created() {
     this.dataLoad();
