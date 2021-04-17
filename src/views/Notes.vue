@@ -1,22 +1,15 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12">
-        <checkMemo />
-      </v-col>
-    </v-row>
-  </v-container>
+    <v-container>
+        <router-view></router-view>
+        <v-btn router :to = "{name : 'Create'}" exact >노트 Create</v-btn>
+
+    </v-container>    
 </template>
 
 <script>
-import checkMemo from "../components/checkMemo";
-
 export default {
-  components: {
-    checkMemo,
-  },
-  data() {
-    return {}
-  },
-};
+    methods() {
+        
+    },
+}
 </script>
