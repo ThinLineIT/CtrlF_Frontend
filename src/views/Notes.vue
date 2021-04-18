@@ -4,7 +4,7 @@
       <SideBar />
     </div>
     <div class="noteContent">
-        <NoteContent />
+      <NoteContent />
     </div>
   </div>
   <!-- <v-btn router :to="{ name: 'Create' }" exact>노트 Create</v-btn> -->
@@ -20,7 +20,6 @@ export default {
     NoteContent,
   },
   methods() {},
-  
 };
 </script>
 
@@ -32,7 +31,7 @@ export default {
   height: 100px;
 }
 .noteContent {
-    margin-left: 30px;
-    width: calc(100% - 400px);
+  margin-left: 30px;
+  width: calc(100% - 400px);
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="home">
     <div class="homeBar">
       <!--TODO: 위치조정-->
-      <v-img class="logo"><LOGO/></v-img>
+      <LOGO class="logo" />
       <v-card class="countBar" rounded="pill">
         <CountBar />
       </v-card>
@@ -18,34 +18,24 @@
     <v-btn router :to="{ name: 'Note' }" exact>노트</v-btn>
 
     <v-btn router :to="{ name: 'Issue' }" exact>이슈</v-btn>
-    <v-btn @click="apiTest"> api </v-btn>
   </div>
 </template>
 
 <script>
 import CountBar from "../components/Home/CountBar";
-import axios from "axios";
+
 // import IssueSideBar from "../components/Home/IssueSideBar";
 // import MainSearch from "../components/Home/MainSearch";
 import { mapActions } from "vuex";
-import LOGO from "../assets/logo.svg"
+import LOGO from "../assets/logo.svg";
 
 export default {
-  components: { 
-      CountBar,
-      LOGO
-    },
+  components: {
+    CountBar,
+    LOGO,
+  },
   methods: {
     ...mapActions(["dataLoad"]),
-    apiTest() {
-      axios.get("http://thkwon.pythonanywhere.com/api/notes/")
-        .then(res => {
-          console.log(res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
   },
   created() {
     this.dataLoad();
@@ -70,9 +60,9 @@ export default {
 }
 
 .logo {
-  width: 200px;
+  width: 230px;
   padding: 10px 20px 10px 20px;
-  margin: 40px 20px 0px 130px;
+  margin: 40px 20px 0px 230px;
   height: 80px;
 }
 .countBar {

@@ -7,20 +7,34 @@ Vue.use(Vuex);
 const noteModule = {
   state: {
     noteLoading: false,
-    noteDetail: []
+    noteDetail: [],
+    selectedTopic: null,
   },
-  getters: {},
-  mutations: {},
+  getters: {
+    getSelectTopic(state) {
+      return state.selectedTopic;
+    },
+    getNote(state) {
+      return state.noteDetail;
+    },
+  },
+  mutations: {
+    GET_NOTE(state, notes) {
+      state.noteDetail = notes;
+    },
+  },
   actions: {
-    noteLoad : ( noteID) => {
-      axios.get(`http://thkwon.pythonanywhere.com/api/notes/${noteID}`)
-        .then(res => {
-          console.log(res)
+    noteLoad({ commit }, noteID) {
+      axios
+        .get(`http://thkwon.pythonanywhere.com/api/notes/${noteID}`)
+        .then((res) => {
+          commit("GET_NOTE", res.data);
+          console.log(res.data);
         })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 
@@ -28,8 +42,8 @@ const issueModule = {
   state: {
     isLoadingCount: false,
     pageCount: -1,
-    getTitles : [],
-    issueData : []
+    getTitles: [],
+    issueData: [],
   },
   getters: {
     getCounter: function (state) {
@@ -38,9 +52,9 @@ const issueModule = {
     getTitles: function (state) {
       return state.getTitles;
     },
-    getIssue: function(state) {
+    getIssue: function (state) {
       return state.issueData;
-    }
+    },
   },
   mutations: {
     GET_COUNT_PENDING(state) {
@@ -54,10 +68,10 @@ const issueModule = {
       state.isLoadingCount = false;
     },
     GET_PAGE_TITLE(state, titles) {
-      state.getTitles = titles
+      state.getTitles = titles;
     },
     GET_ISSUE(state, issues) {
-      state.issueData = issues
+      state.issueData = issues;
     },
   },
   actions: {
@@ -70,24 +84,23 @@ const issueModule = {
         .catch((err) => {
           commit("GET_COUNT_FAIL");
           console.log(err);
-        })
+        });
       axios
         .get("http://thkwon.pythonanywhere.com/api/notes/")
         .then((res) => {
           commit("GET_PAGE_TITLE", res.data);
-        })  
+        })
         .catch((err) => {
           console.log(err);
-        }); 
+        });
       axios
         .get("http://thkwon.pythonanywhere.com/api/issues/")
         .then((res) => {
           commit("GET_ISSUE", res.data);
-        })  
+        })
         .catch((err) => {
           console.log(err);
         });
-       
     },
   },
 };

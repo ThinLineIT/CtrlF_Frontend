@@ -1,11 +1,14 @@
 <template>
   <v-container>
-       <v-card v-for="issue in getIssue" :key="issue">
-      {{ issue.title }}
-       <MEMOPREVIEW/>
-    </v-card>            
+    <v-card v-for="(issue, i) in getIssue" :key="i">
+      <div class="issue">
+        <v-card-title class="issue-title">{{ issue.title }}</v-card-title>
+        <v-card-text class="issue-date">{{ issue.registration_date }}</v-card-text>
+      </div>
+      <MEMOPREVIEW />
+    </v-card>
 
-<!--
+    <!--
     <v-list>
         <v-list-item
             v-for="issue in getIssue"
@@ -26,20 +29,19 @@
 </template>
 
 <script>
-import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg"
+import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg";
 import { mapGetters } from "vuex";
 
 export default {
-  components:{
-    MEMOPREVIEW
+  components: {
+    MEMOPREVIEW,
   },
   computed: {
-        ...mapGetters(["getIssue"])
-    },  
+    ...mapGetters(["getIssue"]),
+  },
   name: "IssueSideBar",
 };
 </script>
-
 
 <style scoped>
 .memo {
@@ -47,5 +49,10 @@ export default {
   height: 50px;
 }
 
-
+.issue {
+  position: absolute;
+}
+.issue-title {
+  padding-bottom: 3px;
+}
 </style>

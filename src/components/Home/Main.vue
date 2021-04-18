@@ -1,50 +1,58 @@
 <template>
-  <v-container>
+  <v-container class="main">
     <v-container>
       <v-row>
-          <v-col>
-              <v-row>
-                <v-col v-for="note in getTitles" :key="note.id" cols="3">
-                    <div>
-                        {{ note.title }}
-                    </div>
-                    
-                    <NOTEBACKGROUND @click="$router.push({name: 'NoteID', params: { noteID : note.id }})" class="testSvg" />
-                    
-                </v-col>
-              </v-row>
-          </v-col>
-        
+        <v-col>
+          <v-row>
+            <v-col v-for="(note, i) in getTitles" :key="i" cols="3">
+              <div>
+                {{ note.title }}
+              </div>
+
+              <NOTEBACKGROUND
+                ref="svgRef"
+                @click="
+                  $router.push({ name: 'NoteID', params: { noteID: note.id } })
+                "
+                class="testSvg"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+
         <v-col cols="3">
-            <MainSearch />
-            <IssueSideBar />
+          <MainSearch />
+          <IssueSideBar />
         </v-col>
       </v-row>
     </v-container>
   </v-container>
 </template>
 
-
-
 <script>
 import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
 import { mapGetters } from "vuex";
-import NOTEBACKGROUND from "../../assets/noteBack.svg"
+import NOTEBACKGROUND from "../../assets/noteBack.svg";
 
 export default {
-    computed: {
-        ...mapGetters(["getTitles"]),
+  computed: {
+    ...mapGetters(["getTitles"]),
+  },
+  components: {
+    IssueSideBar,
+    MainSearch,
+    NOTEBACKGROUND,
+  },
+  updated() {   
+    const svgs = this.$el.querySelectorAll('svg text')
 
-    },
-    components: {
-        IssueSideBar, 
-        MainSearch,
-        NOTEBACKGROUND
-    },
-}
+    this.getTitles
+      .map((note, index) => {
+        svgs[index].innerHTML = note.title
+      })
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
