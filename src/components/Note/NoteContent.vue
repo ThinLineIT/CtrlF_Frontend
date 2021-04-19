@@ -3,9 +3,9 @@
     <div class="notebar">
       <div class="noteContent__title">
         <span class="noteContent__title-sub">
-          {{ getSelectTopic }}
+          {{ getNowTopic }}
         </span>
-        <span class="noteContent__title-content"> PAGE </span>
+        <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
       <div class="noteBtn">
         <SearchIcon class="search" />
@@ -55,7 +55,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getNote", "getSelectTopic"]),
+    ...mapGetters(["getNote", "getNowTopic", "getNowPage"]),
   },
   name: "NoteContent",
   components: {

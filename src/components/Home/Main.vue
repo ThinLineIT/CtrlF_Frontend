@@ -5,10 +5,6 @@
         <v-col>
           <v-row>
             <v-col v-for="(note, i) in getTitles" :key="i" cols="3">
-              <div>
-                {{ note.title }}
-              </div>
-
               <NOTEBACKGROUND
                 ref="svgRef"
                 @click="
@@ -44,13 +40,12 @@ export default {
     MainSearch,
     NOTEBACKGROUND,
   },
-  updated() {   
-    const svgs = this.$el.querySelectorAll('svg text')
+  updated() {
+    const svgs = this.$el.querySelectorAll("svg text");
 
-    this.getTitles
-      .map((note, index) => {
-        svgs[index].innerHTML = note.title
-      })
+    this.getTitles.map((note, index) => {
+      svgs[index].innerHTML = note.title;
+    });
   },
 };
 </script>

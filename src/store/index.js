@@ -8,19 +8,48 @@ const noteModule = {
   state: {
     noteLoading: false,
     noteDetail: [],
-    selectedTopic: null,
+    selectedTopicPage: [],
+    isPageLoading: false, // page를 로딩하기 위함
+    allPages: null,
+    nowPage: null,
+    nowTopic: null,
   },
   getters: {
+    getAllPages(state) {
+      return state.allPages;
+    },
     getSelectTopic(state) {
-      return state.selectedTopic;
+      return state.selectedTopicPage;
     },
     getNote(state) {
       return state.noteDetail;
+    },
+    getNowPage(state) {
+      return state.nowPage;
+    },
+    getNowTopic(state) {
+      return state.nowTopic;
     },
   },
   mutations: {
     GET_NOTE(state, notes) {
       state.noteDetail = notes;
+    },
+    GET_ALL_PAGES(state, allPages) {
+      state.allPages = allPages;
+      console.log(state.allPages);
+    },
+    GET_SELECTED_PAGES(state, selectedPages) {
+      state.selectedTopicPage.push(selectedPages);
+    },
+    DEL_SELECTED_PAGES(state) {
+      state.selectedTopicPage = [];
+    },
+    GET_NOWPAGE_NAME(state, nowPage_name) {
+      state.nowPage = nowPage_name;
+    },
+    GET_NOWTOPIC_NAME(state, nowTopic_name) {
+      state.nowTopic = nowTopic_name;
     },
   },
   actions: {
@@ -29,11 +58,29 @@ const noteModule = {
         .get(`http://thkwon.pythonanywhere.com/api/notes/${noteID}`)
         .then((res) => {
           commit("GET_NOTE", res.data);
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    pageLoad({ commit }) {
+      axios
+        .get(`http://thkwon.pythonanywhere.com/api/pages`)
+        .then((res) => {
+          commit("GET_ALL_PAGES", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async selectedPageLoad({ commit }, pages) {
+      await commit("GET_SELECTED_PAGES", pages);
+    },
+    nowPageNameLoad({ commit }, pageName) {
+      commit("GET_NOWPAGE_NAME", pageName);
+    },
+    nowTopicNameLoad({ commit }, topicName) {
+      commit("GET_NOWTOPIC_NAME", topicName);
     },
   },
 };

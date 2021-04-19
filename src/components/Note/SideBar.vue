@@ -10,49 +10,68 @@
             <v-list-item v-for="(topic, i) in getNote.topics" :key="i">
               <v-list-item-content>
                 <v-list-item-title
-                  @click="topicSelect(topic.title)"
                   class="topic"
-                  >{{ topic.title }}</v-list-item-title
+                  @click="topicPagesLoad(topic.title, topic.id)"
+                  >{{ topic.title }} {{ topic.id }}</v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
           </v-list>
         </v-col>
         <v-col>
-          <v-list flat>
-            <v-list-item v-for="(topic, j) in getNote.topics" :key="j">
-              <v-list-item-content>
-                <v-list-item-title></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
+          <pagesName />
         </v-col>
       </v-row>
       <v-divider insert></v-divider>
-        <div class="AddBtn">
-            <div><router-link :to="{ name: 'Create' }" class="grey--text" id="addTopic"> Add Topic </router-link> </div>
-            <v-divider vertical></v-divider>
-            <div><router-link :to="{ name: 'Create' }" class="grey--text" id="addPage"> add page </router-link> </div>
-        <!-- TODO: Show popup to nmae a new topic-->
+      <div class="AddBtn">
+        <div>
+          <router-link
+            :to="{ name: 'Create' }"
+            class="grey--text"
+            id="addTopic"
+          >
+            Add Topic
+          </router-link>
         </div>
+        <v-divider vertical></v-divider>
+        <div>
+          <router-link :to="{ name: 'Create' }" class="grey--text" id="addPage">
+            add page
+          </router-link>
+        </div>
+        <!-- TODO: Show popup to nmae a new topic-->
+      </div>
     </v-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
+import pagesName from "./TopicPages";
 export default {
+  components: { pagesName },
   computed: {
-    ...mapGetters(["getNote", "getSelectTopic"]),
+    ...mapGetters(["getNote", "getAllPages", "getSelectTopic"]),
   },
   name: "SideBar",
   date() {
     return {};
   },
   methods: {
-    topicSelect(topicTitle) {
-      this.getSelectTopic = topicTitle;
+    ...mapActions(["pageLoad", "selectedPageLoad", "nowTopicNameLoad"]),
+    ...mapMutations(["DEL_SELECTED_PAGES", "DEL_SELECTED_TOPICS"]),
+    topicPagesLoad(topicName, topicId) {
+      this.nowTopicNameLoad(topicName);
+      this.DEL_SELECTED_PAGES();
+      for (let i = 0; i < this.getAllPages.length; i++) {
+        if (topicId === this.getAllPages[i].topic_id) {
+          this.selectedPageLoad(this.getAllPages[i]);
+        }
+      }
     },
+  },
+  created() {
+    this.pageLoad();
   },
 };
 </script>
@@ -95,15 +114,15 @@ export default {
 }
 
 .AddBtn {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 #addTopic {
-    text-decoration: none;
-    margin-left: 13px;
+  text-decoration: none;
+  margin: 13px;
 }
 #addPage {
-    text-decoration: none;
-    margin-right: 13px;
+  text-decoration: none;
+  margin: 13px;
 }
 </style>

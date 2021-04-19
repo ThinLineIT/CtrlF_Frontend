@@ -4,7 +4,7 @@
       <SideBar />
     </div>
     <div class="noteContent">
-      <NoteContent />
+      <router-view />
     </div>
   </div>
   <!-- <v-btn router :to="{ name: 'Create' }" exact>노트 Create</v-btn> -->
@@ -12,12 +12,12 @@
 
 <script>
 import SideBar from "@/components/Note/SideBar.vue";
-import NoteContent from "@/components/Note/NoteContent";
+//import NoteContent from "@/components/Note/NoteContent";
 
 export default {
   components: {
     SideBar,
-    NoteContent,
+    //NoteContent,
   },
   methods() {},
 };

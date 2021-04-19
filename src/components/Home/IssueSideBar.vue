@@ -3,7 +3,9 @@
     <v-card v-for="(issue, i) in getIssue" :key="i">
       <div class="issue">
         <v-card-title class="issue-title">{{ issue.title }}</v-card-title>
-        <v-card-text class="issue-date">{{ issue.registration_date }}</v-card-text>
+        <v-card-text class="issue-date">{{
+          issue.registration_date
+        }}</v-card-text>
       </div>
       <MEMOPREVIEW />
     </v-card>
