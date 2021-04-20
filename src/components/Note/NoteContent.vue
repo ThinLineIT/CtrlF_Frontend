@@ -17,31 +17,9 @@
       </div>
     </div>
     <div class="noteContent__text">
-      <span class="text__row">여기는 노트텍스트입니다.</span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
-      <span class="text__row"></span>
+      <v-card>
+        {{getNowTopicContent}}
+      </v-card>
     </div>
   </div>
 </template>
@@ -55,7 +33,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getNote", "getNowTopic", "getNowPage"]),
+    ...mapGetters(["getNote", "getNowTopic", "getNowPage", 'getNowTopicContent']),
   },
   name: "NoteContent",
   components: {

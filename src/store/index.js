@@ -13,8 +13,12 @@ const noteModule = {
     allPages: null,
     nowPage: null,
     nowTopic: null,
+    nowTopicContent : null, // 선택한 토픽의 콘텐츠 내용을 저장하는 변수입니다. 
   },
   getters: {
+    getNowTopicContent(state) { // 선택한 토픽의 콘텐츠 내용
+      return state.nowTopicContent
+    },
     getAllPages(state) {
       return state.allPages;
     },
@@ -32,6 +36,12 @@ const noteModule = {
     },
   },
   mutations: {
+    GET_NOWTOPIC_CONTENT(state, topicContent){
+      state.nowTopicContent = topicContent;
+    },
+    DEL_NOWTOPIC_CONTENT(state) {
+      state.nowTopicContent = null;
+    },
     GET_NOTE(state, notes) {
       state.noteDetail = notes;
     },
@@ -51,6 +61,11 @@ const noteModule = {
     GET_NOWTOPIC_NAME(state, nowTopic_name) {
       state.nowTopic = nowTopic_name;
     },
+    DEL_NOW_PAGE_TOPIC_NAME(state) {
+      state.nowPage = null;
+      state.nowTopic = null;
+      state.selectedTopicPage = [];
+    }
   },
   actions: {
     noteLoad({ commit }, noteID) {
@@ -82,6 +97,12 @@ const noteModule = {
     nowTopicNameLoad({ commit }, topicName) {
       commit("GET_NOWTOPIC_NAME", topicName);
     },
+    delSelectedTopicPage({commit}) {
+      commit('DEL_NOW_PAGE_TOPIC_NAME');
+    },
+    nowTopicContentLoad({commit}, topicContent) {
+      commit('GET_NOWTOPIC_CONTENT', topicContent)
+    }
   },
 };
 

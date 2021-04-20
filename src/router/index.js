@@ -53,14 +53,14 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/issues",
-    name: "Issue",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../components/Home/HomeIssues.vue"
-      ),
-  },
+  // {
+  //   path: "/issues",
+  //   name: "Issue",
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "about" */ "../components/Home/HomeIssues.vue"
+  //     ),
+  // },
 ];
 
 const router = new VueRouter({

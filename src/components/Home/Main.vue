@@ -8,7 +8,7 @@
               <NOTEBACKGROUND
                 ref="svgRef"
                 @click="
-                  $router.push({ name: 'NoteID', params: { noteID: note.id } })
+                  openNote(note.id)
                 "
                 class="testSvg"
               />
@@ -28,7 +28,7 @@
 <script>
 import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import NOTEBACKGROUND from "../../assets/noteBack.svg";
 
 export default {
@@ -39,6 +39,13 @@ export default {
     IssueSideBar,
     MainSearch,
     NOTEBACKGROUND,
+  },
+  methods : {
+    ...mapActions(["delSelectedTopicPage"]),
+    openNote(clickedNoteId) {
+      this.delSelectedTopicPage();
+      this.$router.push({ name: 'NoteID', params: { noteID: clickedNoteId } })
+    }
   },
   updated() {
     const svgs = this.$el.querySelectorAll("svg text");

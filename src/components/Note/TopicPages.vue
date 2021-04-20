@@ -3,7 +3,7 @@
     <v-list-item
       v-for="(item, index) in this.getSelectTopic"
       :key="index"
-      @click="nowPageLoad(item.title)"
+      @click="nowPageLoad(item.title, item.content)"
     >
       <v-list-item-content>
         <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -21,12 +21,13 @@ export default {
   },
   data() {
     return {
-      items: ["aaa", "ccc", "ddd", "bbb"],
+      
     };
   },
   methods: {
-    ...mapActions(["nowPageNameLoad"]),
-    nowPageLoad(title) {
+    ...mapActions(['nowTopicContentLoad',"nowPageNameLoad"]),
+    nowPageLoad(title, content) {
+      this.nowTopicContentLoad(content)
       this.nowPageNameLoad(title);
     },
   },
@@ -34,4 +35,3 @@ export default {
 </script>
 
 <style scoped></style>
- 

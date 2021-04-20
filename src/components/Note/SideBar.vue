@@ -12,7 +12,7 @@
                 <v-list-item-title
                   class="topic"
                   @click="topicPagesLoad(topic.title, topic.id)"
-                  >{{ topic.title }} {{ topic.id }}</v-list-item-title
+                  >{{ topic.title }}</v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
