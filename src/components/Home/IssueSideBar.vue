@@ -9,24 +9,7 @@
       </div>
       <MEMOPREVIEW />
     </v-card>
-
-    <!--
-    <v-list>
-        <v-list-item
-            v-for="issue in getIssue"
-            :key="issue"
-            two-line
-        >
-            <v-list-item-content>
-              <v-list-item-title>{{ issue.title }}</v-list-item-title>
-              <v-list-item-subtitle>{{ issue.registration_date }}</v-list-item-subtitle>
-              <v-img>
-                <MEMOPREVIEW />
-              </v-img>
-            </v-list-item-content>
-        </v-list-item>
-    </v-list>
-    -->
+    <v-card router :to="{ name: 'Issue' }" exact> + View More </v-card>
   </v-container>
 </template>
 

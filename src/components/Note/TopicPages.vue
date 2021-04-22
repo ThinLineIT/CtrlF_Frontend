@@ -20,14 +20,12 @@ export default {
     ...mapGetters(["getNowPage", "getSelectTopic"]),
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
-    ...mapActions(['nowTopicContentLoad',"nowPageNameLoad"]),
+    ...mapActions(["nowTopicContentLoad", "nowPageNameLoad"]),
     nowPageLoad(title, content) {
-      this.nowTopicContentLoad(content)
+      this.nowTopicContentLoad(content);
       this.nowPageNameLoad(title);
     },
   },

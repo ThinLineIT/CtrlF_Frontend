@@ -16,15 +16,13 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "main" */ "../components/Home/Main.vue"),
       },
-      {
-        path: "issue",
-        name: "Issue",
-        component: () =>
-          import(
-            /* webpackChunkName: "HomeIssue" */ "../components/Home/HomeIssues.vue"
-          ),
-      },
     ],
+  },
+  {
+    path: "issue",
+    name: "Issue",
+    component: () =>
+      import(/* webpackChunkName: "IssuesHome" */ "../views/IssuesHome.vue"),
   },
   {
     path: "/notes",

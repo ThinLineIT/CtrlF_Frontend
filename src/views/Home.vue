@@ -9,15 +9,7 @@
     </div>
     <div class="test">
       <router-view />
-      <!-- <div class="mainSide">
-        <MainSearch />
-        <IssueSideBar />
-      </div> -->
     </div>
-    여기는 홈입니다.
-    <v-btn router :to="{ name: 'Note' }" exact>노트</v-btn>
-
-    <v-btn router :to="{ name: 'Issue' }" exact>이슈</v-btn>
   </div>
 </template>
 

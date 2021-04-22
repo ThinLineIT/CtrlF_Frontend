@@ -6,18 +6,19 @@ Vue.use(Vuex);
 
 const noteModule = {
   state: {
-    noteLoading: false,
+    isNoteLoading: false, // TO Do : Loading 화면 삽입
     noteDetail: [],
     selectedTopicPage: [],
     isPageLoading: false, // page를 로딩하기 위함
     allPages: null,
-    nowPage: null,
-    nowTopic: null,
-    nowTopicContent : null, // 선택한 토픽의 콘텐츠 내용을 저장하는 변수입니다. 
+    nowPage: null, // Note페이지의 상단 선택한 페이지의 이름
+    nowTopic: null, // Note페이지의 상단 선택한 토픽의 이름
+    nowTopicContent: null, // 선택한 토픽의 콘텐츠 내용을 저장하는 변수입니다.
   },
   getters: {
-    getNowTopicContent(state) { // 선택한 토픽의 콘텐츠 내용
-      return state.nowTopicContent
+    getNowTopicContent(state) {
+      // 선택한 토픽의 콘텐츠 내용
+      return state.nowTopicContent;
     },
     getAllPages(state) {
       return state.allPages;
@@ -36,7 +37,7 @@ const noteModule = {
     },
   },
   mutations: {
-    GET_NOWTOPIC_CONTENT(state, topicContent){
+    GET_NOWTOPIC_CONTENT(state, topicContent) {
       state.nowTopicContent = topicContent;
     },
     DEL_NOWTOPIC_CONTENT(state) {
@@ -65,7 +66,7 @@ const noteModule = {
       state.nowPage = null;
       state.nowTopic = null;
       state.selectedTopicPage = [];
-    }
+    },
   },
   actions: {
     noteLoad({ commit }, noteID) {
@@ -77,6 +78,7 @@ const noteModule = {
         .catch((err) => {
           console.log(err);
         });
+      commit("DEL_NOWTOPIC_CONTENT");
     },
     pageLoad({ commit }) {
       axios
@@ -97,12 +99,12 @@ const noteModule = {
     nowTopicNameLoad({ commit }, topicName) {
       commit("GET_NOWTOPIC_NAME", topicName);
     },
-    delSelectedTopicPage({commit}) {
-      commit('DEL_NOW_PAGE_TOPIC_NAME');
+    delSelectedTopicPage({ commit }) {
+      commit("DEL_NOW_PAGE_TOPIC_NAME");
     },
-    nowTopicContentLoad({commit}, topicContent) {
-      commit('GET_NOWTOPIC_CONTENT', topicContent)
-    }
+    nowTopicContentLoad({ commit }, topicContent) {
+      commit("GET_NOWTOPIC_CONTENT", topicContent);
+    },
   },
 };
 

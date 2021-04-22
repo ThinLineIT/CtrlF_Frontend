@@ -7,9 +7,7 @@
             <v-col v-for="(note, i) in getTitles" :key="i" cols="3">
               <NOTEBACKGROUND
                 ref="svgRef"
-                @click="
-                  openNote(note.id)
-                "
+                @click="openNote(note.id)"
                 class="testSvg"
               />
             </v-col>
@@ -40,12 +38,12 @@ export default {
     MainSearch,
     NOTEBACKGROUND,
   },
-  methods : {
+  methods: {
     ...mapActions(["delSelectedTopicPage"]),
     openNote(clickedNoteId) {
       this.delSelectedTopicPage();
-      this.$router.push({ name: 'NoteID', params: { noteID: clickedNoteId } })
-    }
+      this.$router.push({ name: "NoteID", params: { noteID: clickedNoteId } });
+    },
   },
   updated() {
     const svgs = this.$el.querySelectorAll("svg text");

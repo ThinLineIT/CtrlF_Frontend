@@ -18,7 +18,7 @@
     </div>
     <div class="noteContent__text">
       <v-card>
-        {{getNowTopicContent}}
+        {{ getNowTopicContent }}
       </v-card>
     </div>
   </div>
@@ -33,7 +33,12 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getNote", "getNowTopic", "getNowPage", 'getNowTopicContent']),
+    ...mapGetters([
+      "getNote",
+      "getNowTopic",
+      "getNowPage",
+      "getNowTopicContent",
+    ]),
   },
   name: "NoteContent",
   components: {
