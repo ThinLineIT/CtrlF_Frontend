@@ -1,5 +1,5 @@
 <template>
-  <div class="noteContent">
+  <v-container class="noteContent">
     <div class="notebar">
       <div class="noteContent__title">
         <span class="noteContent__title-sub">
@@ -21,7 +21,7 @@
         {{ getNowTopicContent }}
       </v-card>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -77,10 +77,9 @@ export default {
   border-radius: 0px 20px 20px 0px;
   height: 38px;
   line-height: 38px;
-  padding: 1px 0px 0px 24px;
+  padding: 1px 18px 0px 20px;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
-  width: 700px;
 }
 .noteContent__text {
   margin-top: 30px;

@@ -49,7 +49,7 @@ export default {
     const svgs = this.$el.querySelectorAll("svg text");
 
     this.getTitles.map((note, index) => {
-      if (note.title.length > 5) {
+      if (note.title.length > 10) {
         var noteTitle = note.title.substr(0, 11) + "...";
       } else {
         noteTitle = note.title

@@ -1,13 +1,14 @@
 <template>
-  <div class="note">
-    <div class="sideBar">
-      <SideBar />
-    </div>
-    <div class="noteContent">
-      <router-view />
-    </div>
-  </div>
-  <!-- <v-btn router :to="{ name: 'Create' }" exact>노트 Create</v-btn> -->
+  <v-container fluid class="note-container">
+    <v-row class="note">
+      <v-col class="sideBar" cols="3">
+        <SideBar />
+      </v-col>
+      <v-col class="noteContent">
+        <router-view />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -33,5 +34,9 @@ export default {
 .noteContent {
   margin-left: 30px;
   width: calc(100% - 400px);
+}
+
+.note-container {
+  padding: 0;
 }
 </style>

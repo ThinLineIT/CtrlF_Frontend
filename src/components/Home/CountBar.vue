@@ -1,6 +1,6 @@
 <template>
   <div class="CountBar">
-    <span>현재 모아진 아이디어 {{ getCounter }} </span>
+    <span class="home-count">현재 모아진 아이디어 {{ getCounter }} </span>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ div {
   height: 100%;
 }
 span {
-  font-size: 32px;
+  font-size: 2rem;
 }
+
 </style>

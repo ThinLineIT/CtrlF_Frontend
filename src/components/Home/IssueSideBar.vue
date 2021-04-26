@@ -3,13 +3,13 @@
     <v-card>
       <div v-for="(issue, i) in this.getIssue.slice(0, 5)" :key="i">
         <div class="issue">
-          <span class="issue-title" >{{ issue.title }}</span>
+          <span class="issue-title" >{{ issue.title.substr(0, 12)}}</span>
           <!-- <v-card-text class="issue-date">{{ issue.registration_date }}</v-card-text> -->
         </div>
         <MEMOPREVIEW />
       </div>
-      <div>
-        <v-btn retain-focus-on-click class="more-btn" router :to="{ name: 'Issue' }" exact> + View More </v-btn>
+      <div class="more">
+        <v-btn elevation="0" block color="white" class="more-btn" router :to="{ name: 'Issue' }" exact> + View More </v-btn>
       </div>
     </v-card>
   </v-container>
@@ -43,14 +43,19 @@ export default {
 
 .issue {
   position: absolute;
+  padding: 10px 10px 10px 10px;
 }
 .issue-title {
   padding-bottom: 3px;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .more-btn {
   width: 110px;
   height: 110px;
+  padding-right: 10px;
+}
+.more {
+  text-align: center;
 }
 </style>
