@@ -1,15 +1,17 @@
 <template>
   <v-container>
-    <v-card v-for="(issue, i) in getIssue" :key="i">
-      <div class="issue">
-        <v-card-title class="issue-title">{{ issue.title }}</v-card-title>
-        <v-card-text class="issue-date">{{
-          issue.registration_date
-        }}</v-card-text>
+    <v-card>
+      <div v-for="(issue, i) in this.getIssue.slice(0, 5)" :key="i">
+        <div class="issue">
+          <span class="issue-title" >{{ issue.title }}</span>
+          <!-- <v-card-text class="issue-date">{{ issue.registration_date }}</v-card-text> -->
+        </div>
+        <MEMOPREVIEW />
       </div>
-      <MEMOPREVIEW />
+      <div>
+        <v-btn retain-focus-on-click class="more-btn" router :to="{ name: 'Issue' }" exact> + View More </v-btn>
+      </div>
     </v-card>
-    <v-card router :to="{ name: 'Issue' }" exact> + View More </v-card>
   </v-container>
 </template>
 
@@ -20,6 +22,11 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     MEMOPREVIEW,
+  },
+  data() {
+    return {
+      
+    }
   },
   computed: {
     ...mapGetters(["getIssue"]),
@@ -39,5 +46,11 @@ export default {
 }
 .issue-title {
   padding-bottom: 3px;
+  font-size: 15px;
+}
+
+.more-btn {
+  width: 110px;
+  height: 110px;
 }
 </style>

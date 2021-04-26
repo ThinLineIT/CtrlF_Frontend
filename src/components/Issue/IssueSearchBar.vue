@@ -1,7 +1,9 @@
 <template>
   <v-row>
     <v-col cols="3">
-      <v-btn> 홈으로 돌아가기 </v-btn>
+      <router-link :to="{ name: 'Home' }">
+         홈으로 돌아가기
+      </router-link>
     </v-col>
     <v-col cols="6"> MAIN || SUB </v-col>
     <v-col cols="3">
@@ -16,6 +18,10 @@
 <script>
 export default {
   name: "IssueSearchBar",
-  data() {},
+  data() {
+    return {
+
+    }
+  },
 };
 </script>

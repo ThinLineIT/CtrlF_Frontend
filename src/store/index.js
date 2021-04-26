@@ -172,6 +172,17 @@ const issueModule = {
           console.log(err);
         });
     },
+    issueLoad ({ commit }) {
+      axios
+        .get("http://thkwon.pythonanywhere.com/api/issues/")
+        .then((res) => {
+          commit("GET_ISSUE", res.data);
+          console.log("Issue가져오기 성공", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 
@@ -183,6 +194,8 @@ const store = new Vuex.Store({
 });
 
 export default store;
+
+
 
 // export default new Vuex.Store({
 //   state: {

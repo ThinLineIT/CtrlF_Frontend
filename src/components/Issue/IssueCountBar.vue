@@ -1,13 +1,19 @@
 <template>
   <div class="CountBar">
-    <span>요청 검토 중인 내용 (이슈 숫자) </span>
+    <span>요청 검토 중인 내용 {{getIssue.length}} </span>
   </div>
 </template>
 
 <script>
+
+import { mapGetters } from "vuex";
 export default {
   name: "IssueCountBar",
+  computed : {
+    ...mapGetters(["getIssue"]),
+  },
 };
+
 </script>
 
 <style scoped>

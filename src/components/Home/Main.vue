@@ -49,10 +49,19 @@ export default {
     const svgs = this.$el.querySelectorAll("svg text");
 
     this.getTitles.map((note, index) => {
-      svgs[index].innerHTML = note.title;
+      if (note.title.length > 5) {
+        var noteTitle = note.title.substr(0, 11) + "...";
+      } else {
+        noteTitle = note.title
+      }
+      svgs[index].innerHTML = noteTitle;
     });
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.testSvg:hover {
+  cursor: pointer;
+}
+</style>
