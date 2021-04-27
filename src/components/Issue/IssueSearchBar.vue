@@ -1,27 +1,61 @@
 <template>
-  <v-row>
-    <v-col cols="3">
-      <router-link :to="{ name: 'Home' }">
-         홈으로 돌아가기
+  <div class="issue-searchBar">
+    <div>
+      <router-link :to="{ name: 'Home' }" class="issue-home">
+        <v-icon>mdi-arrow-left</v-icon> 홈으로 돌아가기
       </router-link>
-    </v-col>
-    <v-col cols="6"> MAIN || SUB </v-col>
-    <v-col cols="3">
-      <v-text-field
-        outlined
-        append-icon="mdi-card-search-outline"
-      ></v-text-field>
-    </v-col>
-  </v-row>
+    </div>
+    <div class="issue-category"> 
+      <v-card class="issue-category-main"> <span>MAIN</span>  </v-card>   
+      <v-card class="issue-category-sub"> <span>SUB</span>  </v-card>  
+    </div>
+    <div class="issue-search">
+      <input class="issue-search" type="text">
+      <!-- append-icon="mdi-card-search-outline" -->
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "IssueSearchBar",
-  data() {
-    return {
-
-    }
-  },
+  
 };
 </script>
+
+
+<style scoped>
+.issue-searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.issue-home {
+  text-decoration-line: none;
+  color: black;
+}
+
+.issue-category {
+  display: flex;
+}
+
+.issue-category-main, .issue-category-sub {
+  width: 300px;
+  height: 67px;
+  display: table;
+}
+
+span {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.issue-search {
+  width: 318px;
+  height: 47px;
+  border: solid 0.5px gray;
+}
+
+</style>

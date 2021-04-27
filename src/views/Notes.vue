@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="note-container">
     <v-row class="note">
-      <v-col class="sideBar" cols="3">
+      <v-col class="sideBar" cols="4">
         <SideBar />
       </v-col>
       <v-col class="noteContent">
@@ -29,12 +29,10 @@ export default {
   display: flex;
 }
 .sideBar {
-  height: 100px;
+  height: 100%;
+  padding-bottom: 0px;
 }
-.noteContent {
-  margin-left: 30px;
-  width: calc(100% - 400px);
-}
+
 
 .note-container {
   padding: 0;

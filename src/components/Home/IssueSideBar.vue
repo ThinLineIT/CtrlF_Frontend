@@ -3,8 +3,9 @@
     <v-card>
       <div v-for="(issue, i) in this.getIssue.slice(0, 5)" :key="i">
         <div class="issue">
-          <span class="issue-title" >{{ issue.title.substr(0, 12)}}</span>
-          <!-- <v-card-text class="issue-date">{{ issue.registration_date }}</v-card-text> -->
+          <span class="issue-title" >{{ issue.title.substr(0, 15)}}</span>
+          <br>
+          <span class="issue-consider">궁금해요 20</span>
         </div>
         <MEMOPREVIEW />
       </div>
@@ -43,11 +44,13 @@ export default {
 
 .issue {
   position: absolute;
-  padding: 10px 10px 10px 10px;
+  padding: 17px 10px 10px 17px;
 }
 .issue-title {
-  padding-bottom: 3px;
   font-size: 1rem;
+  font-weight: bold;
+}
+.issue-consider {
 }
 
 .more-btn {

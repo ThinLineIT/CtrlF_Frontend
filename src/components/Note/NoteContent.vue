@@ -1,5 +1,5 @@
 <template>
-  <v-container class="noteContent">
+  <v-container class="noteContent" fluid>
     <div class="notebar">
       <div class="noteContent__title">
         <span class="noteContent__title-sub">
@@ -59,15 +59,16 @@ export default {
 <style scoped>
 .noteContent {
   margin-top: 50px;
-  width: 80% !important;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 30px;
 }
 .noteContent__title {
   display: flex;
 }
 .noteContent__title-sub {
   background-color: #43af83;
-  height: 40px;
-  line-height: 40px;
+  line-height: 67px;
   border-radius: 20px 0px 0px 20px;
   width: 120px;
   text-align: center;
@@ -75,8 +76,7 @@ export default {
 }
 .noteContent__title-content {
   border-radius: 0px 20px 20px 0px;
-  height: 38px;
-  line-height: 38px;
+  line-height: 67px;
   padding: 1px 18px 0px 20px;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;

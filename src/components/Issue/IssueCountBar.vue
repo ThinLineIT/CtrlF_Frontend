@@ -1,6 +1,7 @@
 <template>
   <div class="CountBar">
-    <span>요청 검토 중인 내용 {{getIssue.length}} </span>
+    <span class="issue-text">요청 검토 중인 내용 </span> 
+    <span class="issue-count">{{getIssue.length}}</span>
   </div>
 </template>
 
@@ -19,13 +20,18 @@ export default {
 <style scoped>
 div {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  height: 110px;
 }
-span {
+
+.issue-count {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.issue-text {
+  padding-right: 15px;
   font-size: 32px;
 }
 </style>

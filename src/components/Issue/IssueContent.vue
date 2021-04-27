@@ -5,12 +5,12 @@
         <v-row>
           <v-col v-for="(issue, i) in getIssue" :key="i" cols="3">
             <div class="issueContent" >
-              {{ issue.title }}
+              <span class="issue-title"> {{ issue.title }} </span>
               <br>
-              {{ issue.content }}
+              <span class="issue-content"> {{ issue.content }} </span> 
             </div> 
             <ISSUEBACKGROUND
-              ref="svgRef"
+              
               class="issueBg"
             />
           </v-col>
@@ -46,8 +46,13 @@ export default {
 <style scoped>
 .issueContent { 
   position: absolute;
-  width: 140px;
+  width: 230px;
   margin: 10px 0px 0px 10px;
+}
+
+.issue-title {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 </style>

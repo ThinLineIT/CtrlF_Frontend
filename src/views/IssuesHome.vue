@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <div class="Issue-Count">
+    <v-card class="Issue-Count" rounded="pill">
       <IssueCountBar />
-    </div>
-    <v-card>
-      <IssueSearchBar />
     </v-card>
+    <div> 
+      <IssueSearchBar />
+    </div>
     <IssueContent />
   </v-container>
 </template>
@@ -35,6 +35,7 @@ export default {
 
 <style scoped>
 .Issue-Count {
+  margin-top: 80px;
   margin-bottom: 30px;
 }
 </style>

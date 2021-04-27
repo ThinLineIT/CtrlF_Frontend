@@ -89,7 +89,8 @@ export default {
   padding: 30px;
   background-color: #43af83;
   min-height: 969px;
-  min-width: 200px;
+  min-width: 100px;
+  width: 25.8em;
 }
 .titleList {
   border-top: 12px solid #43af83;
