@@ -7,7 +7,11 @@
       <v-row>
         <v-col>
           <v-list flat>
-            <v-list-item class="topic-title" v-for="(topic, i) in getNote.topics" :key="i">
+            <v-list-item
+              class="topic-title"
+              v-for="(topic, i) in getNote.topics"
+              :key="i"
+            >
               <v-list-item-content class="topic-title-content">
                 <v-list-item-title
                   class="topic"
@@ -51,17 +55,25 @@ import pagesName from "./TopicPages";
 export default {
   components: { pagesName },
   computed: {
-    ...mapGetters(["getNote", "getAllPages", "getSelectTopic", "getIsTopicClicked"]),
+    ...mapGetters([
+      "getNote",
+      "getAllPages",
+      "getSelectTopic",
+      "getIsTopicClicked",
+    ]),
   },
   name: "SideBar",
   date() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
     ...mapActions(["pageLoad", "selectedPageLoad", "nowTopicNameLoad"]),
-    ...mapMutations(["DEL_SELECTED_PAGES", "DEL_SELECTED_TOPICS","TOPIC_CLICKED","TOPIC_UNCLICKED"]),
+    ...mapMutations([
+      "DEL_SELECTED_PAGES",
+      "DEL_SELECTED_TOPICS",
+      "TOPIC_CLICKED",
+      "TOPIC_UNCLICKED",
+    ]),
     topicPagesLoad(topicName, topicId) {
       this.nowTopicNameLoad(topicName);
       this.DEL_SELECTED_PAGES();
@@ -70,13 +82,13 @@ export default {
           this.selectedPageLoad(this.getAllPages[i]);
         }
       }
-      if(this.getIsTopicClicked === false){
+      if (this.getIsTopicClicked === false) {
         this.TOPIC_CLICKED();
-        document.getElementById('AddBtnId').style.display = "none" 
-        document.getElementById('pageSideBarId').style.width = "450px"
+        document.getElementById("AddBtnId").style.display = "none";
+        document.getElementById("pageSideBarId").style.width = "450px";
       } // else {
       //   this.TOPIC_UNCLICKED();
-      //   document.getElementById('AddBtnId').style.display = "" 
+      //   document.getElementById('AddBtnId').style.display = ""
       //   document.getElementById('pageSideBarId').style.width = "22.8em"
       // }
     },
@@ -86,7 +98,7 @@ export default {
   },
   destroyed() {
     this.TOPIC_UNCLICKED();
-  }
+  },
 };
 </script>
 
@@ -109,8 +121,6 @@ export default {
 .titleList {
   border-top: 12px solid #43af83;
 }
-
-
 
 .topic {
   background-color: #8ecfb5;
@@ -144,7 +154,6 @@ export default {
   cursor: pointer;
 }
 
-
 .topic-title {
   padding: 0px 0px 0px 15px;
 }
@@ -152,5 +161,4 @@ export default {
 .topic-title-content {
   padding: 0px;
 }
-
 </style>

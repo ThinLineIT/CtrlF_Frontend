@@ -28,6 +28,7 @@ import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
 import { mapActions, mapGetters } from "vuex";
 import NOTEBACKGROUND from "../../assets/noteBack.svg";
+// import MEMO_MODULES from "../../assets/Memo/noteBG";
 
 export default {
   computed: {
@@ -52,7 +53,7 @@ export default {
       if (note.title.length > 10) {
         var noteTitle = note.title.substr(0, 11) + "...";
       } else {
-        noteTitle = note.title
+        noteTitle = note.title;
       }
       svgs[index].innerHTML = noteTitle;
     });
@@ -72,6 +73,4 @@ export default {
 text {
   font-weight: bold;
 }
-
-
 </style>

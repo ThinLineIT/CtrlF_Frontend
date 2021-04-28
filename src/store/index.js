@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 const noteModule = {
   state: {
-    isTopicClicked: false,  // Topic, Page 사이드바 클릭시 크기 조절
+    isTopicClicked: false, // Topic, Page 사이드바 클릭시 크기 조절
     isNoteLoading: false, // TO Do : Loading 화면 삽입
     noteDetail: [],
     selectedTopicPage: [],
@@ -183,7 +183,7 @@ const issueModule = {
           console.log(err);
         });
     },
-    issueLoad ({ commit }) {
+    issueLoad({ commit }) {
       axios
         .get("http://thkwon.pythonanywhere.com/api/issues/")
         .then((res) => {
@@ -206,8 +206,6 @@ const store = new Vuex.Store({
 });
 
 export default store;
-
-
 
 // export default new Vuex.Store({
 //   state: {

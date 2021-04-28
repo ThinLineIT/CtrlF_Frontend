@@ -3,7 +3,7 @@
     <v-card class="Issue-Count" rounded="pill">
       <IssueCountBar />
     </v-card>
-    <div> 
+    <div>
       <IssueSearchBar />
     </div>
     <IssueContent />
@@ -23,16 +23,16 @@ export default {
     IssueSearchBar,
   },
   name: "HomeIssues",
-  computed : {
-    ...mapGetters(["getIssue"])
+  computed: {
+    ...mapGetters(["getIssue"]),
   },
-  methods : {
+  methods: {
     ...mapActions(["issueLoad"]),
   },
-  created() {
+  beforeMount() {
     this.issueLoad();
-    console.log(this.getIssue)  // 새로고침시 먹통
-  }
+    console.log(this.getIssue); // 새로고침시 먹통
+  },
 };
 </script>
 

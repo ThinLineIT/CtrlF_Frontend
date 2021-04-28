@@ -1,6 +1,7 @@
 <template>
   <div class="CountBar">
-    <span class="countbar-main">현재 모아진 아이디어 </span> <span class="countbar-count"> {{ getCounter }} </span>
+    <span class="countbar-main">현재 모아진 아이디어 </span>
+    <span class="countbar-count"> {{ getCounter }} </span>
   </div>
 </template>
 
@@ -16,7 +17,6 @@ export default {
 </script>
 
 <style scoped>
-
 .countbar-main {
   padding-right: 30px;
 }
@@ -35,5 +35,4 @@ div {
 span {
   font-size: 1.8rem;
 }
-
 </style>

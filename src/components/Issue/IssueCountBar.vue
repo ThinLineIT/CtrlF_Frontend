@@ -1,20 +1,18 @@
 <template>
   <div class="CountBar">
-    <span class="issue-text">요청 검토 중인 내용 </span> 
-    <span class="issue-count">{{getIssue.length}}</span>
+    <span class="issue-text">요청 검토 중인 내용 </span>
+    <span class="issue-count">{{ getIssue.length }}</span>
   </div>
 </template>
 
 <script>
-
 import { mapGetters } from "vuex";
 export default {
   name: "IssueCountBar",
-  computed : {
+  computed: {
     ...mapGetters(["getIssue"]),
   },
 };
-
 </script>
 
 <style scoped>

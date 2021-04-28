@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="note-container">
-      <div class="sideBar" cols="4">
-        <SideBar />
-      </div>
-      <div class="noteContent">
-        <router-view />
-      </div>
+    <div class="sideBar" cols="4">
+      <SideBar />
+    </div>
+    <div class="noteContent">
+      <router-view />
+    </div>
     <!-- <v-row class="note">
       <v-col class="sideBar" cols="4">
         <SideBar />
@@ -26,9 +26,7 @@ export default {
     SideBar,
     //NoteContent,
   },
-  methods : {
-
-  },
+  methods: {},
 };
 </script>
 
