@@ -14,7 +14,7 @@
 import IssueCountBar from "@/components/Issue/IssueCountBar";
 import IssueSearchBar from "@/components/Issue/IssueSearchBar";
 import IssueContent from "@/components/Issue/IssueContent";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -23,13 +23,16 @@ export default {
     IssueSearchBar,
   },
   name: "HomeIssues",
-   methods : {
+  computed : {
+    ...mapGetters(["getIssue"])
+  },
+  methods : {
     ...mapActions(["issueLoad"]),
   },
-
   created() {
-    this.issueLoad();  // 새로고침시 해결요망
-  },
+    this.issueLoad();
+    console.log(this.getIssue)  // 새로고침시 먹통
+  }
 };
 </script>
 

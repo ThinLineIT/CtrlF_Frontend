@@ -61,7 +61,17 @@ export default {
 </script>
 
 <style scoped>
+.testSvg {
+  font-weight: bold;
+}
+
 .testSvg:hover {
   cursor: pointer;
 }
+
+text {
+  font-weight: bold;
+}
+
+
 </style>

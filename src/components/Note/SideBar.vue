@@ -7,8 +7,8 @@
       <v-row>
         <v-col>
           <v-list flat>
-            <v-list-item v-for="(topic, i) in getNote.topics" :key="i">
-              <v-list-item-content>
+            <v-list-item class="topic-title" v-for="(topic, i) in getNote.topics" :key="i">
+              <v-list-item-content class="topic-title-content">
                 <v-list-item-title
                   class="topic"
                   @click="topicPagesLoad(topic.title, topic.id)"
@@ -61,6 +61,7 @@ export default {
     ...mapActions(["pageLoad", "selectedPageLoad", "nowTopicNameLoad"]),
     ...mapMutations(["DEL_SELECTED_PAGES", "DEL_SELECTED_TOPICS"]),
     topicPagesLoad(topicName, topicId) {
+      console.log(topicName)
       this.nowTopicNameLoad(topicName);
       this.DEL_SELECTED_PAGES();
       for (let i = 0; i < this.getAllPages.length; i++) {
@@ -96,9 +97,7 @@ export default {
   border-top: 12px solid #43af83;
 }
 
-.live {
-  background-color: #43af83 !important;
-}
+
 
 .topic {
   background-color: #8ecfb5;
@@ -126,4 +125,18 @@ export default {
   text-decoration: none;
   margin: 13px;
 }
+
+.topic:hover {
+  cursor: pointer;
+}
+
+
+.topic-title {
+  padding: 0px 0px 0px 15px;
+}
+
+.topic-title-content {
+  padding: 0px;
+}
+
 </style>
