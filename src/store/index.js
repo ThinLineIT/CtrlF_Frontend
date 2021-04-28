@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 const noteModule = {
   state: {
+    isTopicClicked: false,  // Topic, Page 사이드바 클릭시 크기 조절
     isNoteLoading: false, // TO Do : Loading 화면 삽입
     noteDetail: [],
     selectedTopicPage: [],
@@ -17,6 +18,9 @@ const noteModule = {
     nowTopicContent: null, // 선택한 토픽의 콘텐츠 내용을 저장하는 변수입니다.
   },
   getters: {
+    getIsTopicClicked(state) {
+      return state.isTopicClicked;
+    },
     getNowTopicContent(state) {
       // 선택한 토픽의 콘텐츠 내용
       return state.nowTopicContent;
@@ -38,6 +42,12 @@ const noteModule = {
     },
   },
   mutations: {
+    TOPIC_CLICKED(state) {
+      state.isTopicClicked = true;
+    },
+    TOPIC_UNCLICKED(state) {
+      state.isTopicClicked = false;
+    },
     GET_NOWTOPIC_CONTENT(state, topicContent) {
       state.nowTopicContent = topicContent;
     },

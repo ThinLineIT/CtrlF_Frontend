@@ -8,12 +8,12 @@
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
       <div class="noteBtn">
-        <SearchIcon class="search" />
-        <RequestIcon class="request" />
-        <LoginIcon class="login" />
         <router-link :to="{ name: 'Home' }">
           <HomeIcon class="home" />
         </router-link>
+        <SearchIcon class="search" />
+        <RequestIcon class="request" />
+        <LoginIcon class="login" />
       </div>
     </div>
     <div class="noteContent__text">
@@ -62,6 +62,7 @@ export default {
   margin-left: 0px;
   padding-left: 0px;
   padding-right: 30px;
+  width: 74rem;
 }
 .noteContent__title {
   display: flex;
@@ -70,15 +71,17 @@ export default {
   background-color: #43af83;
   line-height: 67px;
   border-radius: 20px 0px 0px 20px;
-  width: 120px;
   text-align: center;
+  padding: 1px 18px 0px 20px;
   color: #ffffff;
+  min-width: 100px;
 }
 .noteContent__title-content {
   border-radius: 0px 20px 20px 0px;
   line-height: 67px;
   padding: 1px 18px 0px 20px;
   font-weight: bold;
+  min-width: 100px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
 }
 .noteContent__text {

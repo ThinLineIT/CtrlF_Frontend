@@ -1,5 +1,5 @@
 <template>
-  <div class="pageSideBar">
+  <div class="pageSideBar" id="pageSideBarId">
     <v-card class="mainTitle">
       {{ getNote.title }}
     </v-card>
@@ -23,8 +23,8 @@
         </v-col>
       </v-row>
       <v-divider insert></v-divider>
-      <div class="AddBtn">
-        <div>
+      <div class="AddBtn" id="AddBtnId">
+        <div class="add-1">
           <router-link
             :to="{ name: 'Create' }"
             class="grey--text"
@@ -34,7 +34,7 @@
           </router-link>
         </div>
         <v-divider vertical></v-divider>
-        <div>
+        <div class="add-2">
           <router-link :to="{ name: 'Create' }" class="grey--text" id="addPage">
             add page
           </router-link>
@@ -51,17 +51,18 @@ import pagesName from "./TopicPages";
 export default {
   components: { pagesName },
   computed: {
-    ...mapGetters(["getNote", "getAllPages", "getSelectTopic"]),
+    ...mapGetters(["getNote", "getAllPages", "getSelectTopic", "getIsTopicClicked"]),
   },
   name: "SideBar",
   date() {
-    return {};
+    return {
+      
+    };
   },
   methods: {
     ...mapActions(["pageLoad", "selectedPageLoad", "nowTopicNameLoad"]),
-    ...mapMutations(["DEL_SELECTED_PAGES", "DEL_SELECTED_TOPICS"]),
+    ...mapMutations(["DEL_SELECTED_PAGES", "DEL_SELECTED_TOPICS","TOPIC_CLICKED","TOPIC_UNCLICKED"]),
     topicPagesLoad(topicName, topicId) {
-      console.log(topicName)
       this.nowTopicNameLoad(topicName);
       this.DEL_SELECTED_PAGES();
       for (let i = 0; i < this.getAllPages.length; i++) {
@@ -69,11 +70,23 @@ export default {
           this.selectedPageLoad(this.getAllPages[i]);
         }
       }
+      if(this.getIsTopicClicked === false){
+        this.TOPIC_CLICKED();
+        document.getElementById('AddBtnId').style.display = "none" 
+        document.getElementById('pageSideBarId').style.width = "450px"
+      } // else {
+      //   this.TOPIC_UNCLICKED();
+      //   document.getElementById('AddBtnId').style.display = "" 
+      //   document.getElementById('pageSideBarId').style.width = "22.8em"
+      // }
     },
   },
   created() {
     this.pageLoad();
   },
+  destroyed() {
+    this.TOPIC_UNCLICKED();
+  }
 };
 </script>
 
@@ -89,9 +102,9 @@ export default {
 .pageSideBar {
   padding: 30px;
   background-color: #43af83;
-  min-height: 969px;
+  min-height: 700px;
   min-width: 100px;
-  width: 25.8em;
+  width: 22.8em;
 }
 .titleList {
   border-top: 12px solid #43af83;
@@ -116,6 +129,7 @@ export default {
 .AddBtn {
   display: flex;
   justify-content: space-between;
+  padding: 0px 31px;
 }
 #addTopic {
   text-decoration: none;

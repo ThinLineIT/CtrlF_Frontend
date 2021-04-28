@@ -1,13 +1,19 @@
 <template>
   <v-container fluid class="note-container">
-    <v-row class="note">
+      <div class="sideBar" cols="4">
+        <SideBar />
+      </div>
+      <div class="noteContent">
+        <router-view />
+      </div>
+    <!-- <v-row class="note">
       <v-col class="sideBar" cols="4">
         <SideBar />
       </v-col>
       <v-col class="noteContent">
         <router-view />
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -20,7 +26,9 @@ export default {
     SideBar,
     //NoteContent,
   },
-  methods() {},
+  methods : {
+
+  },
 };
 </script>
 
@@ -32,9 +40,12 @@ export default {
   height: 100%;
   padding-bottom: 0px;
 }
-
+.noteContent {
+  margin-left: 50px;
+}
 
 .note-container {
-  padding: 0;
+  padding: 40px 0px 40px 0px;
+  display: flex;
 }
 </style>

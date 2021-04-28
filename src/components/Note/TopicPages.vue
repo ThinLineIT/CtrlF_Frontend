@@ -6,7 +6,7 @@
       @click="nowPageLoad(item.title, item.content)"
     >
       <v-list-item-content>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
+        <v-list-item-title>{{ item.title.substr(0, 8) }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>
