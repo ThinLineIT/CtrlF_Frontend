@@ -37,3 +37,7 @@ ToDo List
 4. Note, Memo 색상 다양하게 바꾸기
 
 5. NotePage 화면 밀림 현상 및 TitleBar 높낮이 맞추기
+
+6. NotePage의 NoteTitle 크기에 따른 깨짐현상 수정 ✔
+
+7. MainPage NoteTitle 개행 문자 넣기

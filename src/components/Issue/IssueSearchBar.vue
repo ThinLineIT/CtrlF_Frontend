@@ -32,6 +32,7 @@ export default {
 .issue-home {
   text-decoration-line: none;
   color: black;
+  font-size: 23px;
 }
 
 .issue-category {
@@ -40,8 +41,8 @@ export default {
 
 .issue-category-main,
 .issue-category-sub {
-  width: 300px;
-  height: 67px;
+  width: 250px;
+  height: 55px;
   display: table;
 }
 
@@ -52,8 +53,9 @@ span {
 }
 
 .issue-search {
-  width: 318px;
+  width: 250px;
   height: 47px;
   border: solid 0.5px gray;
+  border-radius: 20px;
 }
 </style>

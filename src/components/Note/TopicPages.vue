@@ -4,6 +4,7 @@
       v-for="(item, index) in this.getSelectTopic"
       :key="index"
       @click="nowPageLoad(item.title, item.content)"
+      class="page-list"
     >
       <v-list-item-content>
         <v-list-item-title>{{ item.title.substr(0, 8) }}</v-list-item-title>
@@ -32,4 +33,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.page-list {
+  padding: 0;
+}
+
+</style>

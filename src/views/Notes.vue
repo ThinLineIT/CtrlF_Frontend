@@ -6,14 +6,6 @@
     <div class="noteContent">
       <router-view />
     </div>
-    <!-- <v-row class="note">
-      <v-col class="sideBar" cols="4">
-        <SideBar />
-      </v-col>
-      <v-col class="noteContent">
-        <router-view />
-      </v-col>
-    </v-row> -->
   </v-container>
 </template>
 
@@ -43,7 +35,8 @@ export default {
 }
 
 .note-container {
-  padding: 40px 0px 40px 0px;
+  padding: 0px 0px 40px 0px;
   display: flex;
 }
+
 </style>

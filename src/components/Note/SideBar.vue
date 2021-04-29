@@ -1,11 +1,14 @@
 <template>
   <div class="pageSideBar" id="pageSideBarId">
-    <v-card class="mainTitle">
+    <v-card v-if="getNote.title.length > 10" class="mainTitle-small">
+      {{ getNote.title }}
+    </v-card>
+    <v-card v-else class="mainTitle">
       {{ getNote.title }}
     </v-card>
     <v-card class="titleList">
       <v-row>
-        <v-col>
+        <v-col class="topic-List">
           <v-list flat>
             <v-list-item
               class="topic-title"
@@ -22,7 +25,7 @@
             </v-list-item>
           </v-list>
         </v-col>
-        <v-col>
+        <v-col class="page-list">
           <pagesName />
         </v-col>
       </v-row>
@@ -103,6 +106,25 @@ export default {
 </script>
 
 <style scoped>
+.page-list {
+  padding-left: 0;
+}
+
+.topic-List {
+  border-right: solid gray 0.1px;
+  padding: 0;
+  margin: 12px;
+}
+
+.mainTitle-small {
+  font-size: 1.56rem;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .mainTitle {
   height: 100px;
   line-height: 100px;
@@ -160,5 +182,6 @@ export default {
 
 .topic-title-content {
   padding: 0px;
+  text-align: center;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-card>
+      <div class="issue-request"><span>요청 검토 중인 내용</span></div>
       <div v-for="(issue, i) in this.getIssue.slice(0, 5)" :key="i">
         <div class="issue">
           <span class="issue-title">{{ issue.title.substr(0, 15) }}</span>
@@ -68,5 +69,12 @@ export default {
 }
 .more {
   text-align: center;
+}
+
+.issue-request {
+  text-align: center;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  font-weight: bold;
 }
 </style>

@@ -1,12 +1,7 @@
-
-
-
 import MEMOPREVIEW from "../../MEMO_PREVIEW.svg";
 
 const MEMO_MODULES = {
-    MEMOPREVIEW
+  MEMOPREVIEW,
 };
 
-
 export default MEMO_MODULES;
-

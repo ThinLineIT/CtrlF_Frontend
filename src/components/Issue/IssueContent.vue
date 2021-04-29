@@ -1,19 +1,23 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-row>
-          <v-col v-for="(issue, i) in getIssue" :key="i" cols="3">
-            <div class="issueContent">
-              <span class="issue-title"> {{ issue.title }} </span>
-              <br />
-              <span class="issue-content"> {{ issue.content }} </span>
-            </div>
-            <ISSUEBACKGROUND class="issueBg" />
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+    <v-card>
+      <v-row>
+        <v-col>
+          <v-row>
+            <v-col v-for="(issue, i) in getIssue" :key="i" cols="3">
+              <div class="issueContent">
+                <span class="issue-title"> {{ issue.title }} </span>
+                <br />
+                <div>궁금해요</div>
+                <br />
+                <span class="issue-content"> {{ issue.content }} </span>
+              </div>
+              <ISSUEBACKGROUND class="issueBg" />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-card>
   </v-container>
 </template>
 
@@ -37,6 +41,7 @@ export default {
 
 <style scoped>
 .issueContent {
+  padding: 10px 0px 0px 10px;
   position: absolute;
   width: 230px;
   margin: 10px 0px 0px 10px;

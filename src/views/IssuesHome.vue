@@ -3,7 +3,7 @@
     <v-card class="Issue-Count" rounded="pill">
       <IssueCountBar />
     </v-card>
-    <div>
+    <div class="issue-search">
       <IssueSearchBar />
     </div>
     <IssueContent />
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style scoped>
+.issue-search {
+  margin: 30px 0px;
+}
 .Issue-Count {
   margin-top: 80px;
   margin-bottom: 30px;
