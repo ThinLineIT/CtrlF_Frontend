@@ -8,8 +8,8 @@
     </v-card>
     <v-card class="titleList">
       <v-row>
-        <v-col class="topic-List">
-          <v-list flat>
+        <v-col class="topic-List" cols="5">
+          <v-list class=topic-list-title flat>
             <v-list-item
               class="topic-title"
               v-for="(topic, i) in getNote.topics"
@@ -25,9 +25,12 @@
             </v-list-item>
           </v-list>
         </v-col>
-        <v-col class="page-list">
+        <v-col class="page-list" id="page-listId">
           <pagesName />
         </v-col>
+        <!-- <v-col v-else class="page-list" id="page-listId" cols="5">
+          <pagesName />
+        </v-col> -->
       </v-row>
       <v-divider insert></v-divider>
       <div class="AddBtn" id="AddBtnId">
@@ -88,7 +91,7 @@ export default {
       if (this.getIsTopicClicked === false) {
         this.TOPIC_CLICKED();
         document.getElementById("AddBtnId").style.display = "none";
-        document.getElementById("pageSideBarId").style.width = "450px";
+        // document.getElementById("page-listId").style.width = "15rem";
       } // else {
       //   this.TOPIC_UNCLICKED();
       //   document.getElementById('AddBtnId').style.display = ""
@@ -106,6 +109,11 @@ export default {
 </script>
 
 <style scoped>
+
+#page-listId {
+  width: 9.9rem;
+}
+
 .page-list {
   padding-left: 0;
 }
@@ -114,6 +122,7 @@ export default {
   border-right: solid gray 0.1px;
   padding: 0;
   margin: 12px;
+  width: 8.2rem;
 }
 
 .mainTitle-small {
@@ -136,9 +145,8 @@ export default {
 .pageSideBar {
   padding: 30px;
   background-color: #43af83;
-  min-height: 700px;
-  min-width: 100px;
-  width: 22.8em;
+  min-height: 900px;
+  min-width: 21em;
 }
 .titleList {
   border-top: 12px solid #43af83;
@@ -184,4 +192,8 @@ export default {
   padding: 0px;
   text-align: center;
 }
+/* 
+.topic-list-title {
+  width: 8.25rem;
+} */
 </style>

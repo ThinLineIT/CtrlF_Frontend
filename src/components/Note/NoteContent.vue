@@ -24,20 +24,33 @@
     <v-speed-dial class="fixed-button">
       <template v-slot:activator>
         <v-btn color="white" dark fab>
-          <v-icon color="black"> mdi-plus </v-icon> <!-- v-if로 버튼 클릭시 변경-->
+          <v-icon color="black"> mdi-plus </v-icon>
+          <!-- v-if로 버튼 클릭시 변경-->
         </v-btn>
       </template>
       <v-btn fab dark large color="white">
-        <span class="float-buttons">BOOKMARK <br> BUTTON</span>
+        <span class="float-buttons"
+          >BOOKMARK <br />
+          BUTTON</span
+        >
       </v-btn>
       <v-btn fab dark large color="white">
-        <span class="float-buttons">SHARE <br> BUTTON</span>
+        <span class="float-buttons"
+          >SHARE <br />
+          BUTTON</span
+        >
       </v-btn>
       <v-btn fab dark large color="white">
-        <span class="float-buttons">WRITE <br> BUTTON</span>
+        <span class="float-buttons"
+          >WRITE <br />
+          BUTTON</span
+        >
       </v-btn>
       <v-btn fab dark large color="white">
-        <span class="float-buttons">request <br> BUTTON</span>
+        <span class="float-buttons"
+          >request <br />
+          BUTTON</span
+        >
       </v-btn>
     </v-speed-dial>
   </v-container>
@@ -111,7 +124,10 @@ export default {
   width: 60rem;
 }
 
-.request, .login, .home, .search{
+.request,
+.login,
+.home,
+.search {
   width: 30px;
   height: 30px;
   fill: grey;
@@ -138,7 +154,7 @@ export default {
 .fixed-button {
   position: fixed;
   bottom: 0px;
-  right: 25px; 
+  right: 25px;
   height: 90px;
 }
 

@@ -41,3 +41,7 @@ ToDo List
 6. NotePage의 NoteTitle 크기에 따른 깨짐현상 수정 ✔
 
 7. MainPage NoteTitle 개행 문자 넣기
+
+8. 반응형 웹을 위한 px단위 em으로 변경
+
+9. Topic, Page 라인 재정렬 page가 움직일때 title이 같이 움직이는 상황  

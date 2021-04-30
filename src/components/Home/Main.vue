@@ -4,16 +4,38 @@
       <v-row>
         <v-col>
           <v-row>
-            <v-col v-for="(note, i) in getTitles" :key="i" cols="3">
-              <NOTEBACKGROUND
-                ref="svgRef"
-                @click="openNote(note.id)"
-                class="testSvg"
-              />
+            <v-col v-for="(note, i) in getTitles" :key="i" cols="3"> <!-- 모듈화시켜서 더 다양한 색깔 노트 불러오기 -->
+              <div v-if="(i % 4 === 0)">
+                <NOTEBACKGROUND1
+                  ref="svgRef"
+                  @click="openNote(note.id)"
+                  class="testSvg"
+                />
+              </div>
+              <div v-else-if="(i % 4 === 1)">
+                <NOTEBACKGROUND2
+                  ref="svgRef"
+                  @click="openNote(note.id)"
+                  class="testSvg"
+                />
+              </div>
+              <div v-else-if="(i % 4 === 2)">
+                <NOTEBACKGROUND3
+                  ref="svgRef"
+                  @click="openNote(note.id)"
+                  class="testSvg"
+                />
+              </div>
+              <div v-else>
+                <NOTEBACKGROUND4
+                  ref="svgRef"
+                  @click="openNote(note.id)"
+                  class="testSvg"
+                />
+              </div>
             </v-col>
           </v-row>
         </v-col>
-
         <v-col cols="3">
           <MainSearch />
           <IssueSideBar />
@@ -27,7 +49,10 @@
 import IssueSideBar from "./IssueSideBar";
 import MainSearch from "./MainSearch";
 import { mapActions, mapGetters } from "vuex";
-import NOTEBACKGROUND from "../../assets/noteBack.svg";
+import NOTEBACKGROUND1 from "../../assets/noteBack1.svg";
+import NOTEBACKGROUND2 from "../../assets/noteBack2.svg";
+import NOTEBACKGROUND3 from "../../assets/noteBack3.svg";
+import NOTEBACKGROUND4 from "../../assets/noteBack4.svg";
 // import MEMO_MODULES from "../../assets/Memo/noteBG";
 
 export default {
@@ -37,7 +62,10 @@ export default {
   components: {
     IssueSideBar,
     MainSearch,
-    NOTEBACKGROUND,
+    NOTEBACKGROUND1,
+    NOTEBACKGROUND2,
+    NOTEBACKGROUND3,
+    NOTEBACKGROUND4,
   },
   methods: {
     ...mapActions(["delSelectedTopicPage"]),
@@ -48,14 +76,26 @@ export default {
   },
   updated() {
     const svgs = this.$el.querySelectorAll("svg text");
-
+    // var i;
+    // var noteTitle = "";
+    // var arrSplit ="";
     this.getTitles.map((note, index) => {
       if (note.title.length > 10) {
-        var noteTitle = note.title.substr(0, 11) + "...";
+        var noteTitle = note.title;
+        noteTitle.replace(" ", "\n");
+        console.log(noteTitle);
       } else {
         noteTitle = note.title;
       }
+
+      // if (note.title.length > 10) {
+      //   var noteTitle = note.title.substr(0, 11) + "...";
+      // } else {
+      //   noteTitle = note.title;
+      // }
       svgs[index].innerHTML = noteTitle;
+      // noteTitle = "";
+      // arrSplit = "";
     });
   },
 };

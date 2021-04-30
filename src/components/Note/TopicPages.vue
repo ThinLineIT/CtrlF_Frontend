@@ -37,5 +37,4 @@ export default {
 .page-list {
   padding: 0;
 }
-
 </style>
