@@ -80,19 +80,19 @@ export default {
     // var noteTitle = "";
     // var arrSplit ="";
     this.getTitles.map((note, index) => {
-      if (note.title.length > 10) {
-        var noteTitle = note.title;
-        noteTitle.replace(" ", "\n");
-        console.log(noteTitle);
-      } else {
-        noteTitle = note.title;
-      }
-
       // if (note.title.length > 10) {
-      //   var noteTitle = note.title.substr(0, 11) + "...";
+      //   var noteTitle = note.title;
+      //   noteTitle.replace(" ", "\n");
+      //   console.log(noteTitle);
       // } else {
       //   noteTitle = note.title;
       // }
+
+      if (note.title.length > 10) {
+        var noteTitle = note.title.substr(0, 11) + "...";
+      } else {
+        noteTitle = note.title;
+      }
       svgs[index].innerHTML = noteTitle;
       // noteTitle = "";
       // arrSplit = "";

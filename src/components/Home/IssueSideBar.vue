@@ -8,7 +8,10 @@
           <br />
           <span class="issue-consider">궁금해요 20</span>
         </div>
-        <MEMOPREVIEW />
+        <MEMOPREVIEW1 v-if="i % 4 === 0" />
+        <MEMOPREVIEW2 v-else-if="i % 4 === 1" />
+        <MEMOPREVIEW3 v-else-if="i % 4 === 2" />
+        <MEMOPREVIEW4 v-else />
       </div>
       <div class="more">
         <v-btn
@@ -28,12 +31,18 @@
 </template>
 
 <script>
-import MEMOPREVIEW from "../../assets/MEMO_PREVIEW.svg";
+import MEMOPREVIEW1 from "../../assets/MEMO_PREVIEW1.svg";
+import MEMOPREVIEW2 from "../../assets/MEMO_PREVIEW2.svg";
+import MEMOPREVIEW3 from "../../assets/MEMO_PREVIEW3.svg";
+import MEMOPREVIEW4 from "../../assets/MEMO_PREVIEW4.svg";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    MEMOPREVIEW,
+    MEMOPREVIEW1,
+    MEMOPREVIEW2,
+    MEMOPREVIEW3,
+    MEMOPREVIEW4,
   },
   data() {
     return {};
