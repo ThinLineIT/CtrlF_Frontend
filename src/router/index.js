@@ -21,15 +21,31 @@ const routes = [
   {
     path: "/issue",
     name: "Issue",
+    redirect: "/issueHome",
     component: () =>
       import(/* webpackChunkName: "IssuesHome" */ "../views/IssuesHome.vue"),
+    children: [
+      {
+        path: "/issueHome",
+        name: "IssueHome",
+        component: () =>
+          import(
+            /* webpackChunkName: "issuetest" */ "../components/Issue/IssueTest.vue"
+          ),
+      },
+      {
+        path: ":issueID",
+        name: "IssueID",
+        component: () =>
+          import(
+            /* webpackChunkName: "issuePage" */ "../components/Issue/IssueDetail.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/notes",
     name: "Note",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "Notes" */ "../views/Notes.vue"),
     children: [

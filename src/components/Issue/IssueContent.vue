@@ -5,7 +5,7 @@
         <v-col>
           <v-row>
             <v-col v-for="(issue, i) in getIssue" :key="i" cols="3">
-              <div class="issueContent">
+              <div class="issueContent" @click="issueDetail(issue.id)">
                 <span class="issue-title"> {{ issue.title }} </span>
                 <br />
                 <div>궁금해요 20</div>
@@ -45,6 +45,14 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    issueDetail(clickedIssueId) {
+      this.$router.push({
+        name: "IssueID",
+        params: { issueID: clickedIssueId },
+      });
+    },
+  },
 };
 </script>
 
@@ -54,6 +62,10 @@ export default {
   position: absolute;
   width: 230px;
   margin: 10px 0px 0px 10px;
+}
+
+.issueContent:hover {
+  cursor: pointer;
 }
 
 .issue-title {

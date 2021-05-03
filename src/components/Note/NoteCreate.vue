@@ -6,7 +6,7 @@
         <span class="noteContent__title-sub">{{ getNowTopic }}</span>
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
-      <div class="create-post">
+      <div @click="pagePost" class="create-post">
         <span>등 록</span>
       </div>
     </div>
@@ -20,6 +20,7 @@
       solo
       auto-grow
       name="input-7-4"
+      v-model="getNowTopicContent"
       label="내용을 입력하세요"
     ></v-textarea>
   </v-container>
@@ -31,10 +32,17 @@ import NoteNavBtn from "./NoteNavBtn";
 
 export default {
   computed: {
-    ...mapGetters(["getNowPage", "getNowTopic"]),
+    ...mapGetters(["getNowPage", "getNowTopic", "getNowTopicContent"]),
   },
   components: {
     NoteNavBtn,
+  },
+  methods: {
+    // ...mapActions(['pageUpload']),
+    pagePost() {
+      // pageUpload()
+      this.$router.push({ name: "NoteID" });
+    },
   },
 };
 </script>

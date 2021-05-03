@@ -116,6 +116,18 @@ const noteModule = {
     nowTopicContentLoad({ commit }, topicContent) {
       commit("GET_NOWTOPIC_CONTENT", topicContent);
     },
+    // pageUpload( { commit }, title, content) {
+    //   axios.post('http://thkwon.pythonanywhere.com/api/pages', {
+    //     title: title,
+    //     content: content,
+    //   })
+    //   .then( res => {
+    //     console.log(res);
+    //   })
+    //   .catch( error => {
+    //     console.log(error);
+    //   });
+    // }
   },
 };
 
