@@ -9,7 +9,7 @@
     <v-card class="titleList">
       <v-row>
         <v-col class="topic-List" cols="5">
-          <v-list class=topic-list-title flat>
+          <v-list class="topic-list-title" flat>
             <v-list-item
               class="topic-title"
               v-for="(topic, i) in getNote.topics"
@@ -35,19 +35,14 @@
       <v-divider insert></v-divider>
       <div class="AddBtn" id="AddBtnId">
         <div class="add-1">
-          <router-link
-            :to="{ name: 'Create' }"
-            class="grey--text"
-            id="addTopic"
-          >
+          <span @click="addPage" id="addTopic">
+            <!--class="grey--text"-->
             Add Topic
-          </router-link>
+          </span>
         </div>
         <v-divider vertical></v-divider>
         <div class="add-2">
-          <router-link :to="{ name: 'Create' }" class="grey--text" id="addPage">
-            add page
-          </router-link>
+          <span @click="addPage" id="addPage"> add page </span>
         </div>
         <!-- TODO: Show popup to nmae a new topic-->
       </div>
@@ -73,6 +68,9 @@ export default {
     return {};
   },
   methods: {
+    addPage() {
+      this.$router.push({ name: "create-page" });
+    },
     ...mapActions(["pageLoad", "selectedPageLoad", "nowTopicNameLoad"]),
     ...mapMutations([
       "DEL_SELECTED_PAGES",
@@ -91,12 +89,15 @@ export default {
       if (this.getIsTopicClicked === false) {
         this.TOPIC_CLICKED();
         document.getElementById("AddBtnId").style.display = "none";
-        // document.getElementById("page-listId").style.width = "15rem";
-      } // else {
-      //   this.TOPIC_UNCLICKED();
-      //   document.getElementById('AddBtnId').style.display = ""
-      //   document.getElementById('pageSideBarId').style.width = "22.8em"
-      // }
+        document.getElementById("page-listId").style.width = "16rem";
+        document.getElementById("page-listId").style.display = "";
+      } else {
+        this.TOPIC_UNCLICKED();
+        document.getElementById("AddBtnId").style.display = "";
+        document.getElementById("page-listId").style.width = "9.9rem";
+        document.getElementById("page-listId").style.display = "none";
+        // document.getElementById('pageSideBarId').style.width = "22.8em"
+      }
     },
   },
   created() {
@@ -109,7 +110,6 @@ export default {
 </script>
 
 <style scoped>
-
 #page-listId {
   width: 9.9rem;
 }
@@ -171,13 +171,18 @@ export default {
   justify-content: space-between;
   padding: 0px 31px;
 }
-#addTopic {
-  text-decoration: none;
-  margin: 13px;
-}
+#addTopic,
 #addPage {
   text-decoration: none;
   margin: 13px;
+}
+
+#addPage:hover {
+  cursor: pointer;
+}
+
+#addTopic:hover {
+  cursor: pointer;
 }
 
 .topic:hover {
@@ -192,6 +197,7 @@ export default {
   padding: 0px;
   text-align: center;
 }
+
 /* 
 .topic-list-title {
   width: 8.25rem;

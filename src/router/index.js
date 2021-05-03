@@ -42,8 +42,8 @@ const routes = [
           ),
       },
       {
-        path: "create",
-        name: "Create",
+        path: ":noteID/create",
+        name: "create-page",
         component: () =>
           import(
             /* webpackChunkName: "NoteCreate" */ "../components/Note/NoteCreate.vue"

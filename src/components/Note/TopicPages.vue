@@ -7,7 +7,11 @@
       class="page-list"
     >
       <v-list-item-content>
-        <v-list-item-title>{{ item.title.substr(0, 8) }}</v-list-item-title>
+        <v-list-item-title v-if="item.title.length > 12"
+          >{{ item.title.substr(0, 12) }} <br />
+          {{ item.title.substr(12) }}
+        </v-list-item-title>
+        <v-list-item-title v-else>{{ item.title }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>

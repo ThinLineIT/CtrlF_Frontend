@@ -8,12 +8,7 @@
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
       <div class="noteBtn">
-        <router-link :to="{ name: 'Home' }">
-          <HomeIcon class="home" />
-        </router-link>
-        <SearchIcon class="search" />
-        <RequestIcon class="request" />
-        <LoginIcon class="login" />
+        <NoteNavBtn />
       </div>
     </div>
     <div class="noteContent__text">
@@ -41,7 +36,7 @@
         >
       </v-btn>
       <v-btn fab dark large color="white">
-        <span class="float-buttons"
+        <span class="float-buttons" @click="addPage"
           >WRITE <br />
           BUTTON</span
         >
@@ -57,11 +52,8 @@
 </template>
 
 <script>
-import SearchIcon from "../../assets/SEARCH BUTTON.svg";
-import RequestIcon from "../../assets/REQUEST BUTTON.svg";
-import LoginIcon from "../../assets/LOGIN BUTTON.svg";
-import HomeIcon from "../../assets/HOME BUTTON.svg";
 import { mapActions, mapGetters } from "vuex";
+import NoteNavBtn from "./NoteNavBtn";
 
 export default {
   computed: {
@@ -74,13 +66,13 @@ export default {
   },
   name: "NoteContent",
   components: {
-    SearchIcon,
-    RequestIcon,
-    LoginIcon,
-    HomeIcon,
+    NoteNavBtn,
   },
   methods: {
     ...mapActions(["noteLoad"]),
+    addPage() {
+      this.$router.push({ name: "create-page" });
+    },
   },
   created() {
     this.noteLoad(this.$route.params.noteID);
@@ -93,7 +85,7 @@ export default {
   margin-left: 0px;
   padding-left: 0px;
   padding-right: 30px;
-  width: 66rem;
+  width: 70rem;
 }
 .noteContent__title {
   display: flex;
@@ -107,14 +99,16 @@ export default {
   color: #ffffff;
   min-height: 4.2rem;
   min-width: 100px;
+  font-weight: bold;
 }
 .noteContent__title-content {
   border-radius: 0px 20px 20px 0px;
   line-height: 67px;
   padding: 1px 18px 0px 20px;
   font-weight: bold;
-  min-width: 100px;
+  min-width: 700px;
   min-height: 4.2rem;
+  font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
 }
 .noteContent__text {
@@ -136,8 +130,8 @@ export default {
 
 .notebar {
   display: flex;
-  width: 60rem;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .noteBtn {
