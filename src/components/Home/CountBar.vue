@@ -1,8 +1,5 @@
 <template>
-  <div class="CountBar">
-    <span class="countbar-main">현재 모아진 아이디어 </span>
-    <span class="countbar-count"> {{ getCounter }} </span>
-  </div>
+  <v-text-field class="idea-number" rounded solo :label="`현재 모아진 아이디어${getCounter}`" append-icon="mdi-card-search-outline"> </v-text-field>
 </template>
 
 <script>
@@ -13,26 +10,17 @@ export default {
     ...mapGetters(["getCounter"]),
   },
   name: "CountBar",
+  Mounted() {
+    const ideaNumberLabel = this.$el.querySelectorALL("label");
+    ideaNumberLabel[1].style.color = "red";
+  }
+
 };
 </script>
 
 <style scoped>
-.countbar-main {
-  padding-right: 30px;
+.idea-number {
+  height: 100px;
 }
 
-.countbar-count {
-  font-size: 2.3rem;
-  font-weight: bold;
-}
-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-span {
-  font-size: 1.8rem;
-}
 </style>

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="noteContent__text">
-      <p>
+      <p class="test">
         {{ getNowTopicContent }}
       </p>
     </div>
@@ -81,6 +81,11 @@ export default {
 </script>
 
 <style scoped>
+
+.test {
+  white-space: pre-line;
+}
+
 .noteContent {
   margin-left: 0px;
   padding-left: 0px;

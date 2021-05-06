@@ -38,6 +38,7 @@ import MEMOPREVIEW4 from "../../assets/MEMO_PREVIEW4.svg";
 import { mapGetters } from "vuex";
 
 export default {
+  name: "IssueSideBar",
   components: {
     MEMOPREVIEW1,
     MEMOPREVIEW2,
@@ -50,7 +51,6 @@ export default {
   computed: {
     ...mapGetters(["getIssue"]),
   },
-  name: "IssueSideBar",
 };
 </script>
 

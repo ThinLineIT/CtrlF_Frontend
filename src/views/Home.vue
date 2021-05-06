@@ -3,9 +3,9 @@
     <div class="homeBar">
       <!--TODO: 위치조정-->
       <LOGO class="logo" />
-      <v-card class="countBar" rounded="pill">
+      <div class="countBar">
         <CountBar />
-      </v-card>
+      </div>
     </div>
     <div class="test">
       <router-view />
