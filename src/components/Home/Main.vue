@@ -52,7 +52,7 @@ export default {
           newTSPAN.setAttribute("y", 0); // 넣었는데 보이지 않는 현상
           svgs[index].appendChild(newTSPAN);
         }
-        console.log(svgs[index])
+        // console.log(svgs[index])
       } else {
         var noteTitle = note.title;
         svgs[index].innerHTML = noteTitle;
@@ -65,21 +65,26 @@ export default {
 <style scoped>
 .main {
   display: flex;
+  padding: 0;
 }
 
 .note-container {
+  margin-left: 250px;
+  min-width: 700px;
   width: 1219px;
   display: grid;
-  grid-template-columns: repeat(5, 190px);
+  grid-template-columns: repeat(5, 220px);
 }
 
 .request-sidebar {
   width: 319px;
   height: 681px;
+  margin-right: 87px;
 }
 
 .testSvg {
   font-weight: bold;
+  margin-right: 40px;
 }
 
 .testSvg:hover {
