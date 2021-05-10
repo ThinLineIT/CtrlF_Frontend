@@ -81,7 +81,6 @@ export default {
 </script>
 
 <style scoped>
-
 .test {
   white-space: pre-line;
 }

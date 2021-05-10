@@ -51,7 +51,6 @@ export default {
 </script>
 
 <style scoped>
-
 .memo {
   width: 254px;
   height: 76px;

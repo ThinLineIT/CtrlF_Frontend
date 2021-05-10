@@ -16,33 +16,41 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "main" */ "../components/Home/Main.vue"),
       },
-    ],
-  },
-  {
-    path: "/issue",
-    name: "Issue",
-    redirect: "/issueHome",
-    component: () =>
-      import(/* webpackChunkName: "IssuesHome" */ "../views/IssuesHome.vue"),
-    children: [
       {
-        path: "/issueHome",
-        name: "IssueHome",
+        path: "/issue",
+        name: "Issue",
         component: () =>
           import(
-            /* webpackChunkName: "issuetest" */ "../components/Issue/IssueTest.vue"
-          ),
-      },
-      {
-        path: ":issueID",
-        name: "IssueID",
-        component: () =>
-          import(
-            /* webpackChunkName: "issuePage" */ "../components/Issue/IssueDetail.vue"
+            /* webpackChunkName: "issue" */ "../components/Issue/IssueContent.vue"
           ),
       },
     ],
   },
+  // {
+  //   path: "/issue",
+  //   name: "Issue",
+  //   redirect: "/issueHome",
+  //   component: () =>
+  //     import(/* webpackChunkName: "IssuesHome" */ "../views/IssuesHome.vue"),
+  //   children: [
+  //     {
+  //       path: "/issueHome",
+  //       name: "IssueHome",
+  //       component: () =>
+  //         import(
+  //           /* webpackChunkName: "issuetest" */ "../components/Issue/IssueTest.vue"
+  //         ),
+  //     },
+  //     {
+  //       path: ":issueID",
+  //       name: "IssueID",
+  //       component: () =>
+  //         import(
+  //           /* webpackChunkName: "issuePage" */ "../components/Issue/IssueDetail.vue"
+  //         ),
+  //     },
+  //   ],
+  // },
   {
     path: "/notes",
     name: "Note",
@@ -67,14 +75,6 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/issues",
-  //   name: "Issue",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../components/Home/HomeIssues.vue"
-  //     ),
-  // },
 ];
 
 const router = new VueRouter({

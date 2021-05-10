@@ -7,22 +7,21 @@ Vue.use(Vuex);
 
 const noteModule = {
   state: {
-    isTopicClicked: false, // Topic, Page 사이드바 클릭시 크기 조절
-    isNoteLoading: false, // TO Do : Loading 화면 삽입
+    isTopicClicked: false,
+    isNoteLoading: false,
     noteDetail: [],
     selectedTopicPage: [],
-    isPageLoading: false, // page를 로딩하기 위함
+    isPageLoading: false,
     allPages: null,
-    nowPage: null, // Note페이지의 상단 선택한 페이지의 이름
-    nowTopic: null, // Note페이지의 상단 선택한 토픽의 이름
-    nowTopicContent: null, // 선택한 토픽의 콘텐츠 내용을 저장하는 변수입니다.
+    nowPage: null,
+    nowTopic: null,
+    nowTopicContent: null,
   },
   getters: {
     getIsTopicClicked(state) {
       return state.isTopicClicked;
     },
     getNowTopicContent(state) {
-      // 선택한 토픽의 콘텐츠 내용
       return state.nowTopicContent;
     },
     getAllPages(state) {
@@ -116,18 +115,6 @@ const noteModule = {
     nowTopicContentLoad({ commit }, topicContent) {
       commit("GET_NOWTOPIC_CONTENT", topicContent);
     },
-    // pageUpload( { commit }, title, content) {
-    //   axios.post('http://thkwon.pythonanywhere.com/api/pages', {
-    //     title: title,
-    //     content: content,
-    //   })
-    //   .then( res => {
-    //     console.log(res);
-    //   })
-    //   .catch( error => {
-    //     console.log(error);
-    //   });
-    // }
   },
 };
 
@@ -137,6 +124,7 @@ const issueModule = {
     pageCount: -1,
     getTitles: [],
     issueData: [],
+    whatCount: true, // true = main, false = issue
   },
   getters: {
     getCounter: function (state) {
@@ -147,6 +135,9 @@ const issueModule = {
     },
     getIssue: function (state) {
       return state.issueData;
+    },
+    getWhatCount: function (state) {
+      return state.whatCount;
     },
   },
   mutations: {
@@ -165,6 +156,9 @@ const issueModule = {
     },
     GET_ISSUE(state, issues) {
       state.issueData = issues;
+    },
+    CHANGE_COUNTBAR(state) {
+      state.whatCount = !state.whatCount;
     },
   },
   actions: {
@@ -206,6 +200,9 @@ const issueModule = {
           console.log(err);
         });
     },
+    changeCount({ commit }) {
+      commit("CHANGE_COUNTBAR");
+    },
   },
 };
 
@@ -218,31 +215,3 @@ const store = new Vuex.Store({
 });
 
 export default store;
-
-// export default new Vuex.Store({
-//   state: {
-//     memos: [],
-//   },
-//   mutations: {
-//     addMemoInMutation: function (state, payload) {
-//       state.memos.push(payload);
-//     },
-//   },
-//   actions: {
-//     addMemoInAction: ({ commit }, payload) => {
-//       console.log(payload);
-//       commit("addMemoInMutation", payload);
-//     },
-//     getTest: () => {
-//       axios
-//         .get("https://reqres.in/api/users?page=2") //config는 보안관련 인자
-//         .then((res) => {
-//           console.log(res);
-//         })
-//         .catch((err) => {
-//           // 반드시 arrow사용
-//           console.log(err);
-//         });
-//     },
-//   },
-// });

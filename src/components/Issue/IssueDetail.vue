@@ -7,8 +7,8 @@
       <NoteNavBtn />
       <div class="create-title">
         <div class="noteContent__title">
-          <span class="noteContent__title-sub">{{  }}</span>
-          <span class="noteContent__title-content"> {{  }} </span>
+          <span class="noteContent__title-sub">{{}}</span>
+          <span class="noteContent__title-content"> {{}} </span>
         </div>
         <div @click="pagePost" class="create-post">
           <span>등 록</span>
@@ -33,7 +33,7 @@
 <script>
 import { mapGetters } from "vuex";
 import NoteNavBtn from "../Note/NoteNavBtn";
-import SideBar from "../Note/SideBar"
+import SideBar from "../Note/SideBar";
 
 export default {
   computed: {

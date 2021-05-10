@@ -32,33 +32,40 @@ export default {
     NOTEBACKGROUND3,
   },
   methods: {
-    ...mapActions(["delSelectedTopicPage"]),
+    ...mapActions(["delSelectedTopicPage", "changeCount"]),
     openNote(clickedNoteId) {
       this.delSelectedTopicPage();
       this.$router.push({ name: "NoteID", params: { noteID: clickedNoteId } });
     },
+    svgText() {
+      const svgs = this.$el.querySelectorAll("svg text");
+      this.getTitles.map((note, index) => {
+        if (note.title.length > 10) {
+          // var noteTitle = note.title.substr(0, 11) + "...";
+          svgs[index].innerHTML = "";
+          var split = note.title.split(" ");
+          for (var i in split) {
+            var newTSPAN = document.createElement("tspan");
+            newTSPAN.innerHTML = split[i];
+            newTSPAN.setAttribute("x", 0);
+            newTSPAN.setAttribute("y", 0); 
+            svgs[index].appendChild(newTSPAN);
+          }
+        } else {
+          var noteTitle = note.title;
+          svgs[index].innerHTML = noteTitle;
+        }
+      });
+    }
   },
   updated() {
-    const svgs = this.$el.querySelectorAll("svg text");
-    this.getTitles.map((note, index) => {
-      if (note.title.length > 10) {
-        // var noteTitle = note.title.substr(0, 11) + "...";
-        svgs[index].innerHTML = "";
-        var split = note.title.split(" ");
-        for (var i in split) {
-          var newTSPAN = document.createElement("tspan");
-          newTSPAN.innerHTML = split[i];
-          newTSPAN.setAttribute("x", 0);
-          newTSPAN.setAttribute("y", 0); // 넣었는데 보이지 않는 현상
-          svgs[index].appendChild(newTSPAN);
-        }
-        // console.log(svgs[index])
-      } else {
-        var noteTitle = note.title;
-        svgs[index].innerHTML = noteTitle;
-      }
-    });
+    this.svgText();
   },
+  watch: {
+    $route(to, from) {
+      console.log(to, from)
+    }
+  }
 };
 </script>
 
