@@ -8,7 +8,7 @@
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
       <div class="noteBtn">
-        <NoteNavBtn />
+        
       </div>
     </div>
     <div class="noteContent__text">
@@ -53,7 +53,6 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import NoteNavBtn from "./NoteNavBtn";
 
 export default {
   computed: {
@@ -66,7 +65,7 @@ export default {
   },
   name: "NoteContent",
   components: {
-    NoteNavBtn,
+    
   },
   methods: {
     ...mapActions(["noteLoad"]),

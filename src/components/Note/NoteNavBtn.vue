@@ -6,7 +6,7 @@
           <HomeIcon class="home" />
         </router-link>
         <SearchIcon class="search" />
-        <RequestIcon class="request" />
+        <RequestIcon class="request"/>
         <LoginIcon class="login" />
       </div>
     </div>

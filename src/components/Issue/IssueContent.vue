@@ -46,12 +46,6 @@ export default {
   },
   methods: {
     ...mapActions(["changeCount"]),
-    issueDetail(clickedIssueId) {
-      this.$router.push({
-        name: "IssueID",
-        params: { issueID: clickedIssueId },
-      });
-    },
   },
 };
 </script>

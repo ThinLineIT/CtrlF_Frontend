@@ -1,22 +1,27 @@
 <template>
   <v-container fluid class="note-container">
-    <div class="sideBar" cols="4">
-      <SideBar />
+    <div class="noteheader">
+      <NoteHeader />
     </div>
-    <div class="noteContent">
-      <router-view />
+    <div class="note-content">
+      <div class="sideBar">
+        <SideBar />
+      </div>
+      <div class="noteContent">
+        <router-view />
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
 import SideBar from "@/components/Note/SideBar.vue";
-//import NoteContent from "@/components/Note/NoteContent";
+import NoteHeader from "@/components/Note/NoteHeader";
 
 export default {
   components: {
     SideBar,
-    //NoteContent,
+    NoteHeader,
   },
   methods: {},
 };
@@ -30,12 +35,21 @@ export default {
   height: 100%;
   padding-bottom: 0px;
 }
+
+.note-content {
+  display: flex;
+}
+
 .noteContent {
   margin-left: 50px;
 }
 
 .note-container {
   padding: 0px 0px 40px 0px;
-  display: flex;
+}
+
+.noteheader {
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+  position: fixed;
 }
 </style>
