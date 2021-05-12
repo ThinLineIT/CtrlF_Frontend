@@ -16,7 +16,7 @@
     <v-sheet
       id="scrolling-techniques-8"
       class="overflow-y-auto"
-      max-height="800"
+      max-height="900"
     >
       <v-container class="scroll-content" fluid>
         <div class="home">

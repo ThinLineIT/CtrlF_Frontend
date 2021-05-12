@@ -1,24 +1,17 @@
 <template>
   <div class="hidden-title">
     <div class="hidden-text" @click="$router.push({ name: 'Home' })">
-      <LOGO class="hidden-logo" />
-      <div class="hidden-title">
-        <span class="hidden-title-name">커넵</span>
-      </div>
+      <img class="hidden-png" src="../../assets/LOGO_TITLE.png" />
     </div>
     <div>
-      <input class="hidden-search" type="text" />
+      <input class="hidden-search" type="text" placeholder="검색" />
     </div>
   </div>
 </template>
 
 <script>
-import LOGO from "../../assets/logo.svg";
-
 export default {
-  components: {
-    LOGO,
-  },
+  components: {},
   name: "HiddenHeader",
 };
 </script>
@@ -32,6 +25,11 @@ export default {
   width: 935px;
   height: 61px;
   border: 1px solid;
+  border-radius: 45px;
+}
+
+input:focus {
+  outline: none;
 }
 
 .hidden-text {
@@ -44,13 +42,7 @@ export default {
   cursor: pointer;
 }
 
-.hidden-logo {
-  width: 134px;
+.hidden-png {
   height: 50px;
-  margin-right: 9px;
-}
-
-.hidden-title-name {
-  color: black;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <v-container fluid class="page-create">
-    <NoteNavBtn />
     <div class="create-title">
       <div class="noteContent__title">
         <span class="noteContent__title-sub">{{ getNowTopic }}</span>
@@ -28,15 +27,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import NoteNavBtn from "./NoteNavBtn";
 
 export default {
   computed: {
     ...mapGetters(["getNowPage", "getNowTopic", "getNowTopicContent"]),
   },
-  components: {
-    NoteNavBtn,
-  },
+  components: {},
   methods: {
     // ...mapActions(['pageUpload']),
     pagePost() {

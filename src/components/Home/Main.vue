@@ -2,9 +2,24 @@
   <v-container class="main" fluid>
     <div class="note-container">
       <div class="note-box" v-for="(note, i) in getTitles" :key="i">
-        <NOTEBACKGROUND1 ref="svgRef" @click="openNote(note.id)" class="testSvg" v-if="i < 5"/>
-        <NOTEBACKGROUND2 ref="svgRef" @click="openNote(note.id)" class="testSvg"  v-else-if="i >= 5 && i < 10"/>
-        <NOTEBACKGROUND3 ref="svgRef" @click="openNote(note.id)" class="testSvg"  v-else />
+        <NOTEBACKGROUND1
+          ref="svgRef"
+          @click="openNote(note.id)"
+          class="testSvg"
+          v-if="i < 5"
+        />
+        <NOTEBACKGROUND2
+          ref="svgRef"
+          @click="openNote(note.id)"
+          class="testSvg"
+          v-else-if="i >= 5 && i < 10"
+        />
+        <NOTEBACKGROUND3
+          ref="svgRef"
+          @click="openNote(note.id)"
+          class="testSvg"
+          v-else
+        />
       </div>
     </div>
     <div class="request-sidebar">
@@ -19,7 +34,6 @@ import { mapActions, mapGetters } from "vuex";
 import NOTEBACKGROUND1 from "../../assets/noteBack1.svg";
 import NOTEBACKGROUND2 from "../../assets/noteBack2.svg";
 import NOTEBACKGROUND3 from "../../assets/noteBack3.svg";
-
 
 export default {
   computed: {
@@ -48,7 +62,7 @@ export default {
             var newTSPAN = document.createElement("tspan");
             newTSPAN.innerHTML = split[i];
             newTSPAN.setAttribute("x", 0);
-            newTSPAN.setAttribute("y", 0); 
+            newTSPAN.setAttribute("y", 0);
             svgs[index].appendChild(newTSPAN);
           }
         } else {
@@ -56,16 +70,16 @@ export default {
           svgs[index].innerHTML = noteTitle;
         }
       });
-    }
+    },
   },
   updated() {
     this.svgText();
   },
   watch: {
     $route(to, from) {
-      console.log(to, from)
-    }
-  }
+      console.log(to, from);
+    },
+  },
 };
 </script>
 
@@ -101,5 +115,4 @@ export default {
 text {
   font-weight: bold;
 }
-
 </style>

@@ -26,31 +26,6 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/issue",
-  //   name: "Issue",
-  //   redirect: "/issueHome",
-  //   component: () =>
-  //     import(/* webpackChunkName: "IssuesHome" */ "../views/IssuesHome.vue"),
-  //   children: [
-  //     {
-  //       path: "/issueHome",
-  //       name: "IssueHome",
-  //       component: () =>
-  //         import(
-  //           /* webpackChunkName: "issuetest" */ "../components/Issue/IssueTest.vue"
-  //         ),
-  //     },
-  //     {
-  //       path: ":issueID",
-  //       name: "IssueID",
-  //       component: () =>
-  //         import(
-  //           /* webpackChunkName: "issuePage" */ "../components/Issue/IssueDetail.vue"
-  //         ),
-  //     },
-  //   ],
-  // },
   {
     path: "/notes",
     name: "Note",

@@ -1,8 +1,7 @@
 <template>
   <div class="homeBar">
     <div class="logo-title" @click="$router.push({ name: 'Home' })">
-      <LOGO class="logo" />
-      <div class="title"><span class="title-name">커넵</span></div>
+      <img class="header-png" src="../../assets/LOGO_TITLE.png" />
     </div>
     <div class="countBar">
       <CountBar />
@@ -11,12 +10,9 @@
 </template>
 
 <script>
-import LOGO from "../../assets/logo.svg";
 import CountBar from "./CountBar";
-
 export default {
   components: {
-    LOGO,
     CountBar,
   },
   name: "Header",
@@ -40,19 +36,13 @@ export default {
   cursor: pointer;
 }
 
-.logo {
-  width: 163px;
-  height: 61px;
-  margin-right: 19px;
-}
-
-.title-name {
-  font-size: 34px;
-}
-
 .countBar {
   height: 60px;
   margin: 40px 20px 0px 40px;
   width: 800px;
+}
+
+.header-png {
+  height: 61px;
 }
 </style>

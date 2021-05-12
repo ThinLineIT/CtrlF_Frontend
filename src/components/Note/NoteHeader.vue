@@ -1,26 +1,22 @@
 <template>
   <div class="note-header">
-    <div class="note-header-text" @click="$router.push({ name: 'Home' })">
-      <LOGO class="note-header-logo" />
-      <div class="note-header-title">
-        <span class="note-header-title-name">커넵</span>
+    <div class="note-header_center">
+      <div class="note-header-text" @click="$router.push({ name: 'Home' })">
+        <img class="noteheader-png" src="../../assets/LOGO_TITLE.png" />
+      </div>
+      <div>
+        <input class="note-header-search" type="text" />
       </div>
     </div>
-    <div>
-      <input class="note-header-search" type="text" />
-    </div>
-    <RequestIcon class="request"/>
+    <NoteDialog />
   </div>
 </template>
 
 <script>
-import LOGO from "../../assets/logo.svg";
-import RequestIcon from "../../assets/REQUEST BUTTON.svg"
-
+import NoteDialog from "./NoteDialog";
 export default {
   components: {
-    LOGO,
-    RequestIcon
+    NoteDialog,
   },
   name: "NoteHeader",
 };
@@ -28,22 +24,28 @@ export default {
 
 <style scoped>
 .request {
-    width: 31px;
-    height: 34px;
-    fill: grey;
+  width: 31px;
+  height: 34px;
+  fill: grey;
 }
 
 .note-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  /* box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%); */
+  min-height: 123px;
+  width: auto;
 }
 
 .note-header-search {
   width: 935px;
   height: 61px;
   border: 1px solid;
+  border-radius: 45px;
+}
+
+input:focus {
+  outline: none;
 }
 
 .note-header-text {
@@ -56,13 +58,11 @@ export default {
   cursor: pointer;
 }
 
-.note-header-logo {
-  width: 134px;
+.noteheader-png {
   height: 50px;
-  margin-right: 9px;
 }
 
-.note-header-title-name {
-  color: black;
+.note-header_center {
+  display: flex;
 }
 </style>

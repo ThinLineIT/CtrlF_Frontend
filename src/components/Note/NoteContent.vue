@@ -7,47 +7,13 @@
         </span>
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
-      <div class="noteBtn">
-        
-      </div>
+      <div class="noteBtn"></div>
     </div>
     <div class="noteContent__text">
-      <p class="test">
+      <p class="noteContent__text-card">
         {{ getNowTopicContent }}
       </p>
     </div>
-    <v-speed-dial class="fixed-button">
-      <template v-slot:activator>
-        <v-btn color="white" dark fab>
-          <v-icon color="black"> mdi-plus </v-icon>
-          <!-- v-if로 버튼 클릭시 변경-->
-        </v-btn>
-      </template>
-      <v-btn fab dark large color="white">
-        <span class="float-buttons"
-          >BOOKMARK <br />
-          BUTTON</span
-        >
-      </v-btn>
-      <v-btn fab dark large color="white">
-        <span class="float-buttons"
-          >SHARE <br />
-          BUTTON</span
-        >
-      </v-btn>
-      <v-btn fab dark large color="white">
-        <span class="float-buttons" @click="addPage"
-          >WRITE <br />
-          BUTTON</span
-        >
-      </v-btn>
-      <v-btn fab dark large color="white">
-        <span class="float-buttons"
-          >request <br />
-          BUTTON</span
-        >
-      </v-btn>
-    </v-speed-dial>
   </v-container>
 </template>
 
@@ -64,9 +30,7 @@ export default {
     ]),
   },
   name: "NoteContent",
-  components: {
-    
-  },
+  components: {},
   methods: {
     ...mapActions(["noteLoad"]),
     addPage() {
@@ -80,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-.test {
+.noteContent__text-card {
   white-space: pre-line;
 }
 
