@@ -3,19 +3,20 @@
     <button ref="create-issue" @click="showDialog">
       <RequestIcon class="request" />
     </button>
-    <dialog id="issue-dialog">
-      <form class="form-dialog" method="dialog">
-        <button class="cancel-dialog" value="cancel">X</button>
-        <p class="p-dialog">
-          <select>
+    <dialog id="dialog-issue">
+      <form class="dialog-form" method="dialog">
+        <button class="dialog-cancel" value="cancel">X</button>
+        <p class="dialog-p">
+          <select class="dialog-topic">
             <option v-for="(topic, i) in getNote.topics" :key="i">
               {{ topic.title }}
             </option>
           </select>
-          <input type="text" placeholder="TITLE" />
-          <input type="text" placeholder="내용 입력" />
+          <input type="text" class="dialog-title" placeholder="TITLE" />
+          <textarea id="dialog-content" placeholder="내용 입력" maxlength="100" @keyup="textCount"/>
+          <span class="text-number"> {{ textNum }} / 100자 </span>
         </p>
-        <menu class="menu-dialog">
+        <menu class="dialog-menu">
           <button id="confirmBtn" value="default">REQUEST</button>
         </menu>
       </form>
@@ -25,50 +26,89 @@
 
 <script>
 import RequestIcon from "../../assets/REQUEST BUTTON.svg";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "NoteDialog",
   computed: {
-    ...mapGetters(["getNote"]),
+    ...mapGetters(["getNote", "getDialogIssue"]),
   },
   components: {
     RequestIcon,
   },
   data() {
     return {
-      dialogButton: "",
-      dialogIssue: "",
+      textNum: 0,
     };
   },
   methods: {
+    ...mapActions(["dialogLoad"]),
+    textCount() {
+      let test = document.getElementById("dialog-content");
+      this.textNum = test.value.length;
+    },
     showDialog() {
-      if (typeof this.dialogIssue.showModal === "function") {
-        this.dialogIssue.showModal();
+      if (typeof this.getDialogIssue.showModal === "function") {
+        this.getDialogIssue.showModal();
       } else {
         alert("The <dialog> API is not supported by this browser");
       }
     },
   },
   mounted() {
-    this.dialogButton = this.$refs["create-issue"];
-    this.dialogIssue = document.getElementById("issue-dialog");
+    const dialog = document.getElementById("dialog-issue");
+    this.dialogLoad(dialog);
   },
 };
 </script>
 
 <style scoped>
-.cancel-dialog {
-  padding-right: 31px;
+.text-number {
+  text-align: end;
+  margin-right: 27px;
+}
+.dialog-topic {
+  margin: 0px 27px 39px 27px;
+  background-color: white;
+  height: 51px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+#dialog-content {
+  padding: 0px 27px 0px 27px;
+  height: 205px;
+  font-size: 26px;
+}
+
+.dialog-title {
+  margin: 0px 27px 0px 27px;
+  margin-bottom: 25px;
+  height: 35px;
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 3px solid #BABABA;
+  padding-bottom: 10px;
+}
+
+.dialog-cancel {
+  margin: 24px 31px 43px 0px;
   font-weight: bold;
   font-size: 30px;
 }
 
 #confirmBtn {
-  width: 100%;
+  width: 172px;
+  height: 70px;
+  background-color: #BABABA;
+  box-shadow: 1px 1px 3px #0000004D;
+  color: #FFFFFF;
+  border-radius: 30px;
+  margin: 37px 0px 37px 0px;
 }
 
-.menu-dialog {
+.dialog-menu {
   width: 100%;
+  text-align: center;
 }
 
 .request {
@@ -77,23 +117,52 @@ export default {
   fill: grey;
 }
 
-.p-dialog {
+.dialog-p {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.form-dialog {
+.dialog-form {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-#issue-dialog {
+#dialog-issue {
   margin-left: auto;
   height: 700px;
   width: 485px;
   top: 140px;
   right: 261px;
+  background-color: #EAEAEA;
+  border-style: none;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 }
+
+input:focus {
+  outline:none;
+}
+
+input::placeholder {
+  font-size: 26px;
+}
+
+textarea:focus {
+  outline:none;
+}
+
+textarea::placeholder {
+  font-size: 26px;
+}
+
+select:focus {
+  outline: none;
+}
+
+select option {
+  font-weight: bold;
+}
+
 </style>

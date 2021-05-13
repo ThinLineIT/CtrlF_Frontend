@@ -7,7 +7,11 @@
         </span>
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
-      <div class="noteBtn"></div>
+      <div class="noteBtn">
+        <v-icon>
+          mdi-upload
+        </v-icon>
+      </div>
     </div>
     <div class="noteContent__text">
       <p class="noteContent__text-card">

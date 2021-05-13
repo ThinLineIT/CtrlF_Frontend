@@ -1,5 +1,5 @@
 <template>
-  <v-container class="main" fluid>
+  <v-container class="main">
     <div class="note-container">
       <div class="note-box" v-for="(note, i) in getTitles" :key="i">
         <NOTEBACKGROUND1

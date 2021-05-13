@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 const noteModule = {
   state: {
+    dialogIssue: "",
     isTopicClicked: false,
     isNoteLoading: false,
     noteDetail: [],
@@ -18,6 +19,9 @@ const noteModule = {
     nowTopicContent: null,
   },
   getters: {
+    getDialogIssue(state) {
+      return state.dialogIssue;
+    },
     getIsTopicClicked(state) {
       return state.isTopicClicked;
     },
@@ -77,6 +81,9 @@ const noteModule = {
       state.nowTopic = null;
       state.selectedTopicPage = [];
     },
+    GET_DIALOGISSUE(state, dialog) {
+      state.dialogIssue =  dialog;
+    }
   },
   actions: {
     noteLoad({ commit }, noteID) {
@@ -115,6 +122,9 @@ const noteModule = {
     nowTopicContentLoad({ commit }, topicContent) {
       commit("GET_NOWTOPIC_CONTENT", topicContent);
     },
+    dialogLoad({ commit }, dialog) {
+      commit("GET_DIALOGISSUE", dialog);
+    }
   },
 };
 

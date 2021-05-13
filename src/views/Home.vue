@@ -67,6 +67,7 @@ export default {
   display: flex;
   margin-top: 120px;
   padding: 0;
+  width: 100%;
 }
 
 .mainSide {
