@@ -1,11 +1,11 @@
 <template>
   <div class="pageSideBar" id="pageSideBarId">
-    <v-card v-if="getNote.title.length > 10" class="mainTitle-small">
-      {{ getNote.title }}
-    </v-card>
-    <v-card v-else class="mainTitle">
-      {{ getNote.title }}
-    </v-card>
+    <div v-if="getNote.title.length > 10" class="mainTitle-small">
+      <span class="note-name"> {{ getNote.title }} </span>
+    </div>
+    <div v-else class="mainTitle">
+      <span class="note-name"> {{ getNote.title }} </span>
+    </div>
     <v-card class="titleList">
       <v-row>
         <v-col class="topic-List" cols="5">
@@ -28,24 +28,8 @@
         <v-col class="page-list" id="page-listId">
           <pagesName />
         </v-col>
-        <!-- <v-col v-else class="page-list" id="page-listId" cols="5">
-          <pagesName />
-        </v-col> -->
       </v-row>
       <v-divider insert></v-divider>
-      <div class="AddBtn" id="AddBtnId">
-        <div class="add-1">
-          <span @click="addPage" id="addTopic">
-            <!--class="grey--text"-->
-            Add Topic
-          </span>
-        </div>
-        <v-divider vertical></v-divider>
-        <div class="add-2">
-          <span @click="addPage" id="addPage"> add page </span>
-        </div>
-        <!-- TODO: Show popup to nmae a new topic-->
-      </div>
     </v-card>
   </div>
 </template>
@@ -86,18 +70,18 @@ export default {
           this.selectedPageLoad(this.getAllPages[i]);
         }
       }
-      if (this.getIsTopicClicked === false) {
-        this.TOPIC_CLICKED();
-        document.getElementById("AddBtnId").style.display = "none";
-        document.getElementById("page-listId").style.width = "16rem";
-        document.getElementById("page-listId").style.display = "";
-      } else {
-        this.TOPIC_UNCLICKED();
-        document.getElementById("AddBtnId").style.display = "";
-        document.getElementById("page-listId").style.width = "9.9rem";
-        document.getElementById("page-listId").style.display = "none";
-        // document.getElementById('pageSideBarId').style.width = "22.8em"
-      }
+      // 클릭시 화면 펼침 효과, 향후 사용 예정
+      // if (this.getIsTopicClicked === false) {
+      //   this.TOPIC_CLICKED();
+      //   document.getElementById("AddBtnId").style.display = "none";
+      //   document.getElementById("page-listId").style.width = "16rem";
+      //   document.getElementById("page-listId").style.display = "";
+      // } else {
+      //   this.TOPIC_UNCLICKED();
+      //   document.getElementById("AddBtnId").style.display = "";
+      //   document.getElementById("page-listId").style.width = "9.9rem";
+      //   document.getElementById("page-listId").style.display = "none";
+      // }
     },
   },
   created() {
@@ -125,30 +109,49 @@ export default {
   width: 8.2rem;
 }
 
+.note-name {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 11%;
+}
+
 .mainTitle-small {
-  font-size: 1.56rem;
-  height: 100px;
+  font-size: 2.5rem;
+  padding-bottom: 35%;
+  width: 75%;
   line-height: 100px;
   text-align: center;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  position: relative;
 }
 
 .mainTitle {
-  height: 100px;
+  width: 75%;
+  padding-bottom: 35%;
   line-height: 100px;
   text-align: center;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 3.25rem;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
 }
 .pageSideBar {
-  padding: 30px;
+  padding-top: 30px;
   background-color: #43af83;
-  min-height: 900px;
+  height: 100%;
   min-width: 21em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .titleList {
+  width: 75%;
   border-top: 12px solid #43af83;
 }
 

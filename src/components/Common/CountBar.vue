@@ -13,7 +13,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getCounter", "getWhatCount"]),
+    ...mapGetters(["getCounter", "getWhatCount", 'getIssue']),
   },
   name: "CountBar",
   methods: {
@@ -24,7 +24,7 @@ export default {
         placeFind.placeholder = `현재 모아진 아이디어   ${this.getCounter}`;
       } else {
         const placeFind = this.$refs["count-search"];
-        placeFind.placeholder = `요청 검토 중인 아이디어    ${this.getCounter}`;
+        placeFind.placeholder = `요청 검토 중인 아이디어    ${this.getIssue.length}`;
       }
     },
   },

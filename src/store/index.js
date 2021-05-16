@@ -62,7 +62,6 @@ const noteModule = {
     },
     GET_ALL_PAGES(state, allPages) {
       state.allPages = allPages;
-      console.log(state.allPages);
     },
     GET_SELECTED_PAGES(state, selectedPages) {
       state.selectedTopicPage.push(selectedPages);
@@ -82,7 +81,7 @@ const noteModule = {
       state.selectedTopicPage = [];
     },
     GET_DIALOGISSUE(state, dialog) {
-      state.dialogIssue =  dialog;
+      state.dialogIssue = dialog;
     }
   },
   actions: {

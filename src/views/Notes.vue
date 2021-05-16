@@ -34,11 +34,13 @@ export default {
 .sideBar {
   height: 100%;
   padding-bottom: 0px;
+  width: 28.75%;
 }
 
 .note-content {
   display: flex;
   margin-top: 123px;
+  height: 100%;
 }
 
 .noteContent {
@@ -46,7 +48,8 @@ export default {
 }
 
 .note-container {
-  padding: 0px 0px 40px 0px;
+  padding: 0px 0px 0px 0px;
+  height: 100%;
 }
 
 .noteheader {
