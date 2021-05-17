@@ -1,13 +1,11 @@
 <template>
-  <v-container class="issue-content">
-    <IssueCategory />
+  <v-container class="issue">
+    <IssueCategory class="issue-category" />
     <v-card class="issue-card">
       <div class="issue-container" @click="issueDetail(issue.id)">
         <div class="issue-box" v-for="(issue, i) in getIssue" :key="i">
           <div class="issueContent">
             <span class="issue-title"> {{ issue.title }} </span>
-            <br />
-            <div>궁금해요 20</div>
             <br />
             <span class="issue-content"> {{ issue.content }} </span>
           </div>
@@ -51,16 +49,25 @@ export default {
 </script>
 
 <style scoped>
-.issue-content {
+.issue-category {
+  align-self: flex-end;
+}
+
+.issue {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  width: 68.7%;
+}
+
+.issue-content {
+  display: block;
+  margin-top: 13px;
 }
 
 .issueContent {
   padding: 10px 0px 0px 30px;
   position: absolute;
-  width: 230px;
+  width: 23%;
   margin: 10px 0px 0px 10px;
 }
 
@@ -70,15 +77,16 @@ export default {
 
 .issue-title {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.313rem;
 }
 .issue-card {
-  width: 1390px;
+  align-self: center;
+  width: 100%;
   margin-top: 32px;
 }
 .issue-container {
   display: grid;
-  grid-template-columns: repeat(4, 290px);
+  grid-template-columns: repeat(4, 315px);
 }
 
 .issueBg {

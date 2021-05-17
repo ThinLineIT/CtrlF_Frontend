@@ -72,13 +72,8 @@ export default {
       });
     },
   },
-  updated() {
+  mounted() {
     this.svgText();
-  },
-  watch: {
-    $route(to, from) {
-      console.log(to, from);
-    },
   },
 };
 </script>

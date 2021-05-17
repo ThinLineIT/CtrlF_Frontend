@@ -1,44 +1,32 @@
 <template>
-  <v-card class="overflow-hidden">
-    <v-app-bar
-      class="hiddenbar"
-      height="123px"
-      absolute
-      color="white"
-      dark
-      inverted-scroll
-      scroll-target="#scrolling-techniques-8"
-    >
-      <v-toolbar-title>
-        <HiddenHeader />
-      </v-toolbar-title>
-    </v-app-bar>
-    <v-sheet
-      id="scrolling-techniques-8"
-      class="overflow-y-auto"
-      max-height="900"
-    >
-      <v-container class="scroll-content" fluid>
-        <div class="home">
-          <Header />
-          <div class="router">
-            <router-view />
-          </div>
+  <v-container class="scroll-content" fluid>
+    <loadPage v-if="getIsLoadingPage === true" class="clip" />
+    <div v-else>
+      <HiddenHeader class="home-hidden" />
+      <div class="home">
+        <Header />
+        <div class="router">
+          <router-view />
         </div>
-      </v-container>
-    </v-sheet>
-  </v-card>
+      </div>
+    </div>
+  </v-container>
 </template>
 
 <script>
 import Header from "../components/Common/Header";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import HiddenHeader from "../components/Common/HiddenHeader";
+import loadPage from "@/components/Common/Loading";
 
 export default {
+  computed: {
+    ...mapGetters(["getIsLoadingPage"]),
+  },
   components: {
     HiddenHeader,
     Header,
+    loadPage,
   },
   methods: {
     ...mapActions(["dataLoad"]),
@@ -50,17 +38,20 @@ export default {
 </script>
 
 <style scoped>
-.hiddenbar {
+.clip {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.home-hidden {
   justify-content: center;
-  display: flex;
+  z-index: 1;
 }
 
 .scroll-content {
   padding: 0;
-}
-
-.overflow-y-auto::-webkit-scrollbar {
-  display: none;
 }
 
 .router {

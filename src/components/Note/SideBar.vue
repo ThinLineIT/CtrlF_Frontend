@@ -119,7 +119,7 @@ export default {
 }
 
 .mainTitle-small {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   padding-bottom: 35%;
   width: 75%;
   line-height: 100px;

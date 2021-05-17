@@ -1,5 +1,5 @@
 <template>
-  <div class="homeBar">
+  <div class="homeBar" id="homebar-id">
     <div class="logo-title" @click="$router.push({ name: 'Home' })">
       <img class="header-png" src="../../assets/LOGO_TITLE.png" />
     </div>

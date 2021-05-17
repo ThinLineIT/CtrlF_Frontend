@@ -1,14 +1,17 @@
 <template>
   <v-container fluid class="note-container">
-    <div class="noteheader">
-      <NoteHeader />
-    </div>
-    <div class="note-content">
-      <div class="sideBar">
-        <SideBar />
+    <clipBoard v-if="getIsCopy === true" class="clip" />
+    <div class="note">
+      <div class="noteheader">
+        <NoteHeader />
       </div>
-      <div class="noteContent">
-        <router-view />
+      <div class="note-content">
+        <div class="sideBar">
+          <SideBar />
+        </div>
+        <div class="noteContent">
+          <router-view />
+        </div>
       </div>
     </div>
   </v-container>
@@ -17,17 +20,34 @@
 <script>
 import SideBar from "@/components/Note/SideBar.vue";
 import NoteHeader from "@/components/Note/NoteHeader";
+import clipBoard from "@/components/Common/ClipBoard";
+import { mapGetters } from "vuex";
 
 export default {
+  computed: {
+    ...mapGetters(["getIsCopy"]),
+  },
   components: {
     SideBar,
     NoteHeader,
+    clipBoard,
   },
   methods: {},
 };
 </script>
 
 <style scoped>
+.note {
+  height: 100%;
+}
+
+.clip {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
 .note {
   display: flex;
 }
@@ -41,6 +61,7 @@ export default {
   display: flex;
   margin-top: 123px;
   height: 100%;
+  width: 100%;
 }
 
 .noteContent {

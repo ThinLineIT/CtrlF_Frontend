@@ -13,7 +13,12 @@
             </option>
           </select>
           <input type="text" class="dialog-title" placeholder="TITLE" />
-          <textarea id="dialog-content" placeholder="내용 입력" maxlength="100" @keyup="textCount"/>
+          <textarea
+            id="dialog-content"
+            placeholder="내용 입력"
+            maxlength="100"
+            @keyup="textCount"
+          />
           <span class="text-number"> {{ textNum }} / 100자 </span>
         </p>
         <menu class="dialog-menu">
@@ -86,7 +91,7 @@ export default {
   height: 35px;
   font-size: 26px;
   font-weight: bold;
-  border-bottom: 3px solid #BABABA;
+  border-bottom: 3px solid #bababa;
   padding-bottom: 10px;
 }
 
@@ -99,9 +104,9 @@ export default {
 #confirmBtn {
   width: 172px;
   height: 70px;
-  background-color: #BABABA;
-  box-shadow: 1px 1px 3px #0000004D;
-  color: #FFFFFF;
+  background-color: #bababa;
+  box-shadow: 1px 1px 3px #0000004d;
+  color: #ffffff;
   border-radius: 30px;
   margin: 37px 0px 37px 0px;
 }
@@ -136,13 +141,13 @@ export default {
   width: 485px;
   top: 140px;
   right: 261px;
-  background-color: #EAEAEA;
+  background-color: #eaeaea;
   border-style: none;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 }
 
 input:focus {
-  outline:none;
+  outline: none;
 }
 
 input::placeholder {
@@ -150,7 +155,7 @@ input::placeholder {
 }
 
 textarea:focus {
-  outline:none;
+  outline: none;
 }
 
 textarea::placeholder {
@@ -164,5 +169,4 @@ select:focus {
 select option {
   font-weight: bold;
 }
-
 </style>

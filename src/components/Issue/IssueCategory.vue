@@ -1,8 +1,8 @@
 <template>
   <div class="issue-searchBar">
     <div class="issue-category">
-      <v-card class="issue-category-main"> <span>MAIN</span> </v-card>
-      <v-card class="issue-category-sub"> <span>SUB</span> </v-card>
+      <v-card class="issue-category-main"> <span>ALL</span> </v-card>
+      <v-card class="issue-category-sub"> <span>ALL</span> </v-card>
     </div>
   </div>
 </template>
@@ -41,6 +41,8 @@ span {
   vertical-align: middle;
   display: table-cell;
   text-align: center;
+  font-weight: bold;
+  font-size: 1.375rem;
 }
 
 .issue-search {

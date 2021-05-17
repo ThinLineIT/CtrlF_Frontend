@@ -8,13 +8,23 @@
         <span class="noteContent__title-content"> {{ getNowPage }} </span>
       </div>
       <div class="noteBtn">
-        <v-icon>
+        <v-icon
+          class="clip"
+          id="clip-id"
+          data-clipboard-target="#noteContent__text-card-id"
+          @click="copyContent"
+          size="43"
+        >
           mdi-upload
         </v-icon>
       </div>
     </div>
     <div class="noteContent__text">
-      <p class="noteContent__text-card">
+      <p
+        v-html="compiledMarkdown"
+        class="noteContent__text-card"
+        id="noteContent__text-card-id"
+      >
         {{ getNowTopicContent }}
       </p>
     </div>
@@ -23,6 +33,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import marked from "marked";
+import ClipboardJS from "clipboard";
 
 export default {
   computed: {
@@ -32,17 +44,47 @@ export default {
       "getNowPage",
       "getNowTopicContent",
     ]),
+    compiledMarkdown() {
+      if (this.getNowTopicContent === null) {
+        return "";
+      } else {
+        return marked(this.getNowTopicContent, { sanitize: true });
+      }
+    },
   },
   name: "NoteContent",
+  data() {
+    return {
+      copyBtn: "",
+    };
+  },
   components: {},
   methods: {
-    ...mapActions(["noteLoad"]),
+    ...mapActions(["noteLoad", "copyActivate", "copyStop"]),
+    copyContent() {
+      this.copyActivate();
+      console.log();
+      var clipboard = new ClipboardJS(this.copyBtn);
+      clipboard.on("success", function (e) {
+        console.log(e);
+        clipboard.destroy();
+      });
+      clipboard.on("error", function (e) {
+        console.log(e);
+        clipboard.destroy();
+      });
+      setTimeout(() => this.copyStop(), 2000);
+    },
     addPage() {
       this.$router.push({ name: "create-page" });
     },
   },
   created() {
     this.noteLoad(this.$route.params.noteID);
+  },
+  mounted() {
+    var btns = document.getElementById("clip-id");
+    this.copyBtn = btns;
   },
 };
 </script>
@@ -89,14 +131,8 @@ export default {
   width: 60rem;
 }
 
-.request,
-.login,
-.home,
-.search {
-  width: 30px;
-  height: 30px;
-  fill: grey;
-  padding-right: 5px;
+.clip:hover {
+  cursor: pointer;
 }
 
 .notebar {

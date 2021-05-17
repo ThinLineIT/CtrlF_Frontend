@@ -28,8 +28,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ToDo List
 
-1. 메인페이지 스크롤 조정
+1. 클립보드 생성
 
-2. CountBar 새로고침시 placeholder 변경 
+2. Issue page 레이아웃(SVG 태그 길이....)
 
-3. issue에서 home으로 갈 때 SVG태그 변경 확인 
+3. 로딩페이지 삽입
+
+4. svg 개선(MainPage)
+
+6. 모달 select 태그 커스텀

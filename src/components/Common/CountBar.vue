@@ -13,13 +13,13 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["getCounter", "getWhatCount", 'getIssue']),
+    ...mapGetters(["getCounter", "getWhatCount", "getIssue"]),
   },
   name: "CountBar",
   methods: {
-    ...mapActions(["changeCount"]),
-    changePlaceholder(count) {
-      if (count) {
+    ...mapActions(["changeCountMain", "changeCountIssue"]),
+    changePlaceholder(countType) {
+      if (countType) {
         const placeFind = this.$refs["count-search"];
         placeFind.placeholder = `현재 모아진 아이디어   ${this.getCounter}`;
       } else {
@@ -32,13 +32,15 @@ export default {
     const placeFind = this.$refs["count-search"];
     placeFind.placeholder = `현재 모아진 아이디어   ${this.getCounter}`;
   },
+
   watch: {
-    $route(to, from) {
-      if (to.name === "Main" && from.name === "Issue") {
-        this.changeCount();
+    $route(to) {
+      console.log(to);
+      if (to.name === "Main") {
+        this.changeCountMain();
         this.changePlaceholder(this.getWhatCount);
-      } else if (to.name === "Issue" && from.name === "Main") {
-        this.changeCount();
+      } else if (to.name === "Issue") {
+        this.changeCountIssue();
         this.changePlaceholder(this.getWhatCount);
       } else {
         console.log("다른 페이지");
