@@ -1,11 +1,13 @@
 <template>
-  <input
-    ref="count-search"
-    class="count-search"
-    id="tt"
-    type="text"
-    placeholder="테스트"
-  />
+  <div id="count-input">
+    <input
+      ref="count-search"
+      class="count-search"
+      id="tt"
+      type="text"
+      placeholder="테스트"
+    />
+  </div>
 </template>
 
 <script>
@@ -51,6 +53,12 @@ export default {
 </script>
 
 <style scoped>
+#count-input input {
+  background-image: url('../../assets/search.png');
+  background-size: 40px;
+  background-position: 750px center;
+}
+
 input {
   font-size: 35px;
   font-weight: bold;

@@ -55,18 +55,19 @@ export default {
       const svgs = this.$el.querySelectorAll("svg text");
       this.getTitles.map((note, index) => {
         if (note.title.length > 10) {
-          // var noteTitle = note.title.substr(0, 11) + "...";
-          svgs[index].innerHTML = "";
-          var split = note.title.split(" ");
-          for (var i in split) {
-            var newTSPAN = document.createElement("tspan");
-            newTSPAN.innerHTML = split[i];
-            newTSPAN.setAttribute("x", 0);
-            newTSPAN.setAttribute("y", 0);
-            svgs[index].appendChild(newTSPAN);
-          }
+          var noteTitle = note.title.substr(0, 11) + "...";
+          svgs[index].innerHTML = noteTitle;
+          // svgs[index].innerHTML = "";
+          // var split = note.title.split(" ");
+          // for (var i of split) {
+          //   var newTSPAN = document.createElement("tspan");
+          //   newTSPAN.innerHTML = i;
+          //   newTSPAN.setAttribute("x", 0);
+          //   newTSPAN.setAttribute("y", 0);
+          //   svgs[index].appendChild(newTSPAN);
+          // }
         } else {
-          var noteTitle = note.title;
+          noteTitle = note.title;
           svgs[index].innerHTML = noteTitle;
         }
       });

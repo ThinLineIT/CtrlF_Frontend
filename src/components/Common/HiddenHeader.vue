@@ -3,8 +3,8 @@
     <div class="hidden-text" @click="$router.push({ name: 'Home' })">
       <img class="hidden-png" src="../../assets/LOGO_TITLE.png" />
     </div>
-    <div>
-      <input class="hidden-search" type="text" placeholder="검색" />
+    <div id="hidden-input">
+      <input class="hidden-search" type="text" placeholder="" />
     </div>
   </div>
 </template>
@@ -47,6 +47,12 @@ export default {
 </script>
 
 <style scoped>
+#hidden-input input {
+  background-image: url('../../assets/search.png');
+  background-size: 35px;
+  background-position: 850px center;
+}
+
 .hidden-title {
   display: none;
   position: fixed;
@@ -64,6 +70,7 @@ export default {
   height: 61px;
   border: 1px solid;
   border-radius: 45px;
+  padding-left: 15px;
 }
 
 input:focus {
