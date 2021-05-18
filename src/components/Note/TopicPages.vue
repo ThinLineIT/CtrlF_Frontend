@@ -7,7 +7,7 @@
       class="page-list"
     >
       <v-list-item-content>
-        <v-list-item-title v-if="item.title.length > 12"
+        <v-list-item-title class="page-title" v-if="item.title.length > 12"
           >{{ item.title.substr(0, 12) }} <br />
           {{ item.title.substr(12) }}
         </v-list-item-title>
@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.page-title {
+  font-size: 1.2rem;
+}
+
 .page-list {
   padding: 0;
 }

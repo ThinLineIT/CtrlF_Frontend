@@ -95,13 +95,14 @@ export default {
 }
 
 .noteContent {
-  margin-left: 0px;
+  margin-left: 78px;
   padding-left: 0px;
-  padding-right: 30px;
-  width: 70rem;
+  padding: 0px;
+  width: 100%;
 }
 .noteContent__title {
   display: flex;
+  min-width: 78.23%;
 }
 .noteContent__title-sub {
   background-color: #43af83;
@@ -111,8 +112,10 @@ export default {
   padding: 1px 18px 0px 20px;
   color: #ffffff;
   min-height: 4.2rem;
-  min-width: 100px;
   font-weight: bold;
+  font-size: 1.938rem;
+  min-width: 21.47%;
+  display: inline-block;
 }
 .noteContent__title-content {
   border-radius: 0px 20px 20px 0px;
@@ -121,7 +124,7 @@ export default {
   font-weight: bold;
   min-width: 700px;
   min-height: 4.2rem;
-  font-weight: bold;
+  font-size: 2.125rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
 }
 .noteContent__text {
@@ -137,8 +140,9 @@ export default {
 
 .notebar {
   display: flex;
+  width: 77.8%;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 90px;
 }
 
 .noteBtn {

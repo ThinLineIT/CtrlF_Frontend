@@ -97,7 +97,7 @@ const noteModule = {
   actions: {
     noteLoad({ commit }, noteID) {
       axios
-        .get(`http://thkwon.pythonanywhere.com/api/notes/${noteID}`)
+        .get(`https://thkwon.pythonanywhere.com/api/notes/${noteID}`)
         .then((res) => {
           commit("GET_NOTE", res.data);
         })
@@ -108,7 +108,7 @@ const noteModule = {
     },
     pageLoad({ commit }) {
       axios
-        .get(`http://thkwon.pythonanywhere.com/api/pages`)
+        .get(`https://thkwon.pythonanywhere.com/api/pages`)
         .then((res) => {
           commit("GET_ALL_PAGES", res.data);
         })
@@ -204,7 +204,7 @@ const issueModule = {
       commit("GET_LOADING");
       console.log("로딩 시작");
       await axios
-        .get("http://thkwon.pythonanywhere.com/api/all_page_count/")
+        .get("https://thkwon.pythonanywhere.com/api/all_page_count/")
         .then((res) => {
           commit("GET_COUNT_SUCCESS", res.data.count);
           console.log("1");
@@ -214,7 +214,7 @@ const issueModule = {
           console.log(err);
         });
       await axios
-        .get("http://thkwon.pythonanywhere.com/api/notes/")
+        .get("https://thkwon.pythonanywhere.com/api/notes/")
         .then((res) => {
           commit("GET_PAGE_TITLE", res.data);
           console.log("2");
@@ -223,7 +223,7 @@ const issueModule = {
           console.log(err);
         });
       await axios
-        .get("http://thkwon.pythonanywhere.com/api/issues/")
+        .get("https://thkwon.pythonanywhere.com/api/issues/")
         .then((res) => {
           console.log("3");
           commit("GET_ISSUE", res.data);

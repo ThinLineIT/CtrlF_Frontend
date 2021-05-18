@@ -93,7 +93,7 @@ export default {
 }
 
 .request-sidebar {
-  width: 319px;
+  width: 16.61%;
   height: 681px;
   margin-right: 87px;
 }

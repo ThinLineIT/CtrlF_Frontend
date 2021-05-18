@@ -6,31 +6,20 @@
     <div v-else class="mainTitle">
       <span class="note-name"> {{ getNote.title }} </span>
     </div>
-    <v-card class="titleList">
-      <v-row>
-        <v-col class="topic-List" cols="5">
-          <v-list class="topic-list-title" flat>
-            <v-list-item
-              class="topic-title"
-              v-for="(topic, i) in getNote.topics"
-              :key="i"
-            >
-              <v-list-item-content class="topic-title-content">
-                <v-list-item-title
-                  class="topic"
-                  @click="topicPagesLoad(topic.title, topic.id)"
-                  >{{ topic.title }}</v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col class="page-list" id="page-listId">
-          <pagesName />
-        </v-col>
-      </v-row>
-      <v-divider insert></v-divider>
-    </v-card>
+    <div class="titleList">
+      <div class="topic-List">
+        <div class="topic-list-title"
+            v-for="(topic, i) in getNote.topics"
+            :key="i">
+            <span class="topic" v-if="topic.title.match(/\s/g)" @click="topicPagesLoad(topic.title, topic.id)"> {{ topic.title.replace(/\s/g, '') }} </span>
+            <span class="topic" v-else @click="topicPagesLoad(topic.title, topic.id)"> {{ topic.title }} </span>
+        </div>
+      </div>
+      <hr class="divider"/>
+      <div class="page-list" id="page-listId">
+        <pagesName />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,19 +83,25 @@ export default {
 </script>
 
 <style scoped>
+.divider {
+  height: 100%;
+}
+
 #page-listId {
-  width: 9.9rem;
+  min-width: 45%;
+  display: inline-block;
 }
 
 .page-list {
   padding-left: 0;
+  margin: 41px 0px 19px 20.1px;
+  width: 55.5%;
 }
 
 .topic-List {
-  border-right: solid gray 0.1px;
   padding: 0;
-  margin: 12px;
-  width: 8.2rem;
+  margin: 41px 0px 19px 19px;
+  width: 44.5%;
 }
 
 .note-name {
@@ -142,7 +137,7 @@ export default {
   position: relative;
 }
 .pageSideBar {
-  padding-top: 30px;
+  padding-top: 44px;
   background-color: #43af83;
   height: 100%;
   min-width: 21em;
@@ -153,39 +148,25 @@ export default {
 .titleList {
   width: 75%;
   border-top: 12px solid #43af83;
+  display: flex;
+  background-color: white;
+}
+
+.topic-list-title {
+  background-color: #8ecfb5;
+  border-top-left-radius: 15px;
+  border-end-start-radius: 15px;
+  margin-bottom: 25.36px;
+  height: 61px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .topic {
-  background-color: #8ecfb5;
   color: #ffffff;
-  height: 30px;
-  line-height: 30px;
-  padding: 0px 15px;
-  border-top-left-radius: 15px;
-  border-end-start-radius: 15px;
-}
+  font-size: 20px;
 
-.col {
-  height: inherit;
-}
-
-.AddBtn {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 31px;
-}
-#addTopic,
-#addPage {
-  text-decoration: none;
-  margin: 13px;
-}
-
-#addPage:hover {
-  cursor: pointer;
-}
-
-#addTopic:hover {
-  cursor: pointer;
 }
 
 .topic:hover {
@@ -195,14 +176,4 @@ export default {
 .topic-title {
   padding: 0px 0px 0px 15px;
 }
-
-.topic-title-content {
-  padding: 0px;
-  text-align: center;
-}
-
-/* 
-.topic-list-title {
-  width: 8.25rem;
-} */
 </style>

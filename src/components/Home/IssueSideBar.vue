@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-card class="issue-side">
       <div class="issue-request"><span>요청 검토 중인 내용</span></div>
       <div v-for="(issue, i) in this.getIssue.slice(0, 5)" :key="i">
@@ -51,14 +51,17 @@ export default {
 </script>
 
 <style scoped>
+.issue-side {
+  width: 100%;
+}
+
 .memo {
-  width: 254px;
-  height: 76px;
+  width: 93%;
 }
 
 .issue {
   position: absolute;
-  padding: 25px 10px 10px 33px;
+  padding: 25px 10px 10px 30px;
 }
 .issue-title {
   font-size: 1rem;

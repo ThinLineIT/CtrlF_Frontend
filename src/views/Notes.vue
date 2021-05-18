@@ -65,7 +65,7 @@ export default {
 }
 
 .noteContent {
-  margin-left: 50px;
+  width: 71.25%;
 }
 
 .note-container {

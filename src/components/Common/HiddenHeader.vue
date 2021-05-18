@@ -22,7 +22,7 @@ export default {
   methods: {
     handleScroll() {
       this.scroll = window.scrollY;
-      if (0 <= this.scroll && this.scroll < 30) {
+      if (0 <= this.scroll && this.scroll < 10) {
         this.scrollWindow.style.display = "none";
         this.homeHeader.style.display = "flex";
       } else {
@@ -56,7 +56,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 123px;
-  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+  box-shadow: 0px 7px 5px #00000080;
 }
 
 .hidden-search {
