@@ -8,14 +8,28 @@
     </div>
     <div class="titleList">
       <div class="topic-List">
-        <div class="topic-list-title"
-            v-for="(topic, i) in getNote.topics"
-            :key="i">
-            <span class="topic" v-if="topic.title.match(/\s/g)" @click="topicPagesLoad(topic.title, topic.id)"> {{ topic.title.replace(/\s/g, '') }} </span>
-            <span class="topic" v-else @click="topicPagesLoad(topic.title, topic.id)"> {{ topic.title }} </span>
+        <div
+          class="topic-list-title"
+          v-for="(topic, i) in getNote.topics"
+          :key="i"
+        >
+          <span
+            class="topic"
+            v-if="topic.title.match(/\s/g)"
+            @click="topicPagesLoad(topic.title, topic.id)"
+          >
+            {{ topic.title.replace(/\s/g, "") }}
+          </span>
+          <span
+            class="topic"
+            v-else
+            @click="topicPagesLoad(topic.title, topic.id)"
+          >
+            {{ topic.title }}
+          </span>
         </div>
       </div>
-      <hr class="divider"/>
+      <hr class="divider" />
       <div class="page-list" id="page-listId">
         <pagesName />
       </div>
@@ -166,7 +180,6 @@ export default {
 .topic {
   color: #ffffff;
   font-size: 20px;
-
 }
 
 .topic:hover {

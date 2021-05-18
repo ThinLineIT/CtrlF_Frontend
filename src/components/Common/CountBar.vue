@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 #count-input input {
-  background-image: url('../../assets/search.png');
+  background-image: url("../../assets/search.png");
   background-size: 40px;
   background-position: 750px center;
 }

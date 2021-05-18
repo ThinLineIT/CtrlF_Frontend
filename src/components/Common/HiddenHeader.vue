@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
 #hidden-input input {
-  background-image: url('../../assets/search.png');
+  background-image: url("../../assets/search.png");
   background-size: 35px;
   background-position: 850px center;
 }

@@ -1,6 +1,6 @@
 module.exports = {
-  publicPath: '/CtrlF_Frontend',
-  outputDir: 'docs',
+  publicPath: "/CtrlF_Frontend",
+  outputDir: "docs",
   transpileDependencies: ["vuetify"],
   chainWebpack: (config) => {
     const svgRule = config.module.rule("svg");
