@@ -12,7 +12,7 @@ export default {
 .loading {
   width: 100%;
   height: 100%;
-  background-color: blue;
-  opacity: 50%;
+  background-color: grey;
+  opacity: 30%;
 }
 </style>

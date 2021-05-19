@@ -15,3 +15,9 @@ export default {
   data: () => ({}),
 };
 </script>
+
+<style scoped>
+#inspire {
+  background-color: #f4f4f4;
+}
+</style>

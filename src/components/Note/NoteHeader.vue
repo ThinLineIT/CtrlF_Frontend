@@ -1,7 +1,7 @@
 <template>
   <div class="note-header">
     <div class="note-header_center">
-      <div class="note-header-text" @click="$router.push({ name: 'Home' })">
+      <div class="note-header-text" @click="$router.push({ name: 'Main' })">
         <img class="noteheader-png" src="../../assets/LOGO_TITLE.png" />
       </div>
       <div>

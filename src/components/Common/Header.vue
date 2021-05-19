@@ -1,6 +1,6 @@
 <template>
   <div class="homeBar" id="homebar-id">
-    <div class="logo-title" @click="$router.push({ name: 'Home' })">
+    <div class="logo-title" @click="$router.push({ name: 'Main' })">
       <img class="header-png" src="../../assets/LOGO_TITLE.png" />
     </div>
     <div class="countBar">

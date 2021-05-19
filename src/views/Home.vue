@@ -43,6 +43,7 @@ export default {
   height: 100%;
   position: fixed;
   z-index: 1;
+  opacity: 50%;
 }
 
 .home-hidden {
@@ -59,6 +60,7 @@ export default {
   margin-top: 120px;
   padding: 0;
   width: 100%;
+  justify-content: center;
 }
 
 .mainSide {

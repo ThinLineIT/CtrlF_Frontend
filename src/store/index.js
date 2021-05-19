@@ -20,6 +20,9 @@ const noteModule = {
     isCopy: false,
   },
   getters: {
+    getNoteLoadingPage(state) {
+      return state.isNoteLoading;
+    },
     getIsCopy(state) {
       return state.isCopy;
     },
@@ -49,6 +52,12 @@ const noteModule = {
     },
   },
   mutations: {
+    GET_NOTEPAGE(state) {
+      state.isNoteLoading = false;
+    },
+    GET_NOTE_LOADING(state) {
+      state.isNoteLoading = true;
+    },
     COPY_ACT(state) {
       state.isCopy = true;
     },
@@ -95,8 +104,9 @@ const noteModule = {
     },
   },
   actions: {
-    noteLoad({ commit }, noteID) {
-      axios
+    async noteLoad({ commit }, noteID) {
+      commit("GET_NOTE_LOADING");
+      await axios
         .get(`https://thkwon.pythonanywhere.com/api/notes/${noteID}`)
         .then((res) => {
           commit("GET_NOTE", res.data);
@@ -105,6 +115,7 @@ const noteModule = {
           console.log(err);
         });
       commit("DEL_NOWTOPIC_CONTENT");
+      commit("GET_NOTEPAGE");
     },
     pageLoad({ commit }) {
       axios

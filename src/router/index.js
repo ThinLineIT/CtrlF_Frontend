@@ -7,11 +7,10 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/main",
     component: () => import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
     children: [
       {
-        path: "main",
+        path: "/",
         name: "Main",
         component: () =>
           import(/* webpackChunkName: "main" */ "../components/Home/Main.vue"),
@@ -26,6 +25,28 @@ const routes = [
       },
     ],
   },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   redirect: "/main",
+  //   component: () => import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
+  //   children: [
+  //     {
+  //       path: "main",
+  //       name: "Main",
+  //       component: () =>
+  //         import(/* webpackChunkName: "main" */ "../components/Home/Main.vue"),
+  //     },
+  //     {
+  //       path: "/issue",
+  //       name: "Issue",
+  //       component: () =>
+  //         import(
+  //           /* webpackChunkName: "issue" */ "../components/Issue/IssueContent.vue"
+  //         ),
+  //     },
+  //   ],
+  // },
   {
     path: "/notes",
     name: "Note",
