@@ -18,6 +18,8 @@ export default {
 
 <style scoped>
 #inspire {
+  height: 100%;
+  width: 100%;
   background-color: #f4f4f4;
 }
 </style>

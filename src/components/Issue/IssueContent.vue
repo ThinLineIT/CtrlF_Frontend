@@ -83,6 +83,8 @@ export default {
   align-self: center;
   width: 100%;
   margin-top: 32px;
+  justify-content: center;
+  display: flex;
 }
 .issue-container {
   display: grid;

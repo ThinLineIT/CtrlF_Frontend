@@ -2,10 +2,10 @@
   <v-container class="noteContent" fluid>
     <div class="notebar">
       <div class="noteContent__title">
-        <span class="noteContent__title-sub">
+        <div class="noteContent__title-sub">
           {{ getNowTopic }}
-        </span>
-        <span class="noteContent__title-content"> {{ getNowPage }} </span>
+        </div>
+        <div class="noteContent__title-content">{{ getNowPage }}</div>
       </div>
       <div class="noteBtn">
         <v-icon
@@ -102,8 +102,10 @@ export default {
 }
 .noteContent__title {
   display: flex;
-  min-width: 78.23%;
+  min-width: 77%;
+  float: left;
 }
+
 .noteContent__title-sub {
   background-color: #43af83;
   line-height: 67px;
@@ -114,7 +116,7 @@ export default {
   min-height: 4.2rem;
   font-weight: bold;
   font-size: 1.938rem;
-  min-width: 21.47%;
+  width: 21.35%;
   display: inline-block;
 }
 .noteContent__title-content {
@@ -122,7 +124,7 @@ export default {
   line-height: 67px;
   padding: 1px 18px 0px 20px;
   font-weight: bold;
-  min-width: 700px;
+  width: 78.65%;
   min-height: 4.2rem;
   font-size: 2.125rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
@@ -139,7 +141,7 @@ export default {
 }
 
 .notebar {
-  display: flex;
+  /* display: flex; */
   width: 77.8%;
   justify-content: space-between;
   margin-top: 90px;
@@ -148,6 +150,7 @@ export default {
 .noteBtn {
   display: flex;
   align-items: center;
+  float: right;
 }
 
 .text__row {
