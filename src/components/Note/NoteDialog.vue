@@ -77,6 +77,8 @@ export default {
   height: 51px;
   border-radius: 30px;
   font-weight: bold;
+  padding-left: 15px;
+  font-size: 25px;
 }
 
 #dialog-content {

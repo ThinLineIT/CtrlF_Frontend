@@ -89,16 +89,18 @@ export default {
 
 .note-container {
   margin-left: 250px;
-  min-width: 700px;
+  /* min-width: 700px; */
   width: 64%;
   display: grid;
   grid-template-columns: repeat(5, 220px);
+  float: left;
 }
 
 .request-sidebar {
   width: 16.61%;
+  float: right;
   height: 681px;
-  margin-right: 87px;
+  /* margin-right: 87px; */
 }
 
 .testSvg {

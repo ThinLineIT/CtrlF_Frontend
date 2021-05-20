@@ -71,5 +71,9 @@ export default {
 
 .home {
   margin-top: 90px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

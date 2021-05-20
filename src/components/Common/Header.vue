@@ -1,7 +1,8 @@
 <template>
   <div class="homeBar" id="homebar-id">
     <div class="logo-title" @click="$router.push({ name: 'Main' })">
-      <img class="header-png" src="../../assets/LOGO_TITLE.png" />
+      <img class="header-png" src="../../assets/LOGO_SOLO.png" />
+      <span>커넵</span>
     </div>
     <div class="countBar">
       <CountBar />
@@ -20,14 +21,22 @@ export default {
 </script>
 
 <style scoped>
+span {
+  margin-left: 10px;
+  font-size: 45px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 6px black;
+}
+
 .homeBar {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .logo-title {
   display: flex;
+  /* width: 15.11%; */
   align-items: center;
   padding-top: 68px;
 }
@@ -39,7 +48,7 @@ export default {
 .countBar {
   height: 60px;
   margin: 40px 20px 0px 40px;
-  width: 800px;
+  width: 43.72%;
 }
 
 .header-png {

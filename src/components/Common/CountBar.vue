@@ -6,6 +6,8 @@
       id="tt"
       type="text"
       placeholder="테스트"
+      onfocus="this.placeholder=''"
+      title="검색어를 입력하세요"
     />
   </div>
 </template>

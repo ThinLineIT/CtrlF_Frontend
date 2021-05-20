@@ -1,9 +1,11 @@
 <template>
-  <div class="issue-searchBar">
-    <div class="issue-category">
-      <v-card class="issue-category-main"> <span>ALL</span> </v-card>
-      <v-card class="issue-category-sub"> <span>ALL</span> </v-card>
-    </div>
+  <div class="issue-category">
+    <select class="category-note">
+      <option>ALL</option>
+    </select>
+    <select class="category-topic">
+      <option>ALL</option>
+    </select>
   </div>
 </template>
 
@@ -14,10 +16,34 @@ export default {
 </script>
 
 <style scoped>
-.issue-searchBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.category-note {
+  font-weight: bold;
+  font-size: 1.375rem;
+  padding-left: 9%;
+  border-radius: 30px 00px 00px 30px;
+  background-color: white;
+  max-width: 270px;
+  width: 22.84%;
+  height: 55px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.category-topic {
+  font-weight: bold;
+  font-size: 1.375rem;
+  padding-left: 9%;
+  border-radius: 0px 30px 30px 0px;
+  background-color: white;
+  max-width: 270px;
+  width: 22.84%;
+  height: 55px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+select:focus {
+  outline: none;
 }
 
 .issue-home {
@@ -28,11 +54,14 @@ export default {
 
 .issue-category {
   display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .issue-category-main,
 .issue-category-sub {
-  width: 250px;
+  width: 22.84%;
   height: 55px;
   display: table;
 }

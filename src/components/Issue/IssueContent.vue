@@ -1,21 +1,19 @@
 <template>
   <v-container class="issue">
     <IssueCategory class="issue-category" />
-    <v-card class="issue-card">
-      <div class="issue-container" @click="issueDetail(issue.id)">
-        <div class="issue-box" v-for="(issue, i) in getIssue" :key="i">
-          <div class="issueContent">
-            <span class="issue-title"> {{ issue.title }} </span>
-            <br />
-            <span class="issue-content"> {{ issue.content }} </span>
-          </div>
-          <ISSUEBACKGROUND1 class="issueBg" v-if="i % 4 === 0" />
-          <ISSUEBACKGROUND2 class="issueBg" v-else-if="i % 4 === 1" />
-          <ISSUEBACKGROUND3 class="issueBg" v-else-if="i % 4 === 2" />
-          <ISSUEBACKGROUND4 class="issueBg" v-else />
+    <div class="issue-container" @click="issueDetail(issue.id)">
+      <div class="issue-box" v-for="(issue, i) in getIssue" :key="i">
+        <div class="issueContent">
+          <span class="issue-title"> {{ issue.title }} </span>
+          <br />
+          <span class="issue-content"> {{ issue.content }} </span>
         </div>
+        <ISSUEBACKGROUND1 class="issueBg" v-if="i % 4 === 0" />
+        <ISSUEBACKGROUND2 class="issueBg" v-else-if="i % 4 === 1" />
+        <ISSUEBACKGROUND3 class="issueBg" v-else-if="i % 4 === 2" />
+        <ISSUEBACKGROUND4 class="issueBg" v-else />
       </div>
-    </v-card>
+    </div>
   </v-container>
 </template>
 
@@ -65,6 +63,7 @@ export default {
 }
 
 .issueContent {
+  max-width: 265px;
   padding: 10px 0px 0px 30px;
   position: absolute;
   width: 23%;
@@ -79,16 +78,20 @@ export default {
   font-weight: bold;
   font-size: 1.313rem;
 }
-.issue-card {
+/* .issue-card {
   align-self: center;
   width: 100%;
   margin-top: 32px;
   justify-content: center;
   display: flex;
-}
+} */
 .issue-container {
+  margin-top: 32px;
+  padding-right: 10px;
+  align-self: center;
   display: grid;
   grid-template-columns: repeat(4, 315px);
+  background-color: white;
 }
 
 .issueBg {

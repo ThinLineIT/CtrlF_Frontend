@@ -1,7 +1,8 @@
 <template>
   <div class="hidden-title" id="hiddenbar">
     <div class="hidden-text" @click="$router.push({ name: 'Home' })">
-      <img class="hidden-png" src="../../assets/LOGO_TITLE.png" />
+      <img class="hidden-png" src="../../assets/LOGO_SOLO.png" />
+      <span>커넵</span>
     </div>
     <div id="hidden-input">
       <input class="hidden-search" type="text" placeholder="" />
@@ -47,10 +48,20 @@ export default {
 </script>
 
 <style scoped>
+span {
+  margin-left: 10px;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 6px black;
+}
+
 #hidden-input input {
   background-image: url("../../assets/search.png");
   background-size: 35px;
   background-position: 850px center;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .hidden-title {
