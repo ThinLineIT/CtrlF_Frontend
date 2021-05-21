@@ -64,7 +64,7 @@ export default {
 }
 
 .memo {
-  width: 93%;
+  width: 100%;
   margin: auto;
 }
 
@@ -75,8 +75,6 @@ export default {
 .issue-title {
   font-size: 1rem;
   font-weight: bold;
-}
-.issue-consider {
 }
 
 .more-btn {

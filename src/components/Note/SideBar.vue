@@ -15,13 +15,13 @@
         >
           <span
             class="topic"
-            v-if="topic.title.match(/\s/g)"
+            v-if="topic.title.length <= 7"
             @click="topicPagesLoad(topic.title, topic.id)"
           >
-            {{ topic.title.replace(/\s/g, "") }}
+            {{ topic.title }}
           </span>
           <span
-            class="topic"
+            class="topic-small"
             v-else
             @click="topicPagesLoad(topic.title, topic.id)"
           >
@@ -179,7 +179,16 @@ export default {
 
 .topic {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+.topic-small {
+  color: #ffffff;
+  font-size: 0.8125rem;
+}
+
+.topic-small:hover {
+  cursor: pointer;
 }
 
 .topic:hover {

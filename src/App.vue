@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <div id="size-limit">Plz Zoom Out Or In</div>
+      <!-- <div id="size-limit">Plz Zoom Out Or In</div> -->
       <router-view />
     </v-main>
   </v-app>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-#size-limit {
+/* #size-limit {
   position: absolute;
   z-index: 99;
   height: 100%;
@@ -35,7 +35,7 @@ export default {
   #size-limit {
     display: none;
   }
-}
+} */
 
 #inspire {
   height: 100%;

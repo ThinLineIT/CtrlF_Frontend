@@ -84,28 +84,41 @@ export default {
   display: flex;
   padding: 0;
   margin: 0;
-  width: 100%;
+  width: 83%;
+  justify-content: space-between;
+  max-width: 1350px;
 }
 
 .note-container {
-  margin-left: 250px;
+  /* margin-left: 250px; */
   /* min-width: 700px; */
   width: 64%;
   display: grid;
   grid-template-columns: repeat(5, 220px);
   float: left;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 1300px) {
+  .note-container {
+    grid-template-columns: repeat(3, 220px);
+  }
+  .main {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .request-sidebar {
-  width: 16.61%;
+  width: 21%;
   float: right;
   height: 681px;
-  /* margin-right: 87px; */
+  margin-right: -80px;
 }
 
 .testSvg {
   font-weight: bold;
-  margin-right: 40px;
+  margin-right: 20px;
 }
 
 .testSvg:hover {

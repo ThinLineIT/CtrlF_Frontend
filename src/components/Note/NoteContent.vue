@@ -2,7 +2,7 @@
   <v-container class="noteContent" fluid>
     <div class="notebar">
       <div class="noteContent__title">
-        <div class="noteContent__title-sub">
+        <div v- class="noteContent__title-sub">
           {{ getNowTopic }}
         </div>
         <div class="noteContent__title-content">{{ getNowPage }}</div>
@@ -111,11 +111,11 @@ export default {
   line-height: 67px;
   border-radius: 20px 0px 0px 20px;
   text-align: center;
-  padding: 1px 18px 0px 20px;
+  padding: 1px 13px 0px 15px;
   color: #ffffff;
   min-height: 4.2rem;
   font-weight: bold;
-  font-size: 1.938rem;
+  font-size: 1.7rem;
   width: 21.35%;
   display: inline-block;
 }
@@ -126,7 +126,7 @@ export default {
   font-weight: bold;
   width: 78.65%;
   min-height: 4.2rem;
-  font-size: 2.125rem;
+  font-size: 1.95rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
 }
 .noteContent__text {
