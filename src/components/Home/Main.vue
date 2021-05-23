@@ -90,8 +90,6 @@ export default {
 }
 
 .note-container {
-  /* margin-left: 250px; */
-  /* min-width: 700px; */
   width: 64%;
   display: grid;
   grid-template-columns: repeat(5, 220px);

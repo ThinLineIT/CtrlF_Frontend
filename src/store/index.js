@@ -154,14 +154,14 @@ const noteModule = {
   },
 };
 
-const issueModule = {
+const mainModule = {
   state: {
     isLoadingPage: false,
     isLoadingCount: false,
     pageCount: -1,
     getTitles: [],
     issueData: [],
-    whatCount: 1, // true = main, false = issue
+    whatCount: 1,
   },
   getters: {
     getCounter: function (state) {
@@ -257,7 +257,7 @@ const issueModule = {
 const store = new Vuex.Store({
   modules: {
     note: noteModule,
-    issue: issueModule,
+    issue: mainModule,
   },
   plugins: [createPersistedState()],
 });

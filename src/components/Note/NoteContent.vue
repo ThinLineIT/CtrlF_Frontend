@@ -63,20 +63,16 @@ export default {
     ...mapActions(["noteLoad", "copyActivate", "copyStop"]),
     copyContent() {
       this.copyActivate();
-      console.log();
       var clipboard = new ClipboardJS(this.copyBtn);
       clipboard.on("success", function (e) {
-        console.log(e);
+        console.log(e, "성공");
         clipboard.destroy();
       });
       clipboard.on("error", function (e) {
-        console.log(e);
+        console.log(e, "실패");
         clipboard.destroy();
       });
       setTimeout(() => this.copyStop(), 2000);
-    },
-    addPage() {
-      this.$router.push({ name: "create-page" });
     },
   },
   created() {

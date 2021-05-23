@@ -71,6 +71,7 @@ export default {
       for (let i = 0; i < this.getAllPages.length; i++) {
         if (topicId === this.getAllPages[i].topic_id) {
           this.selectedPageLoad(this.getAllPages[i]);
+          break;
         }
       }
       // 클릭시 화면 펼침 효과, 향후 사용 예정

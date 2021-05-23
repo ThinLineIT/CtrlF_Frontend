@@ -52,7 +52,8 @@ export default {
 .clip {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
+  z-index: 99;
 }
 
 .sideBar {
