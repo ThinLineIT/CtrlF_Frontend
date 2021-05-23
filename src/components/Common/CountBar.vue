@@ -36,10 +36,8 @@ export default {
     const placeFind = this.$refs["count-search"];
     placeFind.placeholder = `현재 모아진 아이디어   ${this.getCounter}`;
   },
-
   watch: {
     $route(to) {
-      console.log(to);
       if (to.name === "Main") {
         this.changeCountMain();
         this.changePlaceholder(this.getWhatCount);

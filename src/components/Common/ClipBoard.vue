@@ -1,8 +1,6 @@
 <template>
   <div class="back">
-    <div class="clip-message">
-      클립보드 보드에 복사되었습니다.
-    </div>
+    <div class="clip-message">클립보드 보드에 복사되었습니다.</div>
   </div>
 </template>
 
@@ -14,7 +12,7 @@ export default {
 
 <style scoped>
 .clip-message {
-  background-color: #AAAAAA;
+  background-color: #aaaaaa;
   color: white;
   font-size: 2.063rem;
   width: 20%;

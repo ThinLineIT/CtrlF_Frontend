@@ -33,7 +33,7 @@ const routes = [
     children: [
       {
         path: ":noteID",
-        name: "NoteID",
+        name: "NotePage",
         component: () =>
           import(
             /* webpackChunkName: "NoteCreate" */ "../components/Note/NoteContent.vue"

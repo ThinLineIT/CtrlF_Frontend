@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
 .issue-category {
-  align-self: flex-end;
+  align-self: center;
 }
 
 .issue {

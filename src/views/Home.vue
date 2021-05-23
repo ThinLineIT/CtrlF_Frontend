@@ -18,8 +18,10 @@ import Header from "../components/Common/Header";
 import { mapActions, mapGetters } from "vuex";
 import HiddenHeader from "../components/Common/HiddenHeader";
 import loadPage from "@/components/Common/Loading";
+import pageTitle from "@/components/mixins/PageTitle";
 
 export default {
+  mixins: [pageTitle],
   computed: {
     ...mapGetters(["getIsLoadingPage"]),
   },

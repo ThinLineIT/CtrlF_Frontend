@@ -137,7 +137,6 @@ export default {
 }
 
 .notebar {
-  /* display: flex; */
   width: 77.8%;
   justify-content: space-between;
   margin-top: 90px;

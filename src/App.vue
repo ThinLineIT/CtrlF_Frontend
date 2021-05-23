@@ -8,9 +8,10 @@
 </template>
 
 <script>
+import pageTitle from "@/components/mixins/PageTitle";
 export default {
   name: "App",
-
+  mixins: [pageTitle],
   components: {},
 
   data: () => ({}),

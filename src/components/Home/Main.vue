@@ -49,7 +49,10 @@ export default {
     ...mapActions(["delSelectedTopicPage", "changeCount"]),
     openNote(clickedNoteId) {
       this.delSelectedTopicPage();
-      this.$router.push({ name: "NoteID", params: { noteID: clickedNoteId } });
+      this.$router.push({
+        name: "NotePage",
+        params: { noteID: clickedNoteId },
+      });
     },
     svgText() {
       const svgs = this.$el.querySelectorAll("svg text");
@@ -109,6 +112,7 @@ export default {
 
 .request-sidebar {
   width: 21%;
+  min-width: 250px;
   float: right;
   height: 681px;
   margin-right: -80px;

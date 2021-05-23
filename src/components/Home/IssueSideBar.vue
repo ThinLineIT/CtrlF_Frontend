@@ -8,13 +8,26 @@
         :key="i"
       >
         <div class="issue">
-          <span class="issue-title">{{ issue.title.substr(0, 15) }}</span>
+          <span class="issue-title">{{ issue.title.substr(0, 19) }}</span>
         </div>
         <MEMOPREVIEW1 class="memo" v-if="i % 4 === 0" />
         <MEMOPREVIEW2 class="memo" v-else-if="i % 4 === 1" />
         <MEMOPREVIEW3 class="memo" v-else-if="i % 4 === 2" />
         <MEMOPREVIEW3 class="memo" v-else />
       </div>
+      <!-- <div
+        class="issue-box"
+        v-for="(issue, i) in this.getIssue.slice(0, 5)"
+        :key="i"
+      >
+        <div class="issue">
+          <span class="issue-title">{{ issue.title.substr(0, 15) }}</span>
+        </div>
+        <MEMOPREVIEW1 class="memo" v-if="i % 4 === 0" />
+        <MEMOPREVIEW2 class="memo" v-else-if="i % 4 === 1" />
+        <MEMOPREVIEW3 class="memo" v-else-if="i % 4 === 2" />
+        <MEMOPREVIEW3 class="memo" v-else />
+      </div> -->
       <div class="more">
         <v-btn
           elevation="0"
@@ -70,7 +83,7 @@ export default {
 
 .issue {
   position: absolute;
-  padding: 30px 10px 10px 30px;
+  padding: 25px 10px 0px 15px;
 }
 .issue-title {
   font-size: 1rem;

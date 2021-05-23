@@ -1,6 +1,6 @@
 <template>
   <div class="hidden-title" id="hiddenbar">
-    <div class="hidden-text" @click="$router.push({ name: 'Home' })">
+    <div class="hidden-text" @click="$router.push({ name: 'Main' })">
       <img class="hidden-png" src="../../assets/LOGO_SOLO.png" />
       <span>커넵</span>
     </div>

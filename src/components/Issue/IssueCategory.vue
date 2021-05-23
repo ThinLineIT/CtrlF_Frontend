@@ -1,11 +1,15 @@
 <template>
   <div class="issue-category">
-    <select class="category-note">
-      <option>ALL</option>
-    </select>
-    <select class="category-topic">
-      <option>ALL</option>
-    </select>
+    <div class="category__note-select">
+      <select class="category-note">
+        <option>ALL</option>
+      </select>
+    </div>
+    <div class="category__topic-select">
+      <select class="category-topic">
+        <option>ALL</option>
+      </select>
+    </div>
   </div>
 </template>
 
@@ -16,30 +20,51 @@ export default {
 </script>
 
 <style scoped>
-.category-note {
-  font-weight: bold;
-  font-size: 1.375rem;
-  padding-left: 9%;
-  border-radius: 30px 00px 00px 30px;
+.category__note-select {
+  display: flex;
+  width: 270px;
   background-color: white;
-  max-width: 270px;
-  width: 22.84%;
-  height: 55px;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
     0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  border-radius: 30px 00px 00px 30px;
+  justify-content: flex-end;
+  max-width: 270px;
+}
+
+.category-note {
+  border-radius: 30px 00px 00px 30px;
+  font-weight: bold;
+  font-size: 1.375rem;
+  background-color: white;
+  max-width: 270px;
+  width: 90%;
+  height: 55px;
+  text-align-last: center;
+  text-align: center;
+}
+
+.category__topic-select {
+  display: flex;
+  /* width: 22.84%; */
+  width: 270px;
+  background-color: white;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  border-radius: 0px 30px 30px 0px;
+  justify-content: flex-start;
+  max-width: 270px;
 }
 
 .category-topic {
   font-weight: bold;
   font-size: 1.375rem;
-  padding-left: 9%;
   border-radius: 0px 30px 30px 0px;
   background-color: white;
   max-width: 270px;
-  width: 22.84%;
+  width: 90%;
   height: 55px;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  text-align-last: center;
+  text-align: center;
 }
 
 select:focus {
@@ -55,7 +80,7 @@ select:focus {
 .issue-category {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 1260px;
   justify-content: flex-end;
 }
 
