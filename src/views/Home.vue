@@ -18,10 +18,8 @@ import Header from "../components/Common/Header";
 import { mapActions, mapGetters } from "vuex";
 import HiddenHeader from "../components/Common/HiddenHeader";
 import loadPage from "@/components/Common/Loading";
-import pageTitle from "@/components/mixins/PageTitle";
 
 export default {
-  mixins: [pageTitle],
   computed: {
     ...mapGetters(["getIsLoadingPage"]),
   },
@@ -43,9 +41,8 @@ export default {
 .clip {
   width: 100%;
   height: 100%;
-  position: fixed;
-  z-index: 1;
-  opacity: 50%;
+  position: absolute;
+  z-index: 99;
 }
 
 .home-hidden {

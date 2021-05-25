@@ -68,9 +68,12 @@ export default {
     topicPagesLoad(topicName, topicId) {
       this.nowTopicNameLoad(topicName);
       this.DEL_SELECTED_PAGES();
+      let test = this.getAllPages.length;
+      console.log(test);
       for (let i = 0; i < this.getAllPages.length; i++) {
-        if (topicId === this.getAllPages[i].topic_id) {
-          this.selectedPageLoad(this.getAllPages[i]);
+        if (topicId === this.getAllPages[i].id) {
+          this.selectedPageLoad(this.getAllPages[i].pages);
+          console.log(this.getAllPages[i].pages);
           break;
         }
       }
@@ -88,9 +91,7 @@ export default {
       // }
     },
   },
-  created() {
-    this.pageLoad();
-  },
+  created() {},
   destroyed() {
     this.TOPIC_UNCLICKED();
   },

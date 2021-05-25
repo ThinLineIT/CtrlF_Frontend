@@ -3,15 +3,13 @@
     <v-list-item
       v-for="(item, index) in this.getSelectTopic"
       :key="index"
-      @click="nowPageLoad(item.title, item.content)"
+      @click="nowPageLoad(item.title, item.id)"
       class="page-list"
     >
       <v-list-item-content>
-        <v-list-item-title class="page-title" v-if="item.title.length > 12"
-          >{{ item.title.substr(0, 12) }} <br />
-          {{ item.title.substr(12) }}
-        </v-list-item-title>
-        <v-list-item-title v-else>{{ item.title }}</v-list-item-title>
+        <v-list-item-title class="page-title">{{
+          item.title
+        }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>
@@ -29,8 +27,8 @@ export default {
   },
   methods: {
     ...mapActions(["nowTopicContentLoad", "nowPageNameLoad"]),
-    nowPageLoad(title, content) {
-      this.nowTopicContentLoad(content);
+    nowPageLoad(title, id) {
+      this.nowTopicContentLoad(id);
       this.nowPageNameLoad(title);
     },
   },

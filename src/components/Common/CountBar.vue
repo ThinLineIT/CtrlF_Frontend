@@ -6,10 +6,11 @@
       id="tt"
       type="text"
       placeholder="테스트"
-      onfocus="this.placeholder=''"
+      onfocus="this.placeholder='검색어를 입력해주세요'"
       title="검색어를 입력하세요"
     />
   </div>
+  <!-- onfocus="this.placeholder=''" -->
 </template>
 
 <script>
@@ -22,6 +23,10 @@ export default {
   name: "CountBar",
   methods: {
     ...mapActions(["changeCountMain", "changeCountIssue"]),
+    clicked() {
+      const placeFind = this.$refs["count-search"];
+      placeFind.placeholder = "검색어를 입력해주세여";
+    },
     changePlaceholder(countType) {
       if (countType) {
         const placeFind = this.$refs["count-search"];
@@ -35,6 +40,9 @@ export default {
   mounted() {
     const placeFind = this.$refs["count-search"];
     placeFind.placeholder = `현재 모아진 아이디어   ${this.getCounter}`;
+    placeFind.addEventListener("focusout", () => {
+      this.changePlaceholder(this.getWhatCount);
+    });
   },
   watch: {
     $route(to) {
@@ -74,7 +82,7 @@ input {
 }
 
 input::placeholder {
-  color: black;
+  color: #9c9090;
 }
 
 input:focus {

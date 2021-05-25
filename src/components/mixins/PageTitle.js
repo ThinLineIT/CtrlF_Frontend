@@ -4,11 +4,12 @@ export default {
       subName: " - 커넵",
     };
   },
+  methods: {
+    changeTabName() {},
+  },
   watch: {
     $route(to) {
       document.title = `${to.name}${this.subName}`;
-      console.log(to.name);
-      console.log("일단 가즈앙");
     },
   },
 };

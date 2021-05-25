@@ -11,7 +11,7 @@ const noteModule = {
     isTopicClicked: false,
     isNoteLoading: false,
     noteDetail: [],
-    selectedTopicPage: [],
+    selectedTopicPage: "",
     isPageLoading: false,
     allPages: null,
     nowPage: null,
@@ -83,10 +83,10 @@ const noteModule = {
       state.allPages = allPages;
     },
     GET_SELECTED_PAGES(state, selectedPages) {
-      state.selectedTopicPage.push(selectedPages);
+      state.selectedTopicPage = selectedPages;
     },
     DEL_SELECTED_PAGES(state) {
-      state.selectedTopicPage = [];
+      state.selectedTopicPage = "";
     },
     GET_NOWPAGE_NAME(state, nowPage_name) {
       state.nowPage = nowPage_name;
@@ -107,25 +107,30 @@ const noteModule = {
     async noteLoad({ commit }, noteID) {
       commit("GET_NOTE_LOADING");
       await axios
-        .get(`https://thkwon.pythonanywhere.com/api/notes/${noteID}`)
+        .get(`https://kongjingoo.pythonanywhere.com/api/notes/${noteID}`)
         .then((res) => {
           commit("GET_NOTE", res.data);
+          commit("GET_ALL_PAGES", res.data.topics);
+          commit("GET_NOWPAGE_NAME", res.data.topics[0].pages[0].title);
+          commit("GET_NOWTOPIC_NAME", res.data.topics[0].title);
+          commit("GET_SELECTED_PAGES", res.data.topics[0].pages);
+          console.log("노트 로딩");
+          axios
+            .get(
+              `https://kongjingoo.pythonanywhere.com/api/pages/${res.data.topics[0].pages[0].id}`
+            )
+            .then((res) => {
+              commit("GET_NOWTOPIC_CONTENT", res.data.content);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
-      commit("DEL_NOWTOPIC_CONTENT");
+      // commit("DEL_NOWTOPIC_CONTENT");
       commit("GET_NOTEPAGE");
-    },
-    pageLoad({ commit }) {
-      axios
-        .get(`https://thkwon.pythonanywhere.com/api/pages`)
-        .then((res) => {
-          commit("GET_ALL_PAGES", res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
     async selectedPageLoad({ commit }, pages) {
       await commit("GET_SELECTED_PAGES", pages);
@@ -139,8 +144,15 @@ const noteModule = {
     delSelectedTopicPage({ commit }) {
       commit("DEL_NOW_PAGE_TOPIC_NAME");
     },
-    nowTopicContentLoad({ commit }, topicContent) {
-      commit("GET_NOWTOPIC_CONTENT", topicContent);
+    nowTopicContentLoad({ commit }, pageId) {
+      axios
+        .get(`https://kongjingoo.pythonanywhere.com/api/pages/${pageId}`)
+        .then((res) => {
+          commit("GET_NOWTOPIC_CONTENT", res.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     dialogLoad({ commit }, dialog) {
       commit("GET_DIALOGISSUE", dialog);
@@ -162,8 +174,12 @@ const mainModule = {
     getTitles: [],
     issueData: [],
     whatCount: 1,
+    issueTopicCat: [],
   },
   getters: {
+    getIssueTopicCat: function (state) {
+      return state.issueCatTopics;
+    },
     getCounter: function (state) {
       return state.pageCount;
     },
@@ -181,6 +197,9 @@ const mainModule = {
     },
   },
   mutations: {
+    GET_ISSUE_TOPIC_CAT(state, topics) {
+      state.issueCatTopics = topics;
+    },
     GET_MAINPAGE(state) {
       state.isLoadingPage = false;
     },
@@ -213,43 +232,70 @@ const mainModule = {
   actions: {
     async dataLoad({ commit }) {
       commit("GET_LOADING");
-      console.log("로딩 시작");
+      console.log("Main 로딩 시작");
       await axios
-        .get("https://thkwon.pythonanywhere.com/api/all_page_count/")
+        .get("https://kongjingoo.pythonanywhere.com/api/home/")
         .then((res) => {
+          //console.log(res.data.notes.length);
           commit("GET_COUNT_SUCCESS", res.data.count);
-          console.log("1");
+          commit("GET_PAGE_TITLE", res.data.notes);
         })
         .catch((err) => {
           commit("GET_COUNT_FAIL");
           console.log(err);
         });
+      // await axios
+      //   .get("https://thkwon.pythonanywhere.com/api/all_page_count/")
+      //   .then((res) => {
+      //     commit("GET_COUNT_SUCCESS", res.data.count);
+      //   })
+      //   .catch((err) => {
+      //     commit("GET_COUNT_FAIL");
+      //     console.log(err);
+      //   });
+      // await axios
+      //   .get("https://thkwon.pythonanywhere.com/api/notes/")
+      //   .then((res) => {
+      //     commit("GET_PAGE_TITLE", res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
       await axios
-        .get("https://thkwon.pythonanywhere.com/api/notes/")
+        .get("https://kongjingoo.pythonanywhere.com/api/issues/")
         .then((res) => {
-          commit("GET_PAGE_TITLE", res.data);
-          console.log("2");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      await axios
-        .get("https://thkwon.pythonanywhere.com/api/issues/")
-        .then((res) => {
-          console.log("3");
           commit("GET_ISSUE", res.data);
         })
         .catch((err) => {
           console.log(err);
         });
+      // await axios
+      //   .get("https://thkwon.pythonanywhere.com/api/issues/")
+      //   .then((res) => {
+      //     commit("GET_ISSUE", res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
       commit("GET_MAINPAGE");
-      console.log("로딩 끝");
+      console.log("로딩 종료");
     },
     changeCountIssue({ commit }) {
       commit("CHANGE_COUNTBAR_TO_ISSUE");
     },
     changeCountMain({ commit }) {
       commit("CHANGE_COUNTBAR_TO_MAIN");
+    },
+    changeIssueTopicCat({ commit }, noteId) {
+      console.log(noteId);
+      axios
+        .get(`https://kongjingoo.pythonanywhere.com/api/notes/${noteId}/`)
+        .then((res) => {
+          commit("GET_ISSUE_TOPIC_CAT", res.data.topics);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

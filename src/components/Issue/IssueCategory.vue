@@ -1,21 +1,45 @@
 <template>
   <div class="issue-category">
     <div class="category__note-select">
-      <select class="category-note">
-        <option>ALL</option>
+      <select class="category-note" @change="showTopicCat($event)">
+        <option value="all">ALL</option>
+        <option v-for="(note, i) in getTitles" :key="i" :value="note.id">
+          {{ note.title }}
+        </option>
       </select>
     </div>
     <div class="category__topic-select">
       <select class="category-topic">
         <option>ALL</option>
+        <option
+          v-for="(topic, i) in getIssueTopicCat"
+          :key="i"
+          :value="topic.id"
+        >
+          {{ topic.title }}
+        </option>
       </select>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["getTitles", "getIssueTopicCat"]),
+  },
   name: "IssueSearchBar",
+  methods: {
+    ...mapActions(["changeIssueTopicCat"]),
+    showTopicCat(event) {
+      let test = parseInt(event.target.value);
+      if (test !== "all") this.changeIssueTopicCat(test);
+    },
+  },
 };
 </script>
 

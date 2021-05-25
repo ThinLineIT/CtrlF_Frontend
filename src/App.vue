@@ -8,13 +8,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import pageTitle from "@/components/mixins/PageTitle";
 export default {
   name: "App",
+  computed: {
+    ...mapGetters(["getNote"]),
+  },
   mixins: [pageTitle],
   components: {},
 
   data: () => ({}),
+  watch: {
+    $route(to) {
+      if (to.name == "NotePage") {
+        document.title = this.getNote.title + " - 커넵";
+      }
+    },
+  },
 };
 </script>
 
@@ -41,6 +52,6 @@ export default {
 #inspire {
   height: 100%;
   width: 100%;
-  background-color: #f4f4f4;
+  background-image: url("./assets/home_background.png");
 }
 </style>

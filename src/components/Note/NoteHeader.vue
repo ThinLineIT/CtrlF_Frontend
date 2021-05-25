@@ -6,7 +6,11 @@
         <span>커넵</span>
       </div>
       <div>
-        <input class="note-header-search" type="text" />
+        <input
+          class="note-header-search"
+          type="text"
+          placeholder="검색어를 입력해주세요"
+        />
       </div>
     </div>
     <NoteDialog />
@@ -36,13 +40,7 @@ span {
   background-image: url("../../assets/search.png");
   background-size: 35px;
   background-position: 850px center;
-  padding-left: 15px;
-}
-
-.request {
-  width: 31px;
-  height: 34px;
-  fill: grey;
+  padding-left: 20px;
 }
 
 .note-header {

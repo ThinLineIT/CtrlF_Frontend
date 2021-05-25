@@ -2,24 +2,29 @@
   <v-container class="main">
     <div class="note-container">
       <div class="note-box" v-for="(note, i) in getTitles" :key="i">
-        <NOTEBACKGROUND1
-          ref="svgRef"
-          @click="openNote(note.id)"
-          class="testSvg"
-          v-if="i < 5"
-        />
-        <NOTEBACKGROUND2
-          ref="svgRef"
-          @click="openNote(note.id)"
-          class="testSvg"
-          v-else-if="i >= 5 && i < 10"
-        />
-        <NOTEBACKGROUND3
-          ref="svgRef"
-          @click="openNote(note.id)"
-          class="testSvg"
-          v-else
-        />
+        <div>
+          <div class="note-title">
+            {{ note.title }}
+          </div>
+          <NOTEBACKGROUND1
+            ref="svgRef"
+            @click="openNote(note.id)"
+            class="testSvg"
+            v-if="i < 5"
+          />
+          <NOTEBACKGROUND2
+            ref="svgRef"
+            @click="openNote(note.id)"
+            class="testSvg"
+            v-else-if="i >= 5 && i < 10"
+          />
+          <NOTEBACKGROUND3
+            ref="svgRef"
+            @click="openNote(note.id)"
+            class="testSvg"
+            v-else
+          />
+        </div>
       </div>
     </div>
     <div class="request-sidebar">
@@ -57,22 +62,22 @@ export default {
     svgText() {
       const svgs = this.$el.querySelectorAll("svg text");
       this.getTitles.map((note, index) => {
-        if (note.title.length > 10) {
-          var noteTitle = note.title.substr(0, 11) + "...";
-          svgs[index].innerHTML = noteTitle;
-          // svgs[index].innerHTML = "";
-          // var split = note.title.split(" ");
-          // for (var i of split) {
-          //   var newTSPAN = document.createElement("tspan");
-          //   newTSPAN.innerHTML = i;
-          //   newTSPAN.setAttribute("x", 0);
-          //   newTSPAN.setAttribute("y", 0);
-          //   svgs[index].appendChild(newTSPAN);
-          // }
-        } else {
-          noteTitle = note.title;
-          svgs[index].innerHTML = noteTitle;
-        }
+        //if (note.title.length > 10) {
+        //var noteTitle = note.title.substr(0, 11) + "...";
+        //svgs[index].innerHTML = noteTitle;
+        // svgs[index].innerHTML = "";
+        // var split = note.title.split(" ");
+        // for (var i of split) {
+        //   var newTSPAN = document.createElement("tspan");
+        //   newTSPAN.innerHTML = i;
+        //   newTSPAN.setAttribute("x", 0);
+        //   newTSPAN.setAttribute("y", 0);
+        //   svgs[index].appendChild(newTSPAN);
+        // }
+        //} else {
+        //noteTitle = note.title;
+        svgs[index].innerHTML = "";
+        //}
       });
     },
   },
@@ -83,6 +88,15 @@ export default {
 </script>
 
 <style scoped>
+.note-title {
+  position: absolute;
+  padding: 55px 0px 0px 60px;
+  font-weight: bold;
+  width: 150px;
+  font-size: 20px;
+  word-break: break-all;
+}
+
 .main {
   display: flex;
   padding: 0;

@@ -2,7 +2,7 @@
   <v-container class="noteContent" fluid>
     <div class="notebar">
       <div class="noteContent__title">
-        <div v- class="noteContent__title-sub">
+        <div class="noteContent__title-sub">
           {{ getNowTopic }}
         </div>
         <div class="noteContent__title-content">{{ getNowPage }}</div>
@@ -20,13 +20,13 @@
       </div>
     </div>
     <div class="noteContent__text">
-      <p
+      <div
         v-html="compiledMarkdown"
         class="noteContent__text-card"
         id="noteContent__text-card-id"
       >
         {{ getNowTopicContent }}
-      </p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -88,6 +88,8 @@ export default {
 <style scoped>
 .noteContent__text-card {
   white-space: pre-line;
+  margin-top: 30px;
+  margin-left: 15px;
 }
 
 .noteContent {
@@ -111,7 +113,7 @@ export default {
   color: #ffffff;
   min-height: 4.2rem;
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   width: 21.35%;
   display: inline-block;
 }

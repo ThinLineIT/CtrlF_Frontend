@@ -15,31 +15,11 @@
         <MEMOPREVIEW3 class="memo" v-else-if="i % 4 === 2" />
         <MEMOPREVIEW3 class="memo" v-else />
       </div>
-      <!-- <div
-        class="issue-box"
-        v-for="(issue, i) in this.getIssue.slice(0, 5)"
-        :key="i"
-      >
-        <div class="issue">
-          <span class="issue-title">{{ issue.title.substr(0, 15) }}</span>
-        </div>
-        <MEMOPREVIEW1 class="memo" v-if="i % 4 === 0" />
-        <MEMOPREVIEW2 class="memo" v-else-if="i % 4 === 1" />
-        <MEMOPREVIEW3 class="memo" v-else-if="i % 4 === 2" />
-        <MEMOPREVIEW3 class="memo" v-else />
-      </div> -->
       <div class="more">
-        <v-btn
-          elevation="0"
-          block
-          color="white"
-          class="more-btn"
-          router
-          :to="{ name: 'Issue' }"
-          exact
-        >
-          + View More
-        </v-btn>
+        <div class="more-btn" @click="$router.push({ name: 'Issue' })">
+          <span>+</span>
+          View More
+        </div>
       </div>
     </v-card>
   </v-container>
@@ -83,7 +63,7 @@ export default {
 
 .issue {
   position: absolute;
-  padding: 25px 10px 0px 15px;
+  padding: 35px 10px 0px 25px;
 }
 .issue-title {
   font-size: 1rem;
@@ -91,12 +71,19 @@ export default {
 }
 
 .more-btn {
-  width: 110px;
-  height: 110px;
-  padding-right: 10px;
+  cursor: pointer;
+  width: 79%;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  box-shadow: 10px 9px 14px -5px #9a9a9a;
+  text-align: center;
 }
 .more {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .issue-request {

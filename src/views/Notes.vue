@@ -47,6 +47,7 @@ export default {
 .note-loadpage {
   z-index: 1;
   position: fixed;
+  opacity: 40%;
 }
 
 .clip {
@@ -71,6 +72,7 @@ export default {
 
 .noteContent {
   width: 71.25%;
+  background-color: white;
 }
 
 .note-container {

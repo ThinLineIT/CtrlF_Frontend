@@ -1,7 +1,7 @@
 <template>
   <v-container class="issue">
     <IssueCategory class="issue-category" />
-    <div class="issue-container" @click="issueDetail(issue.id)">
+    <div class="issue-container">
       <div class="issue-box" v-for="(issue, i) in getIssue" :key="i">
         <div class="issueContent">
           <span class="issue-title"> {{ issue.title }} </span>

@@ -5,7 +5,11 @@
       <span>커넵</span>
     </div>
     <div id="hidden-input">
-      <input class="hidden-search" type="text" placeholder="" />
+      <input
+        class="hidden-search"
+        type="text"
+        placeholder="검색어를 입력해주세요"
+      />
     </div>
   </div>
 </template>
@@ -23,7 +27,7 @@ export default {
   methods: {
     handleScroll() {
       this.scroll = window.scrollY;
-      if (0 <= this.scroll && this.scroll < 10) {
+      if (0 <= this.scroll && this.scroll < 100) {
         this.scrollWindow.style.display = "none";
         this.homeHeader.style.display = "flex";
       } else {
@@ -81,7 +85,7 @@ span {
   height: 61px;
   border: 1px solid;
   border-radius: 45px;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 
 input:focus {
