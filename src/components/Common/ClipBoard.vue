@@ -15,8 +15,8 @@ export default {
   background-color: #aaaaaa;
   color: white;
   font-size: 2.063rem;
-  width: 20%;
-  height: 75px;
+  width: 40%;
+  text-align: center;
   border-radius: 25px;
   bottom: 0;
   align-self: flex-end;
@@ -28,7 +28,7 @@ export default {
 .back {
   width: 100%;
   display: flex;
-  height: 100%;
+  height: 100px;
   background-color: #ffffff;
   opacity: 80%;
 }

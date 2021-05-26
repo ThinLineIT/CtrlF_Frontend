@@ -8,13 +8,7 @@
         <div class="noteContent__title-content">{{ getNowPage }}</div>
       </div>
       <div class="noteBtn">
-        <v-icon
-          class="clip"
-          id="clip-id"
-          data-clipboard-target="#noteContent__text-card-id"
-          @click="copyContent"
-          size="43"
-        >
+        <v-icon class="clip" id="clip-id" @click="copyContent" size="43">
           mdi-upload
         </v-icon>
       </div>
@@ -34,7 +28,6 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import marked from "marked";
-import ClipboardJS from "clipboard";
 
 export default {
   computed: {
@@ -63,15 +56,14 @@ export default {
     ...mapActions(["noteLoad", "copyActivate", "copyStop"]),
     copyContent() {
       this.copyActivate();
-      var clipboard = new ClipboardJS(this.copyBtn);
-      clipboard.on("success", function (e) {
-        console.log(e, "성공");
-        clipboard.destroy();
-      });
-      clipboard.on("error", function (e) {
-        console.log(e, "실패");
-        clipboard.destroy();
-      });
+      var dummy = document.createElement("input");
+      var text = location.href;
+      console.log(text);
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
       setTimeout(() => this.copyStop(), 2000);
     },
   },

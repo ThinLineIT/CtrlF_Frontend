@@ -16,20 +16,17 @@
               {{ topic.title }}
             </option>
           </select>
-          <input type="text" id="dialog-title" placeholder="TITLE" required />
+          <input type="text" id="dialog-title" placeholder="TITLE" />
           <textarea
             id="dialog-content"
             placeholder="내용 입력"
             maxlength="100"
             @keyup="textCount"
-            required
           />
           <span class="text-number"> {{ textNum }} / 100자 </span>
         </p>
         <menu class="dialog-menu">
-          <button id="confirmBtn" value="default" @click="requestIssue">
-            REQUEST
-          </button>
+          <button id="confirmBtn" @click="requestIssue">REQUEST</button>
         </menu>
       </form>
     </dialog>
@@ -77,6 +74,8 @@ export default {
           issueBody.value,
         ];
         this.issuePost(issueArr);
+      } else {
+        alert("내용을 모두 입력하세요!");
       }
     },
   },

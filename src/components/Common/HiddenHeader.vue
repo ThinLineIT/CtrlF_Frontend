@@ -18,35 +18,35 @@
 export default {
   data() {
     return {
-      scroll: 0,
-      scrollWindow: "",
-      homeHeader: "",
+      // scroll: 0,
+      // scrollWindow: "",
+      // homeHeader: "",
     };
   },
   name: "HiddenHeader",
   methods: {
-    handleScroll() {
-      this.scroll = window.scrollY;
-      if (0 <= this.scroll && this.scroll < 100) {
-        this.scrollWindow.style.display = "none";
-        this.homeHeader.style.display = "flex";
-      } else {
-        this.homeHeader.style.display = "hidden";
-        this.scrollWindow.style.display = "flex";
-      }
-    },
+    // handleScroll() {
+    //   this.scroll = window.scrollY;
+    //   if (0 <= this.scroll && this.scroll < 100) {
+    //     this.scrollWindow.style.display = "none";
+    //     // this.homeHeader.style.display = "flex";
+    //   } else {
+    //     this.homeHeader.style.display = "hidden";
+    //     // this.scrollWindow.style.display = "flex";
+    //   }
+    // },
   },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    // window.addEventListener("scroll", this.handleScroll);
   },
   mounted() {
-    const scrollWindow = document.getElementById("hiddenbar");
-    const homeHeader = document.getElementById("homebar-id");
-    this.homeHeader = homeHeader;
-    this.scrollWindow = scrollWindow;
+    // const scrollWindow = document.getElementById("hiddenbar");
+    // const homeHeader = document.getElementById("homebar-id");
+    // this.homeHeader = homeHeader;
+    // this.scrollWindow = scrollWindow;
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    // window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
@@ -69,7 +69,7 @@ span {
 }
 
 .hidden-title {
-  display: none;
+  display: flex;
   position: fixed;
   background-color: white;
   top: 0px;

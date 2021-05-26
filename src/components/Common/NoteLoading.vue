@@ -1,12 +1,10 @@
 <template>
-  <div class="loading">
-    <img src="../../assets/LOGO_Loading.gif" />
-  </div>
+  <div class="loading"></div>
 </template>
 
 <script>
 export default {
-  name: "loadPage",
+  name: "noteLoadPage",
 };
 </script>
 
@@ -14,6 +12,6 @@ export default {
 .loading {
   width: 100%;
   height: 100%;
-  background-color: grey;
+  background-color: white;
 }
 </style>

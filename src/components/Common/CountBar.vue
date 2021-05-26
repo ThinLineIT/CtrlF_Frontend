@@ -8,9 +8,9 @@
       placeholder="테스트"
       onfocus="this.placeholder='검색어를 입력해주세요'"
       title="검색어를 입력하세요"
+      disabled
     />
   </div>
-  <!-- onfocus="this.placeholder=''" -->
 </template>
 
 <script>
@@ -43,6 +43,9 @@ export default {
     placeFind.addEventListener("focusout", () => {
       this.changePlaceholder(this.getWhatCount);
     });
+    if (this.$route.name === "Issue") {
+      placeFind.placeholder = `요청 검토 중인 아이디어    ${this.getIssue.length}`;
+    }
   },
   watch: {
     $route(to) {

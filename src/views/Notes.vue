@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="note-container">
     <clipBoard v-if="getIsCopy === true" class="clip" />
-    <loadPage v-if="getNoteLoadingPage === true" class="note-loadpage" />
+    <noteLoadPage v-if="getNoteLoadingPage === true" class="note-loadpage" />
     <div class="note">
       <div class="noteheader">
         <NoteHeader />
@@ -23,14 +23,14 @@ import SideBar from "@/components/Note/SideBar.vue";
 import NoteHeader from "@/components/Note/NoteHeader";
 import clipBoard from "@/components/Common/ClipBoard";
 import { mapGetters } from "vuex";
-import loadPage from "@/components/Common/Loading";
+import noteLoadPage from "@/components/Common/NoteLoading";
 
 export default {
   computed: {
     ...mapGetters(["getIsCopy", "getNoteLoadingPage"]),
   },
   components: {
-    loadPage,
+    noteLoadPage,
     SideBar,
     NoteHeader,
     clipBoard,
@@ -45,14 +45,14 @@ export default {
   height: 100%;
 }
 .note-loadpage {
-  z-index: 1;
-  position: fixed;
-  opacity: 40%;
+  z-index: 99;
+  opacity: 50%;
+  position: absolute;
 }
 
 .clip {
   width: 100%;
-  height: 100%;
+  height: 800px;
   position: absolute;
   z-index: 99;
 }

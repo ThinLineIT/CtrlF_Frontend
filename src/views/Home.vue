@@ -4,7 +4,7 @@
     <div v-else>
       <HiddenHeader class="home-hidden" />
       <div class="home">
-        <Header />
+        <countBanner />
         <div class="router">
           <router-view />
         </div>
@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import Header from "../components/Common/Header";
+// import Header from "../components/Common/Header";
+import countBanner from "../components/Common/CountBanner";
 import { mapActions, mapGetters } from "vuex";
 import HiddenHeader from "../components/Common/HiddenHeader";
 import loadPage from "@/components/Common/Loading";
@@ -25,7 +26,8 @@ export default {
   },
   components: {
     HiddenHeader,
-    Header,
+    countBanner,
+    // Header,
     loadPage,
   },
   methods: {
@@ -56,7 +58,7 @@ export default {
 
 .router {
   display: flex;
-  margin-top: 120px;
+  margin-top: 50px;
   padding: 0;
   width: 100%;
   justify-content: center;
@@ -69,7 +71,7 @@ export default {
 }
 
 .home {
-  margin-top: 90px;
+  margin-top: 143px;
   width: 100%;
   display: flex;
   flex-direction: column;
