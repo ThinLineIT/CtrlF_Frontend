@@ -8,7 +8,11 @@
         <button class="dialog-cancel" value="cancel">X</button>
         <p class="dialog-p">
           <select class="dialog-topic" id="dialog__topic-id">
-            <option v-for="(topic, i) in getNote.topics" :key="i" :value="topic.id">
+            <option
+              v-for="(topic, i) in getNote.topics"
+              :key="i"
+              :value="topic.id"
+            >
               {{ topic.title }}
             </option>
           </select>
@@ -23,7 +27,9 @@
           <span class="text-number"> {{ textNum }} / 100자 </span>
         </p>
         <menu class="dialog-menu">
-          <button id="confirmBtn" value="default" @click="requestIssue">REQUEST</button>
+          <button id="confirmBtn" value="default" @click="requestIssue">
+            REQUEST
+          </button>
         </menu>
       </form>
     </dialog>
@@ -60,11 +66,16 @@ export default {
       }
     },
     requestIssue() {
-      const issueTitle = document.getElementById('dialog-title');
+      const issueTitle = document.getElementById("dialog-title");
       const issueBody = document.getElementById("dialog-content");
-      if(issueTitle.value !== '' && issueBody.value !== '') {
-        const selectOption = document.getElementById('dialog__topic-id');
-        const issueArr = [selectOption.value, this.$route.params.noteID, issueTitle.value, issueBody.value]
+      if (issueTitle.value !== "" && issueBody.value !== "") {
+        const selectOption = document.getElementById("dialog__topic-id");
+        const issueArr = [
+          selectOption.value,
+          this.$route.params.noteID,
+          issueTitle.value,
+          issueBody.value,
+        ];
         this.issuePost(issueArr);
       }
     },

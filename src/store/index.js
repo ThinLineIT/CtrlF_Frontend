@@ -170,10 +170,10 @@ const noteModule = {
     copyStop({ commit }) {
       commit("COPY_STOP");
     },
-    async issuePost({commit}, writedIssue) {
+    async issuePost({ commit }, writedIssue) {
       commit("POST_REQUEST_LOADING_START");
       await axios
-        .post('https://kongjingoo.pythonanywhere.com/api/issues/', {
+        .post("https://kongjingoo.pythonanywhere.com/api/issues/", {
           topic_id: writedIssue[0],
           note_id: writedIssue[1],
           title: writedIssue[2],
@@ -183,7 +183,7 @@ const noteModule = {
           console.log(res);
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
         });
       commit("POST_REQUEST_LOADING_END");
     },
