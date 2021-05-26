@@ -92,7 +92,7 @@ export default {
   position: absolute;
   padding: 55px 0px 0px 60px;
   font-weight: bold;
-  width: 150px;
+  width: 160px;
   font-size: 20px;
   word-break: break-all;
 }

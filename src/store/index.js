@@ -18,6 +18,7 @@ const noteModule = {
     nowTopic: null,
     nowTopicContent: null,
     isCopy: false,
+    isRequestLoading: false,
   },
   getters: {
     getNoteLoadingPage(state) {
@@ -52,6 +53,12 @@ const noteModule = {
     },
   },
   mutations: {
+    POST_REQUEST_LOADING_START(state) {
+      state.isRequestLoading = true;
+    },
+    POST_REQUEST_LOADING_END(state) {
+      state.isRequestLoading = false;
+    },
     GET_NOTEPAGE(state) {
       state.isNoteLoading = false;
     },
@@ -163,6 +170,23 @@ const noteModule = {
     copyStop({ commit }) {
       commit("COPY_STOP");
     },
+    async issuePost({commit}, writedIssue) {
+      commit("POST_REQUEST_LOADING_START");
+      await axios
+        .post('https://kongjingoo.pythonanywhere.com/api/issues/', {
+          topic_id: writedIssue[0],
+          note_id: writedIssue[1],
+          title: writedIssue[2],
+          content: writedIssue[3],
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+      commit("POST_REQUEST_LOADING_END");
+    },
   },
 };
 
@@ -269,14 +293,6 @@ const mainModule = {
         .catch((err) => {
           console.log(err);
         });
-      // await axios
-      //   .get("https://thkwon.pythonanywhere.com/api/issues/")
-      //   .then((res) => {
-      //     commit("GET_ISSUE", res.data);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
       commit("GET_MAINPAGE");
       console.log("로딩 종료");
     },

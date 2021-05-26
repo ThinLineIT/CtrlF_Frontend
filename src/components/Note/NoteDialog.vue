@@ -7,22 +7,23 @@
       <form class="dialog-form" method="dialog">
         <button class="dialog-cancel" value="cancel">X</button>
         <p class="dialog-p">
-          <select class="dialog-topic">
-            <option v-for="(topic, i) in getNote.topics" :key="i">
+          <select class="dialog-topic" id="dialog__topic-id">
+            <option v-for="(topic, i) in getNote.topics" :key="i" :value="topic.id">
               {{ topic.title }}
             </option>
           </select>
-          <input type="text" class="dialog-title" placeholder="TITLE" />
+          <input type="text" id="dialog-title" placeholder="TITLE" required />
           <textarea
             id="dialog-content"
             placeholder="내용 입력"
             maxlength="100"
             @keyup="textCount"
+            required
           />
           <span class="text-number"> {{ textNum }} / 100자 </span>
         </p>
         <menu class="dialog-menu">
-          <button id="confirmBtn" value="default">REQUEST</button>
+          <button id="confirmBtn" value="default" @click="requestIssue">REQUEST</button>
         </menu>
       </form>
     </dialog>
@@ -46,16 +47,25 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["dialogLoad"]),
+    ...mapActions(["dialogLoad", "issuePost"]),
     textCount() {
-      let test = document.getElementById("dialog-content");
-      this.textNum = test.value.length;
+      let issueContent = document.getElementById("dialog-content");
+      this.textNum = issueContent.value.length;
     },
     showDialog() {
       if (typeof this.getDialogIssue.showModal === "function") {
         this.getDialogIssue.showModal();
       } else {
         alert("The <dialog> API is not supported by this browser");
+      }
+    },
+    requestIssue() {
+      const issueTitle = document.getElementById('dialog-title');
+      const issueBody = document.getElementById("dialog-content");
+      if(issueTitle.value !== '' && issueBody.value !== '') {
+        const selectOption = document.getElementById('dialog__topic-id');
+        const issueArr = [selectOption.value, this.$route.params.noteID, issueTitle.value, issueBody.value]
+        this.issuePost(issueArr);
       }
     },
   },
@@ -87,7 +97,7 @@ export default {
   font-size: 26px;
 }
 
-.dialog-title {
+#dialog-title {
   margin: 0px 27px 0px 27px;
   margin-bottom: 25px;
   font-size: 26px;
