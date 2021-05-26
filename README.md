@@ -1,41 +1,15 @@
-# final
+# CTRLF_Frontend
+It is a repository for CtrlF Frontend.
+You can get the bunch of knowledge more easily on [CtrlF](https://thinlineit.github.io/CtrlF_Frontend/).
+Feel free to contribute with us. 
+Share your idea, please.
 
-## Project setup
-```
-npm install
-```
+If you want to join as a manager of each projects, please contact us.
+email: `thinlineIT@gmail.com`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Contributor
+<a href="https://github.com/ThinLineIT/CtrlF_Frontend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ThinLineIT/CtrlF_Frontend" />
+</a>
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-
-
-ToDo List
-
-1. 클립보드 생성 2번인가...
-
-2. 모달 select 태그 커스텀
-
-HELP
-
-1. Issue page 레이아웃(SVG 태그 길이....)
-
-2. svg 개선 color...등
-
-
+Made with [contributors-img](https://contrib.rocks).
