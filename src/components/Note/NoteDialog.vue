@@ -90,7 +90,6 @@ export default {
 .dialog-title {
   margin: 0px 27px 0px 27px;
   margin-bottom: 25px;
-  height: 35px;
   font-size: 26px;
   font-weight: bold;
   border-bottom: 3px solid #bababa;
