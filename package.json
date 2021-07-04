@@ -6,10 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "node-sass": "node-sass",
+    "sass": "node-sass -wr --source-map true styles/main.scss ./styles/global.css"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "next": "11.0.1",
+    "node-sass": "^6.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
