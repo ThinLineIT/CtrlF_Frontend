@@ -8,14 +8,17 @@
     "start": "next start",
     "lint": "next lint",
     "node-sass": "node-sass",
-    "sass": "node-sass -wr --source-map true styles/main.scss ./styles/global.css"
+    "sass": "node-sass -wr --source-map true styles/main.scss ./styles/globals.css"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.21.1",
     "next": "11.0.1",
     "node-sass": "^6.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "7.29.0",
