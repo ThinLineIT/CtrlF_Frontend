@@ -7,7 +7,7 @@ export default function Footer() {
     <div
       style={{
         marginTop: 40,
-        padding: '40px 0',
+        padding: '20px 0',
         borderTop: '1px solid #999',
         textAlign: 'center',
       }}
@@ -20,7 +20,7 @@ export default function Footer() {
         Powered by{' '}
         <span className={styles.logo}>
           <Image src="/Ctrl_F.svg" alt="Ctrl_F Logo" width={17} height={16} />
-          <Image src="/한끗차IT.svg" alt="Ctrl_F Logo" width={72} height={16} />
+          <Image src="/HanKC_IT.svg" alt="Ctrl_F Logo" width={72} height={16} />
         </span>
       </a>
     </div>

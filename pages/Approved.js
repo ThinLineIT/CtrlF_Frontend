@@ -1,17 +1,14 @@
 import Axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Loader } from 'semantic-ui-react';
 import ItemList from '../src/component/item_list';
 import SideBar from '../src/component/SideBar';
 import styles from './index.module.css';
 
 export default function Home({ list, length }) {
   const router = useRouter();
-
   const handleApprove = () => {
-    router.push('/Approved');
+    router.push('/Rejected');
   };
 
   return (
@@ -21,13 +18,13 @@ export default function Home({ list, length }) {
         <meta name="description" content="Ctrl_F 홈입니다."></meta>
       </Head>
       <>
-        <div className={styles.header}>
-          <p onClick={handleApprove} style={{ cursor: 'pointer' }}>
-            {`현재 모아진 아이디어 ${length}`}
-          </p>
-        </div>
+        <div
+          className={styles.header}
+          onClick={handleApprove}
+          style={{ cursor: 'pointer' }}
+        >{`승인된 아이디어 ${length - 8}`}</div>
         <div className={styles.body}>
-          <ItemList list={list} />
+          <ItemList list={list.slice(0, 12)} />
           <div className={styles.side_bar}>
             <SideBar />
           </div>
