@@ -7,11 +7,7 @@ class ThinLine {
 
   async mostPopular() {
     const response = await this.constructor.get('', {
-      params: {
-        part: 'snippet',
-        chart: 'mostPopular',
-        maxResult: 15,
-      },
+      params: {},
     });
     return response.data.items;
   }
@@ -19,15 +15,12 @@ class ThinLine {
   async search(query) {
     const response = await this.constructor.get('search', {
       params: {
-        part: 'snippet',
-        maxResult: 15,
-        type: 'video',
         q: query,
       },
     });
     return response.data.items.map((item) => ({
       ...item,
-      id: item.id.videoId,
+      id: item.id,
     }));
   }
 }

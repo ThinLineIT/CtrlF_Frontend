@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.searchHeader {
+  margin-top: 7px;
+  padding-bottom: 14px;
+  height: 79px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-bottom: 1px solid #999;
+}
+
+.component {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: url('../public/background.svg') no-repeat;
+  background-size: cover;
+}

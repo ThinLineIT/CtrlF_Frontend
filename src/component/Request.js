@@ -3,6 +3,10 @@ import { useRouter } from 'next/router';
 export default function Request() {
   const router = useRouter();
 
+  const handleClick = () => {
+    router.push('../Rejected');
+  };
+
   return (
     <div
       style={{

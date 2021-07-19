@@ -5,31 +5,32 @@ import ItemList from '../src/component/item_list';
 import SideBar from '../src/component/SideBar';
 import styles from './index.module.css';
 
-export default function Home({ list, length }) {
+export default function Approved({ list, length }) {
   const router = useRouter();
+
   const handleApprove = () => {
     router.push('/Rejected');
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>HOME | Ctrl_F</title>
-        <meta name="description" content="Ctrl_F 홈입니다."></meta>
+        <title>Approved | Ctrl_F</title>
+        <meta name="description" content="Ctrl_F Approved."></meta>
       </Head>
-      <>
-        <div
-          className={styles.header}
-          onClick={handleApprove}
-          style={{ cursor: 'pointer' }}
-        >{`승인된 아이디어 ${length - 8}`}</div>
-        <div className={styles.body}>
-          <ItemList list={list.slice(0, 12)} />
-          <div className={styles.side_bar}>
-            <SideBar />
-          </div>
+      <div className={styles.header}>
+        <p onClick={handleApprove} style={{ cursor: 'pointer' }}>
+          {`승인된 아이디어 ${length}`}
+        </p>
+      </div>
+      <div className={styles.body}>
+        <div className={styles.itemList}>
+          <ItemList list={list} />
         </div>
-      </>
+        <div className={styles.side_bar}>
+          <SideBar />
+        </div>
+      </div>
     </div>
   );
 }
@@ -37,7 +38,7 @@ export default function Home({ list, length }) {
 export async function getStaticProps() {
   const apiUrl = process.env.apiUrl;
   const res = await Axios.get(apiUrl);
-  const data = res.data.data.movies;
+  const data = res.data.notes.filter((item) => item.status === 'APPROVED');
 
   return {
     props: {

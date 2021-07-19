@@ -1,8 +1,7 @@
 import styles from './SearchHeader.module.css';
 import React, { memo, useRef } from 'react';
-import Link from 'next/link';
 
-const SearchHeader = memo(({ onSearch }) => {
+const SearchHeader = memo(({}) => {
   const inputRef = useRef();
 
   const handleSearch = () => {
@@ -49,33 +48,13 @@ const SearchHeader = memo(({ onSearch }) => {
           />
         </button>
       </div>
-      <div>
-        <Link
-          href="/Login"
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: 550,
-            color: 'inherit',
-            textDecoration: 'none',
-            listStyle: 'none',
-            cursor: 'pointer',
-          }}
-        >
+      <div className={styles.linkContainer}>
+        <a className={styles.link} href="/Login">
           로그인 |
-        </Link>
-        <Link
-          href="/Register"
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: 550,
-            color: 'inherit',
-            textDecoration: 'none',
-            listStyle: 'none',
-            cursor: 'pointer',
-          }}
-        >
+        </a>
+        <a className={styles.link} href="/Register">
           회원가입
-        </Link>
+        </a>
       </div>
     </header>
   );

@@ -3,33 +3,34 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import ItemList from '../src/component/item_list';
 import SideBar from '../src/component/SideBar';
-import styles from './index.module.css';
+import styles from './Rejected.module.css';
 
-export default function Home({ list, length }) {
+export default function Rejected({ list, length }) {
   const router = useRouter();
+
   const handleApprove = () => {
     router.push('/Approved');
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>HOME | Ctrl_F</title>
-        <meta name="description" content="Ctrl_F 홈입니다."></meta>
+        <title>Rejected | Ctrl_F</title>
+        <meta name="description" content="Ctrl_F Rejected."></meta>
       </Head>
-      <>
-        <div
-          className={styles.header}
-          onClick={handleApprove}
-          style={{ cursor: 'pointer' }}
-        >{`승인되지 않은 노트 ${length - 12}`}</div>
-        <div className={styles.body}>
-          <ItemList list={list.slice(12)} />
-          <div className={styles.side_bar}>
-            <SideBar />
-          </div>
+      <div className={styles.header}>
+        <p onClick={handleApprove} style={{ cursor: 'pointer' }}>
+          {`승인되지 않은 노트 ${length}`}
+        </p>
+      </div>
+      <div className={styles.body}>
+        <div className={styles.itemList}>
+          <ItemList list={list} />
         </div>
-      </>
+        <div className={styles.side_bar}>
+          <SideBar />
+        </div>
+      </div>
     </div>
   );
 }
@@ -37,7 +38,7 @@ export default function Home({ list, length }) {
 export async function getStaticProps() {
   const apiUrl = process.env.apiUrl;
   const res = await Axios.get(apiUrl);
-  const data = res.data.data.movies;
+  const data = res.data.notes.filter((item) => item.status === 'NOT_APPROVED');
 
   return {
     props: {
