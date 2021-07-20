@@ -3,17 +3,16 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  min-width: 60rem;
 }
 
 .wrap {
   background: url('../../public/images/notes/note1.svg') center no-repeat;
   width: 20%;
-  min-width: 6rem;
-  min-height: 10rem;
+  flex-shrink: 0;
   padding-bottom: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .wrap h3 {

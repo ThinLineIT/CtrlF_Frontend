@@ -5,7 +5,7 @@ export default function ItemList({ list }) {
   return (
     <div className={styles.container}>
       {list.map((item) => (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} key={item.id}>
           <Link href="/view/[id]" as={`/view/${item.id}`} style={{ margin: 0 }}>
             <h3>{item.title}</h3>
           </Link>

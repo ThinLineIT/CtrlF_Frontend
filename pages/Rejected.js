@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import ItemList from '../src/component/item_list';
 import SideBar from '../src/component/SideBar';
-import styles from './Rejected.module.css';
+import styles from './index.module.css';
 
 export default function Rejected({ list, length }) {
   const router = useRouter();
