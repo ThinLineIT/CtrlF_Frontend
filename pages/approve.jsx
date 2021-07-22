@@ -1,15 +1,15 @@
 import Axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import ItemList from '../src/component/item_list';
-import SideBar from '../src/component/SideBar';
-import styles from './index.module.css';
+import ItemList from '../component/layout/item/itemlist';
+import SideBar from '../component/layout/SideBar';
+import styles from '../styles/Home.module.css';
 
 export default function Approved({ list, length }) {
   const router = useRouter();
 
   const handleApprove = () => {
-    router.push('/Rejected');
+    router.push('/reject');
   };
 
   return (

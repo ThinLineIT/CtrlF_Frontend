@@ -1,11 +1,15 @@
 import { Button } from 'semantic-ui-react';
-import styles from './item.module.css';
+import styles from '../../../styles/layout/item/item.module.css';
 
 export default function Item() {
   return (
     <div className={styles.wrap}>
       <div className={styles.img_item}>
-        <img src="/images/ag.jpg" alt="Algorithm" style={{ width: '21%' }} />
+        <img
+          src="/images/algorithm.jpg"
+          alt="Algorithm"
+          style={{ width: '21%' }}
+        />
       </div>
       <div className={styles.info_item}>
         <strong className={styles.tit_item}>title</strong>

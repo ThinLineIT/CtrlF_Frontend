@@ -1,11 +1,7 @@
 import { useRouter } from 'next/router';
 
-export default function Request() {
+export default function Resentwork() {
   const router = useRouter();
-
-  const handleClick = () => {
-    router.push('../Rejected');
-  };
 
   return (
     <div
@@ -28,7 +24,7 @@ export default function Request() {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',
@@ -49,7 +45,7 @@ export default function Request() {
           </button>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',
@@ -70,7 +66,7 @@ export default function Request() {
           </button>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',
@@ -91,7 +87,7 @@ export default function Request() {
           </button>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',
@@ -112,7 +108,7 @@ export default function Request() {
           </button>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',
@@ -133,7 +129,7 @@ export default function Request() {
           </button>
           <button
             onClick={() => {
-              router.push('../view/id');
+              router.push('../../../pages/view/id');
             }}
             style={{
               height: '4rem',

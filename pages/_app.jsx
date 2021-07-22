@@ -1,8 +1,8 @@
-import '/styles/globals.css';
-import styles from './_app.module.css';
+import styles from '../styles/app.module.css';
+import '../styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
-import SearchHeader from '../src/component/SearchHeader';
-import Footer from '../src/component/Footer';
+import Topbar from '../component/layout/topbar';
+import Footer from '../component/layout/Footer';
 import {
   RecoilRoot,
   // atom,
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
     <RecoilRoot>
       <div className={styles.container}>
         <div className={styles.searchHeader}>
-          <SearchHeader />
+          <Topbar />
         </div>
         <div className={styles.component}>
           <Component {...pageProps} />

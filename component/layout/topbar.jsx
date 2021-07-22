@@ -1,7 +1,7 @@
-import styles from './SearchHeader.module.css';
+import styles from '../../styles/layout/topbar.module.css';
 import React, { memo, useRef } from 'react';
 
-const SearchHeader = memo(({}) => {
+const Topbar = memo(({}) => {
   const inputRef = useRef();
 
   const handleSearch = () => {
@@ -59,4 +59,4 @@ const SearchHeader = memo(({}) => {
     </header>
   );
 });
-export default SearchHeader;
+export default Topbar;

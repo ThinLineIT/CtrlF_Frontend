@@ -1,15 +1,16 @@
 import { useRouter } from 'next/router';
 import { Button } from 'semantic-ui-react';
 
-export default function Approve() {
+export default function Newbutton({ lists, buttonApprove, buttonReject }) {
   const router = useRouter();
-
-  const handleApprove = () => {
-    router.push('../Approved');
+  const handleButtonApprove = () => {
+    // buttonApprove();
+    router.push('/approve');
   };
 
-  const handleReject = () => {
-    router.push('../Rejected');
+  const handleButtonReject = () => {
+    // buttonReject();
+    router.push('/reject');
   };
 
   return (
@@ -21,7 +22,7 @@ export default function Approve() {
             borderTopLeftRadius: '30px',
             boxShadow: '1px 1px 10px grey',
           }}
-          onClick={handleApprove}
+          onClick={handleButtonApprove}
         >
           승인
         </Button>
@@ -31,7 +32,7 @@ export default function Approve() {
             borderTopRightRadius: '30px',
             boxShadow: '1px 1px 10px grey',
           }}
-          onClick={handleReject}
+          onClick={handleButtonReject}
         >
           미승인
         </Button>

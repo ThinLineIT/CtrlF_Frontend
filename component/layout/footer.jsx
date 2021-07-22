@@ -19,7 +19,12 @@ export default function Footer() {
         Powered by{' '}
         <span className={styles.logo}>
           <Image src="/Ctrl_F.svg" alt="Ctrl_F Logo" width={17} height={16} />
-          <Image src="/HanKC_IT.svg" alt="Ctrl_F Logo" width={72} height={16} />
+          <Image
+            src="/logotitle.svg"
+            alt="Ctrl_F Logo"
+            width={72}
+            height={16}
+          />
         </span>
       </a>
     </div>

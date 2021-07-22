@@ -1,14 +1,13 @@
-import { styles } from 'ansi-colors';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 
-function ModalExampleModal() {
+function Create() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    router.push('../Login');
+    router.push('../../../pages/signup');
   };
 
   return (
@@ -38,7 +37,7 @@ function ModalExampleModal() {
               alignItems: 'center',
             }}
           >
-            <h1 className={styles.h1}>ADD NOTE</h1>
+            <h1>ADD NOTE</h1>
             <span
               style={{
                 margin: '17px',
@@ -91,4 +90,4 @@ function ModalExampleModal() {
   );
 }
 
-export default ModalExampleModal;
+export default Create;
