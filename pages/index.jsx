@@ -1,57 +1,35 @@
+import React from 'react';
 import Axios from 'axios';
 import Head from 'next/head';
-import React, { useState } from 'react';
-import ItemList from '../component/layout/item/itemlist';
-import SideBar from '../component/layout/sideBar';
-import styles from '../styles/Home.module.css';
+import Topbar from '../src/component/layout/topbar';
+import Main from '../src/component/layout/main';
+import Footer from '../src/component/layout/Footer';
+import styles from '../src/styles/Home.module.css';
+import { useState } from 'react';
 
 export default function Home({ list, length }) {
   const [lists, setLists] = useState(list);
 
-  const handleApprove = () => {
-    const newList = [...list];
-    const approveList = newList.filter((item) => item.status === 'APPROVED');
-    setLists(approveList);
-  };
-
-  const handleButtonApprove = () => {
-    const newList = [...list];
-    const approveList = newList.filter((item) => item.status === 'APPROVED');
-    setLists(approveList);
-  };
-
-  const handleButtonReject = () => {
-    const newList = [...list];
-    const notApproveList = newList.filter(
-      (item) => item.status === 'NOT_APPROVED'
-    );
-    setLists(notApproveList);
+  const handleMain = (list) => {
+    setLists((lists) => {
+      const newList = [...list];
+      const approveList = newList.filter((item) => item);
+      return approveList;
+    });
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Head>
         <title>HOME | Ctrl_F</title>
         <meta name="description" content="Ctrl_F 홈입니다."></meta>
       </Head>
-      <div className={styles.header}>
-        <p onClick={handleApprove} style={{ cursor: 'pointer' }}>
-          {`현재 모아진 아이디어 ${length}`}
-        </p>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.itemList}>
-          <ItemList lists={lists} />
-        </div>
-        <div className={styles.side_bar}>
-          <SideBar
-            lists={lists}
-            buttonApprove={handleButtonApprove}
-            buttonReject={handleButtonReject}
-          />
-        </div>
-      </div>
-    </div>
+      <layout className={styles.layout}>
+        <Topbar list={list} goMain={handleMain} />
+        <Main lists={lists} length={length} />
+        <Footer />
+      </layout>
+    </React.Fragment>
   );
 }
 

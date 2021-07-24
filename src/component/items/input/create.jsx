@@ -7,7 +7,7 @@ function Create() {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    router.push('../../../pages/signup');
+    router.push('/signup');
   };
 
   return (

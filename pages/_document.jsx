@@ -7,6 +7,11 @@ class MyDocument extends Document {
         <Head />
         <body>
           <Main />
+          <style jsx global>{`
+            #__next {
+              height: 100%;
+            }
+          `}</style>
           <NextScript />
         </body>
       </Html>

@@ -1,7 +1,8 @@
 import styles from '../../styles/layout/topbar.module.css';
 import React, { memo, useRef } from 'react';
+import Link from 'next/link';
 
-const Topbar = memo(({}) => {
+const Topbar = memo(({ list, goMain }) => {
   const inputRef = useRef();
 
   const handleSearch = () => {
@@ -18,19 +19,16 @@ const Topbar = memo(({}) => {
       handleSearch();
     }
   };
+
+  const handleMain = () => {
+    goMain(list);
+  };
+
   return (
-    <header className={styles.header}>
-      <div className={styles.logo}>
-        <a href="/">
-          <img
-            className={styles.img}
-            src="/images/LOGO_SOLO 1.svg"
-            alt="logo"
-          />
-        </a>
-        <h1 className={styles.title}>
-          <a href="/">커넵</a>
-        </h1>
+    <header className={styles.container}>
+      <div className={styles.logo} onClick={handleMain}>
+        <img className={styles.img} src="/images/LOGO_SOLO 1.svg" alt="logo" />
+        <h1 className={styles.title}>커넵</h1>
       </div>
       <div className={styles.search}>
         <input
@@ -49,10 +47,10 @@ const Topbar = memo(({}) => {
         </button>
       </div>
       <div className={styles.linkContainer}>
-        <a className={styles.link} href="/Login">
+        <a className={styles.link} href="/signup">
           로그인 |
         </a>
-        <a className={styles.link} href="/Register">
+        <a className={styles.link} href="/regist">
           회원가입
         </a>
       </div>

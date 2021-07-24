@@ -7,19 +7,18 @@
 }
 
 .wrap {
-  background: url('../../../public/images/notes/note1.svg') center no-repeat;
+  background: url('../../../../public/images/notes/note1.svg') center no-repeat;
   width: 20%;
-  max-width: 13.502rem;
-  flex-shrink: 0;
+  /* min-width: 20%;
+  max-width: 15.502rem; */
   padding-bottom: 20px;
   display: flex;
   justify-content: center;
 }
 
 .wrap:hover {
-  color: rgba(0, 0, 0, 0.34);
   transform: scale(1.015);
-  /* opacity: 0.8; */
+  opacity: 0.8;
 }
 
 .wrap h3 {
@@ -32,7 +31,7 @@
 }
 
 .dark {
-  background: url('../../../public/images/notes/note2.svg') center no-repeat;
+  background: url('../../../../public/images/notes/note2.svg') center no-repeat;
   /* opacity: 0.8; */
 }
 

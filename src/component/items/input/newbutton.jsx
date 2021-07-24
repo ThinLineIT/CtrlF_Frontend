@@ -3,14 +3,15 @@ import { Button } from 'semantic-ui-react';
 
 export default function Newbutton({ lists, buttonApprove, buttonReject }) {
   const router = useRouter();
-  const handleButtonApprove = () => {
-    // buttonApprove();
-    router.push('/approve');
+
+  const handleApprove = () => {
+    // router.push('/approve');
+    buttonApprove(lists);
   };
 
-  const handleButtonReject = () => {
-    // buttonReject();
-    router.push('/reject');
+  const handleReject = () => {
+    // router.push('/reject');
+    buttonReject(lists);
   };
 
   return (
@@ -22,7 +23,7 @@ export default function Newbutton({ lists, buttonApprove, buttonReject }) {
             borderTopLeftRadius: '30px',
             boxShadow: '1px 1px 10px grey',
           }}
-          onClick={handleButtonApprove}
+          onClick={handleApprove}
         >
           승인
         </Button>
@@ -32,7 +33,7 @@ export default function Newbutton({ lists, buttonApprove, buttonReject }) {
             borderTopRightRadius: '30px',
             boxShadow: '1px 1px 10px grey',
           }}
-          onClick={handleButtonReject}
+          onClick={handleReject}
         >
           미승인
         </Button>

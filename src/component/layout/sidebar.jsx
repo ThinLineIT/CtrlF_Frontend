@@ -24,7 +24,7 @@ export default function SideBar({ lists, buttonApprove, buttonReject }) {
       <div className={styles.add_note}>
         <Create />
       </div>
-      <Resentwork />
+      <Resentwork lists={lists} />
     </div>
   );
 }

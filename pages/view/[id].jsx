@@ -1,4 +1,4 @@
-import Item from '../../component/layout/item/item';
+import Item from '../../src/component/layout/item/item';
 
 const Post = () => {
   return <Item />;
