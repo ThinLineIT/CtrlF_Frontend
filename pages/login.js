@@ -1,10 +1,14 @@
-import Header from "../components/Header"
+import LoginForm from "../src/components/LoginForm";
+import { RecoilRoot } from 'recoil';
 
-export default function Login() {
-    return (
-      <div>
-        <Header />
-        <p>Test</p>
-      </div>
-    );
-  }
+function Login() { 
+  return(
+    <div className="test">
+      <RecoilRoot>
+        <LoginForm></LoginForm>
+      </RecoilRoot>
+    </div>
+  )
+}
+
+export default Login;

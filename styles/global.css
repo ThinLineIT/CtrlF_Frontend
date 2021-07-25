@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background-image: url("../public/home_background.png"); }
+
+.test {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#__next {
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+  align-items: center;
+  height: 150vh;
+}
+
+.signup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

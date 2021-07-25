@@ -11,11 +11,18 @@
     "sass": "node-sass -wr --source-map true styles/main.scss ./styles/global.css"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.0",
     "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "js-cookie": "^2.2.1",
     "next": "11.0.1",
     "node-sass": "^6.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.10.1",
+    "react-router-dom": "^5.2.0",
+    "recoil": "^0.3.1"
   },
   "devDependencies": {
     "eslint": "7.29.0",
