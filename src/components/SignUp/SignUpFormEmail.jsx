@@ -1,10 +1,9 @@
-import { email as emailAtom, isOverlaped as isOverlapedAtom } from "../store/atom"
+import { email as emailAtom, isOverlaped as isOverlapedAtom } from "../../store/atom"
 import { useRecoilState } from "recoil";
-import { overlapApi, emailAuthApi } from "../hooks/SignUpHook";
-
+import { overlapApi, emailAuthApi } from "../../hooks/SignUpHook";
+import { emailReg } from "../../hooks/Reg"
 export default function SignUpFormEmail({ styles }) {
     
-    const emailRegExp = new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
     const [Email, setEmail] = useRecoilState(emailAtom);
     const [overlap, setIsOverlap] = useRecoilState(isOverlapedAtom)
     
@@ -13,7 +12,7 @@ export default function SignUpFormEmail({ styles }) {
     }
 
     const overlapCheck = async () => {
-        if(emailRegExp.test(Email)) {
+        if(emailReg(Email)) {
             const isOverlap = await overlapApi(Email)
             if(isOverlap.status === 200) {
                 alert("사용 가능한 이메일입니다");
@@ -29,7 +28,6 @@ export default function SignUpFormEmail({ styles }) {
     const emailAuth = async () => {
         if(overlap){
             const isAuth = await emailAuthApi(Email);
-            console.log(isAuth);
             alert("인증 코드를 이메일로 보내드렸습니다.")
         }else
             alert("중복확인을 먼저 해주세요!")
@@ -42,6 +40,7 @@ export default function SignUpFormEmail({ styles }) {
                     className={styles.email__input}
                     onChange={onEmailHandler}
                     placeholder="Email"
+                    value={Email}
                 />
                 <button 
                 className={styles.email__overlap__btn}
@@ -50,6 +49,7 @@ export default function SignUpFormEmail({ styles }) {
                     중복확인
                 </button>
             </div>
+            <br />
             <div>
                 {
                     overlap && (<span className={styles.overlap__checked}>사용 가능한 이메일입니다. </span>)

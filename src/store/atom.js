@@ -12,7 +12,7 @@ export const password = atom({
 
 export const passwordCheck = atom({
   key: 'passwordCheck',
-  default: " "
+  default: ""
 });
 
 export const nickName = atom({
@@ -32,5 +32,10 @@ export const isOverlaped = atom({
 
 export const isNickOverlaped = atom({
   key: 'isNickOverlaped',
-  default: false
+  default: ""
+});
+
+export const isPwValidated = atom({
+  key: 'isPwValidated',
+  default: ""
 });

@@ -65,7 +65,11 @@
     font-weight: bold;
 }
 
-.login__message {
+.login__error {
+    height: 30px;
+}
+
+.login__error__message {
     color: #EB0000;
     font-size: 21px;
 }
