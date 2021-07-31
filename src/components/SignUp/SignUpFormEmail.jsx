@@ -18,7 +18,7 @@ export default function SignUpFormEmail({ styles }) {
                 alert("사용 가능한 이메일입니다");
                 setIsOverlap(true)
             } else {
-                alert("사용 불가능한 이메일입니다.");
+                alert(isOverlap.data.message);
             }
         } else {
             alert("이메일의 형식이 맞지 않습니다.")

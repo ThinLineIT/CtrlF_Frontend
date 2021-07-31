@@ -24,7 +24,7 @@ export default function SignUp() {
   const onSubmit = async ( e ) => {
     e.preventDefault()
 
-    const requset = {
+    const signUpRequset = {
       "email": EMAIL,
       "nickname": NICKNAME, 
       "password": PASSWORD,
@@ -32,8 +32,7 @@ export default function SignUp() {
       "password_confirm": PASSWORDCHECK
     }
     
-    const signUpSuccess = await signUpApi(requset);
-    console.log(signUpSuccess)
+    const signUpSuccess = await signUpApi(signUpRequset);
     if(signUpSuccess.status === 201) {
       router.push('/SignUpConfirm');
     } else {

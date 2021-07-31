@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export const signUpApi = (signUpData) => {
-    const request  = axios.post("http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/auth/signup/", signUpData)
-        .then(res => res.data)
-        .catch(err => err.response)
-    return request; 
+        const request = axios.post("http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/auth/signup/", signUpData)
+            .then(res=> res)
+            .catch(err => err.response)
+        return request
 }
 
 export const emailAuthApi =( data ) => {
@@ -18,7 +18,9 @@ export const emailAuthApi =( data ) => {
 }
 
 export const overlapApi = (email) => {
-    const request = axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup/email/duplicate?data=${email}`)
+    const request = axios.get(`http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/auth/signup/email/duplicate?data=${email}`)
+        .then(res => res)
+        .catch(err => err.response)
     return request;
 }
 
