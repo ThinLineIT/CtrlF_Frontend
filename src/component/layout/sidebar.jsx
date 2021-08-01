@@ -1,30 +1,20 @@
+import AddNewNote from '../items/sidebar/add_new_note';
+import ResentIssue from '../items/sidebar/recent_issue';
+import Toggle from '../items/sidebar/toggle';
 import styles from '../../styles/layout/sidebar.module.css';
-import Newbutton from '../items/input/newbutton';
-import Create from '../items/input/create';
-import Resentwork from '../items/input/recentwork';
 
-export default function SideBar({ lists, buttonApprove, buttonReject }) {
-  const handleButtonApprove = () => {
-    buttonApprove();
-  };
-
-  const handleButtonReject = () => {
-    buttonReject();
-  };
-
+export default function SideBar() {
   return (
-    <div className={styles.wrap}>
-      <div className={styles.approve}>
-        <Newbutton
-          lists={lists}
-          buttonApprove={handleButtonApprove}
-          buttonReject={handleButtonReject}
-        />
+    <div className={styles.container}>
+      <div className={styles.toggle}>
+        <Toggle />
       </div>
-      <div className={styles.add_note}>
-        <Create />
+      <div className={styles.add__new__note}>
+        <AddNewNote />
       </div>
-      <Resentwork lists={lists} />
+      <div className={styles.recent__issue}>
+        <ResentIssue />
+      </div>
     </div>
   );
 }

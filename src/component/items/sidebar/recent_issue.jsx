@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
-import styles from '../../../styles/items/input/recentwork.module.css';
+import { useRecoilValue } from 'recoil';
+import { List } from '../../../store/atom';
+import styles from '../../../styles/items/sidebar/recent_issue.module.css';
 
-export default function Resentwork({ lists }) {
+export default function ResentIssue() {
+  const lists = useRecoilValue(List);
   const router = useRouter();
 
   return (
@@ -10,7 +13,13 @@ export default function Resentwork({ lists }) {
         <h1 className={styles.title}>요청 검토 중인 내용</h1>
         {lists &&
           lists.map((item) => (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div
+              key={item.id}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
               <Title router={router} title={item.title} status={item.status} />
             </div>
           ))}
@@ -26,7 +35,7 @@ function Title({ router, title, status }) {
     return (
       <button
         onClick={() => {
-          router.push('/view/id');
+          router.push('/note/id');
         }}
         className={styles.router}
       >

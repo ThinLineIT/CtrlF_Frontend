@@ -17,6 +17,7 @@
     "node-sass": "^6.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-ssr-prepass": "^1.4.0",
     "recoil": "^0.3.1",
     "rodal": "^1.8.1",
     "semantic-ui-css": "^2.4.1",

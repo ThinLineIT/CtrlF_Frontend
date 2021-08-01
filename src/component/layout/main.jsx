@@ -1,47 +1,29 @@
-import ItemList from './item/itemlist';
-import SideBar from './sideBar';
-import React, { useState } from 'react';
-import styles from '../../styles/Home.module.css';
+import SideBar from './sidebar';
+import NoteList from '../items/notes/note_list';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { noteList, countState, HeaderBar, noteNumber } from '../../store/atom';
+import { Loader } from 'semantic-ui-react';
+import styles from '../../styles/layout/main.module.css';
 
-export default function Main({ lists, length }) {
-  const [data, setData] = useState(lists);
-  const [lengths, setLengths] = useState(length);
-
-  const handleButtonApprove = () => {
-    const newList = [...lists];
-    const approveList = newList.filter((item) => item.status === 'APPROVED');
-    setData(approveList);
-    setLengths(approveList.length);
-  };
-
-  const handleButtonReject = () => {
-    const newList = [...lists];
-    const notApproveList = newList.filter(
-      (item) => item.status === 'NOT_APPROVED'
-    );
-    setData(notApproveList);
-    setLengths(notApproveList.length);
-  };
+export default function Main() {
+  const number = useRecoilValue(noteNumber);
+  const header = useRecoilValue(HeaderBar);
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.header}>
-        <p onClick={handleButtonApprove} style={{ cursor: 'pointer' }}>
-          {`현재 모아진 아이디어 ${lengths}`}
+        <p className={styles.header__title}>
+          <span>{header}</span> <span>{number}</span>
         </p>
       </div>
       <div className={styles.body}>
-        <div className={styles.itemList}>
-          <ItemList data={data} />
+        <div className={styles.item__list}>
+          <NoteList />
         </div>
-        <div className={styles.side_bar}>
-          <SideBar
-            lists={lists}
-            buttonApprove={handleButtonApprove}
-            buttonReject={handleButtonReject}
-          />
+        <div className={styles.sidebar}>
+          <SideBar />
         </div>
       </div>
-    </>
+    </div>
   );
 }

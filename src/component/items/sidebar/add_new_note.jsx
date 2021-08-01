@@ -1,13 +1,17 @@
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Button, Modal } from 'semantic-ui-react';
 
-function Create() {
+function AddNewNote() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
+  const handleLogin = () => {
     router.push('/signup');
+  };
+
+  const handleRegist = () => {
+    router.push('/regist');
   };
 
   return (
@@ -51,7 +55,7 @@ function Create() {
               <p> 로그인 후 이용해주세요.</p>
             </span>
             <button
-              onClick={handleClick}
+              onClick={handleLogin}
               style={{
                 width: '20%',
                 background: '#8BC8FD',
@@ -71,7 +75,9 @@ function Create() {
                 <button style={{ fontWeight: 'bolder' }}>PASSWORD 찾기</button>
               </li>
               <li>
-                <button style={{ fontWeight: 'bolder' }}>회원가입</button>
+                <button onClick={handleRegist} style={{ fontWeight: 'bolder' }}>
+                  회원가입
+                </button>
               </li>
             </ul>
           </div>
@@ -90,4 +96,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default AddNewNote;

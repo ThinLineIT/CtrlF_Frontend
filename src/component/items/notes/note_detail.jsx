@@ -1,34 +1,27 @@
+import { useRouter } from 'next/router';
 import { Button } from 'semantic-ui-react';
-import styles from '../../../styles/layout/item/item.module.css';
+import styles from '../../../styles/items/notes/note_detail.module.css';
 
-export default function Item() {
+export default function NoteDetail({ item }) {
+  const { id, title, is_approved } = item;
+  const router = useRouter();
+  const handleRouter = () => {
+    router.push('/signup');
+  };
+
   return (
     <div className={styles.wrap}>
-      <div className={styles.img_item}>
-        <img
-          src="/images/algorithm.jpg"
-          alt="Algorithm"
-          style={{ width: '21%' }}
-        />
-      </div>
+      <img
+        className={styles.img_item}
+        src="/images/algorithm.jpg"
+        alt="Algorithm"
+      />
       <div className={styles.info_item}>
-        <strong className={styles.tit_item}>title</strong>
-        <Button
-          color="linkedin"
-          style={{
-            width: '30rem',
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '30px auto',
-          }}
-        >
-          저장하기
-        </Button>
+        <strong className={styles.tit_item}>
+          id: {id} {title}
+        </strong>
       </div>
-      <div
-        as="h3"
-        style={{ fontSize: '1.1rem', width: '70%', margin: '0 auto' }}
-      >
+      <span as="h3" className={styles.span}>
         <p style={{ fontSize: '2rem', fontWeight: 'bolder' }}>description</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
@@ -41,7 +34,19 @@ export default function Item() {
           quo tempora est sint quidem assumenda architecto, facere eveniet amet
           maiores totam explicabo modi. Odio, illo? Lorem ipsum
         </p>
-      </div>
+      </span>
+      <Button
+        onClick={handleRouter}
+        color="linkedin"
+        style={{
+          width: '30rem',
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '30px auto',
+        }}
+      >
+        저장하기
+      </Button>
     </div>
   );
 }

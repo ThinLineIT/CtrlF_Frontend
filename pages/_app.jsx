@@ -1,15 +1,15 @@
+import React from 'react';
+import { RecoilRoot } from 'recoil';
 import '../src/styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
-import { RecoilRoot } from 'recoil';
-import React from 'react';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <RecoilRoot>
-      <React.Fragment>
+    <React.Fragment>
+      <RecoilRoot>
         <Component {...pageProps} />
-      </React.Fragment>
-    </RecoilRoot>
+      </RecoilRoot>
+    </React.Fragment>
   );
 }
 export default MyApp;

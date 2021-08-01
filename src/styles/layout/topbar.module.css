@@ -1,87 +1,107 @@
-.logo h1 {
-  text-align: center;
-  padding-bottom: 27px;
-  margin-left: 6px;
-}
-
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  padding: 2rem 4rem;
+  max-height: 150px;
+}
+.container__wrap {
+  width: 81%;
+  height: 7em;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
 }
 
-.logo {
-  flex-basis: 300px;
+.top__logo {
+  width: 22em;
+  min-width: 20em;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0 2em;
+  margin: 0 auto;
   cursor: pointer;
 }
-
-.img {
-  padding: 10px;
+.top__logo__img {
+  width: 134px;
+}
+.top__logo__title {
+  color: rgb(255, 255, 255);
+  height: 100%;
+  text-shadow: 4px 4px 7px rgba(128, 128, 128, 0.8);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  font-size: 2.8rem;
+  margin: 0 7px;
 }
 
-.title {
-  padding: 0;
-  display: block;
-}
-
-.search {
+.searchbar {
   display: flex;
   justify-content: space-between;
   border: 0.5px solid #0000004d;
   border-radius: 50px/70px;
-  width: 55rem;
-  height: 100%;
-  height: 50px;
+  width: 41em;
+  margin: 0 auto;
+  height: 40px;
 }
-
-.input {
+.searchbar__input {
   width: 35rem;
   height: inherit;
-  font-size: 1.2rem;
+  font-size: 1rem;
   outline: 0;
   margin: 0 1em;
 }
-
-.buttonImg {
-  width: 1.8rem;
-  height: 55%;
+.searchbar__btn__img {
+  width: 1.4rem;
+  height: 50%;
   margin-top: 2px;
   margin-right: 10px;
 }
 
-.login,
-.register {
-  font-size: 1.2rem;
-  font-weight: 550;
-  color: inherit;
-  text-decoration: none;
-  list-style: none;
-  cursor: pointer;
+.top__signup__list {
+  min-width: 20em;
+  padding: 1em;
+  margin: 0 2em;
 }
-
-.register {
-  margin-left: 3.5px;
-}
-
-.linkContainer {
-  text-decoration: none;
-  list-style: none;
+.top__signup__list a {
+  font-size: 16px;
   color: black;
 }
-
-.link {
-  font-size: 1rem;
-  padding-right: 0.2rem;
-  font-weight: 550;
-  color: black;
-  text-decoration: none;
-  list-style: none;
-  cursor: pointer;
+.top__signup__list a:last-child {
+  margin-left: 9px;
 }
 
-@media screen and (max-width: 1507px) {
+@media screen and (max-width: 92rem) {
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .top__logo {
+    margin: 20px;
+  }
+  .top__logo__title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 70rem) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .container__wrap {
+    margin: 0 auto;
+  }
+  .top__logo {
+    flex: 1 1 30%;
+    margin: 0;
+    padding: 0;
+  }
+  .top__signup__list {
+    display: none;
+  }
+  .searchbar {
+    flex: 1 1 70%;
+    width: 33em;
+  }
 }
