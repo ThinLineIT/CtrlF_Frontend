@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useState } from 'react';
 import styles from '../../styles/layout/topbar.module.css';
-// import useNoteSearch from '../../hooks/use_note_search';
+import useNoteSearch from '../../hooks/use_note_search';
 
 const Topbar = memo(() => {
   const [query, setQuery] = useState('');
   const [cursorNumber, setCursorNumber] = useState(0);
-  // useNoteSearch(cursorNumber, query);
+  useNoteSearch(cursorNumber, query);
 
   function handleSearch(e) {
-    // setQuery(e.target.value);
-    // setCursorNumber(0);
+    setQuery(e.target.value);
+    setCursorNumber(0);
     e.currentTarget.value = '';
   }
   const onClick = (e) => {
@@ -48,8 +48,12 @@ const Topbar = memo(() => {
           </button>
         </div>
         <div className={styles.top__signup__list}>
-          <Link href="/signup">로그인 |</Link>
-          <Link href="/regist">회원가입</Link>
+          <Link href="/signup">
+            <a>로그인 |</a>
+          </Link>
+          <Link href="/regist">
+            <a>회원가입</a>
+          </Link>
         </div>
       </div>
     </header>

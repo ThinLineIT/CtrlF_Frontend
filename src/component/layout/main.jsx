@@ -1,9 +1,8 @@
 import SideBar from './sidebar';
+import { useRecoilValue } from 'recoil';
 import NoteList from '../items/notes/note_list';
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { noteList, countState, HeaderBar, noteNumber } from '../../store/atom';
-import { Loader } from 'semantic-ui-react';
 import styles from '../../styles/layout/main.module.css';
+import { HeaderBar, noteNumber } from '../../store/atom';
 
 export default function Main() {
   const number = useRecoilValue(noteNumber);

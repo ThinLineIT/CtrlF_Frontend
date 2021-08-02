@@ -1,19 +1,10 @@
 .container {
+  width: 93%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.toggle {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.add__new__note {
-  width: 100%;
-  padding: 15px 0;
-}
-
-.recent__issue {
-  width: 100%;
+  flex-grow: 1;
+  padding-top: 4em;
+  padding-left: 3em;
 }

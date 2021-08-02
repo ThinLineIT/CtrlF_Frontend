@@ -1,18 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export default function useNoteSearch(cursorNumber, query, toggle = 'default') {
+export default function useNoteSearch(cursorNumber, query) {
+  const [notes, setNotes] = useState([]);
   const [length, setLength] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
-  const [notes, setNotes] = useState([]);
-  const [approved, setApproved] = useState([]);
-  const [notApproved, setNotApproved] = useState([]);
 
   useEffect(() => {
     setNotes([]);
-  }, [query, toggle]);
+  }, [query]);
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +21,6 @@ export default function useNoteSearch(cursorNumber, query, toggle = 'default') {
         params: {
           cursor: cursorNumber,
           q: query,
-          t: toggle,
         },
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
@@ -35,14 +32,19 @@ export default function useNoteSearch(cursorNumber, query, toggle = 'default') {
         });
         setHasMore(notes.length > 0);
         setLoading(false);
-        setApproved(notes.filter((a) => a.is_approved == true));
-        setNotApproved(notes.filter((a) => a.is_approved == false));
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
         setError(true);
       });
+
     return () => cancel();
-  }, [cursorNumber, query, toggle]);
-  return { loading, error, notes, hasMore, length, approved, notApproved };
+  }, [cursorNumber, query]);
+  return {
+    loading,
+    error,
+    notes,
+    hasMore,
+    length,
+  };
 }

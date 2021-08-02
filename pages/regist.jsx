@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 export default function Regist() {
   const router = useRouter();
+
   const handleRouter = () => {
     router.push('/');
   };

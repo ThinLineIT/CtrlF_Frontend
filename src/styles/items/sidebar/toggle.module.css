@@ -1,0 +1,36 @@
+.btn_container {
+  width: 100%;
+  min-height: 3.5em;
+  display: flex;
+  background: #ffffffaf;
+}
+
+.approved_btn {
+  flex: 1 1 50%;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  box-shadow: -4px 4px 10px #0000003d;
+  background: white;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.rejected_btn {
+  flex: 1 1 50%;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 4px 4px 10px #0000003d;
+  background: white;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.approved_btn:focus,
+.rejected_btn:focus {
+  background-color: #c6d5f4;
+}
+
+.approved_btn:hover,
+.rejected_btn:hover {
+  transform: scaleX(1.005);
+}

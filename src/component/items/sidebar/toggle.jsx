@@ -1,45 +1,55 @@
-import { Button } from 'semantic-ui-react';
 import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { MyToggle } from '../../../store/atom';
 import useNoteSearch from '../../../hooks/use_note_search';
+import styles from '../../../styles/items/sidebar/toggle.module.css';
 
 export default function Toggle() {
-  const [query, setQuery] = useState('');
   const [cursorNumber, setCursorNumber] = useState(0);
-  const [toggle, setToggle] = useState('');
-  const { approved, notApproved } = useNoteSearch(cursorNumber, query, toggle);
+  const setToggle = useSetRecoilState(MyToggle);
+  const [approvedClick, setApprovedClick] = useState('default');
+  const [notApprovedClick, setNotApprovedClick] = useState('default');
+
+  useNoteSearch(cursorNumber);
 
   const handleButtonApprove = () => {
-    console.log(approved);
-    setCursorNumber(0);
+    if (approvedClick === 'default') {
+      setToggle('true');
+      setCursorNumber(0);
+      window.scrollTo(0, 120);
+      setApprovedClick('true');
+      setNotApprovedClick('default');
+    } else if (approvedClick === 'true') {
+      setToggle('');
+      setCursorNumber(0);
+      window.scrollTo(0, 120);
+      setApprovedClick('default');
+    }
   };
 
   const handleButtonReject = () => {
-    console.log(notApproved);
-    setCursorNumber(0);
+    if (notApprovedClick === 'default') {
+      setToggle('false');
+      setCursorNumber(0);
+      window.scrollTo(0, 120);
+      setNotApprovedClick('true');
+      setApprovedClick('default');
+    } else if (notApprovedClick === 'true') {
+      setToggle('');
+      setCursorNumber(0);
+      window.scrollTo(0, 120);
+      setNotApprovedClick('default');
+    }
   };
 
   return (
-    <Button.Group style={{ color: 'white' }}>
-      <Button
-        style={{
-          borderBottomLeftRadius: '30px',
-          borderTopLeftRadius: '30px',
-          boxShadow: '1px 1px 10px grey',
-        }}
-        onClick={handleButtonApprove}
-      >
+    <div className={styles.btn_container}>
+      <button className={styles.approved_btn} onClick={handleButtonApprove}>
         승인
-      </Button>
-      <Button
-        style={{
-          borderBottomRightRadius: '30px',
-          borderTopRightRadius: '30px',
-          boxShadow: '1px 1px 10px grey',
-        }}
-        onClick={handleButtonReject}
-      >
+      </button>
+      <button className={styles.rejected_btn} onClick={handleButtonReject}>
         미승인
-      </Button>
-    </Button.Group>
+      </button>
+    </div>
   );
 }

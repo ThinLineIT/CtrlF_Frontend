@@ -1,18 +1,18 @@
-import styles from '../../../styles/items/modal/modal.module.css';
-import { useRouter } from 'next/dist/client/router';
-import { ModalUpdate } from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
+import { ModalUpdate } from '../../../store/atom';
+import { useRouter } from 'next/dist/client/router';
+import styles from '../../../styles/items/modal/modal.module.css';
 
 export default function Modal(id) {
   const router = useRouter();
   const setIsModalActive = useSetRecoilState(ModalUpdate);
 
-  const closeModal = (id) => {
+  const closeModal = () => {
     setIsModalActive(true);
     router.push({
-      pathname: `/note/[${id}]`,
-      as: `/notes/${id}`,
-    })
+      pathname: '/note/[id]',
+      query: { id: id.id },
+    });
   };
 
   return (

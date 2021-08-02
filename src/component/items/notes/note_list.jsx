@@ -1,26 +1,32 @@
 import Link from 'next/link';
 import Modal from '../modal/modal';
-import React, { useRef, useState, useEffect, useCallback } from 'react';
 import useNoteSearch from '../../../hooks/use_note_search';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { ModalUpdate, noteNumber, noteList } from '../../../store/atom';
 import styles from '../../../styles/items/notes/note_list.module.css';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { ModalUpdate, noteNumber, MyToggle } from '../../../store/atom';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 
 export default function NoteList() {
   const observer = useRef();
-  const [cursorNumber, setCursorNumber] = useState(0);
-  const { notes, hasMore, error, loading, length, approved, notApproved } =
-    useNoteSearch(cursorNumber);
-  const [isModalActive, setIsModalActive] = useRecoilState(ModalUpdate);
+  const [lists, setLists] = useState([]);
+  const toggle = useRecoilValue(MyToggle);
+  const [noteId, setNoteId] = useState('');
   const setNoteNum = useSetRecoilState(noteNumber);
-  // const list = useRecoilValue(noteList);
+  const [cursorNumber, setCursorNumber] = useState(0);
+  const { notes, hasMore, loading, length } = useNoteSearch(cursorNumber);
+  const [isModalActive, setIsModalActive] = useRecoilState(ModalUpdate);
 
-  const handleClick = (e, status) => {
-    // if (status !== 'true') {
-    //   e.preventDefault();
-    //   setIsModalActive(false);
-    // }
-  };
+  useEffect(() => {
+    setNoteNum(length);
+    if (toggle === '') {
+      setLists(notes);
+    } else if (toggle === 'true') {
+      setLists(notes.filter((a) => a.is_approved == true));
+    } else if (toggle === 'false') {
+      setLists(notes.filter((a) => a.is_approved == false));
+    }
+  }, [notes, toggle]);
+
   const lastNoteElementRef = useCallback(
     (node) => {
       if (loading) return;
@@ -34,42 +40,34 @@ export default function NoteList() {
     },
     [loading, hasMore]
   );
-  const setNotes = () => {
-    setNoteNum(length);
-    // setList(notes);
-    console.log(notes);
-    console.log(approved);
-    console.log(notApproved);
-  };
 
-  async function renderNotes() {
-    if (notes.length > 0 && approved.length > 0 && notApproved.length > 0) {
-      setNotes();
+  const handleClick = (e, id, status) => {
+    if (status !== 'true') {
+      e.preventDefault();
+      setIsModalActive(false);
+      setNoteId(id);
     }
-  }
-  renderNotes();
+  };
 
   return (
     <div className={styles.container}>
-      {notes &&
-        notes.map((note, index) => {
-          if (notes.length === index + 1) {
+      {lists &&
+        lists.map((note, index) => {
+          if (lists.length === index + 1) {
             return (
               <div
                 ref={lastNoteElementRef}
                 key={note.id}
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
-                )}`}
+                )} ${`styles.color_((${note.id} / 5) % 15)`}`}
               >
-                <Link
-                  href="/note/[id]"
-                  as={`/notes/${note.id}`}
-                  style={{ margin: 0 }}
-                >
+                <Link href="/note/[id]" as={`/notes/${note.id}`}>
                   <a
                     className={styles.link}
-                    onClick={(e) => handleClick(e, `${note.is_approved}`)}
+                    onClick={(e) =>
+                      handleClick(e, `${note.id}`, `${note.is_approved}`)
+                    }
                   >
                     {note.title}
                   </a>
@@ -84,14 +82,12 @@ export default function NoteList() {
                   note.is_approved
                 )}`}
               >
-                <Link
-                  href="/note/[id]"
-                  as={`/note/${note.id}`}
-                  style={{ margin: 0 }}
-                >
+                <Link href="/note/[id]" as={`/note/${note.id}`}>
                   <a
                     className={styles.link}
-                    onClick={(e) => handleClick(e, `${note.is_approved}`)}
+                    onClick={(e) =>
+                      handleClick(e, `${note.id}`, `${note.is_approved}`)
+                    }
                   >
                     {note.title}
                   </a>
@@ -100,9 +96,13 @@ export default function NoteList() {
             );
           }
         })}
-      {/* <div className={`${styles.notes_modal} ${isModalActive ? `${styles.hidden}` : ''}`}>
-        <Modal />
-      </div> */}
+      <div
+        className={`${styles.notes_modal} ${
+          isModalActive ? `${styles.hidden}` : ''
+        }`}
+      >
+        <Modal id={noteId} />
+      </div>
     </div>
   );
 }

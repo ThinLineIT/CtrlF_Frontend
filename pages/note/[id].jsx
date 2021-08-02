@@ -8,7 +8,6 @@ const Post = ({ item }) => {
   const router = useRouter();
 
   if (router.isFallback) {
-    console.log(item);
     return (
       <div style={{ padding: '100px 0' }}>
         <Loader active inline="centered">
@@ -34,21 +33,21 @@ const Post = ({ item }) => {
 
 export default Post;
 
-// export async function getStaticPaths() {
-//   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes?cursor=0`;
-//   const res = await Axios.get(apiUrl);
-//   const data = res.data.notes;
-//   return {
-//     paths: data.slice(0, 10).map((item) => ({
-//       params: {
-//         id: item.id.toString(),
-//       },
-//     })),
-//     fallback: true,
-//   };
-// }
+export async function getStaticPaths() {
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes?cursor=0`;
+  const res = await Axios.get(apiUrl);
+  const data = res.data.notes;
+  return {
+    paths: data.slice(0, 10).map((item) => ({
+      params: {
+        id: item.id.toString(),
+      },
+    })),
+    fallback: true,
+  };
+}
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const id = context.params.id;
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}`;
   const res = await Axios.get(apiUrl);
