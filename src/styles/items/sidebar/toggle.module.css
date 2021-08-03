@@ -25,11 +25,6 @@
   padding: 0;
 }
 
-.approved_btn:focus,
-.rejected_btn:focus {
-  background-color: #c6d5f4;
-}
-
 .approved_btn:hover,
 .rejected_btn:hover {
   transform: scaleX(1.005);
