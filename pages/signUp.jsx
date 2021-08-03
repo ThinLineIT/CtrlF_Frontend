@@ -10,8 +10,11 @@ import { useEffect } from "react";
 export default function SignUp() {
   const blur = {backgroundColor : "#D4D4D4"}
   const router = useRouter();
-  const resetEmail = useResetRecoilState(isOverlaped);
-  const resetNick = useResetRecoilState(isNickOverlaped);
+  const resetEmailOverlap = useResetRecoilState(isOverlaped);
+  const resetNickOverlap = useResetRecoilState(isNickOverlaped);
+  const resetCode = useResetRecoilState(authCode);
+  const resetEmail = useResetRecoilState(email);
+  const resetNick = useResetRecoilState(nickName);
   const NICKOVERLAP = useRecoilValue(isNickOverlaped)
   const PWVALIDATED = useRecoilValue(isPwValidated)
   const EMAIL = useRecoilValue(email)
@@ -43,6 +46,9 @@ export default function SignUp() {
     return () => {
       resetEmail();
       resetNick();
+      resetEmailOverlap()
+      resetCode()
+      resetNickOverlap()
     }
   }, []) 
   

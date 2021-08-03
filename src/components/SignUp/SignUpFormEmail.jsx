@@ -1,7 +1,8 @@
 import { email as emailAtom, isOverlaped as isOverlapedAtom } from "../../store/atom"
 import { useRecoilState } from "recoil";
 import { overlapApi, emailAuthApi } from "../../hooks/SignUpHook";
-import { emailReg } from "../../hooks/Reg"
+import { emailReg } from "../../hooks/Reg";
+
 export default function SignUpFormEmail({ styles }) {
     
     const [Email, setEmail] = useRecoilState(emailAtom);

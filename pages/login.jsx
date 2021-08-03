@@ -3,7 +3,7 @@ import { RecoilRoot } from 'recoil';
 
 function Login() { 
   return(
-    <div className="test">
+    <div className="login__main">
       <RecoilRoot>
         <LoginForm></LoginForm>
       </RecoilRoot>
