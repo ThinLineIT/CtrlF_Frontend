@@ -7,15 +7,15 @@ import styles from '../../../styles/items/sidebar/add_note.module.css';
 function AddNote() {
   const [isModalActive, setIsModalActive] = useRecoilState(noteModal);
 
-  const activeModal = (e) => {
-    e.preventDefault();
+  const activeAddNoteModal = (event) => {
+    event.preventDefault();
     setIsModalActive(false);
   };
 
   return (
     <>
       <div className={styles.container}>
-        <button className={styles.button} onClick={activeModal}>
+        <button className={styles.button} onClick={activeAddNoteModal}>
           + 노트 추가
         </button>
       </div>

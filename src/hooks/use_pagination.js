@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export default function useNoteSearch(cursorNumber, query) {
+export default function usePagination(cursorNumber, query) {
   const [notes, setNotes] = useState([]);
   const [length, setLength] = useState(0);
   const [error, setError] = useState(false);

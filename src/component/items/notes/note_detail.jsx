@@ -1,14 +1,8 @@
-import { useRouter } from 'next/router';
 import { Button } from 'semantic-ui-react';
 import styles from '../../../styles/items/notes/note_detail.module.css';
 
-export default function NoteDetail({ item }) {
-  const { title } = item;
-  const router = useRouter();
-
-  const handleRouter = () => {
-    router.push('/signup');
-  };
+export default function NoteDetail({ note }) {
+  const { title } = note;
 
   return (
     <div className={styles.wrap}>
@@ -94,7 +88,6 @@ export default function NoteDetail({ item }) {
           </p>
         </span>
         <Button
-          onClick={handleRouter}
           color="linkedin"
           style={{
             width: '30rem',

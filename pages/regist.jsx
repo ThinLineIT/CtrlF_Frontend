@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export default function Regist() {
   const router = useRouter();
 
-  const handleRouter = () => {
+  const goMainPage = () => {
     router.push('/');
   };
 
@@ -12,7 +12,7 @@ export default function Regist() {
     <div>
       <h1>Hello, Im Regist</h1>
       <button
-        onClick={handleRouter}
+        onClick={goMainPage}
         style={{
           width: '70px',
           height: '70px',

@@ -1,17 +1,17 @@
 import { atom } from 'recoil';
 
 export const List = atom({
-  key: 'MyNotes',
+  key: 'noteList',
   default: [],
 });
 
 export const noteNumber = atom({
-  key: 'MyNoteNumber',
+  key: 'noteNumber',
   default: 0,
 });
 
 export const MyToggle = atom({
-  key: 'MyToggle',
+  key: 'toggle',
   default: '',
 });
 
@@ -21,11 +21,11 @@ export const HeaderBar = atom({
 });
 
 export const ModalUpdate = atom({
-  key: 'using_trick',
+  key: 'not_approved_modal',
   default: true,
 });
 
 export const noteModal = atom({
-  key: 'note_trick',
+  key: 'add_note_modal',
   default: true,
 });

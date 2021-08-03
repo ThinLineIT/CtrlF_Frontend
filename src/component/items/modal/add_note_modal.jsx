@@ -7,12 +7,12 @@ export default function AddNoteModal() {
   const router = useRouter();
   const setIsModalActive = useSetRecoilState(noteModal);
 
-  const closeModal = () => {
+  const closeModalAndGoSignupPage = () => {
     router.push('/signup');
     setIsModalActive(true);
   };
 
-  const handleRegist = () => {
+  const closeModalAndGoRegistPage = () => {
     router.push('/regist');
     setIsModalActive(true);
   };
@@ -25,7 +25,7 @@ export default function AddNoteModal() {
           커넵 회원만 사용 가능한 기능입니다. <br />
           로그인 후 이용해주세요.
         </span>
-        <button className={styles.button} onClick={closeModal}>
+        <button className={styles.button} onClick={closeModalAndGoSignupPage}>
           Login 하러 가기
         </button>
         <ul className={styles.ul}>
@@ -36,7 +36,7 @@ export default function AddNoteModal() {
             <button>PASSWORD 찾기</button>
           </il>
           <il>
-            <button onClick={handleRegist}>회원가입</button>
+            <button onClick={closeModalAndGoRegistPage}>회원가입</button>
           </il>
         </ul>
       </div>

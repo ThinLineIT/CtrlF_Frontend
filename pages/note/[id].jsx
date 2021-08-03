@@ -24,7 +24,7 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          <NoteDetail item={item} />;
+          <NoteDetail note={item} />;
         </>
       )}
     </>

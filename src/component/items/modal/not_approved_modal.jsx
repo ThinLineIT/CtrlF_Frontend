@@ -3,11 +3,11 @@ import { ModalUpdate } from '../../../store/atom';
 import { useRouter } from 'next/dist/client/router';
 import styles from '../../../styles/items/modal/modal.module.css';
 
-export default function Modal(id) {
+export default function NotApprovedModal(id) {
   const router = useRouter();
   const setIsModalActive = useSetRecoilState(ModalUpdate);
 
-  const closeModal = () => {
+  const closeModalAndGoNoteDetailPage = () => {
     setIsModalActive(true);
     router.push({
       pathname: '/note/[id]',
@@ -25,7 +25,10 @@ export default function Modal(id) {
           아직 승인되지 않은 노트입니다.
           <p /> 다소 정확하지 않은 정보가 <p /> 포함되어 있을 수 있습니다.
         </span>
-        <button className={styles.ok_button} onClick={closeModal}>
+        <button
+          className={styles.ok_button}
+          onClick={closeModalAndGoNoteDetailPage}
+        >
           OK
         </button>
       </div>

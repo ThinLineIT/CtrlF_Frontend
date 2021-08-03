@@ -1,19 +1,19 @@
 import Link from 'next/link';
-import Modal from '../modal/modal';
-import useNoteSearch from '../../../hooks/use_note_search';
+import NotApprovedModal from '../modal/not_approved_modal';
 import styles from '../../../styles/items/notes/note_list.module.css';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { ModalUpdate, noteNumber, MyToggle } from '../../../store/atom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import usePagination from '../../../hooks/use_pagination';
 
 export default function NoteList() {
-  const observer = useRef();
+  const noteObserver = useRef();
   const [lists, setLists] = useState([]);
   const toggle = useRecoilValue(MyToggle);
   const [noteId, setNoteId] = useState('');
   const setNoteNum = useSetRecoilState(noteNumber);
   const [cursorNumber, setCursorNumber] = useState(0);
-  const { notes, hasMore, loading, length } = useNoteSearch(cursorNumber);
+  const { notes, hasMore, loading, length } = usePagination(cursorNumber);
   const [isModalActive, setIsModalActive] = useRecoilState(ModalUpdate);
 
   useEffect(() => {
@@ -21,40 +21,45 @@ export default function NoteList() {
     if (toggle === '') {
       setLists(notes);
     } else if (toggle === 'true') {
-      setLists(notes.filter((a) => a.is_approved == true));
+      setLists(notes.filter((note) => note.is_approved == true));
     } else if (toggle === 'false') {
-      setLists(notes.filter((a) => a.is_approved == false));
+      setLists(notes.filter((note) => note.is_approved == false));
     }
   }, [notes, toggle]);
 
   const lastNoteElementRef = useCallback(
     (node) => {
       if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
+      if (noteObserver.current) noteObserver.current.disconnect();
+      noteObserver.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setCursorNumber((prevCursorNumber) => prevCursorNumber + 30);
+          const everyNextCursorNumber = 30;
+          setCursorNumber(
+            (prevCursorNumber) => prevCursorNumber + everyNextCursorNumber
+          );
         }
       });
-      if (node) observer.current.observe(node);
+      if (node) noteObserver.current.observe(node);
     },
     [loading, hasMore]
   );
 
-  const handleClick = (e, id, status) => {
+  const ifNotApprovedNoteClicked = (event, id, status) => {
     if (status !== 'true') {
-      e.preventDefault();
+      event.preventDefault();
       setIsModalActive(false);
       setNoteId(id);
     }
   };
 
-  // const getTheme = (index) => {
-  //   const func = Math.floor((index / 5) % 15);
-  //   console.log(`styles.color_${func}`);
-  //   // console.log(`styles.color_(${index} / 5 ) % 15)`);
-  //   return `styles.color_${func}`;
-  // };
+  /*  노트 색상에 사용할 함수인데, 아직 올바른 동작원리를 찾지 못했습니다. 열심히 찾아보고 머리를 굴리고 있으나, 시간이 좀 걸릴 듯 싶어서
+  우선 주석으로 처리해놓겠습니다.
+  const getTheme = (index) => {
+    const func = Math.floor((index / 5) % 15);
+    console.log(`styles.color_${func}`);
+    // console.log(`styles.color_(${index} / 5 ) % 15)`);
+    return `styles.color_${func}`;
+  };*/
 
   return (
     <div className={styles.container}>
@@ -73,7 +78,11 @@ export default function NoteList() {
                   <a
                     className={styles.link}
                     onClick={(e) =>
-                      handleClick(e, `${note.id}`, `${note.is_approved}`)
+                      ifNotApprovedNoteClicked(
+                        e,
+                        `${note.id}`,
+                        `${note.is_approved}`
+                      )
                     }
                   >
                     {note.title}
@@ -88,13 +97,17 @@ export default function NoteList() {
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
                 )}
-                ${getTheme(index)}`}
+                `}
               >
                 <Link href="/note/[id]" as={`/note/${note.id}`}>
                   <a
                     className={styles.link}
                     onClick={(e) =>
-                      handleClick(e, `${note.id}`, `${note.is_approved}`)
+                      ifNotApprovedNoteClicked(
+                        e,
+                        `${note.id}`,
+                        `${note.is_approved}`
+                      )
                     }
                   >
                     {note.title}
@@ -109,7 +122,7 @@ export default function NoteList() {
           isModalActive ? `${styles.hidden}` : ''
         }`}
       >
-        <Modal id={noteId} />
+        <NotApprovedModal id={noteId} />
       </div>
     </div>
   );
