@@ -12,54 +12,70 @@
   height: 100%;
   position: relative;
 }
-
-/* .color_0 {
-  border: 1px solid red;
+/* 
+.color_0 {
+  background: url('../../../../public/images/notes/note4.svg') center no-repeat;
+  background-size: contain;
 }
 .color_1 {
-  border: 1px solid blue;
+  background: url('../../../../public/images/notes/note5.svg') center no-repeat;
+  background-size: contain;
 }
 .color_2 {
-  border: 1px solid green;
+  background: url('../../../../public/images/notes/note6.svg') center no-repeat;
+  background-size: contain;
 }
 .color_3 {
-  border: 1px solid pink;
+  background: url('../../../../public/images/notes/note7.svg') center no-repeat;
+  background-size: contain;
 }
 .color_4 {
-  border: 1px solid yellow;
+  background: url('../../../../public/images/notes/note8.svg') center no-repeat;
+  background-size: contain;
 }
 .color_5 {
-  border: 1px solid lightsalmon;
+  background: url('../../../../public/images/notes/note9.svg') center no-repeat;
+  background-size: contain;
 }
 .color_6 {
-  border: 1px solid sandybrown;
+  background: url('../../../../public/images/notes/note11.svg') center no-repeat;
+  background-size: contain;
 }
 .color_7 {
-  border: 1px solid slateblue;
+  background: url('../../../../public/images/notes/note15.svg') center no-repeat;
+  background-size: contain;
 }
 .color_8 {
-  border: 1px solid powderblue;
+  background: url('../../../../public/images/notes/note3.svg') center no-repeat;
+  background-size: contain;
 }
 .color_9 {
-  border: 1px solid slategrey;
+  background: url('../../../../public/images/notes/note2.svg') center no-repeat;
+  background-size: contain;
 }
 .color_10 {
-  border: 1px solid blanchedalmond;
+  background: url('../../../../public/images/notes/note13.svg') center no-repeat;
+  background-size: contain;
 }
 .color_11 {
-  border: 1px solid burlywood;
+  background: url('../../../../public/images/notes/note14.svg') center no-repeat;
+  background-size: contain;
 }
 .color_12 {
-  border: 1px solid black;
+  background: url('../../../../public/images/notes/note1.svg') center no-repeat;
+  background-size: contain;
 }
 .color_13 {
-  border: 1px solid turquoise;
+  background: url('../../../../public/images/notes/note2.svg') center no-repeat;
+  background-size: contain;
 }
 .color_14 {
-  border: 1px solid saddlebrown;
+  background: url('../../../../public/images/notes/note3.svg') center no-repeat;
+  background-size: contain;
 }
 .color_15 {
-  border: 1px solid firebrick;
+  background: url('../../../../public/images/notes/note12.svg') center no-repeat;
+  background-size: contain;
 } */
 
 .container_note:hover {
@@ -67,7 +83,7 @@
   opacity: 0.9;
 }
 
-/* 밑 내용은 노트 색깔 css 작업인데, 하드코딩이라서 NoteList 컴포넌트의 div태그에다가 className={styles.color_(index / 5) % 15} 와 같이 조만간 클래스명을 추가하고 수정해서, 기능으로 구현하도록 하겠습니다. 따라서 위의 color_${number}와 같은 형식을 만들어놓았습니다. */
+/* 밑 내용은 노트 색깔 css 작업인데, 보시다시피 하드코딩이라서 NoteList 컴포넌트의 div태그에다가 className={styles.color_(index / 5) % 15} 와 같이 조만간 클래스명을 추가하고 수정해서, 기능으로 구현하도록 하겠습니다. 따라서 위의 color_${number}와 같은 형식을 만들어놓았습니다. */
 
 .container_note:nth-of-type(n + 1):nth-of-type(-n + 5) {
   background: url('../../../../public/images/notes/note4.svg') center no-repeat;

@@ -49,6 +49,13 @@ export default function NoteList() {
     }
   };
 
+  // const getTheme = (index) => {
+  //   const func = Math.floor((index / 5) % 15);
+  //   console.log(`styles.color_${func}`);
+  //   // console.log(`styles.color_(${index} / 5 ) % 15)`);
+  //   return `styles.color_${func}`;
+  // };
+
   return (
     <div className={styles.container}>
       {lists &&
@@ -60,7 +67,7 @@ export default function NoteList() {
                 key={note.id}
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
-                )} ${`styles.color_((${note.id} / 5) % 15)`}`}
+                )}`}
               >
                 <Link href="/note/[id]" as={`/notes/${note.id}`}>
                   <a
@@ -80,7 +87,8 @@ export default function NoteList() {
                 key={note.id}
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
-                )}`}
+                )}
+                ${getTheme(index)}`}
               >
                 <Link href="/note/[id]" as={`/note/${note.id}`}>
                   <a
