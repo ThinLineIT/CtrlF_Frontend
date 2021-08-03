@@ -13,11 +13,11 @@ const LoginForm = () => {
   const  [ loginPassword, setloginPassword ] = useState("")
   const  [ loginValidate, setloginValidate ] = useState("")
   
-  const onLoginEmailHandler = (e) => {
-    setLoginEmail(e.currentTarget.value)
+  const onLoginEmailHandler = (event) => {
+    setLoginEmail(event.currentTarget.value)
   }
-  const onLoginPasswordHandler = (e) => {
-    setloginPassword(e.currentTarget.value)
+  const onLoginPasswordHandler = (event) => {
+    setloginPassword(event.currentTarget.value)
   }
   
   useEffect(()=> {
@@ -29,20 +29,20 @@ const LoginForm = () => {
     }
   }, [])
 
-  const loginDataSubmit = async ( e ) => {
-    e.preventDefault()
+  const loginDataSubmit = async ( event ) => {
+    event.preventDefault()
     
     if(!emailReg(loginEmail)) {
       setloginValidate(false);
       return
     } 
 
-    const data = {
+    const loginData = {
       "password": loginPassword,
       "email": loginEmail
     }
     
-    const success = await loginHook( data );
+    const success = await loginHook( loginData );
     
     if(success.token) {
       Cookies.set('token', success.token.split('.')[1]);      

@@ -5,16 +5,16 @@ import { emailReg } from "../../hooks/Reg";
 
 export default function SignUpFormEmail({ styles }) {
     
-    const [Email, setEmail] = useRecoilState(emailAtom);
+    const [email, setEmail] = useRecoilState(emailAtom);
     const [overlap, setIsOverlap] = useRecoilState(isOverlapedAtom)
     
-    const onEmailHandler = (e) => {
-        setEmail(e.currentTarget.value);
+    const onEmailHandler = (event) => {
+        setEmail(event.currentTarget.value);
     }
 
     const overlapCheck = async () => {
-        if(emailReg(Email)) {
-            const isOverlap = await overlapApi(Email)
+        if(emailReg(email)) {
+            const isOverlap = await overlapApi(email)
             if(isOverlap.status === 200) {
                 alert("사용 가능한 이메일입니다");
                 setIsOverlap(true)
@@ -28,7 +28,7 @@ export default function SignUpFormEmail({ styles }) {
 
     const emailAuth = async () => {
         if(overlap){
-            const isAuth = await emailAuthApi(Email);
+            const isAuth = await emailAuthApi(email);
             alert("인증 코드를 이메일로 보내드렸습니다.")
         }else
             alert("중복확인을 먼저 해주세요!")
@@ -41,7 +41,7 @@ export default function SignUpFormEmail({ styles }) {
                     className={styles.email__input}
                     onChange={onEmailHandler}
                     placeholder="Email"
-                    value={Email}
+                    value={email}
                 />
                 <button 
                 className={styles.email__overlap__btn}

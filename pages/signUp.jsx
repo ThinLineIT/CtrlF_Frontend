@@ -61,8 +61,7 @@ export default function SignUp() {
       >
         <SignUpFormEmail styles={styles} />
         <SignUpFormPassword styles={styles} />
-        <div className={styles.submit__btn}>
-          
+        <div className={styles.submit__btn}> 
           {
             OVERLAP && NICKOVERLAP && PWVALIDATED
             ? (<button type="submit" className={styles.signup__submit} > Create An Account </button>)

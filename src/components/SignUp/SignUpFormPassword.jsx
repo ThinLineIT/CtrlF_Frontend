@@ -15,12 +15,12 @@ export default function SignUpFormPassword ({ styles }) {
   const [nickName, setNickName] = useRecoilState(nickNameAtom);
   const [nickOverlap, setNickOverlap] = useRecoilState(isNickOverlapedAtom);
   
-    const onPasswordHandler = (e) => {
+    const onPasswordHandler = (event) => {
       setPassword(e.currentTarget.value)
     }
 
-    const onPasswordConfirmHandler = (e) => {
-      setPasswordConfirm(e.currentTarget.value)
+    const onPasswordConfirmHandler = (event) => {
+      setPasswordConfirm(event.currentTarget.value)
       if(passwordConfirm === "") {
         return
       } else if(password === e.currentTarget.value && pwRegCheck === true) {
@@ -30,12 +30,12 @@ export default function SignUpFormPassword ({ styles }) {
       }
     }
 
-    const onAuthCodedHandler = (e) => {
-      setAuthCode(e.currentTarget.value)
+    const onAuthCodedHandler = (event) => {
+      setAuthCode(event.currentTarget.value)
     }
 
-    const onNickNameHandler = (e) => {
-      setNickName(e.currentTarget.value)
+    const onNickNameHandler = (event) => {
+      setNickName(event.currentTarget.value)
     }
 
     const passwordCheck = () => {
@@ -52,8 +52,8 @@ export default function SignUpFormPassword ({ styles }) {
         setNickOverlap(false);
         return
       }
-      const IsNickNameOverlap = await nickNameOverlap(nickName);
-      if(IsNickNameOverlap.status === 200) {
+      const isNickNameOverlap = await nickNameOverlap(nickName);
+      if(isNickNameOverlap.status === 200) {
         setNickOverlap(true);
       } else {
         setNickOverlap(false);
