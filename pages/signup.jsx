@@ -1,18 +1,24 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { isJwtActive } from '../src/store/atom';
 
 export default function Signup() {
   const router = useRouter();
+  const [jwt, setJwt] = useRecoilState(isJwtActive);
+  const USER_KEY = 'isUserActive';
 
-  const goMainPage = () => {
+  const goMainPageAndUserActive = () => {
     router.push('/');
+    setJwt(true);
+    localStorage.setItem(USER_KEY, true);
   };
 
   return (
     <div>
       <h1>Hello, Im Login</h1>
       <button
-        onClick={goMainPage}
+        onClick={goMainPageAndUserActive}
         style={{
           width: '70px',
           height: '70px',

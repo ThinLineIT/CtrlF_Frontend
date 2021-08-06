@@ -12,7 +12,7 @@
   height: 100%;
   position: relative;
 }
-/* 
+
 .color_0 {
   background: url('../../../../public/images/notes/note4.svg') center no-repeat;
   background-size: contain;
@@ -76,103 +76,11 @@
 .color_15 {
   background: url('../../../../public/images/notes/note12.svg') center no-repeat;
   background-size: contain;
-} */
+}
 
 .container_note:hover {
   transform: scale(1.015);
   opacity: 0.9;
-}
-
-/* 밑 내용은 노트 색깔 css 작업인데, 보시다시피 하드코딩이라서 NoteList 컴포넌트의 div태그에다가 className={styles.color_(index / 5) % 15} 와 같이 조만간 클래스명을 추가하고 수정해서, 기능으로 구현하도록 하겠습니다. 따라서 위의 color_${number}와 같은 형식을 만들어놓았습니다. */
-
-.container_note:nth-of-type(n + 1):nth-of-type(-n + 5) {
-  background: url('../../../../public/images/notes/note4.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 6):nth-of-type(-n + 10) {
-  background: url('../../../../public/images/notes/note5.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 11):nth-of-type(-n + 15) {
-  background: url('../../../../public/images/notes/note6.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 16):nth-of-type(-n + 20) {
-  background: url('../../../../public/images/notes/note7.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 21):nth-of-type(-n + 25) {
-  background: url('../../../../public/images/notes/note8.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 26):nth-of-type(-n + 30) {
-  background: url('../../../../public/images/notes/note9.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 31):nth-of-type(-n + 35) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note11.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 36):nth-of-type(-n + 40) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note15.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 41):nth-of-type(-n + 45) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note3.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 46):nth-of-type(-n + 50) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note2.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 51):nth-of-type(-n + 55) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note13.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 56):nth-of-type(-n + 60) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note14.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 61):nth-of-type(-n + 65) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note4.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 66):nth-of-type(-n + 70) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note7.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 71):nth-of-type(-n + 75) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note9.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 76):nth-of-type(-n + 80) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note11.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 81):nth-of-type(-n + 85) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note14.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 86):nth-of-type(-n + 90) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note15.svg') center no-repeat;
-  background-size: contain;
-}
-.container_note:nth-of-type(n + 91) {
-  height: 100%;
-  background: url('../../../../public/images/notes/note4.svg') center no-repeat;
-  background-size: contain;
 }
 
 .container_note a {

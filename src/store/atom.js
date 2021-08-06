@@ -29,3 +29,13 @@ export const noteModal = atom({
   key: 'add_note_modal',
   default: true,
 });
+
+export const isJwtActive = atom({
+  key: 'json_web_token',
+  default: false,
+});
+
+export const userRequestNoteTextarea = atom({
+  key: 'user_request_note',
+  default: '',
+});

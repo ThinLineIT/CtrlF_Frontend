@@ -52,15 +52,6 @@ export default function NoteList() {
     }
   };
 
-  /*  노트 색상에 사용할 함수인데, 아직 올바른 동작원리를 찾지 못했습니다. 열심히 찾아보고 머리를 굴리고 있으나, 시간이 좀 걸릴 듯 싶어서
-  우선 주석으로 처리해놓겠습니다.
-  const getTheme = (index) => {
-    const func = Math.floor((index / 5) % 15);
-    console.log(`styles.color_${func}`);
-    // console.log(`styles.color_(${index} / 5 ) % 15)`);
-    return `styles.color_${func}`;
-  };*/
-
   return (
     <div className={styles.container}>
       {lists &&
@@ -72,7 +63,7 @@ export default function NoteList() {
                 key={note.id}
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
-                )}`}
+                )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}`}
               >
                 <Link href="/note/[id]" as={`/notes/${note.id}`}>
                   <a
@@ -96,7 +87,7 @@ export default function NoteList() {
                 key={note.id}
                 className={`${styles.container_note} ${getStyles(
                   note.is_approved
-                )}
+                )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}
                 `}
               >
                 <Link href="/note/[id]" as={`/note/${note.id}`}>

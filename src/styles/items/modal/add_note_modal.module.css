@@ -36,6 +36,12 @@
   line-height: 3rem;
   margin-bottom: -10px;
 }
+
+.plates_span {
+  font-size: 1.35rem;
+  line-height: 2.7rem;
+  font-weight: bolder;
+}
 .button {
   width: 85%;
   height: 40px;
@@ -53,4 +59,75 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 1em;
+}
+
+.login_plates {
+  width: 90%;
+  height: 3em;
+  border: 1px solid grey;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  border-radius: 10px/10px;
+}
+.login_textarea {
+  width: 90%;
+  height: 8em;
+  border: 1px solid grey;
+  margin: 1em auto 0 auto;
+  display: flex;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px/10px;
+  -webkit-appearance: none;
+}
+.btn_wrp {
+  width: 90%;
+  height: 5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.login_button_ok {
+  width: 6em;
+  height: 2.7em;
+  border-radius: 10px/10px;
+  background: #4db7e6;
+  margin: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: white;
+}
+.login_button_cancel {
+  width: 6em;
+  height: 2.7em;
+  border-radius: 10px/10px;
+  background: #4db7e6;
+  margin: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.login_plates:focus {
+  border: 1px solid #b5bdff;
+}
+.login_textarea:focus {
+  border: 1px solid #b5bdff;
 }

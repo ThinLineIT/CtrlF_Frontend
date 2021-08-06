@@ -168,20 +168,20 @@
 }
 
 .icons_bookmark {
-  background: url('../../../../public/images/note_detail/bookmark.svg') center
-    no-repeat;
+  background: url('../../../../public/images/note_detail/bookmark_button.svg')
+    center no-repeat;
   background-size: cover;
   position: absolute;
   top: 120px;
   right: 120px;
-  width: 3em;
-  height: 3em;
-  margin-top: 0.2em;
+  width: 2em;
+  height: 2em;
+  margin-top: 0.6em;
 }
 
 .icons_share {
-  background: url('../../../../public/images/note_detail/share.svg') center
-    no-repeat;
+  background: url('../../../../public/images/note_detail/share_button.svg')
+    center no-repeat;
   background-size: cover;
   position: absolute;
   top: 120px;
