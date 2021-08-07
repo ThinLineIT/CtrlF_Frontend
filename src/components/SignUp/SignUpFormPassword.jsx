@@ -16,14 +16,14 @@ export default function SignUpFormPassword ({ styles }) {
   const [nickOverlap, setNickOverlap] = useRecoilState(isNickOverlapedAtom);
   
     const onPasswordHandler = (event) => {
-      setPassword(e.currentTarget.value)
+      setPassword(event.currentTarget.value)
     }
 
     const onPasswordConfirmHandler = (event) => {
       setPasswordConfirm(event.currentTarget.value)
       if(passwordConfirm === "") {
         return
-      } else if(password === e.currentTarget.value && pwRegCheck === true) {
+      } else if(password === event.currentTarget.value && pwRegCheck === true) {
         setpassworSameCheck(true)
       } else {
         setpassworSameCheck(false)

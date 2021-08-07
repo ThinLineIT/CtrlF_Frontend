@@ -24,8 +24,8 @@ export default function SignUp() {
   const PASSWORDCHECK = useRecoilValue(passwordCheck)
   const OVERLAP = useRecoilValue(isOverlaped)
 
-  const onSubmit = async ( e ) => {
-    e.preventDefault()
+  const onSubmit = async ( event ) => {
+    event.preventDefault()
 
     const signUpRequset = {
       "email": EMAIL,
