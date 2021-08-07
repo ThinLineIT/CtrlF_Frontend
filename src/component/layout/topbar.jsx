@@ -72,7 +72,7 @@ export default function Topbar() {
           </div>
         ) : (
           <div className={styles.top__signup__list}>
-            <Link href="/signup">
+            <Link href="/signUp">
               <a>로그인 |</a>
             </Link>
             <Link href="/regist">
