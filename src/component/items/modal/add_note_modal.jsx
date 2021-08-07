@@ -23,7 +23,7 @@ export default function AddNoteModal() {
     setIsModalActive(true);
   };
   const closeModalAndGoSignupPage = () => {
-    router.push('/signUp');
+    router.push('/login');
     setIsModalActive(true);
   };
 

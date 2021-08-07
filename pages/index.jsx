@@ -3,13 +3,15 @@ import Head from 'next/head';
 import Main from '../src/component/layout/main';
 import { isJwtActive } from '../src/store/atom';
 import { useRecoilState } from 'recoil';
+import { useCookies } from 'react-cookie';
 
 export default function Home() {
   const USER_KEY = 'isUserActive';
   const [jwt, setJwt] = useRecoilState(isJwtActive);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
   useEffect(() => {
-    localStorage.getItem(USER_KEY) ? setJwt(true) : setJwt(false);
+    cookies.token !== undefined ? setJwt(true) : setJwt(false);
   }, []);
 
   return (

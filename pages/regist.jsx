@@ -5,7 +5,7 @@ export default function Regist() {
   const router = useRouter();
 
   const goSignupPage = () => {
-    router.push('/signup');
+    router.push('/login');
   };
 
   return (

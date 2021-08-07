@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import router from 'next/router';
+import { useRecoilState } from 'recoil';
+import { useCookies } from 'react-cookie';
+import { isJwtActive } from '../../store/atom';
+import usePagination from '../../hooks/use_pagination';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../../styles/layout/topbar.module.css';
-import usePagination from '../../hooks/use_pagination';
-import { useRecoilState } from 'recoil';
-import { isJwtActive } from '../../store/atom';
-import router from 'next/router';
 
 export default function Topbar() {
   const logOutRef = useRef();
@@ -13,6 +14,7 @@ export default function Topbar() {
   const [jwt, setJwt] = useRecoilState(isJwtActive);
   const [query, setQuery] = useState('');
   const [cursorNumber, setCursorNumber] = useState(0);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   usePagination(cursorNumber, query);
 
   const localClear = () => {
@@ -21,7 +23,7 @@ export default function Topbar() {
 
   const onLogOut = () => {
     setJwt(false);
-    localStorage.clear();
+    removeCookie('token');
     router.push('/');
   };
 
@@ -72,7 +74,7 @@ export default function Topbar() {
           </div>
         ) : (
           <div className={styles.top__signup__list}>
-            <Link href="/signUp">
+            <Link href="/login">
               <a>로그인 |</a>
             </Link>
             <Link href="/regist">
