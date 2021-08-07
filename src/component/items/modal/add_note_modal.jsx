@@ -52,7 +52,6 @@ export default function AddNoteModal() {
     setJwt(true);
     setIsModalActive(true);
     localStorage.setItem('userRequest', JSON.stringify(requestNoteContent));
-    console.log(requestNoteContent);
   };
 
   switch (jwt) {

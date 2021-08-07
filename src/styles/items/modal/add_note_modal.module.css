@@ -126,8 +126,8 @@
 }
 
 .login_plates:focus {
-  border: 1px solid #b5bdff;
+  border: 2px solid #b5bdff;
 }
 .login_textarea:focus {
-  border: 1px solid #b5bdff;
+  border: 2px solid #b5bdff;
 }

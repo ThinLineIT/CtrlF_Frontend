@@ -37,9 +37,11 @@
 }
 
 .index_title_span {
+  cursor: pointer;
   font-size: 3.5rem;
   font-weight: 1000;
   padding: 0 1rem;
+  position: relative;
 }
 
 .index_index {
@@ -201,4 +203,29 @@
   line-height: 3rem;
   text-decoration: underline;
   text-underline-offset: 0.5em;
+}
+
+.hiddenRef {
+  width: 80%;
+  margin: 0 auto;
+  position: absolute;
+  top: 40px;
+  left: 18px;
+}
+
+.rightClickSpan {
+  border: 1px solid grey;
+  border-radius: 10px/10px;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.rightClickSpan span:first-child {
+  border-bottom: 1px solid grey;
+}
+.hidden {
+  display: none;
 }

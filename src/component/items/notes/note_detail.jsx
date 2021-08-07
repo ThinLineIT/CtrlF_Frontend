@@ -1,36 +1,64 @@
+import React, { useRef } from 'react';
 import styles from '../../../styles/items/notes/note_detail.module.css';
 
+export function RightClickSpan() {
+  return (
+    <div className={styles.rightClickSpan}>
+      <span>이름 수정</span>
+      <span>삭제 요청</span>
+    </div>
+  );
+}
+
 export default function NoteDetail({ note }) {
+  const hiddenRef = useRef();
   const { title } = note;
+
+  const onRightClick = (e) => {
+    e.preventDefault();
+    console.log(hiddenRef);
+    hiddenRef.current.classList.toggle('note_detail_hidden__1TR6C');
+  };
 
   return (
     <div className={styles.wrap}>
       <div className={styles.index}>
         <div className={styles.index_wrap}>
           <div className={styles.index_title}>
-            <span className={styles.index_title_span}>{title}</span>
+            <span
+              className={styles.index_title_span}
+              onContextMenu={onRightClick}
+            >
+              {title}
+              <div
+                ref={hiddenRef}
+                className={`${styles.hidden} ${styles.hiddenRef}`}
+              >
+                <RightClickSpan />
+              </div>
+            </span>
           </div>
           <div className={styles.index_index}>
             <div className={styles.index_topic}>
               <ul className={styles.index_topic_ul}>
-                <li>Topic</li>
-                <li>Topic</li>
-                <li>Topic</li>
-                <li>Topic</li>
-                <li>Topic</li>
-                <li>Topic</li>
-                <li>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
+                <li onContextMenu={onRightClick}>Topic</li>
               </ul>
             </div>
             <div className={styles.index_mini_title}>
               <ul className={styles.index_mini_title_ul}>
-                <li>디자인 패턴이란 무엇인가?</li>
-                <li>내가 보고 있는 PAGE</li>
-                <li>PAGE_PAGE</li>
-                <li>PAGE</li>
-                <li>PAGE</li>
-                <li>PAGE</li>
-                <li>PAGE</li>
+                <li onContextMenu={onRightClick}>디자인 패턴이란 무엇인가?</li>
+                <li onContextMenu={onRightClick}>내가 보고 있는 PAGE</li>
+                <li onContextMenu={onRightClick}>PAGE_PAGE</li>
+                <li onContextMenu={onRightClick}>PAGE</li>
+                <li onContextMenu={onRightClick}>PAGE</li>
+                <li onContextMenu={onRightClick}>PAGE</li>
+                <li onContextMenu={onRightClick}>PAGE</li>
               </ul>
             </div>
           </div>
