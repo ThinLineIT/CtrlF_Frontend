@@ -1,0 +1,175 @@
+.section input[id*="slide"] {
+    display: none;
+}
+
+.slidewrap {
+    overflow: hidden;
+    width: 52.75rem;
+    margin: 0 auto
+}
+
+.slidelist {
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.section .slidelist > li{
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .1s;
+}
+
+.section .slidelist > li > a {
+    display: block;
+    position: relative;
+}
+
+.section .slidelist #labeltest {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+
+.section .slidelist .left {
+    background-color: black;
+    left: 30px;
+    background:url("../public/left-arrow.png") center center / 100% no-repeat;
+}
+
+.section .slidelist .right {
+    right: 30px;
+    background: url("../public/right-arrow.png") center center / 100% no-repeat;
+}
+
+@keyframes test1 {
+    0% {transform:translateX(4%);}
+    50% {transform:translateX(-4%);}
+    100% {transform:translateX(0%);}
+}
+
+@keyframes test2 {
+    0% {transform:translateX(-96%);}
+    50% {transform:translateX(-104%);}
+    100% {transform:translateX(-100%);}
+}
+
+@keyframes test3 {
+    0% {transform:translateX(-196%);}
+    50% {transform:translateX(-204%);}
+    100% {transform:translateX(-200%);}
+}
+
+@keyframes test4 {
+    0% {transform:translateX(-296%);}
+    50% {transform:translateX(-304%);}
+    100% {transform:translateX(-300%);}
+}
+
+@keyframes test5 {
+    0% {transform:translateX(-396%);}
+    50% {transform:translateX(-404%);}
+    100% {transform:translateX(-400%);}
+}
+
+/* .section [id="slide01"]:checked ~ .slidewrap .slidelist >li {transform:translateX(0%)}
+.section [id="slide02"]:checked ~ .slidewrap .slidelist >li {transform:translateX(-100%)}
+.section [id="slide03"]:checked ~ .slidewrap .slidelist >li {transform:translateX(-200%);}
+.section [id="slide04"]:checked ~ .slidewrap .slidelist >li {transform:translateX(-300%);}
+.section [id="slide05"]:checked ~ .slidewrap .slidelist >li {transform:translateX(-400%);} */
+
+.section [id="slide01"]:checked ~ .slidewrap .slidelist >li {animation: test1 0.5s forwards}
+.section [id="slide02"]:checked ~ .slidewrap .slidelist >li {animation: test2 0.3s forwards}
+.section [id="slide03"]:checked ~ .slidewrap .slidelist >li {animation: test3 0.3s forwards}
+.section [id="slide04"]:checked ~ .slidewrap .slidelist >li {animation: test4 0.3s forwards}
+.section [id="slide05"]:checked ~ .slidewrap .slidelist >li {animation: test5 0.3s forwards}
+
+.slidelist {
+    list-style:none;
+    padding-left:0px;
+}
+
+.left {
+    position: absolute;
+    z-index: 10;
+    top: 20%;
+    transform: translateY(-50%);
+    padding: 20px;
+    cursor: pointer;
+}
+
+.right {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    cursor: pointer;
+}
+
+.com {
+    display: flex;
+    width: 51.75rem;
+    height: 464px;
+    justify-content: center;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 3px 11px #00000029;
+    border-radius: 25px;
+    margin: 8px;
+}
+
+.input {
+    width: 81%;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: 2px 2px 5px #0000004D;
+    font-size: 1.8rem;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+    height: 5rem;
+}
+
+.btn {
+    font-size: 2.125rem;
+    background-color: #8BC8FD;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    width: 85.6%; 
+    cursor: pointer;
+    height: 5rem;
+}
+
+.signup__title {
+    font-size: 2.125rem;
+    font-weight: bold;
+    margin-bottom: 4.063rem;
+}
+
+.error {
+    margin-bottom: 10px;
+}
+
+.error__message {
+    font-size: 25px;
+}
+
+
+.fail {
+    color: red;
+}
+
+.success {
+    color: #8BC8FD
+}
+
+.signup__text {
+    font-size: 1.813rem;
+    color: black;
+}
