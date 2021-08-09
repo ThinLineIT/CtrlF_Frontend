@@ -77,7 +77,7 @@ export default function Topbar() {
             <Link href="/login">
               <a>로그인 |</a>
             </Link>
-            <Link href="/regist">
+            <Link href="/signUp">
               <a>회원가입</a>
             </Link>
           </div>

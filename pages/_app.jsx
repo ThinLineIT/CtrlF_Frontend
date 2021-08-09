@@ -3,8 +3,8 @@ import '../src/styles/globals.css';
 import { RecoilRoot } from 'recoil';
 import { CookiesProvider } from 'react-cookie';
 import 'semantic-ui-css/semantic.min.css';
-import Topbar from '../src/component/layout/topbar';
-import Footer from '../src/component/layout/footer';
+import Topbar from '../src/components/layout/topbar';
+import Footer from '../src/components/layout/footer';
 import styles from '../src/styles/Home.module.css';
 
 function MyApp({ Component, pageProps }) {

@@ -2,7 +2,7 @@ import Axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Loader } from 'semantic-ui-react';
-import NoteDetail from '../../src/component/items/notes/note_detail';
+import NoteDetail from '../../src/components/items/notes/note_detail';
 
 const Post = ({ item }) => {
   const router = useRouter();

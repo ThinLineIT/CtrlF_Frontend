@@ -26,7 +26,7 @@ export default function NotApprovedModal(id) {
           <p /> 다소 정확하지 않은 정보가 <p /> 포함되어 있을 수 있습니다.
         </span>
         <button
-          className={styles.ok_button}
+          className={styles.modal_ok_button}
           onClick={closeModalAndGoNoteDetailPage}
         >
           OK

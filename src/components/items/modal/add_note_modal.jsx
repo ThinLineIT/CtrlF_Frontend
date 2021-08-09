@@ -28,7 +28,7 @@ export default function AddNoteModal() {
   };
 
   const closeModalAndGoRegistPage = () => {
-    router.push('/regist');
+    router.push('/signUp');
     setIsModalActive(true);
   };
 
