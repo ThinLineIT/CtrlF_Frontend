@@ -1,0 +1,91 @@
+import {
+  email,
+  authCode,
+  nickName,
+  password,
+  passwordCheck as passwordCheckAtom,
+} from '../../store/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { signUpApi } from '../../utils/SignUpHook';
+import errorStyling from '../../utils/ErrorStyling';
+
+export default function PasswordConfirm({ styles, props }) {
+  const router = useRouter();
+  const EMAIL = useRecoilValue(email);
+  const AUTHCODE = useRecoilValue(authCode);
+  const NICKNAME = useRecoilValue(nickName);
+  const PASSWORD = useRecoilValue(password);
+
+  const [passwordCheckErrorMessage, setPasswordCheckErrorMessage] =
+    useState('');
+  const [passwordCheck, setPasswordCheck] = useRecoilState(passwordCheckAtom);
+  const [passwordCheckValidation, setPasswordCheckValidation] = useState('');
+
+  const onPasswordConfirmHandler = (event) => {
+    setPasswordCheck(event.currentTarget.value);
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    if (PASSWORD === passwordCheck) {
+      const signUpRequset = {
+        email: EMAIL,
+        nickname: NICKNAME,
+        password: PASSWORD,
+        code: AUTHCODE,
+        password_confirm: passwordCheck,
+      };
+      const passwordCheckElement1 = document.getElementById(
+        'passwordcheck__input'
+      );
+      const passwordCheckElement2 = document.getElementById(
+        'passwordcheck__error'
+      );
+
+      const signUpSuccess = await signUpApi(signUpRequset);
+      if (signUpSuccess.status === 201) {
+        passwordCheckElement1.style.border = 'none';
+        setPasswordCheckValidation(true);
+        router.push('/SignUpConfirm');
+      } else {
+        setPasswordCheckErrorMessage(signUpSuccess.data.message);
+        setPasswordCheckValidation(false);
+        errorStyling(passwordCheckElement1, passwordCheckElement2);
+      }
+    } else {
+      setPasswordCheckErrorMessage('비밀번호가 같지 않습니다');
+      setPasswordCheckValidation(false);
+      errorStyling(passwordCheckElement1, passwordCheckElement2);
+    }
+  };
+
+  return (
+    <div className={styles.com}>
+      <span className={styles.signup__title}>비밀번호 입력 / 확인</span>
+      <div className={styles.signup__text}></div>
+      <input
+        onChange={onPasswordConfirmHandler}
+        className={`${styles.signup__input} ${styles.input}`}
+        id="passwordcheck__input"
+        type="password"
+        placeholder="password 확인"
+      />
+      <div className={styles.error}>
+        {!passwordCheckValidation && (
+          <div
+            id="passwordcheck__error"
+            className={`${styles.error__message} ${styles.fail}`}
+          >
+            {passwordCheckErrorMessage}
+          </div>
+        )}
+      </div>
+      <button onClick={onSubmit} className={`${styles.btn}`}>
+        회원 가입
+      </button>
+    </div>
+  );
+}

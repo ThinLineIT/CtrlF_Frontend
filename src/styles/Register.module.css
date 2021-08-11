@@ -1,0 +1,272 @@
+.slidelist a {
+  cursor: default;
+}
+
+.section input[id*='slide'] {
+  display: none;
+}
+
+.slidewrap {
+  overflow: hidden;
+  width: 53.75rem;
+  margin: 0 auto;
+}
+
+.slidelist {
+  white-space: nowrap;
+  font-size: 0;
+}
+
+.section .slidelist > li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  transition: all 0.08s;
+}
+
+.section .slidelist > li > a {
+  display: block;
+  position: relative;
+}
+
+.section .slidelist #labeltest {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 50px;
+  cursor: pointer;
+}
+
+.section .slidelist .left {
+  background-color: black;
+  left: 30px;
+  background: url('../../public/left-arrow.png') center center / 100% no-repeat;
+}
+
+.section .slidelist .right {
+  right: 30px;
+  background: url('../../public/right-arrow.png') center center / 100% no-repeat;
+}
+
+@keyframes test1 {
+  0% {
+    transform: translateX(1%);
+  }
+  50% {
+    transform: translateX(-1%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes test2 {
+  0% {
+    transform: translateX(-98%);
+  }
+  50% {
+    transform: translateX(-102%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes test3 {
+  0% {
+    transform: translateX(-198%);
+  }
+  50% {
+    transform: translateX(-202%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes test4 {
+  0% {
+    transform: translateX(-298%);
+  }
+  50% {
+    transform: translateX(-302%);
+  }
+  100% {
+    transform: translateX(-300%);
+  }
+}
+
+@keyframes test5 {
+  0% {
+    transform: translateX(-398%);
+  }
+  50% {
+    transform: translateX(-402%);
+  }
+  100% {
+    transform: translateX(-400%);
+  }
+}
+
+.section [id='slide01']:checked ~ .slidewrap .slidelist > li {
+  animation: test1 0.1s ease forwards;
+}
+.section [id='slide02']:checked ~ .slidewrap .slidelist > li {
+  animation: test2 0.3s ease forwards;
+}
+.section [id='slide03']:checked ~ .slidewrap .slidelist > li {
+  animation: test3 0.3s ease forwards;
+}
+.section [id='slide04']:checked ~ .slidewrap .slidelist > li {
+  animation: test4 0.3s ease forwards;
+}
+.section [id='slide05']:checked ~ .slidewrap .slidelist > li {
+  animation: test5 0.3s ease forwards;
+}
+
+.slidelist {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.left {
+  position: absolute;
+  z-index: 10;
+  top: 20%;
+  transform: translateY(-50%);
+  padding: 20px;
+  cursor: pointer;
+}
+
+.com {
+  display: flex;
+  width: 52.75rem;
+  height: 480px;
+  justify-content: center;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 5px 3px 11px #00000029;
+  border-radius: 25px;
+  margin: 8px;
+}
+
+.input {
+  width: 81%;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 2px 2px 5px #0000004d;
+  font-size: 1.8rem;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  height: 5rem;
+}
+
+.btn {
+  font-size: 2.125rem;
+  background-color: #8bc8fd;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 85.6%;
+  cursor: pointer;
+  height: 5rem;
+}
+
+.signup__title {
+  font-size: 2.125rem;
+  font-weight: bold;
+  color: black;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.error {
+  margin-bottom: 10px;
+  width: 85.6%;
+}
+
+.error__message {
+  font-size: 25px;
+}
+
+.fail {
+  color: red;
+}
+
+.success {
+  color: #8bc8fd;
+}
+
+.signup__text {
+  font-size: 1.813rem;
+  color: black;
+  height: 4.063rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup__code {
+  color: #8bc8fd;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.reauth {
+  box-shadow: 5px 3px 11px #00000029;
+  border-radius: 25px;
+  z-index: 9;
+  background-color: white;
+  width: 52.75rem;
+  padding: 5.813rem 0 4.063rem 0;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reauth__btn {
+  width: 100%;
+  display: flex;
+  margin-top: 3rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small {
+  width: 38.9rem;
+  margin-top: 1.5rem;
+}
+
+.signup__confirm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 50px;
+  box-shadow: 5px 3px 11px #00000029;
+  background-color: white;
+  width: 51rem;
+  font-size: 2.125rem;
+  font-weight: bold;
+}
+
+.signup__confirm__text {
+  display: flex;
+  margin: 7.563rem 0 4.438rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup__confirm__btn {
+  font-size: 2.125rem;
+  background-color: #8bc8fd;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 85.6%;
+  margin-bottom: 7.563rem;
+  height: 5rem;
+  cursor: pointer;
+}

@@ -35,3 +35,14 @@ export const nickNameOverlap = (nick) => {
   );
   return request;
 };
+
+export const authCodeConfirm = (code) => {
+  const CODE = {
+    code: code,
+  };
+  const request = axios
+    .post(`${process.env.PUBLIC_BASE_API}/auth/verification-code/check`, CODE)
+    .then((res) => res)
+    .catch((err) => err.response);
+  return request;
+};
