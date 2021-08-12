@@ -18,24 +18,24 @@ export default function Email({ styles, emailOverlapSuccess }) {
   };
 
   const emailCheck = async () => {
-    const emailElement1 = document.getElementById('email__input');
-    const emailElement2 = document.getElementById('email__error');
+    const emailInputElement = document.getElementById('email__input');
+    const emailErrorElement = document.getElementById('email__error');
     if (emailReg(email)) {
       const isOverlap = await overlapApi(email);
       if (isOverlap.status === 200) {
         emailAuthApi(email);
-        emailElement1.style.border = 'none';
+        emailInputElement.style.border = 'none';
         setIsEmailOverlap(true);
         emailOverlapSuccess();
       } else {
         setEmailErrorMessage(isOverlap.data.message);
         setIsEmailOverlap(false);
-        errorStyling(emailElement1, emailElement2);
+        errorStyling(emailInputElement, emailErrorElement);
       }
     } else {
       setEmailErrorMessage('이메일의 형식이 올바르지 않습니다.');
       setIsEmailOverlap(false);
-      errorStyling(emailElement1, emailElement2);
+      errorStyling(emailInputElement, emailErrorElement);
     }
   };
 

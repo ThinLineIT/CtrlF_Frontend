@@ -18,24 +18,24 @@ export default function NickName({ styles, nickNameOverlapSuccess, props }) {
   };
 
   const nickNameCheck = async () => {
-    const nickElement1 = document.getElementById('nick__input');
-    const nickElement2 = document.getElementById('nick__error');
+    const nickInputElement = document.getElementById('nick__input');
+    const nickErrorElement = document.getElementById('nick__error');
     if (!nickReg(nickName)) {
       setNickErrorMessage('닉네임 형식이 안맞습니다');
       setNickNameValidation(false);
-      errorStyling(nickElement1, nickElement2);
+      errorStyling(nickInputElement, nickErrorElement);
       return;
     }
     const isNickNameChecked = await nickNameOverlap(nickName);
     if (isNickNameChecked.status === 200) {
-      nickElement1.style.border = 'none';
+      nickInputElement.style.border = 'none';
       setNickErrorMessage(isNickNameChecked.data.message);
       setNickNameValidation(true);
       nickNameOverlapSuccess();
     } else {
       setNickErrorMessage(isNickNameChecked.data.message);
       setNickNameValidation(false);
-      errorStyling(nickElement1, nickElement1);
+      errorStyling(nickInputElement, nickErrorElement);
     }
   };
 

@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import { signUpApi } from '../../utils/SignUpHook';
 import errorStyling from '../../utils/ErrorStyling';
 
-export default function PasswordConfirm({ styles, props }) {
+export default function PasswordConfirm({ styles }) {
   const router = useRouter();
   const EMAIL = useRecoilValue(email);
   const AUTHCODE = useRecoilValue(authCode);
@@ -38,27 +38,27 @@ export default function PasswordConfirm({ styles, props }) {
         code: AUTHCODE,
         password_confirm: passwordCheck,
       };
-      const passwordCheckElement1 = document.getElementById(
+      const passwordCheckInputElement = document.getElementById(
         'passwordcheck__input'
       );
-      const passwordCheckElement2 = document.getElementById(
+      const passwordCheckErrorElement = document.getElementById(
         'passwordcheck__error'
       );
 
       const signUpSuccess = await signUpApi(signUpRequset);
       if (signUpSuccess.status === 201) {
-        passwordCheckElement1.style.border = 'none';
+        passwordCheckInputElement.style.border = 'none';
         setPasswordCheckValidation(true);
         router.push('/SignUpConfirm');
       } else {
         setPasswordCheckErrorMessage(signUpSuccess.data.message);
         setPasswordCheckValidation(false);
-        errorStyling(passwordCheckElement1, passwordCheckElement2);
+        errorStyling(passwordCheckInputElement, passwordCheckErrorElement);
       }
     } else {
       setPasswordCheckErrorMessage('비밀번호가 같지 않습니다');
       setPasswordCheckValidation(false);
-      errorStyling(passwordCheckElement1, passwordCheckElement2);
+      errorStyling(passwordCheckInputElement, passwordCheckErrorElement);
     }
   };
 

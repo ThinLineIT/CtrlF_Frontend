@@ -14,24 +14,24 @@ export default function AuthCode({ styles, authCodeSuccess }) {
   };
 
   const authCodeCheck = async () => {
-    const authCodeElement1 = document.getElementById('authcode__input');
-    const authCodeElement2 = document.getElementById('authcode__error');
+    const authCodeInputElement = document.getElementById('authcode__input');
+    const authCodeErrorElement = document.getElementById('authcode__error');
     if (authCode === '') {
       setAuthCodeMessage('코드를 입력하세요');
       setAuthCodeValidation(false);
-      errorStyling(authCodeElement1, authCodeElement2);
+      errorStyling(authCodeInputElement, authCodeErrorElement);
       return;
     }
     const codeConfirm = await authCodeConfirm(authCode);
     console.log(codeConfirm);
     if (codeConfirm.status === 200) {
-      authCodeElement1.style.border = 'none';
+      authCodeInputElement.style.border = 'none';
       setAuthCodeValidation(true);
       authCodeSuccess();
     } else {
       setAuthCodeMessage('코드를 다시 확인해주세요');
       setAuthCodeValidation(false);
-      errorStyling(authCodeElement1, authCodeElement2);
+      errorStyling(authCodeInputElement, authCodeErrorElement);
     }
   };
 

@@ -4,7 +4,7 @@ import { passwordReg } from '../../utils/Reg';
 import { useState } from 'react';
 import errorStyling from '../../utils/ErrorStyling';
 
-export default function Password({ styles, passwordFirst, props }) {
+export default function Password({ styles, passwordFirst }) {
   const [password, setPassword] = useRecoilState(passwordAtom);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [passwordValidation, setPasswordValidation] = useState('');
@@ -13,15 +13,15 @@ export default function Password({ styles, passwordFirst, props }) {
     setPassword(event.currentTarget.value);
   };
 
-  const passworConfirm = () => {
-    const passwordElement1 = document.getElementById('password__input');
-    const passwordElement2 = document.getElementById('password__error');
+  const passwordConfirm = () => {
+    const passwordInputElement = document.getElementById('password__input');
+    const passwordErrorElement = document.getElementById('password__error');
     if (!passwordReg(password)) {
       setPasswordErrorMessage('비밀번호를 다시 입력해주세요');
       setPasswordValidation(false);
-      errorStyling(passwordElement1, passwordElement2);
+      errorStyling(passwordInputElement, passwordErrorElement);
     } else {
-      passwordElement1.style.border = 'none';
+      passwordInputElement.style.border = 'none';
       setPasswordValidation(true);
       passwordFirst();
     }
@@ -49,7 +49,7 @@ export default function Password({ styles, passwordFirst, props }) {
           </div>
         )}
       </div>
-      <button onClick={passworConfirm} className={`${styles.btn}`}>
+      <button onClick={passwordConfirm} className={`${styles.btn}`}>
         다 음
       </button>
     </div>
