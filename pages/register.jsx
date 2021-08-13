@@ -31,7 +31,7 @@ export default function Register() {
   };
 
   return (
-    <div className="component">
+    <div id="component">
       <ReAuthentication ref={modalRef} reAuth={reAuth} styles={styles} />
       <div className={styles.section} id="signup">
         <input type="radio" name="slide" id="slide01" defaultChecked />
