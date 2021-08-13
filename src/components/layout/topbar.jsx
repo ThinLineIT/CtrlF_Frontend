@@ -3,7 +3,7 @@ import router from 'next/router';
 import { useRecoilState } from 'recoil';
 import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
-import usePagination from '../../hooks/use_pagination';
+import usePagination from '../../utils/use_pagination';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../../styles/layout/topbar.module.css';
 
@@ -77,7 +77,7 @@ export default function Topbar() {
             <Link href="/login">
               <a>로그인 |</a>
             </Link>
-            <Link href="/signUp">
+            <Link href="/register">
               <a>회원가입</a>
             </Link>
           </div>

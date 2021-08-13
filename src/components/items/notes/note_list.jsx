@@ -4,7 +4,7 @@ import styles from '../../../styles/items/notes/note_list.module.css';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { ModalUpdate, noteNumber, MyToggle } from '../../../store/atom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import usePagination from '../../../hooks/use_pagination';
+import usePagination from '../../../utils/use_pagination';
 
 export default function NoteList() {
   const noteObserver = useRef();
