@@ -8,7 +8,7 @@ export default function SignUpConfirm() {
   };
 
   return (
-    <div className={styles.signup__confirm}>
+    <div className="component">
       <div className={styles.signup__confirm__text}>
         <span>환영합니다.</span>
         <span>가입이 완료 되었습니다.</span>

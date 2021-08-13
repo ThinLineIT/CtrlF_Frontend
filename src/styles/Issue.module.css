@@ -1,0 +1,23 @@
+#issue {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  font-size: 1.56rem;
+  font-weight: bold;
+}
+
+.issue__list {
+  background-color: white;
+  width: 82.375rem;
+  border: 1px solid black;
+}
+
+.issue1 {
+  height: 100px;
+  background: url('../../public/images/issue/issue1.svg') center no-repeat;
+}
