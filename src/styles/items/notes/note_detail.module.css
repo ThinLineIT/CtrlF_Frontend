@@ -18,7 +18,6 @@
   position: sticky;
   top: 3.5em;
   width: 100%;
-  max-height: 59em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +26,7 @@
 
 .index_title {
   width: 77%;
-  height: 200px;
+  min-height: 200px;
   margin: 1em auto;
   margin-top: 2.4em;
   display: flex;
@@ -72,7 +71,7 @@
   justify-content: space-around;
 }
 
-.index_topic_ul li {
+.index_topic_li {
   width: 100%;
   height: 3em;
   background: #9aa1cc;
@@ -86,14 +85,15 @@
   font-weight: bolder;
   cursor: pointer;
   margin: 0.7em auto;
+  position: relative;
 }
 
-.index_topic_ul li:hover {
+.index_topic_li:hover {
   transform: scale(1.1, 1.01);
   background: #b5bdff;
 }
 
-.index_mini_title {
+.index_page {
   flex: 1 1 55%;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@
   padding: 1em 3em 1em 0em;
 }
 
-.index_mini_title_ul {
+.index_page_ul {
   width: 100%;
   height: 100%;
   display: flex;
@@ -110,7 +110,7 @@
   padding-right: 0.5em;
 }
 
-.index_mini_title_ul li {
+.index_page_li {
   width: 100%;
   height: 3em;
   display: flex;
@@ -121,12 +121,21 @@
   cursor: pointer;
   margin: 0.7em auto;
   margin-left: 1em;
+  position: relative;
 }
 
-.index_mini_title_ul li:hover {
+.index_page_li:hover {
   transform: scale(1.03, 1.01);
 }
 
+.index_page_li:focus {
+  transform: scale(1.03, 1.01);
+}
+.index_page_right_click {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
 .content {
   flex: 1 1 73.5%;
   width: 100%;
@@ -170,7 +179,7 @@
 }
 
 .icons_bookmark {
-  background: url('../../../../public/images/note_detail/bookmark_button.svg')
+  background: url("../../../../public/images/note_detail/bookmark_button.svg")
     center no-repeat;
   background-size: cover;
   position: absolute;
@@ -182,7 +191,7 @@
 }
 
 .icons_share {
-  background: url('../../../../public/images/note_detail/share_button.svg')
+  background: url("../../../../public/images/note_detail/share_button.svg")
     center no-repeat;
   background-size: cover;
   position: absolute;
@@ -201,31 +210,56 @@
 .span p {
   font-size: 1.3rem;
   line-height: 3rem;
-  text-decoration: underline;
-  text-underline-offset: 0.5em;
 }
 
 .hiddenRef {
-  width: 80%;
-  margin: 0 auto;
   position: absolute;
-  top: 40px;
-  left: 18px;
+  top: 45px;
+  left: 55px;
 }
 
 .rightClickSpan {
-  border: 1px solid grey;
-  border-radius: 10px/10px;
-  font-weight: bolder;
+  width: 120px;
+  border: 0.2px solid rgba(185, 185, 185, 0.315);
+  height: 5em;
+  background: white;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
   font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
 }
-.rightClickSpan span:first-child {
-  border-bottom: 1px solid grey;
+.rightClickSpan span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
 }
+
+.rightClickSpan span:hover {
+  background-color: #b5bdff;
+}
+
 .hidden {
+  display: none;
+}
+.hiddenModal {
+  cursor: default;
+}
+
+.hidden_modal {
+  display: none;
+}
+
+.hidden_0 {
+  display: block;
+}
+.hidden_page {
   display: none;
 }

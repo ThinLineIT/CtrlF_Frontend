@@ -34,6 +34,58 @@
 .ok_button {
   width: 80px;
   height: 40px;
+  margin: 10px 0.5em;
+  background-color: #4db7e6;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+}
+
+.notes_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.textarea {
+  width: 90%;
+  height: 7em;
+  margin: 0 auto;
+  border: 1px solid rgba(128, 128, 128, 0.315);
+  border-radius: 15px;
+  padding: 0.9em 0.5em;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0.5em;
+}
+.cancel_button {
+  width: 80px;
+  height: 40px;
+  margin: 10px 0.5em;
+  background-color: #4db7e6;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+}
+
+.input {
+  width: 90%;
+  height: 2.5em;
+  margin: 0 auto;
+  border: 1px solid rgba(128, 128, 128, 0.315);
+  border-radius: 15px;
+  padding: 0.9em 0.5em;
+  font-weight: bolder;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+
+.modal_ok_button {
+  width: 80px;
+  height: 40px;
   margin: 10px auto;
   background-color: #4db7e6;
   font-weight: bolder;
