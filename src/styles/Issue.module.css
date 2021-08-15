@@ -5,19 +5,46 @@
   justify-content: center;
 }
 
+.my_issue {
+  background-color: white;
+  width: 14rem;
+  border-radius: 50px;
+  box-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 7px;
+}
+
 .menu {
   display: flex;
   font-size: 1.56rem;
   font-weight: bold;
+  width: 80%;
+  justify-content: space-between;
+  margin-bottom: 38px;
 }
 
 .issue__list {
   background-color: white;
-  width: 82.375rem;
+  padding: 30px;
+  /* width: 82.375rem; */
+  width: 80%;
   border: 1px solid black;
+  display: grid; /* 1 */
+  grid-auto-rows: minmax(100px, auto); /* 2 */
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
 }
 
-.issue1 {
-  height: 100px;
-  background: url('../../public/images/issue/issue1.svg') center no-repeat;
+.test {
+  width: 260px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.test2 {
+  width: 260px;
+  height: 400px;
+  background-size: 100% 100%;
+  background: url('../../public/images/issue/issue1.svg') no-repeat 0 0;
 }

@@ -1,0 +1,28 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 17rem;
+  /* margin: 30px; */
+}
+
+.test_30 {
+  grid-row: span 1; /* 5 */
+  background-color: green;
+}
+
+.test_20 {
+  grid-row: span 2;
+  background-color: crimson;
+}
+
+.test_10 {
+  grid-row: span 3;
+  background-color: blue;
+}
+
+.test_40 {
+  grid-row: span 4;
+  background-color: gray;
+}

@@ -11,6 +11,7 @@
     "sass": "node-sass -wr --source-map true styles/main.scss ./styles/globals.css"
   },
   "dependencies": {
+    "@egjs/react-infinitegrid": "^3.3.0",
     "@hookform/error-message": "^2.0.0",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
