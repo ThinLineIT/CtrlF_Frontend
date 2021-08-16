@@ -19,7 +19,7 @@
   display: flex;
   font-size: 1.56rem;
   font-weight: bold;
-  width: 80%;
+  width: 82.375rem;
   justify-content: space-between;
   margin-bottom: 38px;
 }
@@ -30,10 +30,11 @@
   /* width: 82.375rem; */
   width: 80%;
   border: 1px solid black;
-  display: grid; /* 1 */
-  grid-auto-rows: minmax(100px, auto); /* 2 */
+  display: grid;
+  /* grid-auto-rows: minmax(180px, 15rem); */
+  grid-auto-rows: minmax(80px, 80px);
   grid-gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 }
 
 .test {
@@ -47,4 +48,8 @@
   height: 400px;
   background-size: 100% 100%;
   background: url('../../public/images/issue/issue1.svg') no-repeat 0 0;
+}
+
+.divide {
+  border: 1px solid black;
 }

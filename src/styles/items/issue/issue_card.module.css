@@ -1,28 +1,34 @@
 .card {
-  display: flex;
-  align-items: center;
   justify-content: center;
   color: white;
   width: 17rem;
-  /* margin: 30px; */
+  overflow: hidden;
 }
 
-.test_30 {
-  grid-row: span 1; /* 5 */
-  background-color: green;
-}
-
-.test_20 {
+.test_0 {
   grid-row: span 2;
-  background-color: crimson;
+  /* background-color: #008000; */
 }
 
-.test_10 {
+.test_1 {
   grid-row: span 3;
-  background-color: blue;
+  /* background-color: crimson; */
 }
 
-.test_40 {
+.test_2 {
   grid-row: span 4;
-  background-color: gray;
+  /* background-color: blue; */
+}
+
+.test_3 {
+  grid-row: span 5;
+  /* background-color: gray; */
+}
+
+.card__title {
+  margin: 13px 0 0 40px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  position: absolute;
+  color: black;
 }
