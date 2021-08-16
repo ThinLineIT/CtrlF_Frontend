@@ -1,12 +1,12 @@
-import { useRef } from 'react';
-import { useRouter } from 'next/router';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRef } from "react";
+import { useRouter } from "next/router";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   noteModal,
   isJwtActive,
   userRequestNoteTextarea,
-} from '../../../store/atom';
-import styles from '../../../styles/items/modal/add_note_modal.module.css';
+} from "../../../store/atom";
+import styles from "../../../styles/items/modal/add_note_modal.module.css";
 
 export default function AddNoteModal() {
   const router = useRouter();
@@ -15,43 +15,35 @@ export default function AddNoteModal() {
   const addNoteContentChange = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
   const setIsModalActive = useSetRecoilState(noteModal);
-  const [requestNoteContent, setRequestNoteContent] = useRecoilState(
-    userRequestNoteTextarea
-  );
 
   const closeModal = () => {
     setIsModalActive(true);
   };
   const closeModalAndGoSignupPage = () => {
-    router.push('/login');
+    router.push("/login");
     setIsModalActive(true);
   };
 
   const closeModalAndGoRegistPage = () => {
-    router.push('/signUp');
+    router.push("/signUp");
     setIsModalActive(true);
   };
 
   const requestAddNote = () => {
-    if (noteTitleRef.current.value == '') {
+    if (noteTitleRef.current.value == "") {
       noteTitleRef.current.focus();
-      alert('노트 제목을 입력해 주세요.');
-    } else if (textareaRef.current.value == '') {
+      alert("노트 제목을 입력해 주세요.");
+    } else if (textareaRef.current.value == "") {
       textareaRef.current.focus();
-      alert('노트 내용을 입력해 주세요.');
+      alert("노트 내용을 입력해 주세요.");
     } else {
-      setRequestNoteContent({
-        note_title: noteTitleRef.current.value,
-        content: textareaRef.current.value,
-      });
-      setJwt('request');
+      setJwt("request");
     }
   };
 
   const setJwtTrueAgain = () => {
     setJwt(true);
     setIsModalActive(true);
-    localStorage.setItem('userRequest', JSON.stringify(requestNoteContent));
   };
 
   switch (jwt) {
@@ -120,7 +112,7 @@ export default function AddNoteModal() {
           </div>
         </div>
       );
-    case 'request':
+    case "request":
       return (
         <div className={styles.modal_overlay}>
           <div className={styles.modal_content}>

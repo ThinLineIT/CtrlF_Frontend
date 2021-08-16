@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import DetailContents from "./detail_contents";
 import { DetailList } from "../detailMockData";
 import SideIndex from "./sideIndex/side_index";
-import { detailTitle, noteDetailData } from "../../../../store/atom";
+import {
+  detailTitle,
+  noteDetailData,
+  userRequestDataList,
+} from "../../../../store/atom";
 import styles from "../../../../styles/items/notes/note_detail.module.css";
 
 export default function NoteDetail({ note }) {

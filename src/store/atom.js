@@ -35,11 +35,6 @@ export const isJwtActive = atom({
   default: false,
 });
 
-export const userRequestNoteTextarea = atom({
-  key: "user_request_note",
-  default: "",
-});
-
 export const email = atom({
   key: "email",
   default: "",
@@ -81,6 +76,7 @@ export const isPwValidated = atom({
 });
 
 // Note Detail
+
 export const detailTitle = atom({
   key: "detail_title",
   default: "",
@@ -110,6 +106,12 @@ export const contextMenuToggle = atom({
   key: "context_menu_toggle",
   default: false,
 });
+
+export const topicIndex = atom({
+  key: "topic_index",
+  default: 1,
+});
+
 // Modal components...
 
 export const modalRequestState = atom({
@@ -155,6 +157,21 @@ export const buttonCancel = atom({
 export const modalActive = atom({
   key: "modal_active",
   default: true,
+});
+
+export const requestNoteTitle = atom({
+  key: "request_note_title",
+  default: "",
+});
+
+export const requestNoteContent = atom({
+  key: "request_note_content",
+  default: "",
+});
+
+export const userRequestNoteTextarea = atom({
+  key: "user_request_note",
+  default: {},
 });
 
 export const modalTitleSelector = selector({
@@ -206,4 +223,19 @@ export const modalContent = selector({
       modalRequest
     )}이 노트 owner에게 전달됩니다.`;
   },
+});
+
+// users request data
+
+export const userRequestDataList = atom({
+  key: "user_request_data_list",
+  default: [
+    {
+      noteName: "운영체제",
+      title: "노트 이름 수정 요청",
+      requestTitle: "운용 체제",
+      requestContent:
+        "이재용의 '용'을 써서 운용체제라고 이름을 리네임하는 것은 어떨까요? 전 이게 더 어울린다고 봅니다.",
+    },
+  ],
 });

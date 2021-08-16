@@ -46,7 +46,7 @@ export default function IndexIndex() {
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
           {data &&
-            data.map((item, index) => (
+            data.map((item) => (
               <li
                 key={item.id}
                 className={styles.index_topic_li}

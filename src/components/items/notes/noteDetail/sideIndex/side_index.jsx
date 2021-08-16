@@ -1,4 +1,3 @@
-import React, { useState, useRef } from "react";
 import IndexIndex from "./index_index";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import RightClickSpan from "./rightClick";
@@ -9,23 +8,21 @@ import {
   modalTitleKo,
   noteDetailData,
   contextMenuActive,
+  contextMenuToggle,
 } from "../../../../../store/atom";
 import styles from "../../../../../styles/items/notes/note_detail.module.css";
 
 export default function SideIndex() {
-  const hiddenRef = useRef();
   const data = useRecoilValue(noteDetailData);
   const noteTitle = useRecoilValue(detailTitle);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModalTitle = useSetRecoilState(modalTitleKo);
-  const noteDetailHidden = "note_detail_hidden__1TR6C";
-  const [modalToggle, setModalToggle] = useState(false);
+  const [modalToggle, setModalToggle] = useRecoilState(contextMenuToggle);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
 
   const onRightClick = (event) => {
     event.preventDefault();
-    // hiddenRef.current.classList.toggle(noteDetailHidden);
     if (!modalToggle) {
       setXPos(`${event.pageX}px`);
       setYPos(`${event.pageY - 80}px`);

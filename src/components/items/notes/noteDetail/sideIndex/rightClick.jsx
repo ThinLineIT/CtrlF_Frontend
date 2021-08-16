@@ -1,8 +1,8 @@
-import styled from "styled-components";
 import React, { useRef } from "react";
+import styled from "styled-components";
 import ModalInput from "../../../modal/modal_input";
-import styles from "../../../../../styles/items/notes/note_detail.module.css";
 import { useSetRecoilState, useRecoilValue } from "recoil";
+import styles from "../../../../../styles/items/notes/note_detail.module.css";
 import {
   name,
   detailTitle,
