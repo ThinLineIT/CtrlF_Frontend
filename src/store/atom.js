@@ -112,6 +112,16 @@ export const topicIndex = atom({
   default: 1,
 });
 
+export const pageList = atom({
+  key: "page_list",
+  default: [],
+});
+
+export const pageContent = atom({
+  key: "page_content",
+  default: [],
+});
+
 // Modal components...
 
 export const modalRequestState = atom({
@@ -174,6 +184,21 @@ export const userRequestNoteTextarea = atom({
   default: {},
 });
 
+export const rightSpanName = atom({
+  key: "right_span_name",
+  default: "이름",
+});
+
+export const rightSpanContent = selector({
+  key: "right_span_selector",
+  get: ({ get }) => {
+    return `${get(rightSpanName)} 수정`;
+  },
+  set: ({ set }, newValue) => {
+    set(rightSpanName, newValue);
+  },
+});
+
 export const modalTitleSelector = selector({
   key: "modal_title_selector",
   get: ({ get }) => {
@@ -227,6 +252,11 @@ export const modalContent = selector({
 
 // users request data
 
+export const addNote = atom({
+  key: "add_note",
+  default: "ADD NOTE",
+});
+
 export const userRequestDataList = atom({
   key: "user_request_data_list",
   default: [
@@ -234,8 +264,12 @@ export const userRequestDataList = atom({
       noteName: "운영체제",
       title: "노트 이름 수정 요청",
       requestTitle: "운용 체제",
-      requestContent:
-        "이재용의 '용'을 써서 운용체제라고 이름을 리네임하는 것은 어떨까요? 전 이게 더 어울린다고 봅니다.",
+      requestContent: "이재용도 석방됬는데 운용체제라고 리네임하는건 어때요?",
+    },
+    {
+      noteName: "이산수학",
+      title: "노트  삭제 요청",
+      requestContent: "이산 수학이 뭐죠? 율곡 이이가 만든 산수인가요",
     },
   ],
 });

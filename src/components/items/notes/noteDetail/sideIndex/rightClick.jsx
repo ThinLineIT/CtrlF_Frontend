@@ -9,6 +9,7 @@ import {
   modalTitleKo,
   modalRequestState,
   modalTitleSyntax,
+  rightSpanContent,
 } from "../../../../../store/atom";
 
 export default function RightClickSpan(props) {
@@ -19,6 +20,7 @@ export default function RightClickSpan(props) {
   const modalTitle = useRecoilValue(modalTitleKo);
   const MODAL_HIDDEN = "note_detail_hidden_modal__3sHcm";
   const setModalState = useSetRecoilState(modalRequestState);
+  const rightSpanContents = useRecoilValue(rightSpanContent);
   const setModalTitleSyntax = useSetRecoilState(modalTitleSyntax);
 
   const onModify = () => {
@@ -43,7 +45,7 @@ export default function RightClickSpan(props) {
 
   return (
     <ContextContainer x={props.x} y={props.y}>
-      <span onClick={onModify}>이름 수정</span>
+      <span onClick={onModify}>{rightSpanContents}</span>
       <div
         ref={modifyRef}
         className={`${styles.hiddenModal} ${styles.hidden_modal} `}

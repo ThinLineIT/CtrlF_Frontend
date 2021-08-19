@@ -1,5 +1,5 @@
-import styles from "../../../styles/items/modal/modal.module.css";
 import { useRecoilValue } from "recoil";
+import styles from "../../../styles/items/modal/modal.module.css";
 import {
   modalSecondTitle,
   buttonOk,
@@ -10,10 +10,10 @@ import {
 } from "../../../store/atom";
 
 export default function ModalUtils({ ...props }) {
-  const secondTitle = useRecoilValue(modalSecondTitle);
   const okBtn = useRecoilValue(buttonOk);
-  const cancelBtn = useRecoilValue(buttonCancel);
   const content = useRecoilValue(modalContent);
+  const cancelBtn = useRecoilValue(buttonCancel);
+  const secondTitle = useRecoilValue(modalSecondTitle);
   const requestTitle = useRecoilValue(requestNoteTitle);
   const requestContent = useRecoilValue(requestNoteContent);
   const { title, closeModal, closingModalAndSendData } = {

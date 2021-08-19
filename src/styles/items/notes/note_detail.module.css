@@ -200,14 +200,14 @@
   width: 3em;
   height: 3em;
 }
-.span {
+.detail_content {
   padding-right: 3em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.span p {
+.detail_content p {
   font-size: 1.3rem;
   line-height: 3rem;
 }

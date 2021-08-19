@@ -17,6 +17,7 @@ export default function ModalInput({ ...props }) {
   const textareaRef = useRef();
   const noteTitleRef = useRef();
   const okBtn = useRecoilValue(buttonOk);
+  const INPUT_ACTIVE = props.isInputActive;
   const cancelBtn = useRecoilValue(buttonCancel);
   const title = useRecoilValue(modalTitleSelector);
   const [isOkBtnActive, setIsOkBtnActive] = useState(false);
@@ -30,7 +31,7 @@ export default function ModalInput({ ...props }) {
   };
 
   const onInputChange = () => {
-    if (props.isInputActive) {
+    if (INPUT_ACTIVE) {
       setRequestTitle(noteTitleRef.current.value);
       setRequestContent(textareaRef.current.value);
     } else {
@@ -50,7 +51,7 @@ export default function ModalInput({ ...props }) {
   const closingModalAndSendData = (title, requestTitle, requestContent) => {
     closeModal();
     setIsOkBtnActive(false);
-    props.isInputActive
+    INPUT_ACTIVE
       ? setRequestData([
           ...requestData,
           {
@@ -84,6 +85,7 @@ export default function ModalInput({ ...props }) {
                 type="text"
                 placeholder={inputPlaceholder}
                 onChange={onInputChange}
+                required
               />
             ) : (
               ""
@@ -94,6 +96,7 @@ export default function ModalInput({ ...props }) {
               name="text"
               placeholder={textareaPlaceholder}
               onChange={onInputChange}
+              required
             />
             <div className={styles.btn}>
               <button

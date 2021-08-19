@@ -1,6 +1,6 @@
-import { useRouter } from "next/dist/client/router";
-import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
+import React, { useEffect } from "react";
+import { useRouter } from "next/dist/client/router";
 import { userRequestDataList } from "../../../store/atom";
 import styles from "../../../styles/items/sidebar/issue.module.css";
 
@@ -8,9 +8,7 @@ export default function Issue() {
   const router = useRouter();
   const requestData = useRecoilValue(userRequestDataList);
 
-  useEffect(() => {
-    console.log(requestData);
-  }, [requestData]);
+  useEffect(() => {}, [requestData]);
 
   const routeToIssuePage = () => {
     router.push("/requestIssue");

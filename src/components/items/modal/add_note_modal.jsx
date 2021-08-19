@@ -1,24 +1,33 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import styles from "../../../styles/items/modal/add_note_modal.module.css";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   noteModal,
   isJwtActive,
-  userRequestNoteTextarea,
+  addNote,
+  requestNoteContent,
+  requestNoteTitle,
+  userRequestDataList,
 } from "../../../store/atom";
-import styles from "../../../styles/items/modal/add_note_modal.module.css";
 
 export default function AddNoteModal() {
   const router = useRouter();
   const textareaRef = useRef();
   const noteTitleRef = useRef();
   const addNoteContentChange = useRef();
+  const title = useRecoilValue(addNote);
   const [jwt, setJwt] = useRecoilState(isJwtActive);
   const setIsModalActive = useSetRecoilState(noteModal);
+  const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
+  const [requestData, setRequestData] = useRecoilState(userRequestDataList);
+  const [requestContent, setRequestContent] =
+    useRecoilState(requestNoteContent);
 
   const closeModal = () => {
     setIsModalActive(true);
   };
+
   const closeModalAndGoSignupPage = () => {
     router.push("/login");
     setIsModalActive(true);
@@ -41,9 +50,23 @@ export default function AddNoteModal() {
     }
   };
 
+  const onInputChange = () => {
+    setRequestTitle(noteTitleRef.current.value);
+    setRequestContent(textareaRef.current.value);
+  };
+
   const setJwtTrueAgain = () => {
+    let noteName = requestTitle;
     setJwt(true);
     setIsModalActive(true);
+    setRequestData([
+      ...requestData,
+      {
+        noteName,
+        title,
+        requestContent,
+      },
+    ]);
   };
 
   switch (jwt) {
@@ -51,7 +74,7 @@ export default function AddNoteModal() {
       return (
         <div className={styles.modal_overlay}>
           <div className={styles.modal_content}>
-            <h1>ADD NOTE</h1>
+            <h1>{title}</h1>
             <span className={styles.plates}>
               커넵 회원만 사용 가능한 기능입니다. <br />
               로그인 후 이용해주세요.
@@ -84,14 +107,16 @@ export default function AddNoteModal() {
             <input
               ref={noteTitleRef}
               type="text"
-              className={styles.login_plates}
               placeholder="note title"
+              onChange={onInputChange}
+              className={styles.login_plates}
               required
             />
             <textarea
               ref={textareaRef}
               className={styles.login_textarea}
               name="message"
+              onChange={onInputChange}
               placeholder="요청 내용 설명"
               required
             />

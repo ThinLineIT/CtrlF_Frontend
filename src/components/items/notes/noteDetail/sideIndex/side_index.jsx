@@ -1,6 +1,7 @@
 import IndexIndex from "./index_index";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import RightClickSpan from "./rightClick";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import styles from "../../../../../styles/items/notes/note_detail.module.css";
 import {
   menuPageX,
   menuPageY,
@@ -9,8 +10,8 @@ import {
   noteDetailData,
   contextMenuActive,
   contextMenuToggle,
+  rightSpanContent,
 } from "../../../../../store/atom";
-import styles from "../../../../../styles/items/notes/note_detail.module.css";
 
 export default function SideIndex() {
   const data = useRecoilValue(noteDetailData);
@@ -18,11 +19,13 @@ export default function SideIndex() {
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModalTitle = useSetRecoilState(modalTitleKo);
-  const [modalToggle, setModalToggle] = useRecoilState(contextMenuToggle);
+  const setRightSpanContent = useSetRecoilState(rightSpanContent);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const [modalToggle, setModalToggle] = useRecoilState(contextMenuToggle);
 
   const onRightClick = (event) => {
     event.preventDefault();
+    setRightSpanContent("이름");
     if (!modalToggle) {
       setXPos(`${event.pageX}px`);
       setYPos(`${event.pageY - 80}px`);
