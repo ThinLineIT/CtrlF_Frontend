@@ -9,15 +9,20 @@ export default function SignUpConfirm() {
 
   return (
     <div className="component">
-      <div className={styles.signup__confirm__text}>
-        <span>환영합니다.</span>
-        <span>가입이 완료 되었습니다.</span>
-        <br />
-        <span>로그인 후 이용해주세요.</span>
+      <div className={styles.signup__confirm}>
+        <div className={styles.signup__confirm__text}>
+          <span className={styles.signup__title}>
+            환영합니다.
+            <br></br>
+            가입이 완료 되었습니다.
+          </span>
+          <br />
+          <div>로그인 후 이용해주세요.</div>
+        </div>
+        <button className={styles.signup__confirm__btn} onClick={loginPageLoad}>
+          로그인 하러 가기
+        </button>
       </div>
-      <button className={styles.signup__confirm__btn} onClick={loginPageLoad}>
-        로그인 하러 가기
-      </button>
     </div>
   );
 }
