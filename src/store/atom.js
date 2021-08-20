@@ -27,7 +27,7 @@ export const ModalUpdate = atom({
 
 export const noteModal = atom({
   key: "add_note_modal",
-  default: true,
+  default: false,
 });
 
 export const isJwtActive = atom({

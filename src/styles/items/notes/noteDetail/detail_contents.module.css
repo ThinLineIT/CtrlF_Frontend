@@ -1,0 +1,75 @@
+.content {
+  flex: 1 1 73.5%;
+  width: 100%;
+  margin: 4em auto;
+  padding: 0 4em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info_item {
+  width: 80%;
+  height: 4em;
+  border: 1px solid #00000028;
+  display: flex;
+  border-radius: 30px/30px;
+  overflow: hidden;
+  margin: 4em 0;
+}
+
+.info_item_topic {
+  flex: 1 1 20%;
+  height: 100%;
+  background: #b5bdff;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_item_page {
+  flex: 1 1 80%;
+  height: 100%;
+  background: white;
+  font-size: 2rem;
+  font-weight: normal;
+  padding-left: 1em;
+  cursor: pointer;
+}
+
+.icons_bookmark {
+  background: url("../../../../../public/images/note_detail/bookmark_button.svg")
+    center no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 120px;
+  right: 120px;
+  width: 2em;
+  height: 2em;
+  margin-top: 0.6em;
+}
+
+.icons_share {
+  background: url("../../../../../public/images/note_detail/share_button.svg")
+    center no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 120px;
+  right: 200px;
+  width: 3em;
+  height: 3em;
+}
+.detail_content {
+  padding-right: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detail_content p {
+  font-size: 1.3rem;
+  line-height: 3rem;
+}
