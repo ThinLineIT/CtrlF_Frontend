@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import ModalInput from "../../../modal/modal_input";
+import AddNoteModal from "../../../modal/add_note_modal";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import styles from "../../../../../styles/items/notes/note_detail.module.css";
 import {
   name,
   detailTitle,
+  isJwtActive,
   modalTitleKo,
   modalRequestState,
   modalTitleSyntax,
@@ -16,6 +18,7 @@ export default function RightClickSpan(props) {
   const modifyRef = useRef();
   const deleteRef = useRef();
   const setName = useSetRecoilState(name);
+  const isActiveJwt = useRecoilValue(isJwtActive);
   const noteTitle = useRecoilValue(detailTitle);
   const modalTitle = useRecoilValue(modalTitleKo);
   const MODAL_HIDDEN = "note_detail_hidden_modal__3sHcm";
@@ -50,21 +53,29 @@ export default function RightClickSpan(props) {
         ref={modifyRef}
         className={`${styles.hiddenModal} ${styles.hidden_modal} `}
       >
-        <ModalInput
-          noteName={noteTitle}
-          closeModal={() => closeModal(modifyRef)}
-          isInputActive="true"
-        />
+        {isActiveJwt ? (
+          <ModalInput
+            noteName={noteTitle}
+            closeModal={() => closeModal(modifyRef)}
+            isInputActive="true"
+          />
+        ) : (
+          <AddNoteModal />
+        )}
       </div>
       <span onClick={onDelete}>삭제 요청</span>
       <div
         ref={deleteRef}
         className={`${styles.hiddenModal} ${styles.hidden_modal}`}
       >
-        <ModalInput
-          noteName={noteTitle}
-          closeModal={() => closeModal(deleteRef)}
-        />
+        {isActiveJwt ? (
+          <ModalInput
+            noteName={noteTitle}
+            closeModal={() => closeModal(deleteRef)}
+          />
+        ) : (
+          <AddNoteModal />
+        )}
       </div>
     </ContextContainer>
   );
