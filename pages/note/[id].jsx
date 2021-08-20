@@ -1,5 +1,6 @@
 import Axios from "axios";
 import Head from "next/head";
+
 import { useRouter } from "next/router";
 import { Loader } from "semantic-ui-react";
 import NoteDetail from "../../src/components/items/notes/noteDetail/note_detail";
@@ -24,7 +25,7 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          <NoteDetail note={item} />;
+          <NoteDetail note={item} />
         </>
       )}
     </>

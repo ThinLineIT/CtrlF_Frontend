@@ -1,17 +1,17 @@
 import RightClickSpan from "./rightClick";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import styles from "../../../../../styles/items/notes/note_detail.module.css";
+import styles from "../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css";
 import {
   pageList,
   menuPageX,
   menuPageY,
   pageContent,
+  modalTitleEn,
   modalTitleKo,
   noteDetailData,
   rightSpanContent,
   contextMenuActive,
-  modalInputPlaceholder,
 } from "../../../../../store/atom";
 
 export default function IndexIndex() {
@@ -25,7 +25,7 @@ export default function IndexIndex() {
   const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setRightSpanContent = useSetRecoilState(rightSpanContent);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
-  const setInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
+  const setInputPlaceholder = useSetRecoilState(modalTitleEn);
 
   useEffect(() => {
     setMyPageContent([]);
@@ -48,12 +48,10 @@ export default function IndexIndex() {
       setModalTitle("페이지");
       setRightSpanContent("내용");
       setInputPlaceholder("page");
-    } else null;
-
-    if (event.target.className.includes("topic")) {
+    } else if (event.target.className.includes("topic")) {
       setModalTitle("토픽");
       setInputPlaceholder("topic");
-    } else null;
+    }
   };
 
   const showPageList = (index) => {
@@ -78,7 +76,7 @@ export default function IndexIndex() {
   };
 
   return (
-    <>
+    <section className={styles.index_index}>
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
           {data &&
@@ -109,6 +107,6 @@ export default function IndexIndex() {
         </ul>
       </div>
       {showMenu ? <RightClickSpan x={xPos} y={yPos} /> : null}
-    </>
+    </section>
   );
 }

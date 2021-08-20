@@ -1,6 +1,5 @@
-get https://thkwon.pythonanywhere.com/api/notes?cursor=0?
+get http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/notes/0
 
 
 ###
-
-get https://yts-proxy.now.sh/list_movies.json?id=34339
+get http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/notes/?cursor=30

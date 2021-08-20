@@ -1,12 +1,14 @@
-import SideBar from './sidebar';
-import { useRecoilValue } from 'recoil';
-import NoteList from '../items/notes/note_list';
-import styles from '../../styles/layout/main.module.css';
-import { HeaderBar, noteNumber } from '../../store/atom';
+import SideBar from "./sidebar";
+import { useRecoilValue } from "recoil";
+import NoteList from "../items/notes/note_list";
+import styles from "../../styles/layout/main.module.css";
+import { HeaderBar, noteNumber } from "../../store/atom";
+import { DetailList } from "../items/notes/detailMockData";
 
 export default function Main() {
-  const number = useRecoilValue(noteNumber);
   const header = useRecoilValue(HeaderBar);
+  const number = useRecoilValue(noteNumber);
+  const detailList = DetailList;
 
   return (
     <div className={styles.container}>

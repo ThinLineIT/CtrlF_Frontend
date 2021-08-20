@@ -1,9 +1,9 @@
-import SignUpFormEmail from '../src/components/SignUp/SignUpFormEmail';
-import SignUpFormPassword from '../src/components/SignUp/SignUpFormPassword';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { useRouter } from 'next/router';
-import { signUpApi } from '../src/hooks/SignUpHook';
-import styles from '../styles/SignUp.module.css';
+import { useRouter } from "next/router";
+import styles from "../styles/SignUp.module.css";
+import { signUpApi } from "../src/hooks/SignUpHook";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import SignUpFormEmail from "../src/components/SignUp/SignUpFormEmail";
+import SignUpFormPassword from "../src/components/SignUp/SignUpFormPassword";
 import {
   passwordCheck,
   password,
@@ -13,25 +13,25 @@ import {
   isOverlaped,
   isNickOverlaped,
   isPwValidated,
-} from '../src/store/atom';
-import { useEffect } from 'react';
+} from "../src/store/atom";
+import { useEffect } from "react";
 
 export default function SignUp() {
-  const blur = { backgroundColor: '#D4D4D4' };
   const router = useRouter();
-  const resetEmailOverlap = useResetRecoilState(isOverlaped);
-  const resetNickOverlap = useResetRecoilState(isNickOverlaped);
-  const resetCode = useResetRecoilState(authCode);
-  const resetEmail = useResetRecoilState(email);
-  const resetNick = useResetRecoilState(nickName);
-  const NICKOVERLAP = useRecoilValue(isNickOverlaped);
-  const PWVALIDATED = useRecoilValue(isPwValidated);
   const EMAIL = useRecoilValue(email);
   const AUTHCODE = useRecoilValue(authCode);
   const NICKNAME = useRecoilValue(nickName);
   const PASSWORD = useRecoilValue(password);
-  const PASSWORDCHECK = useRecoilValue(passwordCheck);
+  const blur = { backgroundColor: "#D4D4D4" };
   const OVERLAP = useRecoilValue(isOverlaped);
+  const resetEmail = useResetRecoilState(email);
+  const resetCode = useResetRecoilState(authCode);
+  const resetNick = useResetRecoilState(nickName);
+  const PWVALIDATED = useRecoilValue(isPwValidated);
+  const PASSWORDCHECK = useRecoilValue(passwordCheck);
+  const NICKOVERLAP = useRecoilValue(isNickOverlaped);
+  const resetEmailOverlap = useResetRecoilState(isOverlaped);
+  const resetNickOverlap = useResetRecoilState(isNickOverlaped);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +46,7 @@ export default function SignUp() {
 
     const signUpSuccess = await signUpApi(signUpRequset);
     if (signUpSuccess.status === 201) {
-      router.push('/SignUpConfirm');
+      router.push("/SignUpConfirm");
     } else {
       alert(signUpSuccess.data.message);
     }
@@ -70,8 +70,8 @@ export default function SignUp() {
         <div className={styles.submit__btn}>
           {OVERLAP && NICKOVERLAP && PWVALIDATED ? (
             <button type="submit" className={styles.signup__submit}>
-              {' '}
-              Create An Account{' '}
+              {" "}
+              Create An Account{" "}
             </button>
           ) : (
             <button
@@ -79,8 +79,8 @@ export default function SignUp() {
               className={styles.signup__submit}
               style={blur}
             >
-              {' '}
-              Create An Account{' '}
+              {" "}
+              Create An Account{" "}
             </button>
           )}
         </div>

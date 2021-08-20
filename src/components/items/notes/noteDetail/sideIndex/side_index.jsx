@@ -1,11 +1,13 @@
+import AddBtn from "./AddBtn";
 import IndexIndex from "./index_index";
 import RightClickSpan from "./rightClick";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import styles from "../../../../../styles/items/notes/note_detail.module.css";
+import styles from "../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css";
 import {
   menuPageX,
   menuPageY,
   detailTitle,
+  modalTitleEn,
   modalTitleKo,
   noteDetailData,
   contextMenuActive,
@@ -22,6 +24,7 @@ export default function SideIndex() {
   const setRightSpanContent = useSetRecoilState(rightSpanContent);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
   const [modalToggle, setModalToggle] = useRecoilState(contextMenuToggle);
+  const setInputPlaceholder = useSetRecoilState(modalTitleEn);
 
   const onRightClick = (event) => {
     event.preventDefault();
@@ -31,6 +34,7 @@ export default function SideIndex() {
       setYPos(`${event.pageY - 80}px`);
       setShowMenu(true);
       setModalToggle(true);
+      setInputPlaceholder("note");
     } else {
       setShowMenu(false);
       setModalToggle(false);
@@ -57,8 +61,9 @@ export default function SideIndex() {
             {noteTitle}
           </span>
         </div>
-        <div className={styles.index_index}>
+        <div className={styles.index_list_wrap}>
           <IndexIndex noteTitle={noteTitle} data={data} />
+          <AddBtn />
         </div>
         {showMenu ? (
           <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />

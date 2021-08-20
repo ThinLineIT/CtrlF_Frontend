@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../../styles/items/modal/add_note_modal.module.css";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -18,24 +18,26 @@ export default function AddNoteModal() {
   const addNoteContentChange = useRef();
   const title = useRecoilValue(addNote);
   const [jwt, setJwt] = useRecoilState(isJwtActive);
-  const setIsModalActive = useSetRecoilState(noteModal);
+  const [isModalActive, setIsModalActive] = useRecoilState(noteModal);
   const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
   const [requestContent, setRequestContent] =
     useRecoilState(requestNoteContent);
 
   const closeModal = () => {
-    setIsModalActive(true);
+    setIsModalActive(false);
+    setRequestTitle("");
+    setRequestContent("");
   };
 
   const closeModalAndGoSignupPage = () => {
     router.push("/login");
-    setIsModalActive(true);
+    setIsModalActive(false);
   };
 
   const closeModalAndGoRegistPage = () => {
     router.push("/signUp");
-    setIsModalActive(true);
+    setIsModalActive(false);
   };
 
   const requestAddNote = () => {
@@ -58,7 +60,7 @@ export default function AddNoteModal() {
   const setJwtTrueAgain = () => {
     let noteName = requestTitle;
     setJwt(true);
-    setIsModalActive(true);
+    setIsModalActive(false);
     setRequestData([
       ...requestData,
       {
@@ -72,7 +74,10 @@ export default function AddNoteModal() {
   switch (jwt) {
     case false:
       return (
-        <div className={styles.notes_modal}>
+        <div
+          className={styles.notes_modal}
+          onClick={() => setTimeout(setIsModalActive(false), 500)}
+        >
           <div className={styles.modal_overlay}>
             <div className={styles.modal_content}>
               <h1>{title}</h1>

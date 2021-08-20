@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/dist/client/router";
 import { noteDetailData, pageContent, pageList } from "../../../../store/atom";
-import styles from "../../../../styles/items/notes/note_detail.module.css";
+import styles from "../../../../styles/items/notes/noteDetail/detail_contents.module.css";
 
 export default function DetailContents() {
   const router = useRouter();
@@ -18,17 +18,14 @@ export default function DetailContents() {
       <div className={styles.info_item}>
         <div className={styles.info_item_topic}>TOPIC</div>
         <select className={styles.info_item_page}>
-          {myPageList.map((pageName, index) => (
+          {myPageList.map((pageName) => (
             <option>{pageName}</option>
           ))}
         </select>
       </div>
       <div className={styles.icons}>
-        <button
-          className={styles.icons_bookmark}
-          onClick={routerIssues}
-        ></button>
-        <button className={styles.icons_share}></button>
+        <button className={styles.icons_bookmark} onClick={routerIssues} />
+        <button className={styles.icons_share} />
       </div>
       <span as="h3" className={styles.detail_content}>
         <p>{myPageContent}</p>

@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import ModalInput from "../../../modal/modal_input";
 import AddNoteModal from "../../../modal/add_note_modal";
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import styles from "../../../../../styles/items/notes/note_detail.module.css";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import styles from "../../../../../styles/items/notes/noteDetail/sideIndex/rightClick.module.css";
 import {
   name,
+  noteModal,
   detailTitle,
   isJwtActive,
   modalTitleKo,
@@ -21,14 +22,16 @@ export default function RightClickSpan(props) {
   const isActiveJwt = useRecoilValue(isJwtActive);
   const noteTitle = useRecoilValue(detailTitle);
   const modalTitle = useRecoilValue(modalTitleKo);
-  const MODAL_HIDDEN = "note_detail_hidden_modal__3sHcm";
+  const MODAL_HIDDEN = "rightClick_hidden_modal__1pW9b";
   const setModalState = useSetRecoilState(modalRequestState);
   const rightSpanContents = useRecoilValue(rightSpanContent);
   const setModalTitleSyntax = useSetRecoilState(modalTitleSyntax);
+  const [isModalActive, setIsModalActive] = useRecoilState(noteModal);
 
   const onModify = () => {
     setName("이름");
     setModalState("수정");
+    setIsModalActive(true);
     setModalTitleSyntax("이름을");
     modifyRef.current.classList.toggle(MODAL_HIDDEN);
   };
@@ -36,6 +39,7 @@ export default function RightClickSpan(props) {
   const onDelete = () => {
     setName("");
     setModalState("삭제");
+    setIsModalActive(true);
     modalTitle !== "토픽"
       ? setModalTitleSyntax("를")
       : setModalTitleSyntax("을");
@@ -59,9 +63,9 @@ export default function RightClickSpan(props) {
             closeModal={() => closeModal(modifyRef)}
             isInputActive="true"
           />
-        ) : (
+        ) : isModalActive ? (
           <AddNoteModal />
-        )}
+        ) : null}
       </div>
       <span onClick={onDelete}>삭제 요청</span>
       <div
@@ -73,9 +77,9 @@ export default function RightClickSpan(props) {
             noteName={noteTitle}
             closeModal={() => closeModal(deleteRef)}
           />
-        ) : (
+        ) : isModalActive ? (
           <AddNoteModal />
-        )}
+        ) : null}
       </div>
     </ContextContainer>
   );
