@@ -79,3 +79,8 @@ export const isPwValidated = atom({
   key: 'isPwValidated',
   default: '',
 });
+
+export const backToEmail = atom({
+  key: 'backToEmail',
+  default: false,
+});
