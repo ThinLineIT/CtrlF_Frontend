@@ -24,7 +24,7 @@ export default function Topbar() {
   const onLogOut = () => {
     setJwt(false);
     removeCookie('token');
-    localStorage.removeItem('key');
+    localStorage.removeItem('user_id');
     router.push('/');
   };
 
