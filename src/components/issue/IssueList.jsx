@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 
 const IssueList = ({ styles, issues }) => {
   useEffect(() => {
-    const SVG_LENGTH1 = document.getElementsByClassName('test1');
-    const SVG_LENGTH2 = document.getElementsByClassName('test2');
-    const SVG_LENGTH3 = document.getElementsByClassName('test3');
-    const SVG_LENGTH4 = document.getElementsByClassName('test4');
+    const SVG_LENGTH1 = document.getElementsByClassName('svg1');
+    const SVG_LENGTH2 = document.getElementsByClassName('svg2');
+    const SVG_LENGTH3 = document.getElementsByClassName('svg3');
+    const SVG_LENGTH4 = document.getElementsByClassName('svg4');
     if (SVG_LENGTH1.length != 0) {
       for (let x of SVG_LENGTH1) {
         x.setAttribute('viewBox', '0 0 282 320');
@@ -76,11 +76,15 @@ const IssueList = ({ styles, issues }) => {
     <div className={styles.issue__list}>
       {issues &&
         issues.map((v) => {
-          return <IssueCard key={v.id} title={v.title} length={v.id} data={v} />;
+          return (
+            <IssueCard key={v.id} title={v.title} length={v.id} data={v} />
+          );
         })}
       {issues &&
         issues.map((v) => {
-          return <IssueCard key={v.id} title={v.title} length={v.id} data={v} />;
+          return (
+            <IssueCard key={v.id} title={v.title} length={v.id} data={v} />
+          );
         })}
     </div>
   );

@@ -35,19 +35,3 @@
 .category__page {
   border-radius: 0 30px 30px 0;
 }
-
-.select {
-  box-shadow: 1px 1px 3px #0000001a;
-  background-color: white;
-  border: 1px solid;
-  width: 37.5rem;
-  display: flex;
-}
-
-.select__note {
-  width: 18.75rem;
-}
-
-.select__topic {
-  width: 18.75rem;
-}
