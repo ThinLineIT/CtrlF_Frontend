@@ -86,12 +86,12 @@ export default function AddNoteModal() {
                 로그인 후 이용해주세요.
               </span>
               <button
-                className={styles.button}
+                className={styles.to_login_button}
                 onClick={closeModalAndGoSignupPage}
               >
                 Login 하러 가기
               </button>
-              <ul className={styles.ul}>
+              <ul className={styles.non_login_ul}>
                 <li>
                   <button>ID 찾기</button>
                 </li>
@@ -108,65 +108,69 @@ export default function AddNoteModal() {
       );
     case true:
       return (
-        <div className={styles.modal_overlay}>
-          <div className={styles.modal_content} ref={addNoteContentChange}>
-            <h1>ADD NOTE</h1>
-            <input
-              ref={noteTitleRef}
-              type="text"
-              placeholder="note title"
-              onChange={onInputChange}
-              className={styles.login_plates}
-              required
-            />
-            <textarea
-              ref={textareaRef}
-              className={styles.login_textarea}
-              name="message"
-              onChange={onInputChange}
-              placeholder="요청 내용 설명"
-              required
-            />
-            <div className={styles.btn_wrp}>
-              <button
-                className={styles.login_button_ok}
-                onClick={requestAddNote}
-              >
-                OK
-              </button>
-              <button
-                className={styles.login_button_cancel}
-                onClick={closeModal}
-              >
-                CANCEL
-              </button>
+        <div className={styles.notes_modal}>
+          <div className={styles.modal_overlay}>
+            <div className={styles.modal_content} ref={addNoteContentChange}>
+              <h1>ADD NOTE</h1>
+              <input
+                ref={noteTitleRef}
+                type="text"
+                placeholder="note title"
+                onChange={onInputChange}
+                className={styles.login_plates}
+                required
+              />
+              <textarea
+                ref={textareaRef}
+                className={styles.login_textarea}
+                name="message"
+                onChange={onInputChange}
+                placeholder="요청 내용 설명"
+                required
+              />
+              <div className={styles.btn_wrp}>
+                <button
+                  className={styles.login_button_ok}
+                  onClick={requestAddNote}
+                >
+                  OK
+                </button>
+                <button
+                  className={styles.login_button_cancel}
+                  onClick={closeModal}
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>
       );
     case "request":
       return (
-        <div className={styles.modal_overlay}>
-          <div className={styles.modal_content}>
-            <h1>ADD NOTE</h1>
-            <span className={styles.plates}>노트 추가를 요청하시겠습니까?</span>
-            <span className={styles.plates_span}>
-              요청된 노트는 <br />
-              사이트 관리자에게 전달됩니다.
-            </span>
-            <div className={styles.btn_wrp}>
-              <button
-                className={styles.login_button_ok}
-                onClick={setJwtTrueAgain}
-              >
-                OK
-              </button>
-              <button
-                className={styles.login_button_cancel}
-                onClick={closeModal}
-              >
-                CANCEL
-              </button>
+        <div className={styles.notes_modal}>
+          <div className={styles.modal_overlay}>
+            <div className={styles.modal_content}>
+              <h1>ADD NOTE</h1>
+              <span className={styles.plates}>노트 추가를 요청하시겠습니까?</span>
+              <span className={styles.plates_span}>
+                요청된 노트는 <br />
+                사이트 관리자에게 전달됩니다.
+              </span>
+              <div className={styles.btn_wrp}>
+                <button
+                  className={styles.login_button_ok}
+                  onClick={setJwtTrueAgain}
+                >
+                  OK
+                </button>
+                <button
+                  className={styles.login_button_cancel}
+                  onClick={closeModal}
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import styles from "../../../styles/items/modal/modal.module.css";
+import styles from "../../../styles/items/modal/modal_utils.module.css";
 import {
   modalSecondTitle,
   buttonOk,

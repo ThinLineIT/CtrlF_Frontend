@@ -1,6 +1,6 @@
 import ModalUtils from "./modal_utils";
 import { useState, useRef } from "react";
-import styles from "../../../styles/items/modal/modal.module.css";
+import styles from "../../../styles/items/modal/modal_input.module.css";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import {
   modalTitleSelector,
@@ -81,7 +81,7 @@ export default function ModalInput({ ...props }) {
             {props.isInputActive ? (
               <input
                 ref={noteTitleRef}
-                className={styles.input}
+                className={styles.users_input}
                 type="text"
                 placeholder={inputPlaceholder}
                 onChange={onInputChange}
@@ -92,7 +92,7 @@ export default function ModalInput({ ...props }) {
             )}
             <textarea
               ref={textareaRef}
-              className={styles.textarea}
+              className={styles.users_textarea}
               name="text"
               placeholder={textareaPlaceholder}
               onChange={onInputChange}

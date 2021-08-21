@@ -45,12 +45,7 @@
   margin-bottom: -10px;
 }
 
-.plates_span {
-  font-size: 1.35rem;
-  line-height: 2.7rem;
-  font-weight: bolder;
-}
-.button {
+.to_login_button {
   width: 85%;
   height: 40px;
   margin: 0 auto;
@@ -62,7 +57,7 @@
   margin-bottom: -15px;
 }
 
-.ul {
+.non_login_ul {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +123,11 @@
   font-size: 0.9rem;
   color: white;
 }
-
+.plates_span {
+  font-size: 1.35rem;
+  line-height: 2.7rem;
+  font-weight: bolder;
+}
 .hidden {
   display: none;
 }
