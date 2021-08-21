@@ -11,14 +11,26 @@
     "sass": "node-sass -wr --source-map true styles/main.scss ./styles/globals.css"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.0",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "framer-motion": "^4.1.17",
+    "js-cookie": "^2.2.1",
     "next": "11.0.1",
     "node-sass": "^6.0.1",
     "react": "17.0.2",
+    "react-cookie": "^4.0.3",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.10.1",
+    "react-router-dom": "^5.2.0",
+    "react-ssr-prepass": "^1.4.0",
+    "recoil": "^0.3.1",
+    "rodal": "^1.8.1",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3"
+    "semantic-ui-react": "^2.0.3",
+    "styled-components": "^5.3.0",
+    "styled-react-modal": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "7.29.0",

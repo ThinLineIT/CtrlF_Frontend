@@ -1,0 +1,146 @@
+.container {
+  width: 100%;
+  max-height: 150px;
+}
+.container__wrap {
+  width: 81%;
+  height: 7em;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.top__logo {
+  width: 22em;
+  min-width: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.top__logo__img {
+  width: 134px;
+}
+.top__logo__title {
+  color: rgb(255, 255, 255);
+  height: 100%;
+  text-shadow: 4px 4px 7px rgba(128, 128, 128, 0.8);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  font-size: 2.8rem;
+  margin: 0 7px;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  border: 0.5px solid #0000004d;
+  border-radius: 50px/70px;
+  width: 41em;
+  margin: 0 auto;
+  height: 40px;
+}
+.searchbar__input {
+  width: 35rem;
+  height: inherit;
+  font-size: 1rem;
+  outline: 0;
+  margin: 0 1em;
+}
+.searchbar__btn__img {
+  width: 1.4rem;
+  height: 50%;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+.top__signup__list {
+  min-width: 20em;
+  padding: 1em;
+  margin: 0 2em;
+}
+.top__signup__list a {
+  font-size: 18px;
+  color: black;
+}
+.top__signup__list a:last-child {
+  margin-left: 9px;
+}
+
+.signup_btn {
+  width: 5em;
+  height: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.login__button {
+  width: 3em;
+  height: 3em;
+  background: url('../../../public/images/account_circle.svg') center no-repeat;
+  background-size: cover;
+  margin-right: 5em;
+}
+
+.hidden_login_button {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  cursor: pointer;
+  width: 5em;
+  height: 3.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: 1px solid #0000004d;
+  border-radius: 15px/15px;
+  background: white;
+}
+
+.hidden_login_button:hover {
+  background: #f5f3ff;
+  color: rgb(70, 70, 70);
+}
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 92rem) {
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .top__logo {
+    margin: 20px;
+  }
+  .top__logo__title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 70rem) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .container__wrap {
+    margin: 0 auto;
+  }
+  .top__logo {
+    flex: 1 1 30%;
+    margin: 0;
+    padding: 0;
+  }
+  .top__signup__list {
+    display: none;
+  }
+  .searchbar {
+    flex: 1 1 70%;
+    width: 33em;
+  }
+}

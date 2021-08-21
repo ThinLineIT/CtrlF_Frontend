@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  border: 0.2px solid #ffffff;
+  border-radius: 5px/5px;
+  box-shadow: -4px 4px 10px #0000003d, 4px 4px 10px #0000003d;
+  display: flex;
+  flex-direction: column;
+  background: #ffffffaf;
+}
+
+.title {
+  flex: 1 1 15%;
+  width: 100%;
+  padding: 0 10px;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.issue_container {
+  flex: 1 1 85%;
+  width: 100%;
+  height: 100%;
+}
+
+.issues {
+  width: 98%;
+  margin: 0.7em auto;
+  display: flex;
+  justify-content: flex-start;
+  padding: 22.5px 0px 0px 25px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 15px;
+}
+.issue1 {
+  background: url('../../../../public/images/main_issues/main_issue\ \(1\).svg')
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.issue2 {
+  background: url('../../../../public/images/main_issues/main_issue\ \(9\).svg')
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.issue3 {
+  background: url('../../../../public/images/main_issues/main_issue\ \(14\).svg')
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.issue4 {
+  background: url('../../../../public/images/main_issues/main_issue\ \(11\).svg')
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.issue5 {
+  background: url('../../../../public/images/main_issues/main_issue\ \(8\).svg')
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
