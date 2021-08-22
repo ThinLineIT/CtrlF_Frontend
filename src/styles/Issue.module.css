@@ -5,25 +5,6 @@
   justify-content: center;
 }
 
-.my_issue {
-  background-color: white;
-  width: 14rem;
-  border-radius: 50px;
-  box-shadow: 0px 3px 6px #00000029;
-  cursor: pointer;
-  text-align: center;
-  padding-top: 7px;
-}
-
-.menu {
-  display: flex;
-  font-size: 1.56rem;
-  font-weight: bold;
-  width: 82.375rem;
-  justify-content: space-between;
-  margin-bottom: 38px;
-}
-
 .issue__list {
   background-color: white;
   padding: 30px;

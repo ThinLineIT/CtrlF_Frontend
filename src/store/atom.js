@@ -84,8 +84,3 @@ export const backToEmail = atom({
   key: 'backToEmail',
   default: false,
 });
-
-export const issueTypeCheck = atom({
-  key: 'issueType',
-  default: ['', '', ''],
-});
