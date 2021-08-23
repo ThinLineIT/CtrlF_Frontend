@@ -1,14 +1,54 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { noteModal } from "../../../store/atom";
-import AddNoteModal from "../modal/add_note_modal";
-import styles from "../../../styles/items/sidebar/add_note.module.css";
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import {
+  modalName,
+  contextMenuState,
+  isModalActive,
+  modalUtilsName,
+  modalRestParams,
+  modalUtilsSyntax,
+  isValidOnMainpage,
+  isInputShouldActive,
+  modalInputPlaceholder,
+  modalTextareaPlaceholder,
+} from '../../../store/atom';
+import styles from '../../../styles/items/sidebar/add_note.module.css';
+import NonLoginUsersModal from '../modal/non_login_users_modal';
+import ModalInput from '../modal/modal_input';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 
 function AddNote() {
-  const [isModalActive, setIsModalActive] = useRecoilState(noteModal);
+  const [isValidJwt, setIsValidJwt] = useState(false);
+  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const setIsInputActive = useSetRecoilState(isInputShouldActive);
+  const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
+  const isValidToken = cookies.token;
+
+  const setModalTitle = useSetRecoilState(modalName);
+  const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
+  const setModalUtilsName = useSetRecoilState(modalUtilsName);
+  const setModalRestParams = useSetRecoilState(modalRestParams);
+  const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
+  const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setTextareaPlaceholder = useSetRecoilState(modalTextareaPlaceholder);
+
+  useEffect(() => {
+    isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
+  }, [cookies]);
 
   const activeAddNoteModal = () => {
-    setIsModalActive(true);
+    setModalRestParams('');
+    setContextMenuStates('');
+    setModalTitle('ADD NOTE');
+    setModalSyntax('는');
+    setModalUtilsName('노트');
+    setIsInputActive(true);
+    setModalInputPlaceholder('note title');
+    setTextareaPlaceholder('요청 내용 설명');
+
+    setIsOnMainPage(true);
+    setShowHiidenModal(true);
   };
 
   return (
@@ -18,11 +58,11 @@ function AddNote() {
           + 노트 추가
         </button>
       </div>
-      {isModalActive ? (
-        <div>
-          <AddNoteModal />
-        </div>
-      ) : null}
+      {showHiddenModal && (
+        <>
+          {isValidJwt ? <ModalInput isInputActive /> : <NonLoginUsersModal />}
+        </>
+      )}
     </>
   );
 }

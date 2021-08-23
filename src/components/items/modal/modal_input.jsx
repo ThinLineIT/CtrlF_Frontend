@@ -1,37 +1,39 @@
-import ModalUtils from "./modal_utils";
-import { useState, useRef } from "react";
-import styles from "../../../styles/items/modal/modal_input.module.css";
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import ModalUtils from './modal_utils';
+import { useState, useRef } from 'react';
+import styles from '../../../styles/items/modal/modal_input.module.css';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import {
-  modalTitleSelector,
   buttonOk,
+  modalTitle,
   buttonCancel,
-  modalTextAreaPlaceholder,
-  modalInputPlaceholder,
+  isModalActive,
   requestNoteTitle,
   requestNoteContent,
   userRequestDataList,
-} from "../../../store/atom";
+  isInputShouldActive,
+  modalInputPlaceholder,
+  modalTextareaPlaceholder,
+} from '../../../store/atom';
 
-export default function ModalInput({ ...props }) {
+export default function ModalInput({ noteName }) {
   const textareaRef = useRef();
   const noteTitleRef = useRef();
-  const okBtn = useRecoilValue(buttonOk);
-  const INPUT_ACTIVE = props.isInputActive;
-  const cancelBtn = useRecoilValue(buttonCancel);
-  const title = useRecoilValue(modalTitleSelector);
+  const isInputActive = useRecoilValue(isInputShouldActive);
   const [isOkBtnActive, setIsOkBtnActive] = useState(false);
-  const setRequestTitle = useSetRecoilState(requestNoteTitle);
+  const setShowHiidenModal = useSetRecoilState(isModalActive);
+
+  const okBtn = useRecoilValue(buttonOk);
+  const title = useRecoilValue(modalTitle);
+  const cancelBtn = useRecoilValue(buttonCancel);
   const inputPlaceholder = useRecoilValue(modalInputPlaceholder);
+  const textareaPlaceholder = useRecoilValue(modalTextareaPlaceholder);
+
+  const setRequestTitle = useSetRecoilState(requestNoteTitle);
   const setRequestContent = useSetRecoilState(requestNoteContent);
-  const textareaPlaceholder = useRecoilValue(modalTextAreaPlaceholder);
   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
-  const { noteName, closeModal } = {
-    ...props,
-  };
 
   const onInputChange = () => {
-    if (INPUT_ACTIVE) {
+    if (isInputActive) {
       setRequestTitle(noteTitleRef.current.value);
       setRequestContent(textareaRef.current.value);
     } else {
@@ -44,14 +46,13 @@ export default function ModalInput({ ...props }) {
   };
 
   const closingModal = () => {
-    closeModal();
     setIsOkBtnActive(false);
+    setShowHiidenModal(false);
   };
 
   const closingModalAndSendData = (title, requestTitle, requestContent) => {
-    closeModal();
     setIsOkBtnActive(false);
-    INPUT_ACTIVE
+    isInputActive
       ? setRequestData([
           ...requestData,
           {
@@ -78,7 +79,7 @@ export default function ModalInput({ ...props }) {
           <div className={styles.modal_content}>
             <h1>{title}</h1>
             <h2>{noteName}</h2>
-            {props.isInputActive ? (
+            {isInputActive && (
               <input
                 ref={noteTitleRef}
                 className={styles.users_input}
@@ -87,8 +88,6 @@ export default function ModalInput({ ...props }) {
                 onChange={onInputChange}
                 required
               />
-            ) : (
-              ""
             )}
             <textarea
               ref={textareaRef}
@@ -117,7 +116,6 @@ export default function ModalInput({ ...props }) {
     return (
       <ModalUtils
         title={title}
-        closeModal={closingModal}
         closingModalAndSendData={closingModalAndSendData}
       />
     );

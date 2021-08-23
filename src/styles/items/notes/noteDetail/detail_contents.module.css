@@ -41,7 +41,7 @@
 }
 
 .icons_bookmark {
-  background: url("../../../../../public/images/note_detail/bookmark_button.svg")
+  background: url('../../../../../public/images/note_detail/bookmark_button.svg')
     center no-repeat;
   background-size: cover;
   position: absolute;
@@ -53,7 +53,7 @@
 }
 
 .icons_share {
-  background: url("../../../../../public/images/note_detail/share_button.svg")
+  background: url('../../../../../public/images/note_detail/share_button.svg')
     center no-repeat;
   background-size: cover;
   position: absolute;
@@ -72,4 +72,45 @@
 .detail_content p {
   font-size: 1.3rem;
   line-height: 3rem;
+}
+
+.users_input {
+  width: 90%;
+  height: 3em;
+  border: 1px solid grey;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  border-radius: 10px/10px;
+}
+
+.users_textarea {
+  width: 90%;
+  height: 59vh;
+  border: 1px solid grey;
+  margin: 1em auto 0 auto;
+  display: flex;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px/10px;
+  -webkit-appearance: none;
+}
+
+.buttonOk {
+  width: 100px;
+  height: 40px;
+  margin: 10px 0.5em;
+  background-color: #b5bdff;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+  position: absolute;
+  top: 120px;
+  right: 120px;
 }

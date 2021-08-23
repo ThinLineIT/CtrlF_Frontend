@@ -1,6 +1,6 @@
-import { useRecoilValue } from "recoil";
-import { userRequestDataList } from "../src/store/atom";
-import styled from "styled-components";
+import { useRecoilValue } from 'recoil';
+import { userRequestDataList } from '../src/store/atom';
+import styled from 'styled-components';
 
 export default function Issue() {
   const requestData = useRecoilValue(userRequestDataList);
@@ -9,9 +9,9 @@ export default function Issue() {
       {requestData &&
         requestData.map((item) => (
           <Article key={item.title}>
-            <h1>{item.noteName}</h1>
+            {item.noteName ? <h1>{item.noteName}</h1> : <h1>{item.title}</h1>}
             <h3>{item.requestTitle}</h3>
-            <div>{item.title}</div>
+            {item.noteName && <div>{item.title}</div>}
             <span>{item.requestContent}</span>
           </Article>
         ))}

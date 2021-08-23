@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
+import React from 'react';
+import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 const MarkDownStyle = styled.div`
   font-size: 1rem;

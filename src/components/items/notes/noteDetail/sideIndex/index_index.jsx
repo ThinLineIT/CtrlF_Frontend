@@ -1,56 +1,67 @@
-import RightClickSpan from "./rightClick";
-import React, { useEffect, useRef, useState } from "react";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import styles from "../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css";
+import RightClickSpan from './rightClick';
+import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
   pageList,
+  modalName,
   menuPageX,
   menuPageY,
+  modalNameEn,
   pageContent,
-  modalTitleEn,
-  modalTitleKo,
+  isValidOnMainpage,
   noteDetailData,
-  rightSpanContent,
+  contextMenuName,
+  contextMenuState,
   contextMenuActive,
-} from "../../../../../store/atom";
+  modalInputPlaceholder,
+} from '../../../../../store/atom';
 
 export default function IndexIndex() {
   const pageRef = useRef();
+  const [modalToggle, setModalToggle] = useState(false);
+  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
+  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+
   const data = useRecoilValue(noteDetailData);
+  const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
-  const setModalTitle = useSetRecoilState(modalTitleKo);
-  const [modalToggle, setModalToggle] = useState(false);
+  const setModalNameEn = useSetRecoilState(modalNameEn);
   const setMyPageContent = useSetRecoilState(pageContent);
   const [myPageList, setMyPageList] = useRecoilState(pageList);
-  const setRightSpanContent = useSetRecoilState(rightSpanContent);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
-  const setInputPlaceholder = useSetRecoilState(modalTitleEn);
+  const setContextMenuName = useSetRecoilState(contextMenuName);
+  const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
   useEffect(() => {
     setMyPageContent([]);
   }, []);
 
   const useContextMenu = (event) => {
-    event.preventDefault();
     if (!modalToggle) {
-      setXPos(`${event.pageX}px`);
-      setYPos(`${event.pageY - 80}px`);
       setShowMenu(true);
       setModalToggle(true);
-      setRightSpanContent("이름");
     } else {
       setShowMenu(false);
       setModalToggle(false);
     }
+    event.preventDefault();
+    setIsOnMainPage(false);
+    setXPos(`${event.pageX}px`);
+    setYPos(`${event.pageY - 80}px`);
 
-    if (event.target.className.includes("page")) {
-      setModalTitle("페이지");
-      setRightSpanContent("내용");
-      setInputPlaceholder("page");
-    } else if (event.target.className.includes("topic")) {
-      setModalTitle("토픽");
-      setInputPlaceholder("topic");
+    if (event.target.className.includes('topic')) {
+      setModalName('토픽');
+      setModalNameEn('topic');
+      setContextMenuName('이름 수정');
+      setModalInputPlaceholder('topic title');
+    } else if (event.target.className.includes('page')) {
+      setModalName('페이지');
+      setModalNameEn('page');
+      setContextMenuName('내용 수정');
+      setContextMenuStates('내용 수정');
+      setModalInputPlaceholder('page title');
     }
   };
 
@@ -69,10 +80,8 @@ export default function IndexIndex() {
   };
 
   const closeContextMenu = () => {
-    if (showMenu) {
-      setShowMenu(false);
-      setModalToggle(false);
-    }
+    setShowMenu(false);
+    setModalToggle(false);
   };
 
   return (
@@ -106,7 +115,7 @@ export default function IndexIndex() {
           ))}
         </ul>
       </div>
-      {showMenu ? <RightClickSpan x={xPos} y={yPos} /> : null}
+      {showMenu && <RightClickSpan x={xPos} y={yPos} />}
     </section>
   );
 }

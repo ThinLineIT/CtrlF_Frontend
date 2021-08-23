@@ -1,16 +1,47 @@
-import { useRecoilValue } from "recoil";
-import { useRouter } from "next/dist/client/router";
-import { noteDetailData, pageContent, pageList } from "../../../../store/atom";
-import styles from "../../../../styles/items/notes/noteDetail/detail_contents.module.css";
+import { useRef } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import {
+  pageList,
+  pageContent,
+  requestNoteTitle,
+  ModifyPageContent,
+  requestNoteContent,
+  userRequestDataList,
+} from '../../../../store/atom';
+import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 
 export default function DetailContents() {
   const router = useRouter();
-  const data = useRecoilValue(noteDetailData);
-  const myPageContent = useRecoilValue(pageContent);
+  const textareaRef = useRef();
+  const noteTitleRef = useRef();
+
   const myPageList = useRecoilValue(pageList);
+  const myPageContent = useRecoilValue(pageContent);
+  const [content, setcontent] = useRecoilState(requestNoteContent);
+  const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
+  const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
+  const [requestData, setRequestData] = useRecoilState(userRequestDataList);
 
   const routerIssues = () => {
-    router.push("/requestIssue");
+    router.push('/requestIssue');
+  };
+
+  const resetPageContentAndSendData = () => {
+    setModifyPage(false);
+    setRequestData([
+      ...requestData,
+      {
+        noteName: 'ADD PAGE',
+        title: requestTitle,
+        requestContent: content,
+      },
+    ]);
+  };
+
+  const onInputChange = () => {
+    setcontent(textareaRef.current.value);
+    setRequestTitle(noteTitleRef.current.value);
   };
 
   return (
@@ -24,11 +55,43 @@ export default function DetailContents() {
         </select>
       </div>
       <div className={styles.icons}>
-        <button className={styles.icons_bookmark} onClick={routerIssues} />
-        <button className={styles.icons_share} />
+        {modifyPage ? (
+          <button
+            className={styles.buttonOk}
+            onClick={resetPageContentAndSendData}
+          >
+            확인
+          </button>
+        ) : (
+          <>
+            <button className={styles.icons_bookmark} onClick={routerIssues} />
+            <button className={styles.icons_share} />
+          </>
+        )}
       </div>
       <span as="h3" className={styles.detail_content}>
-        <p>{myPageContent}</p>
+        {modifyPage ? (
+          <>
+            <input
+              type="text"
+              ref={noteTitleRef}
+              onChange={onInputChange}
+              placeholder="수정 사유"
+              className={styles.users_input}
+              required
+            />
+            <textarea
+              name="text"
+              ref={textareaRef}
+              onChange={onInputChange}
+              placeholder="page content"
+              className={styles.users_textarea}
+              required
+            />
+          </>
+        ) : (
+          <p>{myPageContent}</p>
+        )}
       </span>
     </div>
   );

@@ -1,52 +1,65 @@
-import AddBtn from "./AddBtn";
-import IndexIndex from "./index_index";
-import RightClickSpan from "./rightClick";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import styles from "../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css";
+import AddBtn from './AddBtn';
+import IndexIndex from './index_index';
+import { useCookies } from 'react-cookie';
+import RightClickSpan from './rightClick';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
+  modalName,
   menuPageX,
   menuPageY,
+  modalNameEn,
   detailTitle,
-  modalTitleEn,
-  modalTitleKo,
-  noteDetailData,
+  contextMenuName,
+  contextMenuState,
   contextMenuActive,
-  contextMenuToggle,
-  rightSpanContent,
-} from "../../../../../store/atom";
+  isValidOnMainpage,
+  modalInputPlaceholder,
+} from '../../../../../store/atom';
 
 export default function SideIndex() {
-  const data = useRecoilValue(noteDetailData);
+  const [isValidJwt, setIsValidJwt] = useState(false);
+  const [modalToggle, setModalToggle] = useState(false);
+  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const isValidToken = cookies.token;
+
   const noteTitle = useRecoilValue(detailTitle);
+  const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
-  const setModalTitle = useSetRecoilState(modalTitleKo);
-  const setRightSpanContent = useSetRecoilState(rightSpanContent);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
-  const [modalToggle, setModalToggle] = useRecoilState(contextMenuToggle);
-  const setInputPlaceholder = useSetRecoilState(modalTitleEn);
+  const setModalNameEn = useSetRecoilState(modalNameEn);
+  const setContextMenuName = useSetRecoilState(contextMenuName);
+  const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
+
+  useEffect(() => {
+    isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
+  }, [cookies]);
 
   const onRightClick = (event) => {
-    event.preventDefault();
-    setRightSpanContent("이름");
     if (!modalToggle) {
-      setXPos(`${event.pageX}px`);
-      setYPos(`${event.pageY - 80}px`);
       setShowMenu(true);
       setModalToggle(true);
-      setInputPlaceholder("note");
     } else {
       setShowMenu(false);
       setModalToggle(false);
     }
-    event.target.className.includes("title") ? setModalTitle("노트") : null;
+    event.preventDefault();
+    setXPos(`${event.pageX}px`);
+    setYPos(`${event.pageY - 80}px`);
+    setModalName('노트');
+    setModalNameEn('note');
+    setIsOnMainPage(false);
+    setContextMenuName('이름 수정');
+    setContextMenuStates('이름 수정');
+    setModalInputPlaceholder('note title');
   };
 
   const closeContextMenu = () => {
-    if (showMenu) {
-      setShowMenu(false);
-      setModalToggle(false);
-    }
+    setShowMenu(false);
   };
 
   return (
@@ -62,12 +75,10 @@ export default function SideIndex() {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex noteTitle={noteTitle} data={data} />
-          <AddBtn />
+          <IndexIndex />
+          <AddBtn isValidJwt={isValidJwt} />
         </div>
-        {showMenu ? (
-          <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />
-        ) : null}
+        {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
       </div>
     </div>
   );

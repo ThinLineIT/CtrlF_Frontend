@@ -1,18 +1,6 @@
 {
-  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
-  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
-  "editor.fontWeight": "500",
-  "editor.fontFamily": "Ubuntu Mono derivative Powerline",
-  "editor.fontSize": 17,
-  "window.zoomLevel": 1,
-  "terminal.integrated.fontSize": 15,
-  "javascript.format.enable": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "prettier.arrowParens": "avoid",
-  "prettier.tabWidth": 2,
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
-  "prettier.printWidth": 80,
-  "prettier.trailingComma": "es5"
+  "singleQuote": true,
+  "endOfLine": "lf",
+  "tabWidth": 2,
+  "useTabs": false
 }
