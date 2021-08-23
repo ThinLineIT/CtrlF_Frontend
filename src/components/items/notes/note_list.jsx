@@ -1,20 +1,10 @@
-<<<<<<< HEAD
 import Link from "next/link";
-import usePagination from "../../../hooks/use_pagination";
 import NotApprovedModal from "../modal/not_approved_modal";
 import styles from "../../../styles/items/notes/note_list.module.css";
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { ModalUpdate, noteNumber, MyToggle } from "../../../store/atom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-=======
-import Link from 'next/link';
-import NotApprovedModal from '../modal/not_approved_modal';
-import styles from '../../../styles/items/notes/note_list.module.css';
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { ModalUpdate, noteNumber, MyToggle } from '../../../store/atom';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import usePagination from '../../../utils/use_pagination';
->>>>>>> dev
+import usePagination from "../../../utils/use_pagination";
 
 export default function NoteList() {
   const noteObserver = useRef();

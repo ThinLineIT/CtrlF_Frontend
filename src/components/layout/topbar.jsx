@@ -1,22 +1,11 @@
-<<<<<<< HEAD
 import Link from "next/link";
 import router from "next/router";
 import { useRecoilState } from "recoil";
 import { useCookies } from "react-cookie";
 import { isJwtActive } from "../../store/atom";
-import usePagination from "../../hooks/use_pagination";
+import usePagination from "../../utils/use_pagination";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../../styles/layout/topbar.module.css";
-=======
-import Link from 'next/link';
-import router from 'next/router';
-import { useRecoilState } from 'recoil';
-import { useCookies } from 'react-cookie';
-import { isJwtActive } from '../../store/atom';
-import usePagination from '../../utils/use_pagination';
-import React, { useState, useRef, useEffect } from 'react';
-import styles from '../../styles/layout/topbar.module.css';
->>>>>>> dev
 
 export default function Topbar() {
   const formRef = useRef();
@@ -37,14 +26,6 @@ export default function Topbar() {
     removeCookie("token");
     router.push("/");
   };
-
-  // 검색 기능 구현 함수라, 주석처리하겠습니다.
-  /* const onSearch = (event) => {
-    event.preventDefault();
-    setQuery(event.target.value);
-    setCursorNumber(0);
-    formRef.current.reset();
-  }; */
 
   return (
     <header className={styles.container}>

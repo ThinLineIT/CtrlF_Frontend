@@ -1,7 +1,7 @@
-import styles from '../../../styles/items/modal/add_note_modal.module.css';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { useRouter } from 'next/router';
-import { isModalActive, modalName } from '../../../store/atom';
+import styles from "../../../styles/items/modal/add_note_modal.module.css";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRouter } from "next/router";
+import { isModalActive, modalName } from "../../../store/atom";
 
 export default function NonLoginUsersModal() {
   const router = useRouter();
@@ -10,12 +10,12 @@ export default function NonLoginUsersModal() {
   const title = useRecoilValue(modalName);
 
   const closeModalAndGoSignupPage = () => {
-    router.push('/login');
+    router.push("/login");
     setShowHiidenModal(false);
   };
 
   const closeModalAndGoRegistPage = () => {
-    router.push('/signUp');
+    router.push("/signUp");
     setShowHiidenModal(false);
   };
 

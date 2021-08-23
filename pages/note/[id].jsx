@@ -17,6 +17,7 @@ const Post = ({ item }) => {
       </div>
     );
   }
+
   return (
     <>
       {item && (

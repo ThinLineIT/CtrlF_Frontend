@@ -36,13 +36,8 @@ export default function AddNoteModal() {
   };
 
   const closeModalAndGoRegistPage = () => {
-<<<<<<< HEAD
-    router.push("/signUp");
     setIsModalActive(false);
-=======
-    router.push('/register');
-    setIsModalActive(true);
->>>>>>> dev
+    router.push("/register");
   };
 
   const requestAddNote = () => {
@@ -157,7 +152,9 @@ export default function AddNoteModal() {
           <div className={styles.modal_overlay}>
             <div className={styles.modal_content}>
               <h1>ADD NOTE</h1>
-              <span className={styles.plates}>노트 추가를 요청하시겠습니까?</span>
+              <span className={styles.plates}>
+                노트 추가를 요청하시겠습니까?
+              </span>
               <span className={styles.plates_span}>
                 요청된 노트는 <br />
                 사이트 관리자에게 전달됩니다.
