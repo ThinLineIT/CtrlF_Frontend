@@ -29,7 +29,7 @@
   position: relative;
 }
 
-.section .slidelist #labeltest {
+.section .slidelist #label {
   position: absolute;
   z-index: 10;
   top: 50%;
@@ -49,7 +49,7 @@
   background: url('../../public/right-arrow.png') center center / 100% no-repeat;
 }
 
-@keyframes test1 {
+@keyframes moveslide1 {
   0% {
     transform: translateX(1%);
   }
@@ -61,7 +61,7 @@
   }
 }
 
-@keyframes test2 {
+@keyframes moveslide2 {
   0% {
     transform: translateX(-98%);
   }
@@ -73,7 +73,7 @@
   }
 }
 
-@keyframes test3 {
+@keyframes moveslide3 {
   0% {
     transform: translateX(-198%);
   }
@@ -85,7 +85,7 @@
   }
 }
 
-@keyframes test4 {
+@keyframes moveslide4 {
   0% {
     transform: translateX(-298%);
   }
@@ -97,7 +97,7 @@
   }
 }
 
-@keyframes test5 {
+@keyframes moveslide5 {
   0% {
     transform: translateX(-398%);
   }
@@ -110,19 +110,19 @@
 }
 
 .section [id='slide01']:checked ~ .slidewrap .slidelist > li {
-  animation: test1 0.1s ease forwards;
+  animation: moveslide1 0.1s ease forwards;
 }
 .section [id='slide02']:checked ~ .slidewrap .slidelist > li {
-  animation: test2 0.3s ease forwards;
+  animation: moveslide2 0.3s ease forwards;
 }
 .section [id='slide03']:checked ~ .slidewrap .slidelist > li {
-  animation: test3 0.3s ease forwards;
+  animation: moveslide3 0.3s ease forwards;
 }
 .section [id='slide04']:checked ~ .slidewrap .slidelist > li {
-  animation: test4 0.3s ease forwards;
+  animation: moveslide4 0.3s ease forwards;
 }
 .section [id='slide05']:checked ~ .slidewrap .slidelist > li {
-  animation: test5 0.3s ease forwards;
+  animation: moveslide5 0.3s ease forwards;
 }
 
 .slidelist {
