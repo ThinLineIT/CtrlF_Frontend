@@ -8,7 +8,7 @@ export default function SignUpConfirm() {
   };
 
   return (
-    <div className="component">
+    <div id="component">
       <div className={styles.signup__confirm}>
         <div className={styles.signup__confirm__text}>
           <span className={styles.signup__title}>
