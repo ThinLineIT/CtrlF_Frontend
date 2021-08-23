@@ -36,8 +36,13 @@ export default function AddNoteModal() {
   };
 
   const closeModalAndGoRegistPage = () => {
+<<<<<<< HEAD
     router.push("/signUp");
     setIsModalActive(false);
+=======
+    router.push('/register');
+    setIsModalActive(true);
+>>>>>>> dev
   };
 
   const requestAddNote = () => {

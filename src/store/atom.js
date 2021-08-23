@@ -273,3 +273,8 @@ export const userRequestDataList = atom({
     },
   ],
 });
+
+export const backToEmail = atom({
+  key: 'backToEmail',
+  default: false,
+});

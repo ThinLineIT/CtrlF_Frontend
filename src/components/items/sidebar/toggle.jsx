@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { useSetRecoilState } from "recoil";
 import { MyToggle } from "../../../store/atom";
 import React, { useState, useRef } from "react";
 import usePagination from "../../../hooks/use_pagination";
 import styles from "../../../styles/items/sidebar/toggle.module.css";
+=======
+import { useSetRecoilState } from 'recoil';
+import { MyToggle } from '../../../store/atom';
+import React, { useState, useRef } from 'react';
+import styles from '../../../styles/items/sidebar/toggle.module.css';
+import usePagination from '../../../utils/use_pagination';
+>>>>>>> dev
 
 export default function Toggle() {
   const focusIn = useRef();
