@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import IssuePage1 from '../../../public/images/issue/issue1.svg';
 import IssuePage2 from '../../../public/images/issue/issue2.svg';
 import IssuePage3 from '../../../public/images/issue/issue3.svg';
 import IssuePage4 from '../../../public/images/issue/issue4.svg';
-import styles from '../../styles/items/issue/issue_card.module.css';
 import Modal from '../items/modal/issue_modal';
-import { useState } from 'react';
+import styles from '../../styles/items/issue/issue_card.module.css';
 
 const IssueCard = ({ title, length, data }) => {
   const [modal, setModal] = useState(false);

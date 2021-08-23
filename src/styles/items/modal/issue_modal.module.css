@@ -27,3 +27,17 @@
   font-weight: bold;
   margin: 20px 0 20px 0;
 }
+
+.modal__btn {
+  background-color: aqua;
+  width: 100px;
+}
+
+.ellipsis {
+  cursor: pointer;
+  color: black;
+  width: 100px;
+  height: 50px;
+  background: url('../../../../public/images/ellipsis.png') center no-repeat;
+  background-size: 100px;
+}
