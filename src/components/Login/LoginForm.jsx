@@ -42,9 +42,9 @@ const LoginForm = () => {
     };
 
     const success = await loginHook(loginData);
-    console.log(success);
     if (success.token) {
       Cookies.set('token', success.token.split('.')[1]);
+      localStorage.setItem('user_id', success.user_id);
       router.push('/');
       setloginValidate('');
     } else {
