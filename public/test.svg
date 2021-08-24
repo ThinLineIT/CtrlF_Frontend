@@ -1,0 +1,11 @@
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#64FF15;}
+	.st1{fill:#96E867;}
+</style>
+<g>
+	<path class="st0" d="M39,37c0,0.55-0.45,1-1,1H21c-0.55,0-1-0.45-1-1V19c0-0.55,0.45-1,1-1h17c0.55,0,1,0.45,1,1V37z"/>
+</g>
+<path class="st1" d="M38,38h-1c-0.55,0-1-0.45-1-1v-1c0-0.55,0.45-1,1-1h1c0.55,0,1,0.45,1,1v1C39,37.55,38.55,38,38,38z"/>
+</svg>
