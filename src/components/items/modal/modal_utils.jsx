@@ -1,16 +1,16 @@
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/items/modal/modal_utils.module.css';
 import {
-  modalUtilsName,
   buttonOk,
-  buttonCancel,
-  isModalActive,
   modalTitle,
+  buttonCancel,
+  modalMessage,
+  isModalActive,
+  modalUtilsName,
+  modalUtilsSyntax,
   requestNoteTitle,
   isValidOnMainpage,
   requestNoteContent,
-  modalMessage,
-  modalUtilsSyntax,
 } from '../../../store/atom';
 
 export default function ModalUtils({ ...props }) {

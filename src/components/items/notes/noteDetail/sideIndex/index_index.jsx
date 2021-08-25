@@ -1,5 +1,6 @@
 import RightClickSpan from './rightClick';
 import React, { useEffect, useRef, useState } from 'react';
+import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
@@ -9,10 +10,13 @@ import {
   menuPageY,
   modalNameEn,
   pageContent,
-  isValidOnMainpage,
+  modalUtilsName,
   noteDetailData,
   contextMenuName,
+  isApprovedModal,
+  modalUtilsSyntax,
   contextMenuState,
+  isValidOnMainpage,
   contextMenuActive,
   modalInputPlaceholder,
 } from '../../../../../store/atom';
@@ -20,6 +24,8 @@ import {
 export default function IndexIndex() {
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
+  const [notApprovedModalActive, setNotApprovedModalActive] =
+    useRecoilState(isApprovedModal);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
 
@@ -27,8 +33,10 @@ export default function IndexIndex() {
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
+  const setNameState = useSetRecoilState(modalUtilsName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
   const setMyPageContent = useSetRecoilState(pageContent);
+  const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
@@ -65,18 +73,33 @@ export default function IndexIndex() {
     }
   };
 
-  const showPageList = (index) => {
-    const getNewPageData = data[index].section.map((a) => a.title);
+  const showPageList = (index, status, convention) => {
+    status == false && ifNotApprovedClicked(convention);
+
+    const getNewPageData = data[index].section;
     setMyPageList(getNewPageData);
     const myPageData = data[index].section.map((a) => a.content);
     setMyPageContent(myPageData[0]);
     closeContextMenu();
   };
 
-  const showPageContent = (index) => {
+  const showPageContent = (index, status, convention) => {
+    status == false && ifNotApprovedClicked(convention);
+
     const myPageData = data[index].section.map((a) => a.content);
     setMyPageContent(myPageData[index]);
     closeContextMenu();
+  };
+
+  const ifNotApprovedClicked = (convention) => {
+    if (convention == 'topic') {
+      setNameState('토픽');
+      setModalSyntax('은');
+    } else if (convention == 'page') {
+      setNameState('페이지');
+      setModalSyntax('는');
+    }
+    setNotApprovedModalActive(true);
   };
 
   const closeContextMenu = () => {
@@ -92,8 +115,10 @@ export default function IndexIndex() {
             data.map((item, index) => (
               <li
                 key={item.id}
-                className={styles.index_topic_li}
-                onClick={() => showPageList(index)}
+                className={`${styles.index_topic_li} ${getStyles(
+                  item.is_approved
+                )}`}
+                onClick={() => showPageList(index, item.is_approved, 'topic')}
                 onContextMenu={useContextMenu}
               >
                 {item.name}
@@ -103,19 +128,34 @@ export default function IndexIndex() {
       </div>
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
-          {myPageList.map((pageName, index) => (
+          {myPageList.map((item, index) => (
             <li
+              key={item.id}
               ref={pageRef}
-              className={styles.index_page_li}
-              onClick={() => showPageContent(index)}
+              className={`${styles.index_page_li} ${getStyles(
+                item.is_approved
+              )}`}
+              onClick={() => showPageContent(index, item.is_approved, 'page')}
               onContextMenu={useContextMenu}
             >
-              {pageName}
+              {item.title}
             </li>
           ))}
         </ul>
       </div>
       {showMenu && <RightClickSpan x={xPos} y={yPos} />}
+      {notApprovedModalActive && <NotApprovedModal />}
     </section>
   );
+}
+
+function getStyles(status) {
+  switch (status) {
+    case true:
+      return '';
+    case false:
+      return styles.dark;
+    default:
+      console.log('Error');
+  }
 }

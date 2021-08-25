@@ -80,3 +80,7 @@
 .index_page_li:focus {
   transform: scale(1.03, 1.01);
 }
+
+.dark {
+  color: #00000028;
+}

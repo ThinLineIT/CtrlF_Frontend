@@ -20,11 +20,6 @@ export const HeaderBar = atom({
   default: '현재 모아진 아이디어',
 });
 
-export const ModalUpdate = atom({
-  key: 'not_approved_modal',
-  default: true,
-});
-
 export const noteModal = atom({
   key: 'add_note_modal',
   default: false,
@@ -123,6 +118,11 @@ export const ModifyPageContent = atom({
 });
 
 // 모달 컴포넌트 & contextMenu
+
+export const isApprovedModal = atom({
+  key: 'not_approved_modal',
+  default: false,
+});
 
 export const isValidOnMainpage = atom({
   key: 'is_valid_on_mainpage',

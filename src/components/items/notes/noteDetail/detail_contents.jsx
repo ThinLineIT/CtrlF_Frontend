@@ -18,8 +18,9 @@ export default function DetailContents() {
 
   const myPageList = useRecoilValue(pageList);
   const myPageContent = useRecoilValue(pageContent);
-  const [content, setcontent] = useRecoilState(requestNoteContent);
   const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
+
+  const [content, setcontent] = useRecoilState(requestNoteContent);
   const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
 
@@ -49,8 +50,8 @@ export default function DetailContents() {
       <div className={styles.info_item}>
         <div className={styles.info_item_topic}>TOPIC</div>
         <select className={styles.info_item_page}>
-          {myPageList.map((pageName) => (
-            <option>{pageName}</option>
+          {myPageList.map((item) => (
+            <option key={item.id}>{item.title}</option>
           ))}
         </select>
       </div>

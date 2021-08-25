@@ -1,28 +1,37 @@
-import Link from "next/link";
-import NotApprovedModal from "../modal/not_approved_modal";
-import styles from "../../../styles/items/notes/note_list.module.css";
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import { ModalUpdate, noteNumber, MyToggle } from "../../../store/atom";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import usePagination from "../../../utils/use_pagination";
+import Link from 'next/link';
+import NotApprovedModal from '../modal/not_approved_modal';
+import styles from '../../../styles/items/notes/note_list.module.css';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import {
+  isApprovedModal,
+  noteNumber,
+  MyToggle,
+  modalUtilsName,
+  modalUtilsSyntax,
+} from '../../../store/atom';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import usePagination from '../../../utils/use_pagination';
 
 export default function NoteList() {
   const noteObserver = useRef();
   const [lists, setLists] = useState([]);
   const toggle = useRecoilValue(MyToggle);
-  const [noteId, setNoteId] = useState("");
+  const [noteId, setNoteId] = useState('');
+  const setNameState = useSetRecoilState(modalUtilsName);
+  const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setNoteNum = useSetRecoilState(noteNumber);
   const [cursorNumber, setCursorNumber] = useState(0);
-  const [isModalActive, setIsModalActive] = useRecoilState(ModalUpdate);
+  const [notApprovedModalActive, setNotApprovedModalActive] =
+    useRecoilState(isApprovedModal);
   const { notes, hasMore, loading, length } = usePagination(cursorNumber);
 
   useEffect(() => {
     setNoteNum(length);
-    if (toggle === "") {
+    if (toggle === '') {
       setLists(notes);
-    } else if (toggle === "true") {
+    } else if (toggle === 'true') {
       setLists(notes.filter((note) => note.is_approved == true));
-    } else if (toggle === "false") {
+    } else if (toggle === 'false') {
       setLists(notes.filter((note) => note.is_approved == false));
     }
   }, [notes, toggle]);
@@ -45,10 +54,12 @@ export default function NoteList() {
   );
 
   const ifNotApprovedNoteClicked = (event, id, status) => {
-    if (status !== "true") {
+    if (status !== 'true') {
       event.preventDefault();
-      setIsModalActive(false);
       setNoteId(id);
+      setNameState('노트');
+      setModalSyntax('는');
+      setNotApprovedModalActive(true);
     }
   };
 
@@ -108,13 +119,7 @@ export default function NoteList() {
             );
           }
         })}
-      <div
-        className={`${styles.notes_modal} ${
-          isModalActive ? `${styles.hidden}` : ""
-        }`}
-      >
-        <NotApprovedModal id={noteId} />
-      </div>
+      {notApprovedModalActive && <NotApprovedModal id={noteId} />}
     </div>
   );
 }
@@ -122,10 +127,10 @@ export default function NoteList() {
 function getStyles(status) {
   switch (status) {
     case true:
-      return "";
+      return '';
     case false:
       return styles.dark;
     default:
-      console.log("Error");
+      console.log('Error');
   }
 }
