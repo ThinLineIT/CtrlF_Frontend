@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { useRouter } from 'next/dist/client/router';
+import { useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   pageList,
@@ -10,13 +9,14 @@ import {
   userRequestDataList,
 } from '../../../../store/atom';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
+// import ReactMarkdown from 'react-markdown';
 
 export default function DetailContents() {
-  const router = useRouter();
   const textareaRef = useRef();
   const noteTitleRef = useRef();
 
   const myPageList = useRecoilValue(pageList);
+  const [slideImg, setSlideImg] = useState(false);
   const myPageContent = useRecoilValue(pageContent);
   const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
 
@@ -24,8 +24,22 @@ export default function DetailContents() {
   const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
 
-  const routerIssues = () => {
-    router.push('/requestIssue');
+  const copyClipboard = () => {
+    const dummy = document.createElement('input');
+    const text = location.href;
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+
+    setSlideImg(true);
+    setTimeout(fadeOutSlideImg, 1000);
+  };
+
+  const fadeOutSlideImg = () => {
+    setSlideImg(false);
   };
 
   const resetPageContentAndSendData = () => {
@@ -65,8 +79,12 @@ export default function DetailContents() {
           </button>
         ) : (
           <>
-            <button className={styles.icons_bookmark} onClick={routerIssues} />
-            <button className={styles.icons_share} />
+            <button className={styles.icons_share} onClick={copyClipboard} />
+            <div
+              className={`${
+                slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
+              }`}
+            />
           </>
         )}
       </div>
@@ -91,6 +109,7 @@ export default function DetailContents() {
             />
           </>
         ) : (
+          // <ReactMarkdown>{myPageContent}</ReactMarkdown>
           <p>{myPageContent}</p>
         )}
       </span>

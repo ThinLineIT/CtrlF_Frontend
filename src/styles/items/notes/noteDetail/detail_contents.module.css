@@ -61,7 +61,32 @@
   right: 200px;
   width: 3em;
   height: 3em;
+  cursor: pointer;
 }
+
+.slideActive {
+  width: 300px;
+  height: 3em;
+  border-radius: 30px/30px;
+  background: url('../../../../../public/images/share_text_bar.svg') center
+    no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 30vh;
+  left: 50vw;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.slideHidden {
+  width: 300px;
+  height: 3em;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms, visibility 500ms;
+}
+
 .detail_content {
   padding-right: 3em;
   display: flex;
