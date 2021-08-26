@@ -1,3 +1,6 @@
+const withImages = require('next-images');
+module.exports = withImages();
+
 module.exports = {
   env: {
     MOCK_PUBLIC_BASE_API: process.env.MOCK_PUBLIC_BASE_API,

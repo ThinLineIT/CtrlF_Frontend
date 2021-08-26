@@ -1,12 +1,9 @@
-import LoginForm from "../src/components/Login/LoginForm";
-import { RecoilRoot } from "recoil";
+import LoginForm from '../src/components/Login/LoginForm';
 
 function Login() {
   return (
-    <div id="component">
-      <RecoilRoot>
-        <LoginForm></LoginForm>
-      </RecoilRoot>
+    <div className="component">
+      <LoginForm></LoginForm>
     </div>
   );
 }
