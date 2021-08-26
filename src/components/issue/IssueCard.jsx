@@ -9,10 +9,10 @@ const IssueCard = ({ title, length, data }) => {
     <div className={`${styles.card} ${styles[`len_${length % 4}`]}`}>
       <div className={styles.card__title}>{title}</div>
 
-      {length % 4 === 0 && <IssuePage1 className="svg4" />}
-      {length % 4 === 1 && <IssuePage2 className="svg1" />}
-      {length % 4 === 2 && <IssuePage3 className="svg2" />}
-      {length % 4 === 3 && <IssuePage4 className="svg3" />}
+      {length % 4 === 0 && <IssuePage1 className="svg_small" />}
+      {length % 4 === 1 && <IssuePage2 className="svg_medium" />}
+      {length % 4 === 2 && <IssuePage3 className="svg_large" />}
+      {length % 4 === 3 && <IssuePage4 className="svg_extra" />}
       <div className={`${styles.card_hover} ${styles[`len_${length % 4}`]}`}>
         {data.content_request.action} NOTE
         <button className={styles.detail_btn}>ISSUE 자세히보기</button>

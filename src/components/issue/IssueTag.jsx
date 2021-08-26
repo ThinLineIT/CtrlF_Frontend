@@ -1,5 +1,5 @@
 const IssueTag = () => {
-  return <div className={styles.tag}></div>;
+  return <div></div>;
 };
 
 export default IssueTag;
