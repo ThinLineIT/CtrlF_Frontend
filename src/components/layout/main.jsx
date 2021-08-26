@@ -1,12 +1,18 @@
+import React, { useEffect } from 'react';
 import SideBar from './sidebar';
-import { useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import NoteList from '../items/notes/note_list';
 import styles from '../../styles/layout/main.module.css';
-import { HeaderBar, noteNumber } from '../../store/atom';
+import { HeaderBar, noteNumber, isModalActive } from '../../store/atom';
 
 export default function Main() {
-  const number = useRecoilValue(noteNumber);
   const header = useRecoilValue(HeaderBar);
+  const number = useRecoilValue(noteNumber);
+  const setShowHiidenModal = useSetRecoilState(isModalActive);
+
+  useEffect(() => {
+    setShowHiidenModal(false);
+  }, []);
 
   return (
     <div className={styles.container}>
