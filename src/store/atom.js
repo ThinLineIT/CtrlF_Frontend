@@ -279,3 +279,8 @@ export const backToEmail = atom({
   key: 'backToEmail',
   default: false,
 });
+
+export const filterList = atom({
+  key: 'filterList',
+  default: [],
+});
