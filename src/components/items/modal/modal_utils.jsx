@@ -15,7 +15,7 @@ import {
 
 export default function ModalUtils({ ...props }) {
   const isOnMainPage = useRecoilValue(isValidOnMainpage);
-  const setShowHiidenModal = useSetRecoilState(isModalActive);
+  const setShowHiddenModal = useSetRecoilState(isModalActive);
 
   const nameState = useRecoilValue(modalUtilsName);
   const okBtn = useRecoilValue(buttonOk);
@@ -32,12 +32,12 @@ export default function ModalUtils({ ...props }) {
   };
 
   const closeModalAndSendData = () => {
-    setShowHiidenModal(false);
+    setShowHiddenModal(false);
     closingModalAndSendData(title, requestTitle, requestContent);
   };
 
-  const closingModal = () => {
-    setShowHiidenModal(false);
+  const closeModal = () => {
+    setShowHiddenModal(false);
   };
 
   switch (isOnMainPage) {
@@ -62,7 +62,7 @@ export default function ModalUtils({ ...props }) {
                 >
                   {okBtn}
                 </button>
-                <button className={styles.cancel_button} onClick={closingModal}>
+                <button className={styles.cancel_button} onClick={closeModal}>
                   {cancelBtn}
                 </button>
               </div>
@@ -84,7 +84,7 @@ export default function ModalUtils({ ...props }) {
                 >
                   {okBtn}
                 </button>
-                <button className={styles.cancel_button} onClick={closingModal}>
+                <button className={styles.cancel_button} onClick={closeModal}>
                   {cancelBtn}
                 </button>
               </div>

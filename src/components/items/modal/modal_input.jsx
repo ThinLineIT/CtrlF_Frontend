@@ -20,7 +20,7 @@ export default function ModalInput({ noteName }) {
   const noteTitleRef = useRef();
   const isInputActive = useRecoilValue(isInputShouldActive);
   const [isOkBtnActive, setIsOkBtnActive] = useState(false);
-  const setShowHiidenModal = useSetRecoilState(isModalActive);
+  const setShowHiddenModal = useSetRecoilState(isModalActive);
 
   const okBtn = useRecoilValue(buttonOk);
   const title = useRecoilValue(modalTitle);
@@ -45,9 +45,9 @@ export default function ModalInput({ noteName }) {
     setIsOkBtnActive(true);
   };
 
-  const closingModal = () => {
+  const closeModal = () => {
     setIsOkBtnActive(false);
-    setShowHiidenModal(false);
+    setShowHiddenModal(false);
   };
 
   const closingModalAndSendData = (title, requestTitle, requestContent) => {
@@ -104,7 +104,7 @@ export default function ModalInput({ noteName }) {
               >
                 {okBtn}
               </button>
-              <button className={styles.cancel_button} onClick={closingModal}>
+              <button className={styles.cancel_button} onClick={closeModal}>
                 {cancelBtn}
               </button>
             </div>

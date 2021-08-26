@@ -5,25 +5,25 @@ import { isModalActive, modalName } from '../../../store/atom';
 
 export default function NonLoginUsersModal() {
   const router = useRouter();
-  const setShowHiidenModal = useSetRecoilState(isModalActive);
+  const setShowHiddenModal = useSetRecoilState(isModalActive);
 
   const title = useRecoilValue(modalName);
 
   const closeModalAndGoSignupPage = () => {
     router.push('/login');
-    setShowHiidenModal(false);
+    setShowHiddenModal(false);
   };
 
-  const closeModalAndGoRegistPage = () => {
+  const closeModalAndGoRegistrationPage = () => {
     router.push('/signUp');
-    setShowHiidenModal(false);
+    setShowHiddenModal(false);
   };
 
   return (
     <div
       className={styles.notes_modal}
       onClick={() => {
-        setTimeout(setShowHiidenModal(false), 500);
+        setTimeout(setShowHiddenModal(false), 500);
       }}
     >
       <div className={styles.modal_overlay}>
@@ -47,7 +47,9 @@ export default function NonLoginUsersModal() {
               <button>PASSWORD 찾기</button>
             </li>
             <li>
-              <button onClick={closeModalAndGoRegistPage}>회원가입</button>
+              <button onClick={closeModalAndGoRegistrationPage}>
+                회원가입
+              </button>
             </li>
           </ul>
         </div>

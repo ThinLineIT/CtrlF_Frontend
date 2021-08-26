@@ -24,8 +24,8 @@ export default function SideIndex() {
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
-  const isValidToken = cookies.token;
 
+  const isValidToken = cookies.token;
   const noteTitle = useRecoilValue(detailTitle);
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);

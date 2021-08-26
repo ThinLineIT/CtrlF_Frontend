@@ -21,7 +21,7 @@ export default function RightClickSpan(props) {
   const [isValidJwt, setIsValidJwt] = useState(false);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
-  const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const isValidToken = cookies.token;
@@ -42,7 +42,7 @@ export default function RightClickSpan(props) {
   const onModify = (e) => {
     if (e.target.innerText == '내용 수정') {
       if (!isValidJwt) {
-        setShowHiidenModal(true);
+        setShowHiddenModal(true);
         setModifyPage(false);
       } else {
         setModifyPage(true);
@@ -50,7 +50,7 @@ export default function RightClickSpan(props) {
       }
     } else {
       setModifyPage(false);
-      setShowHiidenModal(true);
+      setShowHiddenModal(true);
       setContextMenuStates('이름 수정');
     }
 
@@ -69,7 +69,7 @@ export default function RightClickSpan(props) {
     setModalTextareaPlaceholder('삭제 요청 사유');
 
     setShowMenu(false);
-    setShowHiidenModal(true);
+    setShowHiddenModal(true);
   };
 
   return (

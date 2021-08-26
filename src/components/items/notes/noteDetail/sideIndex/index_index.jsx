@@ -24,10 +24,10 @@ import {
 export default function IndexIndex() {
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
-  const [notApprovedModalActive, setNotApprovedModalActive] =
-    useRecoilState(isApprovedModal);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const [notApprovedModalActive, setNotApprovedModalActive] =
+    useRecoilState(isApprovedModal);
 
   const data = useRecoilValue(noteDetailData);
   const setModalName = useSetRecoilState(modalName);

@@ -18,7 +18,7 @@ import {
 export default function AddBtn({ isValidJwt }) {
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
-  const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
   const setModalTitle = useSetRecoilState(modalName);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
@@ -40,7 +40,7 @@ export default function AddBtn({ isValidJwt }) {
     setModalInputPlaceholder('topic title');
     setTextareaPlaceholder('요청 내용 설명');
 
-    setShowHiidenModal(true);
+    setShowHiddenModal(true);
   };
 
   const activeAddPageModal = () => {
@@ -55,7 +55,7 @@ export default function AddBtn({ isValidJwt }) {
     setModalInputPlaceholder('page title');
     setTextareaPlaceholder('요청 내용 설명');
 
-    setShowHiidenModal(true);
+    setShowHiddenModal(true);
   };
   return (
     <>
