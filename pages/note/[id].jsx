@@ -1,21 +1,23 @@
-import Axios from 'axios';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { Loader } from 'semantic-ui-react';
-import NoteDetail from '../../src/components/items/notes/note_detail';
+import Axios from "axios";
+import Head from "next/head";
+
+import { useRouter } from "next/router";
+import { Loader } from "semantic-ui-react";
+import NoteDetail from "../../src/components/items/notes/noteDetail/note_detail";
 
 const Post = ({ item }) => {
   const router = useRouter();
 
   if (router.isFallback) {
     return (
-      <div style={{ padding: '100px 0' }}>
+      <div style={{ padding: "100px 0" }}>
         <Loader active inline="centered">
           Loading
         </Loader>
       </div>
     );
   }
+
   return (
     <>
       {item && (
@@ -24,7 +26,7 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          <NoteDetail note={item} />;
+          <NoteDetail note={item} />
         </>
       )}
     </>

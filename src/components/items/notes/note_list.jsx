@@ -2,7 +2,13 @@ import Link from 'next/link';
 import NotApprovedModal from '../modal/not_approved_modal';
 import styles from '../../../styles/items/notes/note_list.module.css';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { ModalUpdate, noteNumber, MyToggle } from '../../../store/atom';
+import {
+  isApprovedModal,
+  noteNumber,
+  MyToggle,
+  modalUtilsName,
+  modalUtilsSyntax,
+} from '../../../store/atom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import usePagination from '../../../utils/use_pagination';
 
@@ -11,10 +17,13 @@ export default function NoteList() {
   const [lists, setLists] = useState([]);
   const toggle = useRecoilValue(MyToggle);
   const [noteId, setNoteId] = useState('');
+  const setNameState = useSetRecoilState(modalUtilsName);
+  const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setNoteNum = useSetRecoilState(noteNumber);
   const [cursorNumber, setCursorNumber] = useState(0);
+  const [notApprovedModalActive, setNotApprovedModalActive] =
+    useRecoilState(isApprovedModal);
   const { notes, hasMore, loading, length } = usePagination(cursorNumber);
-  const [isModalActive, setIsModalActive] = useRecoilState(ModalUpdate);
 
   useEffect(() => {
     setNoteNum(length);
@@ -47,8 +56,10 @@ export default function NoteList() {
   const ifNotApprovedNoteClicked = (event, id, status) => {
     if (status !== 'true') {
       event.preventDefault();
-      setIsModalActive(false);
       setNoteId(id);
+      setNameState('노트');
+      setModalSyntax('는');
+      setNotApprovedModalActive(true);
     }
   };
 
@@ -108,13 +119,7 @@ export default function NoteList() {
             );
           }
         })}
-      <div
-        className={`${styles.notes_modal} ${
-          isModalActive ? `${styles.hidden}` : ''
-        }`}
-      >
-        <NotApprovedModal id={noteId} />
-      </div>
+      {notApprovedModalActive && <NotApprovedModal id={noteId} />}
     </div>
   );
 }

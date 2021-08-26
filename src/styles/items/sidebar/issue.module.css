@@ -33,33 +33,101 @@
   font-size: 1.3rem;
   font-weight: bold;
   border-radius: 15px;
+  cursor: pointer;
 }
-.issue1 {
-  background: url('../../../../public/images/main_issues/main_issue\ \(1\).svg')
+
+.color_0 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(1\).svg")
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
-.issue2 {
-  background: url('../../../../public/images/main_issues/main_issue\ \(9\).svg')
+.color_1 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(7\).svg")
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
-.issue3 {
-  background: url('../../../../public/images/main_issues/main_issue\ \(14\).svg')
+.color_2 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(3\).svg")
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
-.issue4 {
-  background: url('../../../../public/images/main_issues/main_issue\ \(11\).svg')
+.color_3 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(13\).svg")
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
-.issue5 {
-  background: url('../../../../public/images/main_issues/main_issue\ \(8\).svg')
+.color_4 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(8\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_5 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(6\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_6 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(2\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_7 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(5\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_8 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(9\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_9 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(10\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_10 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(11\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_11 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(14\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_12 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(3\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_13 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(4\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_14 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(15\).svg")
+    center no-repeat;
+  height: 3.5em;
+  background-size: cover;
+}
+.color_15 {
+  background: url("../../../../public/images/main_issues/main_issue\ \(12\).svg")
     center no-repeat;
   height: 3.5em;
   background-size: cover;
