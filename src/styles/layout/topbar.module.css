@@ -78,11 +78,11 @@
   position: relative;
 }
 .login__button {
-  width: 3em;
-  height: 3em;
-  background: url('../../../public/images/account_circle.svg') center no-repeat;
+  width: 3.7em;
+  height: 3.7em;
+  background: url("../../../public/images/user_circle_btn.png") center no-repeat;
   background-size: cover;
-  margin-right: 5em;
+  margin-top: 0.3em;
 }
 
 .hidden_login_button {

@@ -1,5 +1,5 @@
-import LoginForm from '../src/components/Login/LoginForm';
-import { RecoilRoot } from 'recoil';
+import LoginForm from "../src/components/Login/LoginForm";
+import { RecoilRoot } from "recoil";
 
 function Login() {
   return (
