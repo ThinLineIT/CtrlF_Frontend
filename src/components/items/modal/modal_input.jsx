@@ -1,10 +1,11 @@
 import ModalUtils from './modal_utils';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import styles from '../../../styles/items/modal/modal_input.module.css';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import {
   buttonOk,
   modalTitle,
+  okBtnActive,
   buttonCancel,
   isModalActive,
   requestNoteTitle,
@@ -19,7 +20,7 @@ export default function ModalInput({ noteName }) {
   const textareaRef = useRef();
   const noteTitleRef = useRef();
   const isInputActive = useRecoilValue(isInputShouldActive);
-  const [isOkBtnActive, setIsOkBtnActive] = useState(false);
+  const [isOkBtnActive, setIsOkBtnActive] = useRecoilState(okBtnActive);
   const setShowHiddenModal = useSetRecoilState(isModalActive);
 
   const okBtn = useRecoilValue(buttonOk);

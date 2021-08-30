@@ -7,6 +7,7 @@ import {
   modalMessage,
   isModalActive,
   modalUtilsName,
+  ModifyPageContent,
   modalUtilsSyntax,
   requestNoteTitle,
   isValidOnMainpage,
@@ -17,12 +18,13 @@ export default function ModalUtils({ ...props }) {
   const isOnMainPage = useRecoilValue(isValidOnMainpage);
   const setShowHiddenModal = useSetRecoilState(isModalActive);
 
-  const nameState = useRecoilValue(modalUtilsName);
   const okBtn = useRecoilValue(buttonOk);
-  const cancelBtn = useRecoilValue(buttonCancel);
-  const utilsTitle = useRecoilValue(modalTitle);
   const message = useRecoilValue(modalMessage);
+  const utilsTitle = useRecoilValue(modalTitle);
+  const cancelBtn = useRecoilValue(buttonCancel);
   const syntax = useRecoilValue(modalUtilsSyntax);
+  const nameState = useRecoilValue(modalUtilsName);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
 
   const requestTitle = useRecoilValue(requestNoteTitle);
   const requestContent = useRecoilValue(requestNoteContent);
@@ -32,6 +34,7 @@ export default function ModalUtils({ ...props }) {
   };
 
   const closeModalAndSendData = () => {
+    setModifyPage(false);
     setShowHiddenModal(false);
     closingModalAndSendData(title, requestTitle, requestContent);
   };

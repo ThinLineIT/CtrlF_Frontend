@@ -6,6 +6,7 @@ import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index
 import {
   pageList,
   modalName,
+  topicName,
   menuPageX,
   menuPageY,
   modalNameEn,
@@ -19,6 +20,7 @@ import {
   isValidOnMainpage,
   contextMenuActive,
   modalInputPlaceholder,
+  firstVisiblePageTitle,
 } from '../../../../../store/atom';
 
 export default function IndexIndex() {
@@ -33,13 +35,15 @@ export default function IndexIndex() {
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
-  const setNameState = useSetRecoilState(modalUtilsName);
+  const setTopicTitle = useSetRecoilState(topicName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
+  const setNameState = useSetRecoilState(modalUtilsName);
   const setMyPageContent = useSetRecoilState(pageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
   useEffect(() => {
@@ -73,11 +77,13 @@ export default function IndexIndex() {
     }
   };
 
-  const showPageList = (index, status, convention) => {
+  const showPageList = (index, status, convention, title) => {
     status == false && ifNotApprovedClicked(convention);
 
+    setTopicTitle(title);
     const getNewPageData = data[index].section;
     setMyPageList(getNewPageData);
+    setPageTitle(getNewPageData[0].title);
     const myPageData = data[index].section.map((a) => a.content);
     setMyPageContent(myPageData[0]);
     closeContextMenu();
@@ -85,6 +91,7 @@ export default function IndexIndex() {
 
   const showPageContent = (index, status, convention) => {
     status == false && ifNotApprovedClicked(convention);
+    setPageTitle(myPageList[index].title);
 
     const myPageData = data[index].section.map((a) => a.content);
     setMyPageContent(myPageData[index]);
@@ -118,7 +125,9 @@ export default function IndexIndex() {
                 className={`${styles.index_topic_li} ${getStyles(
                   item.is_approved
                 )}`}
-                onClick={() => showPageList(index, item.is_approved, 'topic')}
+                onClick={() =>
+                  showPageList(index, item.is_approved, 'topic', item.name)
+                }
                 onContextMenu={useContextMenu}
               >
                 {item.name}
