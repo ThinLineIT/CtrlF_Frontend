@@ -5,6 +5,7 @@ import ModalInput from '../../../modal/modal_input';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/rightClick.module.css';
 import {
+  okBtnActive,
   detailTitle,
   isModalActive,
   modalRestParams,
@@ -28,14 +29,16 @@ export default function RightClickSpan(props) {
 
   const noteTitle = useRecoilValue(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
-  const setModalRestParams = useSetRecoilState(modalRestParams);
   const useContextMenuName = useRecoilValue(contextMenuName);
+  const setModalRestParams = useSetRecoilState(modalRestParams);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setModalTextareaPlaceholder = useSetRecoilState(
     modalTextareaPlaceholder
   );
 
   useEffect(() => {
+    setIsOkBtnActive(false);
     isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
   }, [isValidToken]);
 

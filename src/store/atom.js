@@ -149,6 +149,11 @@ export const isModalActive = atom({
   default: false,
 });
 
+export const okBtnActive = atom({
+  key: 'ok_btn_active',
+  default: false,
+});
+
 export const isInputShouldActive = atom({
   key: 'is_input_should_active',
   default: false,

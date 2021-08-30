@@ -1,11 +1,15 @@
 import { useRef, useState } from 'react';
+import ModalInput from '../../modal/modal_input';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import NotApprovedModal from '../../modal/not_approved_modal';
 import {
   pageList,
   dropDown,
   topicName,
+  modalTitle,
   pageContent,
+  okBtnActive,
+  isModalActive,
   modalUtilsName,
   noteDetailData,
   isApprovedModal,
@@ -21,6 +25,7 @@ import styles from '../../../../styles/items/notes/noteDetail/detail_contents.mo
 export default function DetailContents() {
   const textareaRef = useRef();
   const noteTitleRef = useRef();
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
@@ -29,9 +34,11 @@ export default function DetailContents() {
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
   const setNameState = useSetRecoilState(modalUtilsName);
+  const setPageRequestTitle = useSetRecoilState(modalTitle);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [dropdownActive, setDropDownActive] = useRecoilState(dropDown);
   const [myPageContent, setMyPageContent] = useRecoilState(pageContent);
+  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
   const [pageTitle, setPageTitle] = useRecoilState(firstVisiblePageTitle);
 
@@ -77,15 +84,9 @@ export default function DetailContents() {
   };
 
   const resetPageContentAndSendData = () => {
-    setModifyPage(false);
-    setRequestData([
-      ...requestData,
-      {
-        noteName: pageTitle,
-        title: requestTitle,
-        requestContent: content,
-      },
-    ]);
+    setPageRequestTitle('페이지');
+    setIsOkBtnActive(true);
+    setShowHiddenModal(true);
   };
 
   const onInputChange = () => {
@@ -159,6 +160,7 @@ export default function DetailContents() {
         ))}
       </section>
       {notApprovedModalActive && <NotApprovedModal />}
+      {showHiddenModal && <ModalInput />}
     </div>
   );
 }

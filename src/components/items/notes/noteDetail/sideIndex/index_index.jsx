@@ -35,12 +35,12 @@ export default function IndexIndex() {
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
-  const setNameState = useSetRecoilState(modalUtilsName);
+  const setTopicTitle = useSetRecoilState(topicName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
+  const setNameState = useSetRecoilState(modalUtilsName);
   const setMyPageContent = useSetRecoilState(pageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [myPageList, setMyPageList] = useRecoilState(pageList);
-  const [topicTitle, setTopicTitle] = useRecoilState(topicName);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
