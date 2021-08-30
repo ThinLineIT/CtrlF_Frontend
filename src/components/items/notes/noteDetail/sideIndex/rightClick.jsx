@@ -19,7 +19,7 @@ import NonLoginUsersModal from '../../../modal/non_login_users_modal';
 
 export default function RightClickSpan(props) {
   const [isValidJwt, setIsValidJwt] = useState(false);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const setShowMenu = useSetRecoilState(contextMenuActive);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 

@@ -77,6 +77,11 @@ export const detailTitle = atom({
   default: '',
 });
 
+export const firstVisiblePageTitle = atom({
+  key: 'first_visible_page_title',
+  default: '',
+});
+
 export const noteDetailData = atom({
   key: 'note_detail_data',
   default: '',
@@ -92,9 +97,19 @@ export const menuPageY = atom({
   default: '0px',
 });
 
+export const dropDown = atom({
+  key: 'dropdown',
+  default: false,
+});
+
 export const contextMenuToggle = atom({
   key: 'context_menu_toggle',
   default: false,
+});
+
+export const topicName = atom({
+  key: 'topic_name',
+  default: '',
 });
 
 export const topicIndex = atom({
