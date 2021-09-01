@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import ModalInput from '../../modal/modal_input';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import NotApprovedModal from '../../modal/not_approved_modal';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
   pageList,
   dropDown,
@@ -17,10 +18,10 @@ import {
   modalUtilsSyntax,
   ModifyPageContent,
   requestNoteContent,
-  userRequestDataList,
   firstVisiblePageTitle,
 } from '../../../../store/atom';
-import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
+import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 
 export default function DetailContents() {
   const textareaRef = useRef();
@@ -33,18 +34,17 @@ export default function DetailContents() {
   const myPageList = useRecoilValue(pageList);
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
+  const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
   const setNameState = useSetRecoilState(modalUtilsName);
+  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [dropdownActive, setDropDownActive] = useRecoilState(dropDown);
   const [myPageContent, setMyPageContent] = useRecoilState(pageContent);
-  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
-  const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
   const [pageTitle, setPageTitle] = useRecoilState(firstVisiblePageTitle);
 
-  const [content, setcontent] = useRecoilState(requestNoteContent);
-  const [requestTitle, setRequestTitle] = useRecoilState(requestNoteTitle);
-  const [requestData, setRequestData] = useRecoilState(userRequestDataList);
+  const setcontent = useSetRecoilState(requestNoteContent);
+  const setRequestTitle = useSetRecoilState(requestNoteTitle);
 
   const showDropdown = () => {
     setDropDownActive(true);
@@ -60,6 +60,7 @@ export default function DetailContents() {
   };
 
   const ifNotApprovedClicked = () => {
+    setModifyPage(false);
     setNameState('페이지');
     setModalSyntax('는');
     setNotApprovedModalActive(true);
@@ -142,7 +143,8 @@ export default function DetailContents() {
             />
           </>
         ) : (
-          <p>{myPageContent}</p>
+          // <p>{myPageContent}</p>
+          <ReactMarkdown>{myPageContent}</ReactMarkdown>
         )}
       </span>
       <section
