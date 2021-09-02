@@ -3,13 +3,27 @@
   display: flex;
   color: black;
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   z-index: 99;
   justify-content: center;
   align-items: center;
+}
+
+.noauth {
+  background-color: white;
+  width: 1096px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 109px 0 109px 0;
+  border-radius: 32px;
+  box-shadow: 1px 1px 3px #0000004d;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
 }
 
 .modal {
@@ -82,4 +96,19 @@
   padding: 22px 27px 22px 27px;
   height: 78px;
   margin-bottom: 25px;
+}
+
+.noauth__back {
+  margin-top: 60px;
+  background-color: #8bc8fd;
+  font-size: 1.427rem;
+  width: 213px;
+  border-radius: 30px;
+  padding: 13px 75px 13px 75px;
+  color: white;
+}
+
+.noauth__text {
+  font-size: 3.625rem;
+  font-weight: bold;
 }
