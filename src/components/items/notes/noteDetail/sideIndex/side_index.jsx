@@ -15,6 +15,7 @@ import {
   contextMenuState,
   contextMenuActive,
   isValidOnMainpage,
+  ModifyPageContent,
   modalInputPlaceholder,
 } from '../../../../../store/atom';
 
@@ -31,6 +32,7 @@ export default function SideIndex() {
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModalNameEn = useSetRecoilState(modalNameEn);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
@@ -59,6 +61,7 @@ export default function SideIndex() {
   };
 
   const closeContextMenu = () => {
+    setModifyPage(false);
     setShowMenu(false);
   };
 

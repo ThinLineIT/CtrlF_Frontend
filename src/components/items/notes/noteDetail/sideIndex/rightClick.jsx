@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCookies } from 'react-cookie';
+import React, { useState, useEffect } from 'react';
 import ModalInput from '../../../modal/modal_input';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/rightClick.module.css';
 import {
   okBtnActive,
   detailTitle,
@@ -19,13 +18,14 @@ import {
 import NonLoginUsersModal from '../../../modal/non_login_users_modal';
 
 export default function RightClickSpan(props) {
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const isValidToken = cookies.token;
+
   const [isValidJwt, setIsValidJwt] = useState(false);
   const setShowMenu = useSetRecoilState(contextMenuActive);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
-  const isValidToken = cookies.token;
   const noteTitle = useRecoilValue(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const useContextMenuName = useRecoilValue(contextMenuName);

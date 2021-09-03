@@ -1,5 +1,5 @@
 import RightClickSpan from './rightClick';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
@@ -18,6 +18,7 @@ import {
   modalUtilsSyntax,
   contextMenuState,
   isValidOnMainpage,
+  ModifyPageContent,
   contextMenuActive,
   modalInputPlaceholder,
   firstVisiblePageTitle,
@@ -39,16 +40,13 @@ export default function IndexIndex() {
   const setModalNameEn = useSetRecoilState(modalNameEn);
   const setNameState = useSetRecoilState(modalUtilsName);
   const setMyPageContent = useSetRecoilState(pageContent);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
-
-  useEffect(() => {
-    setMyPageContent([]);
-  }, []);
 
   const useContextMenu = (event) => {
     if (!modalToggle) {
@@ -81,6 +79,7 @@ export default function IndexIndex() {
     status == false && ifNotApprovedClicked(convention);
 
     setTopicTitle(title);
+    setModifyPage(false);
     const getNewPageData = data[index].section;
     setMyPageList(getNewPageData);
     setPageTitle(getNewPageData[0].title);
@@ -94,6 +93,7 @@ export default function IndexIndex() {
     setPageTitle(myPageList[index].title);
 
     const myPageData = data[index].section.map((a) => a.content);
+    setModifyPage(false);
     setMyPageContent(myPageData[index]);
     closeContextMenu();
   };
