@@ -22,11 +22,10 @@ export default function RightClickSpan(props) {
   const [isValidJwt, setIsValidJwt] = useState(false);
   const setShowMenu = useSetRecoilState(contextMenuActive);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const isValidToken = cookies.token;
-
   const noteTitle = useRecoilValue(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const useContextMenuName = useRecoilValue(contextMenuName);
@@ -38,18 +37,16 @@ export default function RightClickSpan(props) {
   );
 
   useEffect(() => {
-    setIsOkBtnActive(false);
     isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
-  }, [isValidToken]);
+    setIsOkBtnActive(false);
+  }, [cookies]);
 
   const onModify = (e) => {
     if (e.target.innerText == '내용 수정') {
       if (!isValidJwt) {
         setShowHiddenModal(true);
-        setModifyPage(false);
       } else {
         setModifyPage(true);
-        setContextMenuStates('내용 수정');
       }
     } else {
       setModifyPage(false);
@@ -64,11 +61,10 @@ export default function RightClickSpan(props) {
   };
 
   const onDelete = () => {
-    setContextMenuStates('삭제');
-    setModalRestParams('요청');
-    setIsInputActive(false);
     setModifyPage(false);
-    modalRestParams;
+    setIsInputActive(false);
+    setModalRestParams('요청');
+    setContextMenuStates('삭제');
     setModalTextareaPlaceholder('삭제 요청 사유');
 
     setShowMenu(false);
@@ -79,23 +75,23 @@ export default function RightClickSpan(props) {
     <ContextContainer x={props.x} y={props.y}>
       <span onClick={onModify}>{useContextMenuName}</span>
       {showHiddenModal && (
-        <div className={styles.hiddenModal}>
+        <>
           {isValidJwt ? (
             <ModalInput noteName={noteTitle} />
           ) : (
             <NonLoginUsersModal />
           )}
-        </div>
+        </>
       )}
       <span onClick={onDelete}>삭제 요청</span>
       {showHiddenModal && (
-        <div className={styles.hiddenModal}>
+        <>
           {isValidJwt ? (
             <ModalInput noteName={noteTitle} />
           ) : (
             <NonLoginUsersModal />
           )}
-        </div>
+        </>
       )}
     </ContextContainer>
   );

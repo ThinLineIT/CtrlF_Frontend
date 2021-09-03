@@ -7,8 +7,6 @@ export default function NonLoginUsersModal() {
   const router = useRouter();
   const setShowHiddenModal = useSetRecoilState(isModalActive);
 
-  const title = useRecoilValue(modalName);
-
   const closeModalAndGoSignupPage = () => {
     router.push('/login');
     setShowHiddenModal(false);
@@ -23,12 +21,11 @@ export default function NonLoginUsersModal() {
     <div
       className={styles.notes_modal}
       onClick={() => {
-        setTimeout(setShowHiddenModal(false), 500);
+        setShowHiddenModal(false);
       }}
     >
       <div className={styles.modal_overlay}>
         <div className={styles.modal_content}>
-          <h1>{title}</h1>
           <span className={styles.plates}>
             커넵 회원만 사용 가능한 기능입니다. <br />
             로그인 후 이용해주세요.
