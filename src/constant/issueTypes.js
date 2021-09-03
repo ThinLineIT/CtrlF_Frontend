@@ -1,11 +1,3 @@
-export const types = [
-  ['NOTE', 'CREATE'],
-  ['NOTE', 'UPDATE'],
-  ['NOTE', 'DELETE'],
-  ['TOPIC', 'CREATE'],
-  ['TOPIC', 'UPDATE'],
-  ['TOPIC', 'DELETE'],
-  ['PAGE', 'CREATE'],
-  ['PAGE', 'UPDATE'],
-  ['PAGE', 'DELETE'],
-];
+export const TYPES = ['NOTE', 'TOPIC', 'PAGE'];
+
+export const ACTIONS = ['CREATE', 'UPDATE', 'DELETE'];

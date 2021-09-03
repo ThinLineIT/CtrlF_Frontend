@@ -7,7 +7,7 @@ import IssueDeleteTopic from '../../../public/images/issue/card/issue_delete_top
 import IssueCreatePage from '../../../public/images/issue/card/issue_create_page.svg';
 import IssueUpdatePage from '../../../public/images/issue/card/issue_update_page.svg';
 import IssueDeletePage from '../../../public/images/issue/card/issue_delete_page.svg';
-import { types } from '../../constant/issueTypes';
+import { TYPES, ACTIONS } from '../../constant/issueTypes';
 import styles from '../../styles/items/issue/issue_card.module.css';
 
 const IssueCard = ({ title, length, data }) => {
@@ -16,40 +16,40 @@ const IssueCard = ({ title, length, data }) => {
       return (
         <div className={`${styles.card} ${styles[`len_${length % 4}`]}`}>
           <div className={styles.card__title}>{title}</div>
-          {data.content_request.type === types[0][0] &&
-            data.content_request.action === types[0][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateNote className="svg_small" />
             )}
-          {data.content_request.type === types[1][0] &&
-            data.content_request.action === types[1][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateNote className="svg_small" />
             )}
-          {data.content_request.type === types[2][0] &&
-            data.content_request.action === types[2][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteNote className="svg_small" />
             )}
-          {data.content_request.type === types[3][0] &&
-            data.content_request.action === types[3][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateTopic className="svg_small" />
             )}
-          {data.content_request.type === types[4][0] &&
-            data.content_request.action === types[4][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateTopic className="svg_small" />
             )}
-          {data.content_request.type === types[5][0] &&
-            data.content_request.action === types[5][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteTopic className="svg_small" />
             )}
-          {data.content_request.type === types[6][0] &&
-            data.content_request.action === types[6][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreatePage className="svg_small" />
             )}
-          {data.content_request.type === types[7][0] &&
-            data.content_request.action === types[7][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdatePage className="svg_small" />
             )}
-          {data.content_request.type === types[8][0] &&
-            data.content_request.action === types[8][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeletePage className="svg_small" />
             )}
           <div
@@ -64,40 +64,40 @@ const IssueCard = ({ title, length, data }) => {
       return (
         <div className={`${styles.card} ${styles[`len_${length % 4}`]}`}>
           <div className={styles.card__title}>{title}</div>
-          {data.content_request.type === types[0][0] &&
-            data.content_request.action === types[0][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateNote className="svg_medium" />
             )}
-          {data.content_request.type === types[1][0] &&
-            data.content_request.action === types[1][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateNote className="svg_medium" />
             )}
-          {data.content_request.type === types[2][0] &&
-            data.content_request.action === types[2][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteNote className="svg_medium" />
             )}
-          {data.content_request.type === types[3][0] &&
-            data.content_request.action === types[3][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateTopic className="svg_medium" />
             )}
-          {data.content_request.type === types[4][0] &&
-            data.content_request.action === types[4][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateTopic className="svg_medium" />
             )}
-          {data.content_request.type === types[5][0] &&
-            data.content_request.action === types[5][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteTopic className="svg_medium" />
             )}
-          {data.content_request.type === types[6][0] &&
-            data.content_request.action === types[6][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreatePage className="svg_medium" />
             )}
-          {data.content_request.type === types[7][0] &&
-            data.content_request.action === types[7][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdatePage className="svg_medium" />
             )}
-          {data.content_request.type === types[8][0] &&
-            data.content_request.action === types[8][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeletePage className="svg_medium" />
             )}
           <div
@@ -112,40 +112,40 @@ const IssueCard = ({ title, length, data }) => {
       return (
         <div className={`${styles.card} ${styles[`len_${length % 4}`]}`}>
           <div className={styles.card__title}>{title}</div>
-          {data.content_request.type === types[0][0] &&
-            data.content_request.action === types[0][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateNote className="svg_large" />
             )}
-          {data.content_request.type === types[1][0] &&
-            data.content_request.action === types[1][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateNote className="svg_large" />
             )}
-          {data.content_request.type === types[2][0] &&
-            data.content_request.action === types[2][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteNote className="svg_large" />
             )}
-          {data.content_request.type === types[3][0] &&
-            data.content_request.action === types[3][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateTopic className="svg_large" />
             )}
-          {data.content_request.type === types[4][0] &&
-            data.content_request.action === types[4][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateTopic className="svg_large" />
             )}
-          {data.content_request.type === types[5][0] &&
-            data.content_request.action === types[5][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteTopic className="svg_large" />
             )}
-          {data.content_request.type === types[6][0] &&
-            data.content_request.action === types[6][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreatePage className="svg_large" />
             )}
-          {data.content_request.type === types[7][0] &&
-            data.content_request.action === types[7][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdatePage className="svg_large" />
             )}
-          {data.content_request.type === types[8][0] &&
-            data.content_request.action === types[8][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeletePage className="svg_large" />
             )}
           <div
@@ -160,40 +160,40 @@ const IssueCard = ({ title, length, data }) => {
       return (
         <div className={`${styles.card} ${styles[`len_${length % 4}`]}`}>
           <div className={styles.card__title}>{title}</div>
-          {data.content_request.type === types[0][0] &&
-            data.content_request.action === types[0][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateNote className="svg_extra" />
             )}
-          {data.content_request.type === types[1][0] &&
-            data.content_request.action === types[1][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateNote className="svg_extra" />
             )}
-          {data.content_request.type === types[2][0] &&
-            data.content_request.action === types[2][1] && (
+          {data.content_request.type === TYPES[0] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteNote className="svg_extra" />
             )}
-          {data.content_request.type === types[3][0] &&
-            data.content_request.action === types[3][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreateTopic className="svg_extra" />
             )}
-          {data.content_request.type === types[4][0] &&
-            data.content_request.action === types[4][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdateTopic className="svg_extra" />
             )}
-          {data.content_request.type === types[5][0] &&
-            data.content_request.action === types[5][1] && (
+          {data.content_request.type === TYPES[1] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeleteTopic className="svg_extra" />
             )}
-          {data.content_request.type === types[6][0] &&
-            data.content_request.action === types[6][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[0] && (
               <IssueCreatePage className="svg_extra" />
             )}
-          {data.content_request.type === types[7][0] &&
-            data.content_request.action === types[7][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[1] && (
               <IssueUpdatePage className="svg_extra" />
             )}
-          {data.content_request.type === types[8][0] &&
-            data.content_request.action === types[8][1] && (
+          {data.content_request.type === TYPES[2] &&
+            data.content_request.action === ACTIONS[2] && (
               <IssueDeletePage className="svg_extra" />
             )}
           <div
