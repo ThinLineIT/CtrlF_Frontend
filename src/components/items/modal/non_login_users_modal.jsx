@@ -1,5 +1,5 @@
 import styles from '../../../styles/items/modal/non_login_users_modal.module.css';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 import { isModalActive, modalName } from '../../../store/atom';
 
@@ -21,6 +21,7 @@ export default function NonLoginUsersModal() {
     <div
       className={styles.notes_modal}
       onClick={() => {
+        console.log('ss');
         setShowHiddenModal(false);
       }}
     >

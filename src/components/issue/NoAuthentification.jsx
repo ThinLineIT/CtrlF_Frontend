@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import styles from '../../styles/items/modal/issue_modal.module.css';
 
-export default function NoAuthentification({ setNoAuth }) {
+export default function NoAuthentification({ setIsModalFeature }) {
   const backToModal = () => {
-    setNoAuth(false);
+    setIsModalFeature(false);
   };
   return (
     <div className={styles.background}>
