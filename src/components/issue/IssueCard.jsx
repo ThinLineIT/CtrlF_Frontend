@@ -7,11 +7,12 @@ import IssueDeleteTopic from '../../../public/images/issue/card/issue_delete_top
 import IssueCreatePage from '../../../public/images/issue/card/issue_create_page.svg';
 import IssueUpdatePage from '../../../public/images/issue/card/issue_update_page.svg';
 import IssueDeletePage from '../../../public/images/issue/card/issue_delete_page.svg';
+import { getContentLength } from '../../utils/getContentLength';
 import { TYPES, ACTIONS, SIZES } from '../../constant/issueTypes';
 import styles from '../../styles/items/issue/issue_card.module.css';
 
 const IssueCard = ({ title, length, data }) => {
-  const ISSUE_LENGTH = length % 4;
+  const ISSUE_LENGTH = getContentLength(length);
   switch (data.content_request.type) {
     case TYPES.NOTE:
       return (
