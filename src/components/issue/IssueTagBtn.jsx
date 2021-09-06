@@ -6,6 +6,12 @@ import styles from '../../styles/items/issue/issue_tag.module.css';
 const IssueTagBtn = ({ name, selected }) => {
   const [filterList, setFilterList] = useRecoilState(filterListAtom);
   const [checkState, setCheckState] = useState(false);
+
+  useEffect(() => {
+    if (filterList.includes(name) && selected === true) setCheckState(false);
+    if (filterList.includes(name) && selected !== true) setCheckState(true);
+  }, []);
+
   useEffect(() => {
     for (let tag of filterList) {
       if (name === tag) return;
