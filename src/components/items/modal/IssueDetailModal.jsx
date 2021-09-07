@@ -1,4 +1,10 @@
 import { getUserId } from '../../../utils/userCheck';
+import {
+  issueAccept,
+  issueReject,
+  issueCancel,
+  issueEdit,
+} from '../../../utils/issueHook';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 
 export default function IssueDetailModal({
@@ -13,7 +19,8 @@ export default function IssueDetailModal({
   const acceptIssue = () => {
     const user_id = getUserId();
     if (data.owner_id === user_id) {
-      console.log('이슈를 승인하겠습니다');
+      issueAccept();
+      // API 개발 완료시 교체 예정
     }
     setIsModalFeature(true);
   };
@@ -21,24 +28,26 @@ export default function IssueDetailModal({
   const rejectIssue = () => {
     const user_id = getUserId();
     if (data.owner_id === user_id) {
-      console.log('이슈를 미승인하겠습니다');
+      issueReject();
+      // API 개발 완료시 교체 예정
     }
     setIsModalFeature(true);
   };
 
-  const issueCancel = () => {
+  const CancelIssue = () => {
     const user_id = getUserId();
     if (user_id === data.content_request.user_id) {
-      console.log('이슈를 취소합니다.');
+      issueCancel(); // API 개발 완료시 교체 예정
     } else {
       setIsModalFeature(true);
     }
   };
 
-  const issueEdit = () => {
+  const editIssue = () => {
     const user_id = getUserId();
     if (user_id === data.content_request.user_id) {
-      console.log('이슈를 수정합니다. ');
+      issueEdit();
+      // API 개발 완료시 교체 예정
     } else {
       setIsModalFeature(true);
     }
@@ -59,10 +68,10 @@ export default function IssueDetailModal({
         </div>
 
         <div className={styles.btns}>
-          <button className={styles.modal__btn} onClick={issueEdit}>
+          <button className={styles.modal__btn} onClick={editIssue}>
             수정
           </button>
-          <button className={styles.modal__btn} onClick={issueCancel}>
+          <button className={styles.modal__btn} onClick={CancelIssue}>
             요청취소
           </button>
           <button className={styles.modal__btn} onClick={acceptIssue}>

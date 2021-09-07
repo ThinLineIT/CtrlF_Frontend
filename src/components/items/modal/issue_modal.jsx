@@ -4,7 +4,7 @@ import NonLoginUsersModal from './non_login_users_modal';
 import IssueDetailModal from './IssueDetailModal';
 
 export default function Modal({ setModal, data }) {
-  const [isLogin, setIsLogin] = useState(true); // 임시 전역으로 대체
+  const [isLogin, setIsLogin] = useState(true); // 임시 로그인 기능입니다. 교체 예정입니다
   const [isModalFeature, setIsModalFeature] = useState(false);
 
   useEffect(() => {
