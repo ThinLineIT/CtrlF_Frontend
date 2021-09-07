@@ -21,7 +21,6 @@ export default function NonLoginUsersModal() {
     <div
       className={styles.notes_modal}
       onClick={() => {
-        console.log('ss');
         setShowHiddenModal(false);
       }}
     >
