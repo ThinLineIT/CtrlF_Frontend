@@ -6,6 +6,7 @@
 }
 
 .issue__list {
+  max-width: 1660px;
   background-color: white;
   padding: 30px;
   width: 80%;
