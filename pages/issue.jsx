@@ -11,7 +11,7 @@ function Issue() {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`${process.env.MOCK_PUBLIC_BASE_API}/issues`)
+        .get(`${process.env.MOCK_PUBLIC_BASE_API}/issues`) // 추후 API 변경 예정
         .then((res) => {
           setIssues(res.data);
           setFilteredIssue(res.data);
