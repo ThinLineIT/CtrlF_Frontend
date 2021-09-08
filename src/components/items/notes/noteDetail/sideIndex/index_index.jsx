@@ -24,7 +24,7 @@ import {
   firstVisiblePageTitle,
 } from '../../../../../store/atom';
 
-export default function IndexIndex() {
+export default function IndexIndex({ isValidJwt }) {
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);

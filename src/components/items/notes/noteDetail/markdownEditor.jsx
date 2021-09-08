@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import remarkGfm from 'remark-gfm';
+import { useRecoilValue } from 'recoil';
 import ReactMarkdown from 'react-markdown';
+import { addNewPage } from '../../../../store/atom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from '../../../../styles/items/notes/noteDetail/markdownEditor.module.css';
 
 export default function MarkdownEditor(props) {
   const content = props.contents;
   const [input, setInput] = useState(null);
   const [preview, setPreiview] = useState(false);
+  const addNewContent = useRecoilValue(addNewPage);
 
   const useTab = (e) => {
     if (e.key == 'Tab') {
@@ -32,12 +35,14 @@ export default function MarkdownEditor(props) {
       <span as="h3" className={styles.detail_content}>
         {!preview ? (
           <>
-            <input
-              type="text"
-              placeholder="수정 사유"
-              className={styles.users_input}
-              required
-            />
+            {!addNewContent && (
+              <input
+                type="text"
+                placeholder="수정 사유"
+                className={styles.users_input}
+                required
+              />
+            )}
             <textarea
               name="text"
               value={input}
@@ -48,15 +53,18 @@ export default function MarkdownEditor(props) {
               required
               autoFocus
             >
-              {content}
+              {addNewContent ? null : content}
             </textarea>
           </>
         ) : (
           <ReactMarkdown
             className={styles.preview}
             remarkPlugins={[remarkGfm]}
-            children={input == null ? content : input}
-            renderers={{
+            // eslint-disable-next-line react/no-children-prop
+            children={
+              !addNewContent ? (input == null ? content : input) : input
+            }
+            components={{
               code: CodeBlock,
             }}
           />
@@ -68,7 +76,7 @@ export default function MarkdownEditor(props) {
 
 const CodeBlock = ({ language, value }) => {
   return (
-    <SyntaxHighlighter language={language ?? null} style={dark}>
+    <SyntaxHighlighter language={language ?? null} style={docco}>
       {value ?? ''}
     </SyntaxHighlighter>
   );

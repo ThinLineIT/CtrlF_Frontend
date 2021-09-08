@@ -105,3 +105,33 @@
   font-size: 1.2rem;
   line-height: 2.5rem;
 }
+
+.dropdownContainer {
+  position: absolute;
+  padding: 0 1em;
+  top: 167px;
+  left: 40.3%;
+  width: 820px;
+  height: 400px;
+  font-size: 2rem;
+  font-weight: normal;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid #d4d4d4;
+  background: white;
+  flex-grow: 1;
+  border-top-right-radius: 30px;
+  transition: opacity 500ms;
+}
+
+.dropdownHidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms;
+}
+
+.dropdownContainer span:hover {
+  color: #b5bdff;
+}

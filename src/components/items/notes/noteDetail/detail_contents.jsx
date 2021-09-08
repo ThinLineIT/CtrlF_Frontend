@@ -82,21 +82,23 @@ export default function DetailContents() {
           <MarkdownEditor contents={myPageContent} />
         ) : (
           <ReactMarkdown
+            // eslint-disable-next-line react/no-children-prop
             children={myPageContent}
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}
-            renderers={{
-              code: Component,
+            components={{
+              code: CodeBlock,
             }}
           />
         )}
       </>
+
       {showHiddenModal && <ModalInput />}
     </div>
   );
 }
 
-const Component = ({ value, language }) => {
+const CodeBlock = ({ value, language }) => {
   return (
     <SyntaxHighlighter language={language ?? null} style={docco}>
       {value ?? ''}
