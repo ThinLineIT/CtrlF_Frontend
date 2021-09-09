@@ -18,7 +18,7 @@ const IssueTagInput = ({ styles }) => {
     <div className={styles.tag__input}>
       <div className={styles.tag_select}>
         {filterTags.map((v, i) => (
-          <IssueTagBtn key={i} name={v} selected={true} />
+          <IssueTagBtn key={i} name={v} isInput={true} />
         ))}
       </div>
       <div className={styles.filter_btn} onClick={getFilteredIssue}>
