@@ -12,6 +12,7 @@ function Issue() {
   const [loading, setLoading] = useState(false);
 
   function fetchData() {
+    // 추후 API 교체 예정
     axios.get(`${process.env.MOCK_PUBLIC_BASE_API}/issues`).then((res) => {
       if (firstFetch) {
         setIssues([...res.data]);
