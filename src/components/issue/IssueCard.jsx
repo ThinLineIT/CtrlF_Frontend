@@ -14,19 +14,19 @@ import { TYPES, ACTIONS, SIZES } from '../../constant/issueTypes';
 import styles from '../../styles/items/issue/issue_card.module.css';
 
 const IssueCard = ({ title, length, data }) => {
-  const [modal, setModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const ISSUE_LENGTH = getContentLength(length);
 
   const showModal = () => {
-    setModal(true);
+    setIsModalOpen(true);
   };
 
   switch (data.content_request.type) {
     case TYPES.NOTE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {modal && <Modal setModal={setModal} data={data} />}
+          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateNote className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -50,7 +50,7 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.TOPIC:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {modal && <Modal setModal={setModal} data={data} />}
+          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateTopic className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -74,7 +74,7 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.PAGE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {modal && <Modal setModal={setModal} data={data} />}
+          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreatePage className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />

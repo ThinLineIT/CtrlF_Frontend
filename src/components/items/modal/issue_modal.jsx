@@ -3,9 +3,9 @@ import NoAuthentification from '../../issue/NoAuthentification';
 import NonLoginUsersModal from './non_login_users_modal';
 import IssueDetailModal from './IssueDetailModal';
 
-export default function Modal({ setModal, data }) {
+export default function Modal({ setIsModalOpen, data }) {
   const [isLogin, setIsLogin] = useState(true); // 임시 로그인 기능입니다. 교체 예정입니다
-  const [isModalFeature, setIsModalFeature] = useState(false);
+  const [isFeatureClicked, setIsFeatureClicked] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -16,17 +16,17 @@ export default function Modal({ setModal, data }) {
 
   return (
     <>
-      {!isModalFeature && (
+      {!isFeatureClicked && (
         <IssueDetailModal
           data={data}
-          setModal={setModal}
-          setIsModalFeature={setIsModalFeature}
+          setIsModalOpen={setIsModalOpen}
+          setIsFeatureClicked={setIsFeatureClicked}
         />
       )}
-      {isLogin && isModalFeature && (
-        <NoAuthentification setIsModalFeature={setIsModalFeature} />
+      {isLogin && isFeatureClicked && (
+        <NoAuthentification setIsFeatureClicked={setIsFeatureClicked} />
       )}
-      {!isLogin && isModalFeature && <NonLoginUsersModal />}
+      {!isLogin && isFeatureClicked && <NonLoginUsersModal />}
     </>
   );
 }

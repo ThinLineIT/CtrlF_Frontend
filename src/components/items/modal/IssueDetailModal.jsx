@@ -9,47 +9,48 @@ import styles from '../../../styles/items/modal/issue_modal.module.css';
 
 export default function IssueDetailModal({
   data,
-  setModal,
-  setIsModalFeature,
+  setIsModalOpen,
+  setIsFeatureClicked,
 }) {
   const closeModal = () => {
-    setModal(false);
+    setIsModalOpen(false);
   };
 
   const acceptIssue = () => {
     const user_id = getUserId();
     if (data.owner_id === user_id) {
-      issueAccept();
       // API 개발 완료시 교체 예정
+      issueAccept();
     }
-    setIsModalFeature(true);
+    setIsFeatureClicked(true);
   };
 
   const rejectIssue = () => {
     const user_id = getUserId();
     if (data.owner_id === user_id) {
-      issueReject();
       // API 개발 완료시 교체 예정
+      issueReject();
     }
-    setIsModalFeature(true);
+    setIsFeatureClicked(true);
   };
 
   const CancelIssue = () => {
     const user_id = getUserId();
     if (user_id === data.content_request.user_id) {
-      issueCancel(); // API 개발 완료시 교체 예정
+      // API 개발 완료시 교체 예정
+      issueCancel();
     } else {
-      setIsModalFeature(true);
+      setIsFeatureClicked(true);
     }
   };
 
   const editIssue = () => {
     const user_id = getUserId();
     if (user_id === data.content_request.user_id) {
-      issueEdit();
       // API 개발 완료시 교체 예정
+      issueEdit();
     } else {
-      setIsModalFeature(true);
+      setIsFeatureClicked(true);
     }
   };
 
