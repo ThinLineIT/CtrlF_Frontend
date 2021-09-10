@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { filterList as filterListAtom } from '../../store/atom';
-import IssueTagBtn from '../../components/issue/IssueTagBtn';
+import IssueSelectedTagBtn from '../../components/issue/IssueSelectedTagBtn';
 import IssueFilterBtn from '../../../public/images/issue/issueTag/issue_search_button.svg';
 
 const issueFilterBtnStyle = {
@@ -18,7 +18,7 @@ const IssueTagInput = ({ styles }) => {
     <div className={styles.tag__input}>
       <div className={styles.tag_select}>
         {filterTags.map((v, i) => (
-          <IssueTagBtn key={i} name={v} isInput={true} />
+          <IssueSelectedTagBtn key={i} name={v} />
         ))}
       </div>
       <div className={styles.filter_btn} onClick={getFilteredIssue}>

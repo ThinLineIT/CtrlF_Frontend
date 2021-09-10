@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react';
 import { filterList as filterListAtom } from '../../store/atom';
 import styles from '../../styles/items/issue/issue_tag.module.css';
 
-const IssueTagBtn = ({ name, isInput }) => {
+const IssueTagBtn = ({ name }) => {
   const [filterList, setFilterList] = useRecoilState(filterListAtom);
   const [checkState, setCheckState] = useState(false);
 
   useEffect(() => {
-    if (filterList.includes(name) && isInput === true) setCheckState(false);
-    if (filterList.includes(name) && isInput !== true) setCheckState(true);
+    if (filterList.includes(name)) setCheckState(true);
   }, []);
 
   useEffect(() => {
@@ -20,13 +19,10 @@ const IssueTagBtn = ({ name, isInput }) => {
   }, [filterList]);
 
   const addFilter = () => {
-    if (!checkState && !isInput) {
+    if (!checkState) {
       setCheckState(true);
       setFilterList([...filterList, name]);
     }
-  };
-  const unselect = () => {
-    setFilterList(filterList.filter((value) => name !== value));
   };
 
   return (
@@ -35,7 +31,6 @@ const IssueTagBtn = ({ name, isInput }) => {
       onClick={addFilter}
     >
       {name}
-      {isInput && <button onClick={unselect}>X</button>}
     </div>
   );
 };
