@@ -26,6 +26,7 @@
     "react-router-dom": "^5.2.1",
     "react-ssr-prepass": "^1.4.0",
     "recoil": "^0.4.1",
+    "recoil-persist": "^3.0.0",
     "rodal": "^1.8.1",
     "styled-components": "^5.3.1",
     "styled-react-modal": "^2.1.0"

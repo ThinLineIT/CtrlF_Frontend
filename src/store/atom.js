@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 export const List = atom({
   key: 'noteList',
@@ -280,7 +281,10 @@ export const backToEmail = atom({
   default: false,
 });
 
-export const issues = atom({
-  key: 'issues',
+const { persistAtom } = recoilPersist();
+
+export const filterList = atom({
+  key: 'filterList',
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });

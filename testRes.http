@@ -1,5 +1,0 @@
-get http://http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/notes/?cursor=0
-
-
-###
-get http://testdeploy-dev.ap-northeast-2.elasticbeanstalk.com/api/notes/?cursor=30
