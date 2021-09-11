@@ -7,7 +7,19 @@ import {
 } from '../../utils/SvgDraw';
 import { useEffect } from 'react';
 
-const IssueList = ({ styles, issues }) => {
+const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
+  const infiniteScroll = () => {
+    let scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    let scrollTop = parseInt(document.documentElement.scrollTop);
+    let clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight === scrollHeight && !loading) {
+      fetchMoreData();
+    }
+  };
+
   useEffect(() => {
     const SVG_LENGTH_MEDIUM = document.getElementsByClassName('svg_medium');
     const SVG_LENGTH_LARGE = document.getElementsByClassName('svg_large');
@@ -18,19 +30,18 @@ const IssueList = ({ styles, issues }) => {
     extraSvgDrawer(SVG_LENGTH_EXTRA);
     smallSvgDrawer(SVG_LENGTH_SMALL);
   }, [issues]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', infiniteScroll);
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll);
+    };
+  });
   return (
     <div className={styles.issue__list}>
       {issues &&
-        issues.map((v) => {
-          return (
-            <IssueCard key={v.id} title={v.title} length={v.id} data={v} />
-          );
-        })}
-      {issues &&
-        issues.map((v) => {
-          return (
-            <IssueCard key={v.id} title={v.title} length={v.id} data={v} />
-          );
+        issues.map((v, i) => {
+          return <IssueCard key={i} title={v.title} length={v.id} data={v} />;
         })}
     </div>
   );
