@@ -3,7 +3,7 @@ import IssueTag from '../src/components/issue/IssueTag';
 import styles from '../src/styles/Issue.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { loginCheck } from '../src/utils/loginCheck';
+import { checkLogin } from '../src/utils/loginCheck';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
 
@@ -13,7 +13,7 @@ function Issue() {
   const [filteredIssue, setFilteredIssue] = useState('');
 
   useEffect(() => {
-    loginCheck(setJwt);
+    checkLogin(setJwt);
     async function fetchData() {
       await axios
         .get(`${process.env.MOCK_PUBLIC_BASE_API}/issues`)
