@@ -28,6 +28,7 @@
     "react-syntax-highlighter": "^15.4.4",
     "recoil": "^0.4.1",
     "remark-gfm": "^2.0.0",
+    "recoil-persist": "^3.0.0",
     "rodal": "^1.8.1",
     "styled-components": "^5.3.1",
     "styled-react-modal": "^2.1.0"

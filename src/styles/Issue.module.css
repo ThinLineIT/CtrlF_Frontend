@@ -6,9 +6,11 @@
 }
 
 .issue__list {
+  max-width: 1660px;
   background-color: white;
   padding: 30px;
   width: 80%;
+  max-width: 1500px;
   border: 1px solid black;
   display: grid;
   grid-auto-rows: minmax(80px, 80px);
