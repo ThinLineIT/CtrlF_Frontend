@@ -133,6 +133,11 @@ export const ModifyPageContent = atom({
   default: false,
 });
 
+export const addNewPage = atom({
+  key: 'add_new_page',
+  default: false,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({

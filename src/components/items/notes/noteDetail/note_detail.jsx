@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useSetRecoilState } from 'recoil';
 import { DetailList } from '../detailMockData';
 import SideIndex from './sideIndex/side_index';
@@ -16,8 +17,16 @@ export default function NoteDetail({ note }) {
   const detailList = DetailList;
   const setData = useSetRecoilState(noteDetailData);
   const setNoteTitle = useSetRecoilState(detailTitle);
+  const [isValidJwt, setIsValidJwt] = useState(false);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const isValidToken = cookies.token;
+
+  useEffect(() => {
+    isValidToken ? setIsValidJwt(true) : setIsValidJwt(false);
+  }, [cookies]);
 
   useEffect(() => {
     setData(detailList);
@@ -28,8 +37,8 @@ export default function NoteDetail({ note }) {
 
   return (
     <div className={styles.wrap}>
-      <SideIndex />
-      <DetailContents />
+      <SideIndex isValidJwt={isValidJwt} />
+      <DetailContents isValidJwt={isValidJwt} />
     </div>
   );
 }

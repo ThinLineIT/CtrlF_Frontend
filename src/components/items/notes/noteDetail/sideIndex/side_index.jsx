@@ -1,8 +1,7 @@
 import AddBtn from './AddBtn';
 import IndexIndex from './index_index';
-import { useCookies } from 'react-cookie';
 import RightClickSpan from './rightClick';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
@@ -15,29 +14,24 @@ import {
   contextMenuState,
   contextMenuActive,
   isValidOnMainpage,
+  ModifyPageContent,
   modalInputPlaceholder,
 } from '../../../../../store/atom';
 
-export default function SideIndex() {
-  const [isValidJwt, setIsValidJwt] = useState(false);
+export default function SideIndex({ isValidJwt }) {
   const [modalToggle, setModalToggle] = useState(false);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
 
-  const isValidToken = cookies.token;
   const noteTitle = useRecoilValue(detailTitle);
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModalNameEn = useSetRecoilState(modalNameEn);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
-
-  useEffect(() => {
-    isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
-  }, [cookies]);
 
   const onRightClick = (event) => {
     if (!modalToggle) {
@@ -59,6 +53,7 @@ export default function SideIndex() {
   };
 
   const closeContextMenu = () => {
+    setModifyPage(false);
     setShowMenu(false);
   };
 
@@ -75,7 +70,7 @@ export default function SideIndex() {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex />
+          <IndexIndex isValidJwt={isValidJwt} />
           <AddBtn isValidJwt={isValidJwt} />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
