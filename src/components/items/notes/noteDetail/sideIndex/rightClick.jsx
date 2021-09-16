@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import ModalInput from '../../../modal/modal_input';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/rightClick.module.css';
 import {
+  addNewPage,
   okBtnActive,
-  detailTitle,
   isModalActive,
   modalRestParams,
   contextMenuName,
@@ -19,14 +18,12 @@ import {
 import NonLoginUsersModal from '../../../modal/non_login_users_modal';
 
 export default function RightClickSpan(props) {
-  const [isValidJwt, setIsValidJwt] = useState(false);
   const setShowMenu = useSetRecoilState(contextMenuActive);
   const setIsInputActive = useSetRecoilState(isInputShouldActive);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [addNewContent, setAddNewContent] = useRecoilState(addNewPage);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
-  const isValidToken = cookies.token;
-  const noteTitle = useRecoilValue(detailTitle);
+  const [isValidJwt, setIsValidJwt] = useState(false);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const useContextMenuName = useRecoilValue(contextMenuName);
   const setModalRestParams = useSetRecoilState(modalRestParams);
@@ -36,16 +33,23 @@ export default function RightClickSpan(props) {
     modalTextareaPlaceholder
   );
 
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const isValidToken = cookies.token;
+
   useEffect(() => {
-    isValidToken !== undefined ? setIsValidJwt(true) : setIsValidJwt(false);
-    setIsOkBtnActive(false);
+    isValidToken ? setIsValidJwt(true) : setIsValidJwt(false);
   }, [cookies]);
+
+  useEffect(() => {
+    setIsOkBtnActive(false);
+  }, []);
 
   const onModify = (e) => {
     if (e.target.innerText == '내용 수정') {
       if (!isValidJwt) {
         setShowHiddenModal(true);
       } else {
+        setAddNewContent(false);
         setModifyPage(true);
       }
     } else {
@@ -74,24 +78,9 @@ export default function RightClickSpan(props) {
   return (
     <ContextContainer x={props.x} y={props.y}>
       <span onClick={onModify}>{useContextMenuName}</span>
-      {showHiddenModal && (
-        <>
-          {isValidJwt ? (
-            <ModalInput noteName={noteTitle} />
-          ) : (
-            <NonLoginUsersModal />
-          )}
-        </>
-      )}
       <span onClick={onDelete}>삭제 요청</span>
       {showHiddenModal && (
-        <>
-          {isValidJwt ? (
-            <ModalInput noteName={noteTitle} />
-          ) : (
-            <NonLoginUsersModal />
-          )}
-        </>
+        <>{isValidJwt ? <ModalInput /> : <NonLoginUsersModal />}</>
       )}
     </ContextContainer>
   );
