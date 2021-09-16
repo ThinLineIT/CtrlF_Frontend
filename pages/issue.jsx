@@ -3,8 +3,12 @@ import { useEffect, useState } from 'react';
 import IssueList from '../src/components/issue/IssueList';
 import IssueTag from '../src/components/issue/IssueTag';
 import styles from '../src/styles/Issue.module.css';
+import { checkLogin } from '../src/utils/loginCheck';
+import { useSetRecoilState } from 'recoil';
+import { isJwtActive } from '../src/store/atom';
 
 function Issue() {
+  const setJwt = useSetRecoilState(isJwtActive);
   const [firstFetch, setFirstFetch] = useState(true);
   const [issues, setIssues] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -32,6 +36,7 @@ function Issue() {
   }
 
   useEffect(() => {
+    checkLogin(setJwt);
     fetchData();
   }, []);
 
