@@ -1,5 +1,6 @@
+import React, { useState } from 'react';
 import remarkGfm from 'remark-gfm';
-import { useState } from 'react';
+import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
 import ModalInput from '../../modal/modal_input';

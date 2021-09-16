@@ -1,30 +1,25 @@
-import Link from "next/link";
-import router from "next/router";
-import { useRecoilState } from "recoil";
-import { useCookies } from "react-cookie";
-import { isJwtActive } from "../../store/atom";
-import usePagination from "../../utils/use_pagination";
-import React, { useState, useRef, useEffect } from "react";
-import styles from "../../styles/layout/topbar.module.css";
+import Link from 'next/link';
+import router from 'next/router';
+import React, { useRef } from 'react';
+import { useRecoilState } from 'recoil';
+import { useCookies } from 'react-cookie';
+import { isJwtActive } from '../../store/atom';
+import styles from '../../styles/layout/topbar.module.css';
 
 export default function Topbar() {
   const formRef = useRef();
   const inputRef = useRef();
   const logOutRef = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
-  const [query, setQuery] = useState("");
-  const [cursorNumber, setCursorNumber] = useState(0);
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  usePagination(cursorNumber, query);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
   const localClear = () => {
-    logOutRef.current.classList.toggle("topbar_hidden__2lErd");
+    logOutRef.current.classList.toggle('topbar_hidden__2lErd');
   };
 
   const onLogOut = () => {
     setJwt(false);
     removeCookie('token');
-    localStorage.removeItem('user_id');
     router.push('/');
   };
 

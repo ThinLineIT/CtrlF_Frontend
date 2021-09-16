@@ -144,6 +144,11 @@ export const isApprovedModal = atom({
   default: false,
 });
 
+export const preparingModal = atom({
+  key: 'preparing_modal',
+  default: false,
+});
+
 export const isValidOnMainpage = atom({
   key: 'is_valid_on_mainpage',
   default: false,
