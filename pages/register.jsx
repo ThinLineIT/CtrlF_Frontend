@@ -52,11 +52,6 @@ export default function Register() {
             </li>
             <li>
               <a>
-                <label
-                  id={styles.label}
-                  htmlFor="slide01"
-                  className={styles.left}
-                ></label>
                 <AuthCode styles={styles} authCodeSuccess={authCodeSuccess} />
                 <label htmlFor="slide03" className={styles.right}></label>
               </a>

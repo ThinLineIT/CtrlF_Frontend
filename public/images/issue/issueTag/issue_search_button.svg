@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="134" height="99" viewBox="0 0 134 99">
+  <defs>
+    <filter id="사각형_487" x="0" y="0" width="134" height="99" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_780" data-name="그룹 780" transform="translate(-12804 2734)">
+    <g transform="matrix(1, 0, 0, 1, 12804, -2734)" filter="url(#사각형_487)">
+      <rect id="사각형_487-2" data-name="사각형 487" width="116" height="81" rx="23" transform="translate(9 6)" fill="#8bc8fd"/>
+    </g>
+    <g id="그룹_779" data-name="그룹 779" transform="translate(-2120.229 601.092)">
+      <line id="선_212" data-name="선 212" x2="36.126" transform="translate(14973.166 -3290.295)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="6"/>
+      <g id="그룹_773" data-name="그룹 773" transform="translate(14975.053 -3290.333) rotate(-45)">
+        <line id="선_213" data-name="선 213" y2="24.157" transform="translate(24.048 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="6"/>
+        <line id="선_214" data-name="선 214" y2="24.157" transform="translate(24.157 24.266) rotate(90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="6"/>
+      </g>
+    </g>
+  </g>
+</svg>
