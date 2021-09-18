@@ -89,13 +89,29 @@ const LoginForm = () => {
         </button>
       </form>
       <div className={styles.login__button__extra}>
-        <Link href="/">
-          <a className={styles.login__link}>ID 찾기</a>
-        </Link>
+        {/* 준비중입니다 컴포넌트 삽입 */}
+
+        <a
+          onClick={() => {
+            console.log('ss');
+          }}
+          className={styles.login__link}
+        >
+          ID 찾기
+        </a>
+
         <span>|</span>
-        <Link href="/register">
-          <a className={styles.login__link}>PASSWORD 찾기</a>
-        </Link>
+        {/* 준비중입니다 컴포넌트 삽입 */}
+
+        <a
+          onClick={() => {
+            console.log('ss');
+          }}
+          className={styles.login__link}
+        >
+          PASSWORD 찾기
+        </a>
+
         <span>|</span>
         <Link href="/register">
           <a className={styles.login__link}>회원가입</a>
