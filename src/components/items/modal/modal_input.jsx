@@ -1,124 +1,126 @@
-import ModalUtils from './modal_utils';
-import { useRef } from 'react';
-import styles from '../../../styles/items/modal/modal_input.module.css';
-import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
-import {
-  buttonOk,
-  modalTitle,
-  okBtnActive,
-  buttonCancel,
-  isModalActive,
-  requestNoteTitle,
-  requestNoteContent,
-  userRequestDataList,
-  isInputShouldActive,
-  modalInputPlaceholder,
-  modalTextareaPlaceholder,
-} from '../../../store/atom';
+//TODO: 0.2.1 버전에 활성화 될 기능입니다.
 
-export default function ModalInput({ noteName }) {
-  const textareaRef = useRef();
-  const noteTitleRef = useRef();
-  const isInputActive = useRecoilValue(isInputShouldActive);
-  const [isOkBtnActive, setIsOkBtnActive] = useRecoilState(okBtnActive);
-  const setShowHiddenModal = useSetRecoilState(isModalActive);
+// import ModalUtils from './modal_utils';
+// import { useRef } from 'react';
+// import styles from '../../../styles/items/modal/modal_input.module.css';
+// import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+// import {
+//   buttonOk,
+//   modalTitle,
+//   okBtnActive,
+//   buttonCancel,
+//   isModalActive,
+//   requestNoteTitle,
+//   requestNoteContent,
+//   userRequestDataList,
+//   isInputShouldActive,
+//   modalInputPlaceholder,
+//   modalTextareaPlaceholder,
+// } from '../../../store/atom';
 
-  const okBtn = useRecoilValue(buttonOk);
-  const title = useRecoilValue(modalTitle);
-  const cancelBtn = useRecoilValue(buttonCancel);
-  const inputPlaceholder = useRecoilValue(modalInputPlaceholder);
-  const textareaPlaceholder = useRecoilValue(modalTextareaPlaceholder);
+// export default function ModalInput({ noteName }) {
+//   const textareaRef = useRef();
+//   const noteTitleRef = useRef();
+//   const isInputActive = useRecoilValue(isInputShouldActive);
+//   const [isOkBtnActive, setIsOkBtnActive] = useRecoilState(okBtnActive);
+//   const setShowHiddenModal = useSetRecoilState(isModalActive);
 
-  const setRequestTitle = useSetRecoilState(requestNoteTitle);
-  const setRequestContent = useSetRecoilState(requestNoteContent);
-  const [requestData, setRequestData] = useRecoilState(userRequestDataList);
+//   const okBtn = useRecoilValue(buttonOk);
+//   const title = useRecoilValue(modalTitle);
+//   const cancelBtn = useRecoilValue(buttonCancel);
+//   const inputPlaceholder = useRecoilValue(modalInputPlaceholder);
+//   const textareaPlaceholder = useRecoilValue(modalTextareaPlaceholder);
 
-  const onInputChange = () => {
-    if (isInputActive) {
-      setRequestTitle(noteTitleRef.current.value);
-      setRequestContent(textareaRef.current.value);
-    } else {
-      setRequestContent(textareaRef.current.value);
-    }
-  };
+//   const setRequestTitle = useSetRecoilState(requestNoteTitle);
+//   const setRequestContent = useSetRecoilState(requestNoteContent);
+//   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
 
-  const changeModalUtilsAndOkBtnActive = () => {
-    setIsOkBtnActive(true);
-  };
+//   const onInputChange = () => {
+//     if (isInputActive) {
+//       setRequestTitle(noteTitleRef.current.value);
+//       setRequestContent(textareaRef.current.value);
+//     } else {
+//       setRequestContent(textareaRef.current.value);
+//     }
+//   };
 
-  const closeModal = () => {
-    setIsOkBtnActive(false);
-    setShowHiddenModal(false);
-  };
+//   const changeModalUtilsAndOkBtnActive = () => {
+//     setIsOkBtnActive(true);
+//   };
 
-  const closingModalAndSendData = (title, requestTitle, requestContent) => {
-    setIsOkBtnActive(false);
-    isInputActive
-      ? setRequestData([
-          ...requestData,
-          {
-            noteName,
-            title,
-            requestTitle,
-            requestContent,
-          },
-        ])
-      : setRequestData([
-          ...requestData,
-          {
-            noteName,
-            title,
-            requestContent,
-          },
-        ]);
-  };
+//   const closeModal = () => {
+//     setIsOkBtnActive(false);
+//     setShowHiddenModal(false);
+//   };
 
-  if (!isOkBtnActive) {
-    return (
-      <div className={styles.notes_modal}>
-        <div className={styles.modal_overlay}>
-          <div className={styles.modal_content}>
-            <h1>{title}</h1>
-            <h2>{noteName}</h2>
-            {isInputActive && (
-              <input
-                ref={noteTitleRef}
-                className={styles.users_input}
-                type="text"
-                placeholder={inputPlaceholder}
-                onChange={onInputChange}
-                required
-              />
-            )}
-            <textarea
-              ref={textareaRef}
-              className={styles.users_textarea}
-              name="text"
-              placeholder={textareaPlaceholder}
-              onChange={onInputChange}
-              required
-            />
-            <div className={styles.btn}>
-              <button
-                className={styles.ok_button}
-                onClick={changeModalUtilsAndOkBtnActive}
-              >
-                {okBtn}
-              </button>
-              <button className={styles.cancel_button} onClick={closeModal}>
-                {cancelBtn}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (isOkBtnActive) {
-    return (
-      <ModalUtils
-        title={title}
-        closingModalAndSendData={closingModalAndSendData}
-      />
-    );
-  }
-}
+//   const closingModalAndSendData = (title, requestTitle, requestContent) => {
+//     setIsOkBtnActive(false);
+//     isInputActive
+//       ? setRequestData([
+//           ...requestData,
+//           {
+//             noteName,
+//             title,
+//             requestTitle,
+//             requestContent,
+//           },
+//         ])
+//       : setRequestData([
+//           ...requestData,
+//           {
+//             noteName,
+//             title,
+//             requestContent,
+//           },
+//         ]);
+//   };
+
+//   if (!isOkBtnActive) {
+//     return (
+//       <div className={styles.notes_modal}>
+//         <div className={styles.modal_overlay}>
+//           <div className={styles.modal_content}>
+//             <h1>{title}</h1>
+//             <h2>{noteName}</h2>
+//             {isInputActive && (
+//               <input
+//                 ref={noteTitleRef}
+//                 className={styles.users_input}
+//                 type="text"
+//                 placeholder={inputPlaceholder}
+//                 onChange={onInputChange}
+//                 required
+//               />
+//             )}
+//             <textarea
+//               ref={textareaRef}
+//               className={styles.users_textarea}
+//               name="text"
+//               placeholder={textareaPlaceholder}
+//               onChange={onInputChange}
+//               required
+//             />
+//             <div className={styles.btn}>
+//               <button
+//                 className={styles.ok_button}
+//                 onClick={changeModalUtilsAndOkBtnActive}
+//               >
+//                 {okBtn}
+//               </button>
+//               <button className={styles.cancel_button} onClick={closeModal}>
+//                 {cancelBtn}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   } else if (isOkBtnActive) {
+//     return (
+//       <ModalUtils
+//         title={title}
+//         closingModalAndSendData={closingModalAndSendData}
+//       />
+//     );
+//   }
+// }

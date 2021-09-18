@@ -41,6 +41,7 @@
   width: 41em;
   margin: 0 auto;
   height: 40px;
+  opacity: 0;
 }
 .searchbar__input {
   width: 35rem;
@@ -80,7 +81,7 @@
 .login__button {
   width: 3.7em;
   height: 3.7em;
-  background: url("../../../public/images/user_circle_btn.png") center no-repeat;
+  background: url('../../../public/images/user_circle_btn.png') center no-repeat;
   background-size: cover;
   margin-top: 0.3em;
 }
