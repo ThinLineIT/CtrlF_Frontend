@@ -3,7 +3,7 @@ import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
-import ModalInput from '../../modal/modal_input';
+import ModalPreparing from '../../modal/modal_preparing';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
@@ -14,13 +14,13 @@ import {
   modalTitle,
   pageContent,
   okBtnActive,
-  isModalActive,
+  preparingModal,
   ModifyPageContent,
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
 export default function DetailContents() {
-  const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
@@ -67,6 +67,7 @@ export default function DetailContents() {
   };
 
   const onChangeContent = () => {
+    setShowHiddenModal(true);
     setDropDownActive(false);
   };
 
@@ -134,8 +135,7 @@ export default function DetailContents() {
           />
         )}
       </>
-
-      {showHiddenModal && <ModalInput />}
+      {showHiddenModal && <ModalPreparing />}
     </div>
   );
 }
