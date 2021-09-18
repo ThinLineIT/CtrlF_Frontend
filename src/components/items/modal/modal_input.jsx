@@ -1,3 +1,5 @@
+//TODO: 0.2.1 버전에 활성화 될 기능입니다.
+
 // import ModalUtils from './modal_utils';
 // import { useRef } from 'react';
 // import styles from '../../../styles/items/modal/modal_input.module.css';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import remarkGfm from 'remark-gfm';
-import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
 import ModalPreparing from '../../modal/modal_preparing';
@@ -9,7 +8,6 @@ import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
-  dropDown,
   topicName,
   modalTitle,
   pageContent,
@@ -26,21 +24,9 @@ export default function DetailContents() {
   const [slideImg, setSlideImg] = useState(false);
   const myPageContent = useRecoilValue(pageContent);
   const modifyPage = useRecoilValue(ModifyPageContent);
-  const [modalToggle, setModalToggle] = useState(false);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
-  const [dropdownActive, setDropDownActive] = useRecoilState(dropDown);
-
-  const showDropdown = () => {
-    if (!modalToggle) {
-      setDropDownActive(true);
-      setModalToggle(true);
-    } else {
-      setDropDownActive(false);
-      setModalToggle(false);
-    }
-  };
 
   const copyClipboard = () => {
     const dummy = document.createElement('input');
@@ -66,11 +52,6 @@ export default function DetailContents() {
     setShowHiddenModal(true);
   };
 
-  const onChangeContent = () => {
-    setShowHiddenModal(true);
-    setDropDownActive(false);
-  };
-
   return (
     <div className={styles.content}>
       <div className={styles.info_item}>
@@ -78,28 +59,6 @@ export default function DetailContents() {
         <div className={styles.info_item_page} onClick={showDropdown}>
           {pageTitle}
         </div>
-        <section
-          className={
-            dropdownActive ? styles.dropdownContainer : styles.dropdownHidden
-          }
-        >
-          <div className={styles.dropdownFlex}>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-            <span onClick={onChangeContent}>수정된 날짜</span>
-          </div>
-          <div className={styles.dropdownFlex}>
-            <span onClick={onChangeContent}>수정된 사람</span>
-            <span onClick={onChangeContent}>수정된 사람</span>
-            <span onClick={onChangeContent}>수정된 사람</span>
-            <span onClick={onChangeContent}>수정된 사람</span>
-            <span onClick={onChangeContent}>수정된 사람</span>
-            <span onClick={onChangeContent}>수정된 사람</span>
-          </div>
-        </section>
       </div>
       <div className={styles.icons}>
         {modifyPage ? (
@@ -125,7 +84,6 @@ export default function DetailContents() {
           <MarkdownEditor contents={myPageContent} />
         ) : (
           <ReactMarkdown
-            // eslint-disable-next-line react/no-children-prop
             children={myPageContent}
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}

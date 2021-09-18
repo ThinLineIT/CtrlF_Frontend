@@ -1,3 +1,5 @@
+// TODO: 0.2.1 버전에 활성화 될 기능입니다.
+
 // import { useSetRecoilState, useRecoilValue } from 'recoil';
 // import styles from '../../../styles/items/modal/modal_utils.module.css';
 // import {
