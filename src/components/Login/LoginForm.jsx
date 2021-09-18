@@ -1,12 +1,16 @@
 import loginHook from '../../utils/LoginHooks';
+import ModalPreparing from '../items/modal/modal_preparing';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { emailReg } from '../../utils/Reg';
+import { useRecoilState } from 'recoil';
+import { preparingModal } from '../../store/atom';
 
 const LoginForm = () => {
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const router = useRouter();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setloginPassword] = useState('');
@@ -89,11 +93,10 @@ const LoginForm = () => {
         </button>
       </form>
       <div className={styles.login__button__extra}>
-        {/* 준비중입니다 컴포넌트 삽입 */}
-
+        {showHiddenModal && <ModalPreparing />}
         <a
           onClick={() => {
-            console.log('ss');
+            setShowHiddenModal(true);
           }}
           className={styles.login__link}
         >
@@ -101,11 +104,11 @@ const LoginForm = () => {
         </a>
 
         <span>|</span>
-        {/* 준비중입니다 컴포넌트 삽입 */}
 
+        {showHiddenModal && <ModalPreparing />}
         <a
           onClick={() => {
-            console.log('ss');
+            setShowHiddenModal(true);
           }}
           className={styles.login__link}
         >

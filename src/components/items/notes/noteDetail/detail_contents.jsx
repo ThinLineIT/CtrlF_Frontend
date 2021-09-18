@@ -56,9 +56,7 @@ export default function DetailContents() {
     <div className={styles.content}>
       <div className={styles.info_item}>
         <div className={styles.info_item_topic}>{topicTitle}</div>
-        <div className={styles.info_item_page} onClick={showDropdown}>
-          {pageTitle}
-        </div>
+        <div className={styles.info_item_page}>{pageTitle}</div>
       </div>
       <div className={styles.icons}>
         {modifyPage ? (
