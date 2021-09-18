@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import remarkGfm from 'remark-gfm';
-import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
-import ModalInput from '../../modal/modal_input';
+import ModalPreparing from '../../modal/modal_preparing';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
@@ -12,13 +12,13 @@ import {
   modalTitle,
   pageContent,
   okBtnActive,
-  isModalActive,
+  preparingModal,
   ModifyPageContent,
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
 export default function DetailContents() {
-  const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
@@ -56,7 +56,9 @@ export default function DetailContents() {
     <div className={styles.content}>
       <div className={styles.info_item}>
         <div className={styles.info_item_topic}>{topicTitle}</div>
-        <div className={styles.info_item_page}>{pageTitle}</div>
+        <div className={styles.info_item_page} onClick={showDropdown}>
+          {pageTitle}
+        </div>
       </div>
       <div className={styles.icons}>
         {modifyPage ? (
@@ -82,7 +84,6 @@ export default function DetailContents() {
           <MarkdownEditor contents={myPageContent} />
         ) : (
           <ReactMarkdown
-            // eslint-disable-next-line react/no-children-prop
             children={myPageContent}
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}
@@ -92,8 +93,7 @@ export default function DetailContents() {
           />
         )}
       </>
-
-      {showHiddenModal && <ModalInput />}
+      {showHiddenModal && <ModalPreparing />}
     </div>
   );
 }

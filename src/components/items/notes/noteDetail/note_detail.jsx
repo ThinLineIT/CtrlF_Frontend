@@ -14,7 +14,7 @@ import {
 
 export default function NoteDetail({ note }) {
   const { title } = note;
-  const detailList = DetailList;
+  const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
   const setData = useSetRecoilState(noteDetailData);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const [isValidJwt, setIsValidJwt] = useState(false);

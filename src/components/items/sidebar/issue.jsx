@@ -1,19 +1,23 @@
-import { useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
-import { userRequestDataList } from '../../../store/atom';
+import { userRequestDataList, preparingModal } from '../../../store/atom';
 import styles from '../../../styles/items/sidebar/issue.module.css';
 
 export default function Issue() {
   const router = useRouter();
+  const setModalHiiden = useSetRecoilState(preparingModal);
   const requestData = useRecoilValue(userRequestDataList);
 
   useEffect(() => {}, [requestData]);
 
-  const routeToIssuePage = () => {
-    router.push('/requestIssue');
-  };
+  // const routeToIssuePage = () => {
+  //   router.push('/requestIssue');
+  // };
 
+  const alertPreparing = () => {
+    setModalHiiden(true);
+  };
   return (
     <div className={styles.container}>
       <span>
@@ -26,7 +30,7 @@ export default function Issue() {
                 className={`${styles.issues} ${
                   styles[`color_${Math.floor((index / 1) % 15)}`]
                 }`}
-                onClick={routeToIssuePage}
+                onClick={alertPreparing}
               >
                 {' '}
                 {item.noteName ? (
