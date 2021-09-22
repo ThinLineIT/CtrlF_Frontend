@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Email from '../src/components/register/Email';
 import Password from '../src/components/register/Password';
 import PasswordConfirm from '../src/components/register/PasswordConfirm';
@@ -32,6 +33,10 @@ export default function Register() {
 
   return (
     <div className="component">
+      <Head>
+        <title>회원가입</title>
+        <meta name="description"></meta>
+      </Head>
       <ReAuthentication ref={modalRef} reAuth={reAuth} styles={styles} />
       <div className={styles.section} id="signup">
         <input type="radio" name="slide" id="slide01" defaultChecked />

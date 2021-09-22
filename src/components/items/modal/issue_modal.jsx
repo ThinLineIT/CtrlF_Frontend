@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import NoAuthentification from '../../issue/NoAuthentification';
-import NonLoginUsersModal from './non_login_users_modal';
 import IssueDetailModal from './IssueDetailModal';
 
 export default function Modal({ setIsModalOpen, data }) {
@@ -26,7 +25,6 @@ export default function Modal({ setIsModalOpen, data }) {
       {isLogin && isFeatureClicked && (
         <NoAuthentification setIsFeatureClicked={setIsFeatureClicked} />
       )}
-      {!isLogin && isFeatureClicked && <NonLoginUsersModal />}
     </>
   );
 }

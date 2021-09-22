@@ -44,11 +44,6 @@
   background: url('../../public/left-arrow.png') center center / 100% no-repeat;
 }
 
-.section .slidelist .right {
-  right: 30px;
-  background: url('../../public/right-arrow.png') center center / 100% no-repeat;
-}
-
 @keyframes moveslide1 {
   0% {
     transform: translateX(1%);

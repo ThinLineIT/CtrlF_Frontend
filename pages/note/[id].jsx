@@ -32,7 +32,7 @@ export async function getStaticPaths() {
         id: item.id.toString(),
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
