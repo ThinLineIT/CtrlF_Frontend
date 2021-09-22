@@ -82,13 +82,14 @@ export default function DetailContents() {
           <MarkdownEditor contents={myPageContent} />
         ) : (
           <ReactMarkdown
-            children={myPageContent}
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}
             components={{
               code: CodeBlock,
             }}
-          />
+          >
+            {myPageContent}
+          </ReactMarkdown>
         )}
       </>
       {showHiddenModal && <ModalPreparing />}
