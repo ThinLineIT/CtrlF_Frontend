@@ -8,12 +8,12 @@ const Post = ({ item }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   function isLoadingDone() {
-    setIsLoading(false);
+    setTimeout(setIsLoading(false), 800);
   }
 
   useEffect(() => {
-    item && isLoadingDone();
-  }, [item]);
+    isLoadingDone();
+  }, []);
 
   return (
     <>
@@ -23,12 +23,13 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          {isLoading && (
+          {isLoading ? (
             <div style={{ padding: '30% 0' }}>
               <UseLoader />
             </div>
+          ) : (
+            <NoteDetail note={item} />
           )}
-          {!isLoading && <NoteDetail note={item} />}
         </>
       )}
     </>
