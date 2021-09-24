@@ -8,7 +8,11 @@ const Post = ({ item }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   function isLoadingDone() {
-    setTimeout(setIsLoading(false), 800);
+    if (item) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+    }
   }
 
   useEffect(() => {
