@@ -11,6 +11,7 @@ import {
 } from '../../../store/atom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import usePagination from '../../../utils/use_pagination';
+import UseLoader from '../../../utils/useLoader';
 
 export default function NoteList() {
   const noteObserver = useRef();
@@ -119,6 +120,7 @@ export default function NoteList() {
             );
           }
         })}
+      <div style={{ padding: '30% 0' }}>{loading && <UseLoader />}</div>
       {notApprovedModalActive && <NotApprovedModal id={noteId} />}
     </div>
   );

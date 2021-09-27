@@ -1,10 +1,24 @@
 import Axios from 'axios';
 import Head from 'next/head';
-
-import { useRouter } from 'next/router';
+import UseLoader from '../../src/utils/useLoader';
+import React, { useState, useEffect } from 'react';
 import NoteDetail from '../../src/components/items/notes/noteDetail/note_detail';
 
 const Post = ({ item }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  function isLoadingDone() {
+    if (item) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+    }
+  }
+
+  useEffect(() => {
+    isLoadingDone();
+  }, []);
+
   return (
     <>
       {item && (
@@ -13,7 +27,13 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          <NoteDetail note={item} />
+          {isLoading ? (
+            <div style={{ padding: '30% 0' }}>
+              <UseLoader />
+            </div>
+          ) : (
+            <NoteDetail note={item} />
+          )}
         </>
       )}
     </>

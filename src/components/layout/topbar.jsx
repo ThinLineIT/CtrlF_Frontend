@@ -30,10 +30,9 @@ export default function Topbar() {
           <a className={styles.top__logo}>
             <img
               className={styles.top__logo__img}
-              src="/images/LOGO_SOLO 1.svg"
+              src="/images/LOGO.svg"
               alt="logo"
             />
-            <h1 className={styles.top__logo__title}>커넵</h1>
           </a>
         </Link>
         <form ref={formRef} className={styles.searchbar}>
