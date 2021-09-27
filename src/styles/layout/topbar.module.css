@@ -16,15 +16,14 @@
 }
 
 .top__logo {
-  width: 22em;
-  min-width: 20em;
+  margin-top: 0.8em;
   display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
 .top__logo__img {
-  width: 134px;
+  width: 300px;
+  height: 70px;
 }
 .top__logo__title {
   color: rgb(255, 255, 255);
@@ -60,8 +59,7 @@
 }
 
 .top__signup__list {
-  min-width: 20em;
-  padding: 1em;
+  padding: 2em;
   margin: 0 2em;
 }
 .top__signup__list a {
