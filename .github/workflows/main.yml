@@ -1,14 +1,14 @@
 name: Deploy
 
-on:
-  push:
-    branches: [dev]
+# on:
+#   push:
+#     branches: [dev]
 
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: git clone

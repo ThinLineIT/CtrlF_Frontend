@@ -1,4 +1,4 @@
-import AddBtn from './AddBtn';
+import AddBtn from './addBtn';
 import IndexIndex from './index_index';
 import RightClickSpan from './rightClick';
 import React, { useState } from 'react';
