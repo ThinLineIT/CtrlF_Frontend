@@ -144,4 +144,5 @@
   border: 0.2px solid #ffffff;
   box-shadow: -2px 2px 5px #0000003d, 2px 2px 5px #0000003d;
   margin-bottom: 1.2em;
+  cursor: pointer;
 }
