@@ -21,7 +21,7 @@ export default function Issue() {
   return (
     <div className={styles.container}>
       <span>
-        <p className={styles.title}>요청 검토 중인 내용</p>
+        <h1 className={styles.title}>요청 검토 중인 내용</h1>
         <div className={styles.issue_container}>
           {requestData &&
             requestData.map((item, index) => (
