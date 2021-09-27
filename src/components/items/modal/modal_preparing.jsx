@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import { preparingModal } from '../../../store/atom';
-import styles from '../../../styles/items/modal/modal_input.module.css';
+import styles from '../../../styles/items/modal/modal_preparing.module.css';
 
 export default function ModalPreparing() {
   const setModalHidden = useSetRecoilState(preparingModal);

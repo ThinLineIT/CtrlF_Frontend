@@ -34,9 +34,9 @@ export default function Issue() {
               >
                 {' '}
                 {item.noteName ? (
-                  <h3>{item.noteName}</h3>
+                  <h4 style={{ marginTop: '.2em' }}>{item.noteName}</h4>
                 ) : (
-                  <h3>{item.requestTitle}</h3>
+                  <h4 style={{ marginTop: '.2em' }}>{item.requestTitle}</h4>
                 )}
               </div>
             ))}

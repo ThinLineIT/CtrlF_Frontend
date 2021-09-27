@@ -5,6 +5,7 @@
   grid-template-columns: repeat(auto-fill, minmax(10%, 226.4px));
   grid-auto-rows: minmax(264px, 264px);
   margin-bottom: 2rem;
+  justify-content: center;
 }
 
 .container_note {

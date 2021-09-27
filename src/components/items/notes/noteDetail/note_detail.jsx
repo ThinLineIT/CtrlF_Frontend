@@ -1,10 +1,11 @@
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { DetailList } from '../detailMockData';
 import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
 import React, { useEffect } from 'react';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
+  pageContent,
   detailTitle,
   noteDetailData,
   isValidOnMainpage,
@@ -14,8 +15,9 @@ import {
 export default function NoteDetail({ note }) {
   const { title } = note;
   const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
-  const setData = useSetRecoilState(noteDetailData);
   const setNoteTitle = useSetRecoilState(detailTitle);
+  const [data, setData] = useRecoilState(noteDetailData);
+  const setMyPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
 

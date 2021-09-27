@@ -1,5 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
+import TopbarLogo from '../../../public/images/Ctrl_F.svg';
+import LogoTitle from '../../../public/images/logotitle.svg';
 import styles from '../../styles/layout/footer.module.css';
 
 export default function Footer() {
@@ -12,12 +13,17 @@ export default function Footer() {
       >
         Powered by{' '}
         <span>
-          <Image src="/Ctrl_F.svg" alt="Ctrl_F Logo" width={20} height={16} />
-          <Image
-            src="/logotitle.svg"
+          <img
+            src="/images/Ctrl_F.svg"
             alt="Ctrl_F Logo"
-            width={50}
-            height={14}
+            width="20"
+            height="16"
+          />
+          <img
+            src="/images/logotitle.svg"
+            alt="Ctrl_F Logo"
+            width="50"
+            height="14"
           />
         </span>
       </a>
