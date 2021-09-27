@@ -13,7 +13,6 @@
   font-size: 1rem;
   font-weight: bolder;
   border-right: 0.7px solid #00000028;
-  padding-left: 1em;
 }
 
 .addBtn button:last-child {
@@ -23,7 +22,6 @@
   align-items: center;
   font-size: 1rem;
   font-weight: bolder;
-  padding-right: 5em;
 }
 
 .addBtn button:first-child:hover {

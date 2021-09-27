@@ -16,8 +16,8 @@ export default function AddBtn() {
   return (
     <>
       <div className={styles.addBtn}>
-        <button onClick={activeAddTopicModal}>+ add topic</button>
-        <button onClick={activeAddPageModal}>+ add page</button>
+        <button onClick={activeAddTopicModal}>+ 토픽 추가</button>
+        <button onClick={activeAddPageModal}>+ 페이지 추가</button>
       </div>
       {showHiddenModal && (
         <div className={styles.notes_modal}>

@@ -42,8 +42,8 @@ export default function SideIndex({ isValidJwt }) {
       setModalToggle(false);
     }
     event.preventDefault();
-    setXPos(`${event.pageX}px`);
-    setYPos(`${event.pageY - 80}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
     setModalName('노트');
     setModalNameEn('note');
     setIsOnMainPage(false);

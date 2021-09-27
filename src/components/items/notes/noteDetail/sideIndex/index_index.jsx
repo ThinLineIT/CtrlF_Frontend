@@ -58,8 +58,8 @@ export default function IndexIndex() {
     }
     event.preventDefault();
     setIsOnMainPage(false);
-    setXPos(`${event.pageX}px`);
-    setYPos(`${event.pageY}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
 
     if (event.target.className.includes('topic')) {
       setModalName('토픽');

@@ -21,7 +21,7 @@ export default function Issue() {
   return (
     <div className={styles.container}>
       <span>
-        <h1 className={styles.title}>요청 검토 중인 내용</h1>
+        <p className={styles.title}>요청 검토 중인 내용</p>
         <div className={styles.issue_container}>
           {requestData &&
             requestData.map((item, index) => (
@@ -40,6 +40,10 @@ export default function Issue() {
                 )}
               </div>
             ))}
+          <span className={styles.view_more}>
+            <h4>+</h4>
+            <h4>VIEW MORE</h4>
+          </span>
         </div>
       </span>
     </div>
