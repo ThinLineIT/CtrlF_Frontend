@@ -15,7 +15,7 @@ import {
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note }) {
+export default function NoteDetail({ note, topic }) {
   const { title } = note;
   const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
   const setTopicTitle = useSetRecoilState(topicName);
@@ -32,7 +32,7 @@ export default function NoteDetail({ note }) {
     setNoteTitle(title);
     setModifyPage(false);
     setIsOnMainPage(false);
-  }, [detailList]);
+  }, [detailList, note, topic]);
 
   useEffect(() => {
     const initialPage = detailList[0];

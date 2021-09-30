@@ -298,3 +298,23 @@ export const filterList = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+// 실제 api
+
+export const noteDataList = atom({
+  key: 'note_data',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const topicDataList = atom({
+  key: 'topic_data',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const pageDataList = atom({
+  key: 'page_data',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});

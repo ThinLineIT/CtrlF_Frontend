@@ -7,8 +7,8 @@ export default function UseLoader() {
         <img
           src="/images/loader.gif"
           alt="Ctrl_F Loader"
-          width="87"
-          height="37"
+          width="105"
+          height="44"
         />
       </div>
     </div>
