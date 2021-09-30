@@ -19,8 +19,8 @@ export default function NoteDetail({ note, topic }) {
   const { title } = note;
   const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
   const setTopicTitle = useSetRecoilState(topicName);
-  const setMyPageList = useSetRecoilState(pageList);
-  const setData = useSetRecoilState(noteDetailData);
+  const setPageList = useSetRecoilState(pageList);
+  const setNoteDetailData = useSetRecoilState(noteDetailData);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setMyPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
@@ -28,7 +28,7 @@ export default function NoteDetail({ note, topic }) {
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
   useEffect(() => {
-    setData(detailList);
+    setNoteDetailData(detailList);
     setNoteTitle(title);
     setModifyPage(false);
     setIsOnMainPage(false);
@@ -37,7 +37,7 @@ export default function NoteDetail({ note, topic }) {
   useEffect(() => {
     const initialPage = detailList[0];
     setTopicTitle(initialPage.name);
-    setMyPageList(initialPage.section);
+    setPageList(initialPage.section);
     setPageTitle(initialPage.section[0].title);
     setMyPageContent(initialPage.section[0].content);
   }, []);
