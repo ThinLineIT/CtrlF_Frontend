@@ -22,7 +22,11 @@ import {
   contextMenuActive,
   modalInputPlaceholder,
   firstVisiblePageTitle,
+  noteDataList,
+  topicDataList,
+  pageDataList,
 } from '../../../../../store/atom';
+import Axios from 'axios';
 
 export default function IndexIndex() {
   const pageRef = useRef();
@@ -48,6 +52,9 @@ export default function IndexIndex() {
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
+  const topicData = useRecoilValue(topicDataList);
+  const [pageData, setPageData] = useRecoilState(pageDataList);
+
   const useContextMenu = (event) => {
     if (!modalToggle) {
       setShowMenu(true);
@@ -58,8 +65,8 @@ export default function IndexIndex() {
     }
     event.preventDefault();
     setIsOnMainPage(false);
-    setXPos(`${event.pageX}px`);
-    setYPos(`${event.pageY}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
 
     if (event.target.className.includes('topic')) {
       setModalName('토픽');
@@ -75,26 +82,31 @@ export default function IndexIndex() {
     }
   };
 
-  const showPageList = (index, status, convention, title) => {
+  const showPageList = (id, status, convention, title) => {
     status == false && ifNotApprovedClicked(convention);
+
+    const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+
+    Axios.get(API_URL_PG).then((res) => {
+      const data = res.data;
+      setPageData(data);
+    });
 
     setTopicTitle(title);
     setModifyPage(false);
-    const getNewPageData = data[index].section;
-    setMyPageList(getNewPageData);
-    setPageTitle(getNewPageData[0].title);
-    const myPageData = data[index].section.map((a) => a.content);
-    setMyPageContent(myPageData[0]);
     closeContextMenu();
+    // const getNewPageData = data[index].section;
+    // setMyPageList(getNewPageData);
+    // setPageTitle(getNewPageData[0].title);
+    // const myPageData = data[index].section.map((a) => a.content);
+    // setMyPageContent(myPageData[0]);
   };
 
-  const showPageContent = (index, status, convention) => {
+  const showPageContent = (title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
-    setPageTitle(myPageList[index].title);
-
-    const myPageData = data[index].section.map((a) => a.content);
     setModifyPage(false);
-    setMyPageContent(myPageData[index]);
+    setMyPageContent(content);
+    setPageTitle(title);
     closeContextMenu();
   };
 
@@ -118,33 +130,40 @@ export default function IndexIndex() {
     <section className={styles.index_index}>
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
-          {data &&
-            data.map((item, index) => (
+          {topicData &&
+            topicData.map((item) => (
               <li
                 key={item.id}
                 className={`${styles.index_topic_li} ${getStyles(
                   item.is_approved
                 )}`}
                 onClick={() =>
-                  showPageList(index, item.is_approved, 'topic', item.name)
+                  showPageList(item.id, item.is_approved, 'topic', item.title)
                 }
                 onContextMenu={useContextMenu}
               >
-                {item.name}
+                {item.title}
               </li>
             ))}
         </ul>
       </div>
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
-          {myPageList.map((item, index) => (
+          {pageData.map((item) => (
             <li
               key={item.id}
               ref={pageRef}
               className={`${styles.index_page_li} ${getStyles(
                 item.is_approved
               )}`}
-              onClick={() => showPageContent(index, item.is_approved, 'page')}
+              onClick={() =>
+                showPageContent(
+                  item.title,
+                  item.is_approved,
+                  'page',
+                  item.content
+                )
+              }
               onContextMenu={useContextMenu}
             >
               {item.title}

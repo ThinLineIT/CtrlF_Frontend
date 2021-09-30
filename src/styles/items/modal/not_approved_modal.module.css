@@ -23,7 +23,7 @@
   justify-content: space-around;
   margin: 0 auto;
   text-align: center;
-  width: 379px;
+  width: 411px;
   height: 299px;
   background: rgba(255, 255, 255, 1);
   z-index: 10;
@@ -32,6 +32,8 @@
 }
 
 .modal_content h1 {
+  font-size: 2.1rem;
+  font-weight: bold;
   margin-top: 15px;
 }
 

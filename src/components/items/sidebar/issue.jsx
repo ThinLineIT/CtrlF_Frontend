@@ -40,6 +40,10 @@ export default function Issue() {
                 )}
               </div>
             ))}
+          <span className={styles.view_more} onClick={alertPreparing}>
+            <h4>+</h4>
+            <h4>VIEW MORE</h4>
+          </span>
         </div>
       </span>
     </div>
