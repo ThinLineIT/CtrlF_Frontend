@@ -4,7 +4,6 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
-  pageList,
   modalName,
   topicName,
   menuPageX,
@@ -12,7 +11,6 @@ import {
   modalNameEn,
   pageContent,
   modalUtilsName,
-  noteDetailData,
   contextMenuName,
   isApprovedModal,
   modalUtilsSyntax,
@@ -22,7 +20,6 @@ import {
   contextMenuActive,
   modalInputPlaceholder,
   firstVisiblePageTitle,
-  noteDataList,
   topicDataList,
   pageDataList,
 } from '../../../../../store/atom';
@@ -42,7 +39,7 @@ export default function IndexIndex() {
   const setTopicTitle = useSetRecoilState(topicName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
   const setNameState = useSetRecoilState(modalUtilsName);
-  const setMyPageContent = useSetRecoilState(pageContent);
+  const setPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setContextMenuName = useSetRecoilState(contextMenuName);
@@ -84,10 +81,13 @@ export default function IndexIndex() {
     status == false && ifNotApprovedClicked(convention);
 
     const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
-
     Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
       setPageData(data);
+      if (data[0]) {
+        setPageTitle(data[0].title);
+        setPageContent(data[0].content);
+      }
     });
 
     setTopicTitle(title);
@@ -97,9 +97,9 @@ export default function IndexIndex() {
 
   const showPageContent = (title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
-    setModifyPage(false);
-    setMyPageContent(content);
     setPageTitle(title);
+    setModifyPage(false);
+    setPageContent(content);
     closeContextMenu();
   };
 

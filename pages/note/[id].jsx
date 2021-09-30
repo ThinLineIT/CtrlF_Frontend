@@ -10,7 +10,6 @@ const Post = ({ item }) => {
 
   useEffect(() => {
     setNoteData(item);
-    console.log(item);
   }, [item]);
 
   return (

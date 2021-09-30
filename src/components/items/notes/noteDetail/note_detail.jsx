@@ -2,15 +2,13 @@ import Axios from 'axios';
 import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
 import React, { useState, useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
-  pageList,
   topicName,
   pageContent,
   detailTitle,
-  noteDetailData,
   isValidOnMainpage,
   ModifyPageContent,
   firstVisiblePageTitle,
