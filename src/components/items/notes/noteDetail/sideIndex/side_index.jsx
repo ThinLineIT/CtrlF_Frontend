@@ -18,7 +18,7 @@ import {
   modalInputPlaceholder,
 } from '../../../../../store/atom';
 
-export default function SideIndex({ isValidJwt }) {
+export default function SideIndex() {
   const [modalToggle, setModalToggle] = useState(false);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
@@ -70,8 +70,8 @@ export default function SideIndex({ isValidJwt }) {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex isValidJwt={isValidJwt} />
-          <AddBtn isValidJwt={isValidJwt} />
+          <IndexIndex />
+          <AddBtn />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
       </div>

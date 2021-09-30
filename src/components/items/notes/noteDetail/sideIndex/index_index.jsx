@@ -4,7 +4,6 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
-  pageList,
   modalName,
   topicName,
   menuPageX,
@@ -12,7 +11,6 @@ import {
   modalNameEn,
   pageContent,
   modalUtilsName,
-  noteDetailData,
   contextMenuName,
   isApprovedModal,
   modalUtilsSyntax,
@@ -22,7 +20,6 @@ import {
   contextMenuActive,
   modalInputPlaceholder,
   firstVisiblePageTitle,
-  noteDataList,
   topicDataList,
   pageDataList,
 } from '../../../../../store/atom';
@@ -36,17 +33,15 @@ export default function IndexIndex() {
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
-  const data = useRecoilValue(noteDetailData);
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setTopicTitle = useSetRecoilState(topicName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
   const setNameState = useSetRecoilState(modalUtilsName);
-  const setMyPageContent = useSetRecoilState(pageContent);
+  const setPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
@@ -86,27 +81,25 @@ export default function IndexIndex() {
     status == false && ifNotApprovedClicked(convention);
 
     const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
-
     Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
       setPageData(data);
+      if (data[0]) {
+        setPageTitle(data[0].title);
+        setPageContent(data[0].content);
+      }
     });
 
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
-    // const getNewPageData = data[index].section;
-    // setMyPageList(getNewPageData);
-    // setPageTitle(getNewPageData[0].title);
-    // const myPageData = data[index].section.map((a) => a.content);
-    // setMyPageContent(myPageData[0]);
   };
 
   const showPageContent = (title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
-    setModifyPage(false);
-    setMyPageContent(content);
     setPageTitle(title);
+    setModifyPage(false);
+    setPageContent(content);
     closeContextMenu();
   };
 
