@@ -1,8 +1,9 @@
-import { useSetRecoilState } from 'recoil';
-import { DetailList } from '../detailMockData';
+import Axios from 'axios';
 import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
   pageList,
@@ -13,39 +14,70 @@ import {
   isValidOnMainpage,
   ModifyPageContent,
   firstVisiblePageTitle,
+  topicDataList,
+  pageDataList,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note, topic }) {
+export default function NoteDetail({ note, noteId }) {
   const { title } = note;
-  const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
-  const setTopicTitle = useSetRecoilState(topicName);
-  const setPageList = useSetRecoilState(pageList);
-  const setNoteDetailData = useSetRecoilState(noteDetailData);
+  const [isLoading, setIsLoading] = useState(true);
   const setNoteTitle = useSetRecoilState(detailTitle);
-  const setMyPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
-  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
   useEffect(() => {
-    setNoteDetailData(detailList);
     setNoteTitle(title);
     setModifyPage(false);
     setIsOnMainPage(false);
-  }, [detailList, note, topic]);
+  }, [note]);
+
+  const setTopicTitle = useSetRecoilState(topicName);
+  const setPageData = useSetRecoilState(pageDataList);
+  const setPageContent = useSetRecoilState(pageContent);
+  const setTopicData = useSetRecoilState(topicDataList);
+  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
+
+  function getTopic(id) {
+    const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
+    Axios.get(API_URL_TOPIC).then((res) => {
+      const data = res.data;
+      setTopicData(data);
+      setTopicTitle(data[0].title);
+      getPage(data[0].id);
+    });
+  }
+
+  function getPage(id) {
+    const API_URL_PAGE = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    Axios.get(API_URL_PAGE)
+      .then((res) => {
+        const data = res.data;
+        setPageData(data);
+        setPageTitle(data[0].title);
+        setPageContent(data[0].content);
+      })
+      .then(setIsLoading(false));
+  }
 
   useEffect(() => {
-    const initialPage = detailList[0];
-    setTopicTitle(initialPage.name);
-    setPageList(initialPage.section);
-    setPageTitle(initialPage.section[0].title);
-    setMyPageContent(initialPage.section[0].content);
-  }, []);
+    if (noteId && noteId > 0) {
+      getTopic(noteId);
+    }
+  }, [noteId]);
 
   return (
-    <div className={styles.wrap}>
-      <SideIndex />
-      <DetailContents />
-    </div>
+    <>
+      {isLoading && (
+        <div style={{ padding: '30% 0' }}>
+          <UseLoader />
+        </div>
+      )}
+      {!isLoading && (
+        <div className={styles.wrap}>
+          <SideIndex />
+          <DetailContents />
+        </div>
+      )}
+    </>
   );
 }

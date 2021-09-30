@@ -36,7 +36,6 @@ export default function IndexIndex() {
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
-  const data = useRecoilValue(noteDetailData);
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
@@ -46,7 +45,6 @@ export default function IndexIndex() {
   const setMyPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
@@ -95,11 +93,6 @@ export default function IndexIndex() {
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
-    // const getNewPageData = data[index].section;
-    // setMyPageList(getNewPageData);
-    // setPageTitle(getNewPageData[0].title);
-    // const myPageData = data[index].section.map((a) => a.content);
-    // setMyPageContent(myPageData[0]);
   };
 
   const showPageContent = (title, status, convention, content) => {

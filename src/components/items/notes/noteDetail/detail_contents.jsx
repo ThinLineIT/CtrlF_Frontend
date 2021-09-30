@@ -22,7 +22,7 @@ export default function DetailContents() {
 
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
-  const myPageContent = useRecoilValue(pageContent);
+  const PagesContent = useRecoilValue(pageContent);
   const modifyPage = useRecoilValue(ModifyPageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
@@ -79,7 +79,7 @@ export default function DetailContents() {
       </div>
       <>
         {modifyPage ? (
-          <MarkdownEditor contents={myPageContent} />
+          <MarkdownEditor contents={PagesContent} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}
@@ -88,7 +88,7 @@ export default function DetailContents() {
               code: CodeBlock,
             }}
           >
-            {myPageContent}
+            {PagesContent}
           </ReactMarkdown>
         )}
       </>
