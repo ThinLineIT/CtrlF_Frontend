@@ -1,7 +1,7 @@
 .login {
   background-color: white;
   box-shadow: 5px 3px 11px #00000029;
-  width: 51rem;
+  width: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@
 .login__form__password {
   margin-top: 37.68px;
   width: 81.3%;
-  height: 5rem;
+  height: 4.5rem;
   font-size: 1.8rem;
   border-radius: 30px;
   box-shadow: 2px 2px 5px #0000004d;
@@ -39,16 +39,16 @@
   font-size: 2.125rem;
   color: white;
   background-color: #8bc8fd;
-  width: 85.7%;
+  width: 84%;
   border-radius: 30px;
-  height: 5rem;
+  height: 4.5rem;
   cursor: pointer;
 }
 
 .login__button__extra {
   color: #6e6e6e;
   font-size: 1.5rem;
-  margin-top: 74.61px;
+  margin-top: 35px;
   padding-bottom: 2.4rem;
   display: flex;
   width: 59%;
@@ -61,7 +61,7 @@
 }
 
 .login__title {
-  margin: 6rem;
+  margin: 80px 0 30px 0;
   font-size: 2.125rem;
   font-weight: bold;
 }

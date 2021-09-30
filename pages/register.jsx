@@ -1,4 +1,14 @@
 import Head from 'next/head';
+
+import {
+  email,
+  authCode,
+  nickName,
+  password,
+  passwordCheck,
+} from '../src/store/atom';
+import { useSetRecoilState } from 'recoil';
+
 import Email from '../src/components/register/Email';
 import Password from '../src/components/register/Password';
 import PasswordConfirm from '../src/components/register/PasswordConfirm';
@@ -6,10 +16,25 @@ import NickName from '../src/components/register/NickName';
 import AuthCode from '../src/components/register/AuthCode';
 import styles from '../src/styles/Register.module.css';
 import ReAuthentication from '../src/components/register/ReAuthentication';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function Register() {
   const modalRef = useRef(null);
+  const emailReset = useSetRecoilState(email);
+  const authCodeReset = useSetRecoilState(authCode);
+  const nickNameReset = useSetRecoilState(nickName);
+  const passwordReset = useSetRecoilState(password);
+  const passwordCehckReset = useSetRecoilState(passwordCheck);
+  useEffect(() => {
+    return () => {
+      emailReset('');
+      authCodeReset('');
+      nickNameReset('');
+      passwordReset('');
+      passwordCehckReset('');
+    };
+  }, []);
+
   const modal = () => {
     modalRef.current.style.display = 'flex';
     const section = document.getElementById('signup');
@@ -57,6 +82,7 @@ export default function Register() {
             </li>
             <li>
               <a>
+                <label onClick={modal} className={styles.left}></label>
                 <AuthCode styles={styles} authCodeSuccess={authCodeSuccess} />
                 <label htmlFor="slide03" className={styles.right}></label>
               </a>
@@ -64,7 +90,6 @@ export default function Register() {
             <li>
               <a>
                 <label onClick={modal} className={styles.left}></label>
-
                 <NickName
                   styles={styles}
                   nickNameOverlapSuccess={nickNameOverlapSuccess}
