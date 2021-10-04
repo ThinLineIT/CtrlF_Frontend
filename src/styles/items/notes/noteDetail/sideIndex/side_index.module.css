@@ -1,6 +1,6 @@
 .index {
   flex: 1 1 26.5%;
-  width: 100%;
+  min-width: 504.3px;
   background-color: #b5bdff;
 }
 

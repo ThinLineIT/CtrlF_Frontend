@@ -54,28 +54,30 @@ export default function DetailContents() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.info_item}>
-        <div className={styles.info_item_topic}>{topicTitle}</div>
-        <div className={styles.info_item_page}>{pageTitle}</div>
-      </div>
-      <div className={styles.icons}>
-        {modifyPage ? (
-          <button
-            className={styles.buttonOk}
-            onClick={resetPageContentAndSendData}
-          >
-            확인
-          </button>
-        ) : (
-          <span>
-            <button className={styles.icons_share} onClick={copyClipboard} />
-            <span
-              className={`${
-                slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
-              }`}
-            />
-          </span>
-        )}
+      <div className={styles.topicBar}>
+        <div className={styles.info_item}>
+          <div className={styles.info_item_topic}>{topicTitle}</div>
+          <div className={styles.info_item_page}>{pageTitle}</div>
+        </div>
+        <div className={styles.icons}>
+          {modifyPage ? (
+            <button
+              className={styles.buttonOk}
+              onClick={resetPageContentAndSendData}
+            >
+              확인
+            </button>
+          ) : (
+            <span>
+              <button className={styles.icons_share} onClick={copyClipboard} />
+              <span
+                className={`${
+                  slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
+                }`}
+              />
+            </span>
+          )}
+        </div>
       </div>
       <>
         {modifyPage ? (

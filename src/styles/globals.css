@@ -1,15 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@font-face {
+  font-family: 'SCDream';
+  font-weight: bold;
+  src: url('../../public/font/SCDream5.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SCDream';
+  font-weight: normal;
+  src: url('../../public/font/SCDream3.otf') format('truetype');
+}
 
 * {
   margin: 0;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'SCDream', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'SCDream', sans-serif;
   font-size: 16px;
 }
 
@@ -17,19 +26,17 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'SCDream', sans-serif;
   color: #3f4150;
   margin: 0;
 }
-
 h1 {
   margin: 0;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 button,
 input,
 select,
@@ -37,7 +44,6 @@ textarea {
   background-color: transparent;
   border: 0;
 }
-
 button,
 input,
 select,
@@ -45,20 +51,17 @@ textarea:focus {
   outline: none;
   box-shadow: none;
 }
-
 a,
 button {
   cursor: pointer;
 }
-
 ul,
 ol {
   padding-left: 0;
   list-style: none;
 }
-
 .component {
-  padding: 6rem 0 10rem 0;
+  padding: 5rem 0 6rem 0;
   display: flex;
   justify-content: center;
   width: 100%;

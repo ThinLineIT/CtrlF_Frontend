@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { noteNumber } from '../store/atom';
 
 export default function usePagination(cursorNumber, query) {
   const [notes, setNotes] = useState([]);
-  const [length, setLength] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
+  const setNoteNum = useSetRecoilState(noteNumber);
 
   useEffect(() => {
     setNotes([]);
@@ -26,10 +28,10 @@ export default function usePagination(cursorNumber, query) {
       })
       .then((res) => {
         const notes = res.data.notes;
-        setLength(notes.length);
         setNotes((prevNotes) => {
           return [...new Set([...prevNotes, ...notes])];
         });
+        setNoteNum(notes.length);
         setHasMore(notes.length > 0);
         setLoading(false);
       })
@@ -45,6 +47,5 @@ export default function usePagination(cursorNumber, query) {
     error,
     notes,
     hasMore,
-    length,
   };
 }
