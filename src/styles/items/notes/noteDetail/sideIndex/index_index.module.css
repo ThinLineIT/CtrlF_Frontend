@@ -18,7 +18,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .index_topic_li {
@@ -60,6 +59,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: auto;
+  margin-top: 0.2em;
 }
 
 .index_page_ul::-webkit-scrollbar {

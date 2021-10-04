@@ -56,7 +56,12 @@ export default function DetailContents() {
     <div className={styles.content}>
       <div className={styles.topicBar}>
         <div className={styles.info_item}>
-          <div className={styles.info_item_topic}>{topicTitle}</div>
+          <div
+            className={`${styles.info_item_topic} ${getFontSize(topicTitle)}
+          `}
+          >
+            {topicTitle}
+          </div>
           <div className={styles.info_item_page}>{pageTitle}</div>
         </div>
         <div className={styles.icons}>
@@ -68,7 +73,7 @@ export default function DetailContents() {
               확인
             </button>
           ) : (
-            <span>
+            <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
               <span
                 className={`${
@@ -106,3 +111,13 @@ const CodeBlock = ({ value, language }) => {
     </SyntaxHighlighter>
   );
 };
+
+function getFontSize(status) {
+  if (10 < status.length < 16) {
+    return styles.fontMiddle;
+  }
+
+  if (status.length >= 15) {
+    return styles.fontSmall;
+  }
+}
