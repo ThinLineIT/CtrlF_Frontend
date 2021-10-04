@@ -1,7 +1,18 @@
 import { forwardRef } from 'react';
+import { authCode, nickName, password, passwordCheck } from '../../store/atom';
+import { useSetRecoilState } from 'recoil';
 
 function ReAuthentication(props, ref) {
+  const authCodeReset = useSetRecoilState(authCode);
+  const nickNameReset = useSetRecoilState(nickName);
+  const passwordReset = useSetRecoilState(password);
+  const passwordCehckReset = useSetRecoilState(passwordCheck);
+
   const back = () => {
+    authCodeReset('');
+    nickNameReset('');
+    passwordReset('');
+    passwordCehckReset('');
     props.reAuth();
     ref.current.style.display = 'none';
     document.getElementById('signup').style.display = 'block';
