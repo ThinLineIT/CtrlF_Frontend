@@ -3,8 +3,10 @@ import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
 import ModalPreparing from '../../modal/modal_preparing';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import Image from 'next/image';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import styled from 'styled-components';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
@@ -92,7 +94,16 @@ export default function DetailContents() {
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}
             components={{
-              code: CodeBlock,
+              p: ({ node, children }) => {
+                return <p>{children}</p>;
+              },
+              code({ language, children }) {
+                return (
+                  <SyntaxHighlighter style={docco} language={language}>
+                    {children[0]}
+                  </SyntaxHighlighter>
+                );
+              },
             }}
           >
             {PagesContent}
@@ -103,14 +114,6 @@ export default function DetailContents() {
     </div>
   );
 }
-
-const CodeBlock = ({ value, language }) => {
-  return (
-    <SyntaxHighlighter language={language ?? null} style={docco}>
-      {value ?? ''}
-    </SyntaxHighlighter>
-  );
-};
 
 function getFontSize(status) {
   if (10 < status.length < 16) {

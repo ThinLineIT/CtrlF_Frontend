@@ -37,6 +37,7 @@
   "devDependencies": {
     "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2"
+    "eslint-config-next": "11.1.2",
+    "yarn-audit-fix": "^7.0.7"
   }
 }

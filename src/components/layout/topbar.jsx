@@ -30,7 +30,7 @@ export default function Topbar() {
           <a className={styles.top__logo}>
             <img
               className={styles.top__logo__img}
-              src="/images/LOGO.svg"
+              src="/images/mainLogo.png"
               alt="logo"
             />
           </a>

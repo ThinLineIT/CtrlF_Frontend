@@ -66,3 +66,25 @@ ol {
   width: 100%;
   background: url('../../public/images/background.svg') center fixed no-repeat;
 }
+
+table,
+tr,
+td,
+th {
+  border: 1px solid #555;
+}
+
+tr {
+  border-top: 1px solid #c6cbd1;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+table tr:nth-child(2n) {
+  background: #f6f8fa;
+}
