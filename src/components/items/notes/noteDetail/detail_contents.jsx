@@ -54,28 +54,35 @@ export default function DetailContents() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.info_item}>
-        <div className={styles.info_item_topic}>{topicTitle}</div>
-        <div className={styles.info_item_page}>{pageTitle}</div>
-      </div>
-      <div className={styles.icons}>
-        {modifyPage ? (
-          <button
-            className={styles.buttonOk}
-            onClick={resetPageContentAndSendData}
+      <div className={styles.topicBar}>
+        <div className={styles.info_item}>
+          <div
+            className={`${styles.info_item_topic} ${getFontSize(topicTitle)}
+          `}
           >
-            확인
-          </button>
-        ) : (
-          <span>
-            <button className={styles.icons_share} onClick={copyClipboard} />
-            <span
-              className={`${
-                slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
-              }`}
-            />
-          </span>
-        )}
+            {topicTitle}
+          </div>
+          <div className={styles.info_item_page}>{pageTitle}</div>
+        </div>
+        <div className={styles.icons}>
+          {modifyPage ? (
+            <button
+              className={styles.buttonOk}
+              onClick={resetPageContentAndSendData}
+            >
+              확인
+            </button>
+          ) : (
+            <span className={styles.clipBoard}>
+              <button className={styles.icons_share} onClick={copyClipboard} />
+              <span
+                className={`${
+                  slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
+                }`}
+              />
+            </span>
+          )}
+        </div>
       </div>
       <>
         {modifyPage ? (
@@ -104,3 +111,13 @@ const CodeBlock = ({ value, language }) => {
     </SyntaxHighlighter>
   );
 };
+
+function getFontSize(status) {
+  if (10 < status.length < 16) {
+    return styles.fontMiddle;
+  }
+
+  if (status.length >= 15) {
+    return styles.fontSmall;
+  }
+}

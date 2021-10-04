@@ -90,6 +90,7 @@ export default function IndexIndex() {
       }
     });
 
+    window.scrollTo(0, 0);
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
@@ -101,6 +102,7 @@ export default function IndexIndex() {
     setModifyPage(false);
     setPageContent(content);
     closeContextMenu();
+    window.scrollTo(0, 0);
   };
 
   const ifNotApprovedClicked = (convention) => {

@@ -34,7 +34,7 @@ export async function getStaticPaths() {
   const res = await Axios.get(apiUrl);
   const data = res.data.notes;
   return {
-    paths: data.slice(0, 10).map((item) => ({
+    paths: data.slice(0, 15).map((item) => ({
       params: {
         id: item.id.toString(),
       },

@@ -88,11 +88,11 @@
 
 .hidden_login_button {
   position: absolute;
-  top: 56px;
+  top: 63px;
   right: 0;
   cursor: pointer;
   width: 5em;
-  height: 3.5em;
+  height: 3.1em;
   display: flex;
   justify-content: center;
   align-items: center;

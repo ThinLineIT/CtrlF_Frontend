@@ -4,6 +4,7 @@
 
 .index_topic {
   flex: 1 1 45%;
+  min-width: 175px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -17,12 +18,11 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .index_topic_li {
   width: 100%;
-  height: 3em;
+  min-height: 62px;
   background: #9aa1cc;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -30,11 +30,11 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bolder;
   cursor: pointer;
   margin: 0.7em auto;
-  position: relative;
+  padding: 0.5em 1em;
 }
 
 .index_topic_li:hover {
@@ -47,30 +47,48 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em 3em 1em 0em;
+  padding: 1em 0em 1em 0em;
+  min-width: 213px;
+  overflow-y: auto;
 }
 
 .index_page_ul {
   width: 100%;
-  height: 100%;
+  height: 570px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding-right: 0.5em;
+  justify-content: flex-start;
+  overflow: auto;
+  margin-top: 0.2em;
+}
+
+.index_page_ul::-webkit-scrollbar {
+  width: 3px;
+  background: none;
+}
+
+.index_page_ul::-webkit-scrollbar-track {
+  background: none;
 }
 
 .index_page_li {
-  width: 100%;
-  height: 3em;
+  max-width: 90%;
+  min-height: 60px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 1.2rem;
   font-weight: bolder;
+  margin: 0.35em 1em;
   cursor: pointer;
-  margin: 0.7em auto;
-  margin-left: 1em;
-  position: relative;
+}
+
+.index_page_li:first-child {
+  margin-top: 0.3em;
+}
+
+.index_page_li:last-child {
+  margin-bottom: 0.3em;
 }
 
 .index_page_li:hover {

@@ -29,16 +29,13 @@ body {
   color: #3f4150;
   margin: 0;
 }
-
 h1 {
   margin: 0;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 button,
 input,
 select,
@@ -46,7 +43,6 @@ textarea {
   background-color: transparent;
   border: 0;
 }
-
 button,
 input,
 select,
@@ -54,18 +50,15 @@ textarea:focus {
   outline: none;
   box-shadow: none;
 }
-
 a,
 button {
   cursor: pointer;
 }
-
 ul,
 ol {
   padding-left: 0;
   list-style: none;
 }
-
 .component {
   padding: 5rem 0 6rem 0;
   display: flex;
