@@ -119,9 +119,6 @@
   .top__logo {
     margin: 20px;
   }
-  .top__logo__title {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 70rem) {
@@ -138,7 +135,11 @@
     padding: 0;
   }
   .top__signup__list {
-    display: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .searchbar {
     flex: 1 1 70%;
