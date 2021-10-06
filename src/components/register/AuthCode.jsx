@@ -23,7 +23,6 @@ export default function AuthCode({ styles, authCodeSuccess }) {
       return;
     }
     const codeConfirm = await authCodeConfirm(authCode);
-    console.log(codeConfirm);
     if (codeConfirm.status === 200) {
       authCodeInputElement.style.border = 'none';
       setAuthCodeValidation(true);
