@@ -48,7 +48,10 @@ export default function PasswordConfirm({ styles }) {
       if (signUpSuccess.status === 201) {
         passwordCheckInputElement.style.border = 'none';
         setPasswordCheckValidation(true);
-        router.push('/SignUpConfirm');
+        router.push({
+          pathname: '/ConfirmPage',
+          query: { type: 'register' },
+        });
       } else {
         setPasswordCheckErrorMessage(signUpSuccess.data.message);
         setPasswordCheckValidation(false);
