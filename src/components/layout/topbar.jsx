@@ -30,7 +30,7 @@ export default function Topbar() {
           <a className={styles.top__logo}>
             <img
               className={styles.top__logo__img}
-              src="/images/LOGO.svg"
+              src="/images/mainLogo.png"
               alt="logo"
             />
           </a>
@@ -63,10 +63,10 @@ export default function Topbar() {
           </div>
         ) : (
           <div className={styles.top__signup__list}>
-            <Link href="/login">
+            <Link href="/login" className={styles.signupLink}>
               <a>로그인 |</a>
             </Link>
-            <Link href="/register">
+            <Link href="/register" className={styles.signupLink}>
               <a>회원가입</a>
             </Link>
           </div>

@@ -135,14 +135,12 @@
 
 .view_more {
   width: 90%;
-  height: 40px;
+  height: 45px;
   margin: 0.7em auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   border: 0.2px solid #ffffff;
   box-shadow: -2px 2px 5px #0000003d, 2px 2px 5px #0000003d;
-  margin-bottom: 1.2em;
   cursor: pointer;
 }
