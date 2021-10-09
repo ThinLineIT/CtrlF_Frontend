@@ -1,6 +1,6 @@
 .index {
   flex: 1 1 26.5%;
-  width: 100%;
+  min-width: 504.3px;
   background-color: #b5bdff;
 }
 
@@ -27,7 +27,7 @@
 
 .index_title_span {
   cursor: pointer;
-  font-size: 3.5rem;
+  font-size: 3.1rem;
   font-weight: 1000;
   padding: 0 1rem;
   position: relative;

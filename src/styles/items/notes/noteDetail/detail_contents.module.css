@@ -8,14 +8,22 @@
   flex-direction: column;
 }
 
+.topicBar {
+  max-width: 1270px;
+  height: 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.91em 0;
+}
+
 .info_item {
   width: 80%;
-  height: 4em;
+  height: 100%;
   border: 1px solid #00000028;
   display: flex;
   border-radius: 30px/30px;
   overflow: hidden;
-  margin: 4em 0;
 }
 
 .info_item_topic {
@@ -23,23 +31,48 @@
   height: 100%;
   background: #b5bdff;
   color: white;
-  font-size: 2rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fontMiddle {
+  flex: 1 1 20%;
+  height: 100%;
+  background: #b5bdff;
+  color: white;
+  font-size: 1.3rem;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.fontSmall {
+  flex: 1 1 20%;
+  height: 100%;
+  background: #b5bdff;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1.7em;
+}
+
 .info_item_page {
   flex: 1 1 80%;
   height: 100%;
   background: white;
-  font-size: 2rem;
-  font-weight: normal;
+  font-size: 1.7rem;
+  font-weight: bold;
   padding-left: 1em;
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .icons_bookmark {
@@ -58,12 +91,14 @@
   background: url('../../../../../public/images/note_detail/share_button.svg')
     center no-repeat;
   background-size: cover;
-  position: absolute;
-  top: 120px;
-  right: 200px;
   width: 3em;
   height: 3em;
   cursor: pointer;
+  margin-right: 5.9em;
+}
+
+.clipBoard {
+  position: relative;
 }
 
 .slideActive {
@@ -74,9 +109,9 @@
     no-repeat;
   background-size: cover;
   position: absolute;
-  bottom: calc(50% + 3vh);
-  left: 50vw;
-  opacity: 1;
+  top: 550px;
+  right: 500px;
+  opacity: 0.84;
   transition: opacity 500ms;
 }
 
@@ -103,6 +138,8 @@
 }
 
 .markdown_renderer {
+  max-width: 1270px;
+  margin: 2.8em 1.5em;
   font-size: 1.2rem;
   line-height: 2.5rem;
 }
@@ -116,7 +153,6 @@
   height: 400px;
   font-size: 1.1rem;
   font-weight: bold;
-  cursor: pointer;
   display: flex;
   justify-content: space-evenly;
   border: 1px solid #d4d4d4;
@@ -124,6 +160,7 @@
   flex-grow: 1;
   border-top-right-radius: 30px;
   transition: opacity 500ms;
+  cursor: pointer;
 }
 
 .dropdownHidden {

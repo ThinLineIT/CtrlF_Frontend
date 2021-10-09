@@ -29,7 +29,12 @@ export default function PasswordConfirm({ styles }) {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    const passwordCheckInputElement = document.getElementById(
+      'passwordcheck__input'
+    );
+    const passwordCheckErrorElement = document.getElementById(
+      'passwordcheck__error'
+    );
     if (PASSWORD === passwordCheck) {
       const signUpRequset = {
         email: EMAIL,
@@ -38,18 +43,15 @@ export default function PasswordConfirm({ styles }) {
         code: AUTHCODE,
         password_confirm: passwordCheck,
       };
-      const passwordCheckInputElement = document.getElementById(
-        'passwordcheck__input'
-      );
-      const passwordCheckErrorElement = document.getElementById(
-        'passwordcheck__error'
-      );
 
       const signUpSuccess = await signUpApi(signUpRequset);
       if (signUpSuccess.status === 201) {
         passwordCheckInputElement.style.border = 'none';
         setPasswordCheckValidation(true);
-        router.push('/SignUpConfirm');
+        router.push({
+          pathname: '/ConfirmPage',
+          query: { type: 'register' },
+        });
       } else {
         setPasswordCheckErrorMessage(signUpSuccess.data.message);
         setPasswordCheckValidation(false);

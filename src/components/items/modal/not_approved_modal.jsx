@@ -33,7 +33,8 @@ export default function NotApprovedModal(id) {
             {modalSyntax}
             <br />
             아직 승인되지 않은 {nameState}입니다.
-            <p /> 다소 정확하지 않은 정보가 <p /> 포함되어 있을 수 있습니다.
+            <p /> <br />
+            다소 정확하지 않은 정보가 <p /> 포함되어 있을 수 있습니다.
           </span>
           <button
             className={styles.modal_ok_button}

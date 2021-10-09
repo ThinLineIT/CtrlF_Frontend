@@ -61,13 +61,15 @@ export default function MarkdownEditor(props) {
             className={styles.preview}
             remarkPlugins={[remarkGfm]}
             // eslint-disable-next-line react/no-children-prop
-            children={
-              !addNewContent ? (input == null ? content : input) : input
-            }
+            // children={
+            //   !addNewContent ? (input == null ? content : input) : input
+            // }
             components={{
               code: CodeBlock,
             }}
-          />
+          >
+            {!addNewContent ? (input == null ? content : input) : input}
+          </ReactMarkdown>
         )}
       </span>
     </div>

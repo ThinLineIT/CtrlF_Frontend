@@ -4,7 +4,6 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
-  pageList,
   modalName,
   topicName,
   menuPageX,
@@ -12,7 +11,6 @@ import {
   modalNameEn,
   pageContent,
   modalUtilsName,
-  noteDetailData,
   contextMenuName,
   isApprovedModal,
   modalUtilsSyntax,
@@ -22,7 +20,10 @@ import {
   contextMenuActive,
   modalInputPlaceholder,
   firstVisiblePageTitle,
+  topicDataList,
+  pageDataList,
 } from '../../../../../store/atom';
+import Axios from 'axios';
 
 export default function IndexIndex() {
   const pageRef = useRef();
@@ -32,21 +33,22 @@ export default function IndexIndex() {
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
-  const data = useRecoilValue(noteDetailData);
   const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setTopicTitle = useSetRecoilState(topicName);
   const setModalNameEn = useSetRecoilState(modalNameEn);
   const setNameState = useSetRecoilState(modalUtilsName);
-  const setMyPageContent = useSetRecoilState(pageContent);
+  const setPageContent = useSetRecoilState(pageContent);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const [myPageList, setMyPageList] = useRecoilState(pageList);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
+
+  const topicData = useRecoilValue(topicDataList);
+  const [pageData, setPageData] = useRecoilState(pageDataList);
 
   const useContextMenu = (event) => {
     if (!modalToggle) {
@@ -58,8 +60,8 @@ export default function IndexIndex() {
     }
     event.preventDefault();
     setIsOnMainPage(false);
-    setXPos(`${event.pageX}px`);
-    setYPos(`${event.pageY - 80}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
 
     if (event.target.className.includes('topic')) {
       setModalName('토픽');
@@ -75,27 +77,32 @@ export default function IndexIndex() {
     }
   };
 
-  const showPageList = (index, status, convention, title) => {
+  const showPageList = (id, status, convention, title) => {
     status == false && ifNotApprovedClicked(convention);
 
+    const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    Axios.get(API_URL_PG).then((res) => {
+      const data = res.data;
+      setPageData(data);
+      if (data[0]) {
+        setPageTitle(data[0].title);
+        setPageContent(data[0].content);
+      }
+    });
+
+    window.scrollTo(0, 0);
     setTopicTitle(title);
     setModifyPage(false);
-    const getNewPageData = data[index].section;
-    setMyPageList(getNewPageData);
-    setPageTitle(getNewPageData[0].title);
-    const myPageData = data[index].section.map((a) => a.content);
-    setMyPageContent(myPageData[0]);
     closeContextMenu();
   };
 
-  const showPageContent = (index, status, convention) => {
+  const showPageContent = (title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
-    setPageTitle(myPageList[index].title);
-
-    const myPageData = data[index].section.map((a) => a.content);
+    setPageTitle(title);
     setModifyPage(false);
-    setMyPageContent(myPageData[index]);
+    setPageContent(content);
     closeContextMenu();
+    window.scrollTo(0, 0);
   };
 
   const ifNotApprovedClicked = (convention) => {
@@ -118,33 +125,40 @@ export default function IndexIndex() {
     <section className={styles.index_index}>
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
-          {data &&
-            data.map((item, index) => (
+          {topicData &&
+            topicData.map((item) => (
               <li
                 key={item.id}
                 className={`${styles.index_topic_li} ${getStyles(
                   item.is_approved
                 )}`}
                 onClick={() =>
-                  showPageList(index, item.is_approved, 'topic', item.name)
+                  showPageList(item.id, item.is_approved, 'topic', item.title)
                 }
                 onContextMenu={useContextMenu}
               >
-                {item.name}
+                {item.title}
               </li>
             ))}
         </ul>
       </div>
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
-          {myPageList.map((item, index) => (
+          {pageData.map((item) => (
             <li
               key={item.id}
               ref={pageRef}
               className={`${styles.index_page_li} ${getStyles(
                 item.is_approved
               )}`}
-              onClick={() => showPageContent(index, item.is_approved, 'page')}
+              onClick={() =>
+                showPageContent(
+                  item.title,
+                  item.is_approved,
+                  'page',
+                  item.content
+                )
+              }
               onContextMenu={useContextMenu}
             >
               {item.title}

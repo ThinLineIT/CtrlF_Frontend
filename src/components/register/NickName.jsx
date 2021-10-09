@@ -27,6 +27,7 @@ export default function NickName({ styles, nickNameOverlapSuccess, props }) {
       return;
     }
     const isNickNameChecked = await nickNameOverlap(nickName);
+    console.log(isNickNameChecked);
     if (isNickNameChecked.status === 200) {
       nickInputElement.style.border = 'none';
       setNickErrorMessage(isNickNameChecked.data.message);

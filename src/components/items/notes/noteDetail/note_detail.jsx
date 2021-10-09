@@ -1,44 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { useSetRecoilState } from 'recoil';
-import { DetailList } from '../detailMockData';
+import Axios from 'axios';
 import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
+import React, { useState, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
+  topicName,
+  pageContent,
   detailTitle,
-  noteDetailData,
   isValidOnMainpage,
   ModifyPageContent,
+  firstVisiblePageTitle,
+  topicDataList,
+  pageDataList,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note }) {
+export default function NoteDetail({ note, noteId }) {
   const { title } = note;
-  const detailList = DetailList; // 향후 api 개발 완료 시 교체 예정
-  const setData = useSetRecoilState(noteDetailData);
+  const [isLoading, setIsLoading] = useState(true);
   const setNoteTitle = useSetRecoilState(detailTitle);
-  const [isValidJwt, setIsValidJwt] = useState(false);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
-  const isValidToken = cookies.token;
-
   useEffect(() => {
-    isValidToken ? setIsValidJwt(true) : setIsValidJwt(false);
-  }, [cookies]);
-
-  useEffect(() => {
-    setData(detailList);
     setNoteTitle(title);
     setModifyPage(false);
     setIsOnMainPage(false);
-  }, [detailList]);
+  }, [note]);
+
+  const setTopicTitle = useSetRecoilState(topicName);
+  const setPageData = useSetRecoilState(pageDataList);
+  const setPageContent = useSetRecoilState(pageContent);
+  const setTopicData = useSetRecoilState(topicDataList);
+  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
+
+  function getTopic(id) {
+    const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
+    Axios.get(API_URL_TOPIC).then((res) => {
+      const data = res.data;
+      setTopicData(data);
+      setTopicTitle(data[0].title);
+      getPage(data[0].id);
+    });
+  }
+
+  function getPage(id) {
+    const API_URL_PAGE = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    Axios.get(API_URL_PAGE)
+      .then((res) => {
+        const data = res.data;
+        setPageData(data);
+        setPageTitle(data[0].title);
+        setPageContent(data[0].content);
+      })
+      .then(setIsLoading(false));
+  }
+
+  useEffect(() => {
+    if (noteId && noteId > 0) {
+      getTopic(noteId);
+    }
+  }, [noteId]);
 
   return (
-    <div className={styles.wrap}>
-      <SideIndex isValidJwt={isValidJwt} />
-      <DetailContents isValidJwt={isValidJwt} />
-    </div>
+    <>
+      {isLoading && (
+        <div style={{ padding: '30% 0' }}>
+          <UseLoader />
+        </div>
+      )}
+      {!isLoading && (
+        <div className={styles.wrap}>
+          <SideIndex />
+          <DetailContents />
+        </div>
+      )}
+    </>
   );
 }

@@ -1,0 +1,101 @@
+.notes_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  text-align: center;
+  width: 379px;
+  height: 299px;
+  background: rgba(255, 255, 255, 1);
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
+}
+
+.modal_content h1 {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.users_input {
+  width: 90%;
+  height: 3em;
+  border: 1px solid grey;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  border-radius: 10px/10px;
+}
+
+.users_textarea {
+  width: 90%;
+  height: 8em;
+  border: 1px solid grey;
+  margin: 1em auto 0 auto;
+  display: flex;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px/10px;
+  -webkit-appearance: none;
+}
+
+.btn {
+  width: 90%;
+  height: 5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.ok_button {
+  width: 6em;
+  height: 2.7em;
+  border-radius: 10px/10px;
+  background: #4db7e6;
+  margin: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.cancel_button {
+  width: 6em;
+  height: 2.7em;
+  border-radius: 10px/10px;
+  background: #4db7e6;
+  margin: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: white;
+}

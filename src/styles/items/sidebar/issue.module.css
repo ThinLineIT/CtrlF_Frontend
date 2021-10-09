@@ -1,11 +1,12 @@
 .container {
   width: 100%;
   border: 0.2px solid #ffffff;
-  border-radius: 5px/5px;
+  border-radius: 13px/13px;
   box-shadow: -4px 4px 10px #0000003d, 4px 4px 10px #0000003d;
   display: flex;
   flex-direction: column;
   background: #ffffffaf;
+  padding: 0 0.2em;
 }
 
 .title {
@@ -15,7 +16,6 @@
   font-size: 1.3rem;
   font-weight: bolder;
   margin-top: 16px;
-  padding-top: 16px;
 }
 
 .issue_container {
@@ -37,98 +37,110 @@
 }
 
 .color_0 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(1\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(1\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_1 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(7\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(7\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_2 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(3\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(3\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_3 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(13\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(13\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_4 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(8\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(8\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_5 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(6\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(6\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_6 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(2\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(2\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_7 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(5\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(5\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_8 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(9\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(9\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_9 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(10\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(10\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_10 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(11\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(11\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_11 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(14\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(14\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_12 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(3\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(3\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_13 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(4\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(4\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_14 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(15\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(15\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
 }
 .color_15 {
-  background: url("../../../../public/images/main_issues/main_issue\ \(12\).svg")
+  background: url('../../../../public/images/main_issues/main_issue\ \(12\).svg')
     center no-repeat;
   height: 3.5em;
   background-size: cover;
+}
+
+.view_more {
+  width: 90%;
+  height: 45px;
+  margin: 0.7em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.2px solid #ffffff;
+  box-shadow: -2px 2px 5px #0000003d, 2px 2px 5px #0000003d;
+  cursor: pointer;
 }

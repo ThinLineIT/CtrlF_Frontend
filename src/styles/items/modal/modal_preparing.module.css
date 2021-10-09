@@ -16,38 +16,42 @@
 }
 
 .modal_content {
-  position: relative;
-  top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 0 auto;
-  text-align: center;
-  width: 411px;
-  height: 299px;
+  align-items: center;
+  width: 439px;
+  height: 237px;
   background: rgba(255, 255, 255, 1);
   z-index: 10;
-  border-radius: 10px;
+  border-radius: 30px/30px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
 }
 
 .modal_content h1 {
+  padding-top: 1em;
+  margin-left: 17px;
   font-size: 2.1rem;
   font-weight: bold;
-  margin-top: 15px;
 }
 
-.plates {
-  font-size: 1.5rem;
-  line-height: 1.9rem;
+.btn {
+  width: 90%;
+  height: 5em;
+  display: flex;
+  align-items: center;
 }
 
-.modal_ok_button {
-  width: 80px;
-  height: 40px;
-  margin: 10px auto;
-  background-color: #4db7e6;
-  font-weight: bolder;
+.ok_button {
+  width: 87%;
+  height: 2.7em;
+  border-radius: 10px/10px;
+  background: #4db7e6;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
   color: white;
-  border-radius: 20px;
 }

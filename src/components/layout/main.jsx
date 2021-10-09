@@ -18,7 +18,7 @@ export default function Main() {
     <div className={styles.container}>
       <div className={styles.header}>
         <p className={styles.header__title}>
-          <span>{header}</span> <span>{number}</span>
+          <span>{header}</span> <span>0</span>
         </p>
       </div>
       <div className={styles.body}>

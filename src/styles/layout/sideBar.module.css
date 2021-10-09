@@ -5,6 +5,5 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  padding-top: 4em;
-  padding-left: 3em;
+  padding: 1.5em;
 }

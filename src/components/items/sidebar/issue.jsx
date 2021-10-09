@@ -34,12 +34,16 @@ export default function Issue() {
               >
                 {' '}
                 {item.noteName ? (
-                  <h3>{item.noteName}</h3>
+                  <h4 style={{ marginTop: '.2em' }}>{item.noteName}</h4>
                 ) : (
-                  <h3>{item.requestTitle}</h3>
+                  <h4 style={{ marginTop: '.2em' }}>{item.requestTitle}</h4>
                 )}
               </div>
             ))}
+          <span className={styles.view_more} onClick={alertPreparing}>
+            <h4>+</h4>
+            <h4>VIEW MORE</h4>
+          </span>
         </div>
       </span>
     </div>

@@ -1,4 +1,4 @@
-import AddBtn from './AddBtn';
+import AddBtn from './addBtn';
 import IndexIndex from './index_index';
 import RightClickSpan from './rightClick';
 import React, { useState } from 'react';
@@ -18,7 +18,7 @@ import {
   modalInputPlaceholder,
 } from '../../../../../store/atom';
 
-export default function SideIndex({ isValidJwt }) {
+export default function SideIndex() {
   const [modalToggle, setModalToggle] = useState(false);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
@@ -42,8 +42,8 @@ export default function SideIndex({ isValidJwt }) {
       setModalToggle(false);
     }
     event.preventDefault();
-    setXPos(`${event.pageX}px`);
-    setYPos(`${event.pageY - 80}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
     setModalName('노트');
     setModalNameEn('note');
     setIsOnMainPage(false);
@@ -70,8 +70,8 @@ export default function SideIndex({ isValidJwt }) {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex isValidJwt={isValidJwt} />
-          <AddBtn isValidJwt={isValidJwt} />
+          <IndexIndex />
+          <AddBtn />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
       </div>

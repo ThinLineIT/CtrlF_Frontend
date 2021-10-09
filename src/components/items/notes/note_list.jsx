@@ -11,6 +11,7 @@ import {
 } from '../../../store/atom';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import usePagination from '../../../utils/use_pagination';
+import UseLoader from '../../../utils/useLoader';
 
 export default function NoteList() {
   const noteObserver = useRef();
@@ -19,14 +20,12 @@ export default function NoteList() {
   const [noteId, setNoteId] = useState('');
   const setNameState = useSetRecoilState(modalUtilsName);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const setNoteNum = useSetRecoilState(noteNumber);
   const [cursorNumber, setCursorNumber] = useState(0);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
-  const { notes, hasMore, loading, length } = usePagination(cursorNumber);
+  const { notes, hasMore, loading } = usePagination(cursorNumber);
 
   useEffect(() => {
-    setNoteNum(length);
     if (toggle === '') {
       setLists(notes);
     } else if (toggle === 'true') {
@@ -76,7 +75,7 @@ export default function NoteList() {
                   note.is_approved
                 )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}`}
               >
-                <Link href="/note/[id]" as={`/notes/${note.id}`}>
+                <Link href="/notes/[id]" as={`/notes/${note.id}`}>
                   <a
                     className={styles.link}
                     onClick={(e) =>
@@ -101,7 +100,7 @@ export default function NoteList() {
                 )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}
                 `}
               >
-                <Link href="/note/[id]" as={`/note/${note.id}`}>
+                <Link href="/notes/[id]" as={`/notes/${note.id}`}>
                   <a
                     className={styles.link}
                     onClick={(e) =>
@@ -119,6 +118,7 @@ export default function NoteList() {
             );
           }
         })}
+      <div style={{ padding: '30% 0' }}>{loading && <UseLoader />}</div>
       {notApprovedModalActive && <NotApprovedModal id={noteId} />}
     </div>
   );

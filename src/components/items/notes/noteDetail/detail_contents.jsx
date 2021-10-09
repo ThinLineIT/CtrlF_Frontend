@@ -3,8 +3,10 @@ import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
 import ModalPreparing from '../../modal/modal_preparing';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import Image from 'next/image';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import styled from 'styled-components';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
@@ -22,7 +24,7 @@ export default function DetailContents() {
 
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
-  const myPageContent = useRecoilValue(pageContent);
+  const PagesContent = useRecoilValue(pageContent);
   const modifyPage = useRecoilValue(ModifyPageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
@@ -54,41 +56,58 @@ export default function DetailContents() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.info_item}>
-        <div className={styles.info_item_topic}>{topicTitle}</div>
-        <div className={styles.info_item_page}>{pageTitle}</div>
-      </div>
-      <div className={styles.icons}>
-        {modifyPage ? (
-          <button
-            className={styles.buttonOk}
-            onClick={resetPageContentAndSendData}
+      <div className={styles.topicBar}>
+        <div className={styles.info_item}>
+          <div
+            className={`${styles.info_item_topic} ${getFontSize(topicTitle)}
+          `}
           >
-            확인
-          </button>
-        ) : (
-          <span>
-            <button className={styles.icons_share} onClick={copyClipboard} />
-            <span
-              className={`${
-                slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
-              }`}
-            />
-          </span>
-        )}
+            {topicTitle}
+          </div>
+          <div className={styles.info_item_page}>{pageTitle}</div>
+        </div>
+        <div className={styles.icons}>
+          {modifyPage ? (
+            <button
+              className={styles.buttonOk}
+              onClick={resetPageContentAndSendData}
+            >
+              확인
+            </button>
+          ) : (
+            <span className={styles.clipBoard}>
+              <button className={styles.icons_share} onClick={copyClipboard} />
+              <span
+                className={`${
+                  slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
+                }`}
+              />
+            </span>
+          )}
+        </div>
       </div>
       <>
         {modifyPage ? (
-          <MarkdownEditor contents={myPageContent} />
+          <MarkdownEditor contents={PagesContent} />
         ) : (
           <ReactMarkdown
-            children={myPageContent}
             className={styles.markdown_renderer}
             remarkPlugins={[remarkGfm]}
             components={{
-              code: CodeBlock,
+              p: ({ node, children }) => {
+                return <p>{children}</p>;
+              },
+              code({ language, children }) {
+                return (
+                  <SyntaxHighlighter style={docco} language={language}>
+                    {children[0]}
+                  </SyntaxHighlighter>
+                );
+              },
             }}
-          />
+          >
+            {PagesContent}
+          </ReactMarkdown>
         )}
       </>
       {showHiddenModal && <ModalPreparing />}
@@ -96,10 +115,12 @@ export default function DetailContents() {
   );
 }
 
-const CodeBlock = ({ value, language }) => {
-  return (
-    <SyntaxHighlighter language={language ?? null} style={docco}>
-      {value ?? ''}
-    </SyntaxHighlighter>
-  );
-};
+function getFontSize(status) {
+  if (10 < status.length < 16) {
+    return styles.fontMiddle;
+  }
+
+  if (status.length >= 15) {
+    return styles.fontSmall;
+  }
+}
