@@ -30,9 +30,12 @@ export const overlapApi = (email) => {
 };
 
 export const nickNameOverlap = (nick) => {
-  const request = axios.get(
-    `${process.env.PUBLIC_BASE_API}/auth/signup/nickname/duplicate?data=${nick}`
-  );
+  const request = axios
+    .get(
+      `${process.env.PUBLIC_BASE_API}/auth/signup/nickname/duplicate?data=${nick}`
+    )
+    .then((res) => res)
+    .catch((err) => err.response);
   return request;
 };
 
