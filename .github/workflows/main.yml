@@ -1,7 +1,7 @@
 name: Deploy
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [CtrlF0.2.0]
     types: [closed]
 
