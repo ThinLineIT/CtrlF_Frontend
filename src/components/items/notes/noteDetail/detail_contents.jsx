@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import Image from 'next/image';
+import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import MarkdownEditor from './markdownEditor';
 import ModalPreparing from '../../modal/modal_preparing';
-import Image from 'next/image';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import styled from 'styled-components';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
@@ -86,12 +86,17 @@ export default function DetailContents() {
           )}
         </div>
       </div>
-      <>
+      <div
+        style={{
+          maxWidth: '100%',
+        }}
+      >
         {modifyPage ? (
           <MarkdownEditor contents={PagesContent} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}
+            rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             components={{
               p: ({ node, children }) => {
@@ -104,12 +109,15 @@ export default function DetailContents() {
                   </SyntaxHighlighter>
                 );
               },
+              image: ({ alt, src }) => (
+                <Image alt={alt} src={src} style={{ maxWidth: 475 }} />
+              ),
             }}
           >
             {PagesContent}
           </ReactMarkdown>
         )}
-      </>
+      </div>
       {showHiddenModal && <ModalPreparing />}
     </div>
   );
