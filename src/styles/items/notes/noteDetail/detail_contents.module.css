@@ -119,6 +119,8 @@
   width: 300px;
   height: 3em;
   position: absolute;
+  top: 550px;
+  right: 500px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 500ms, visibility 500ms;

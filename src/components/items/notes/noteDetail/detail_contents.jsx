@@ -88,7 +88,7 @@ export default function DetailContents() {
       </div>
       <div
         style={{
-          maxWidth: '100%',
+          width: '55vw',
         }}
       >
         {modifyPage ? (
@@ -109,8 +109,13 @@ export default function DetailContents() {
                   </SyntaxHighlighter>
                 );
               },
-              image: ({ alt, src }) => (
-                <Image alt={alt} src={src} style={{ maxWidth: 475 }} />
+              image: ({ alt, src, title }) => (
+                <Image
+                  alt={alt}
+                  src={src}
+                  title={title}
+                  style={{ maxWidth: 475 }}
+                />
               ),
             }}
           >
