@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { signUpApi } from '../../utils/SignUpHook';
 import errorStyling from '../../utils/ErrorStyling';
+import Cookies from 'js-cookie';
 
 export default function PasswordConfirm({ styles }) {
   const router = useRouter();
@@ -37,11 +38,10 @@ export default function PasswordConfirm({ styles }) {
     );
     if (PASSWORD === passwordCheck) {
       const signUpRequset = {
-        email: EMAIL,
         nickname: NICKNAME,
         password: PASSWORD,
-        code: AUTHCODE,
         password_confirm: passwordCheck,
+        signing_token: Cookies.get('signing_token'),
       };
 
       const signUpSuccess = await signUpApi(signUpRequset);
