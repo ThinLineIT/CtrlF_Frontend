@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { useState } from 'react';
 import { authCodeConfirm } from '../../utils/SignUpHook';
 import errorStyling from '../../utils/ErrorStyling';
+import Cookies from 'js-cookie';
 
 export default function AuthCode({ styles, authCodeSuccess }) {
   const [authCode, setAuthCode] = useRecoilState(authCodeAtom);
@@ -24,6 +25,7 @@ export default function AuthCode({ styles, authCodeSuccess }) {
     }
     const codeConfirm = await authCodeConfirm(authCode);
     if (codeConfirm.status === 200) {
+      Cookies.set('signing_token', codeConfirm.data.signing_token);
       authCodeInputElement.style.border = 'none';
       setAuthCodeValidation(true);
       authCodeSuccess();
