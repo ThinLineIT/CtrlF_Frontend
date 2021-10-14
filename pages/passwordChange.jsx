@@ -1,19 +1,38 @@
-import { emailApi, authCodeApi } from '../src/utils/PasswordChange';
+import {
+  emailApi,
+  authCodeApi,
+  passwordChangeApi,
+} from '../src/utils/PasswordChange';
+import { useRouter } from 'next/router';
 import InputForm from '../src/components/passwordChange/InputForm';
 import styles from '../src/styles/PasswordChange.module.css';
 import { useState } from 'react';
 import { passwordReg } from '../src/utils/Reg';
 
 export default function PasswordChnage() {
+  const router = useRouter();
   const [isTimeStart, setIsTimeStart] = useState(false);
+  const [timerStop, setTimerStop] = useState(false);
   const [form, setFrom] = useState({
     email: '',
     auth: '',
     pw1: '',
     pw2: '',
   });
-  const test = () => {
-    console.log('sss');
+  const test = async () => {
+    const data = {
+      new_password: form.pw1,
+      new_password_confirm: form.pw2,
+    };
+    const passwordChange = await passwordChangeApi(data);
+    if (passwordChange !== true) return passwordChange;
+    else {
+      router.push({
+        pathname: '/ConfirmPage',
+        query: { type: 'pwChange' },
+      });
+      return '';
+    }
   };
   const moveToAuth = async () => {
     const emailAuth = await emailApi(form.email);
@@ -30,6 +49,7 @@ export default function PasswordChnage() {
       return authCodeAuth;
     }
     document.getElementById('slide-pw1').checked = true;
+    setTimerStop(true);
     return '';
   };
   const moveToPwConfirm = () => {
@@ -67,7 +87,8 @@ export default function PasswordChnage() {
                   move={moveToPw}
                   title={'auth'}
                   type={'normal'}
-                  timer={isTimeStart}
+                  isTimeStart={isTimeStart}
+                  timerStop={timerStop}
                   inputMethod={setFrom}
                   data={form}
                 />

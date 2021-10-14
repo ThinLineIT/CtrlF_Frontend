@@ -11,7 +11,8 @@ export default function InputForm({
   move,
   title,
   type,
-  timer,
+  isTimeStart,
+  timerStop,
   inputMethod,
   data,
 }) {
@@ -45,13 +46,17 @@ export default function InputForm({
     inputMethod(data);
   };
 
+  const passwordChange = () => {
+    move();
+  };
+
   return (
     <div className={styles.back}>
       <div className={styles.title}>{title}</div>
       {title === 'auth' ? (
         <div className={styles.text}>
           입력하신 이메일에서 코드를 확인해주세요.
-          {timer && <Timer email={data.email} />}
+          {isTimeStart && <Timer email={data.email} destroy={timerStop} />}
         </div>
       ) : (
         <div className={styles.text}> </div>
@@ -71,9 +76,15 @@ export default function InputForm({
           인증코드 재전송
         </button>
       )}
-      <button className={styles.btn} onClick={moveToNext}>
-        다 음
-      </button>
+      {title === 'pw2' ? (
+        <button className={styles.btn} onClick={moveToNext}>
+          비밀번호 변경
+        </button>
+      ) : (
+        <button className={styles.btn} onClick={moveToNext}>
+          다 음
+        </button>
+      )}
     </div>
   );
 }

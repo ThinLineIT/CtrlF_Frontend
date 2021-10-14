@@ -10,11 +10,11 @@ export const emailApi = async (data) => {
   const isOverlap = await overlapApi(data);
   if (isOverlap.data.message !== '이미 존재하는 이메일 입니다.')
     return '등록되지 않은 이메일 입니다.';
-  const authCode = await sendAuthCode(data);
-  if (authCode === true) return true;
+  return true;
 };
 
 export const sendAuthCode = async (data) => {
+  console.log('인증코드 전송');
   const request = await emailAuthApi(data);
   if (request.signing_token) {
     Cookies.set('signing_token', request.signing_token);
@@ -24,6 +24,7 @@ export const sendAuthCode = async (data) => {
 
 export const authCodeApi = async (data) => {
   const authCodeCheck = await authCodeConfirm(data);
+  Cookies.set('signing_token', authCodeCheck.data.signing_token);
   if (authCodeCheck.status === 200) {
     return true;
   } else {
@@ -31,4 +32,12 @@ export const authCodeApi = async (data) => {
   }
 };
 
-export const passwordChangeApi = (data) => {};
+export const passwordChangeApi = async (data) => {
+  data.signing_token = Cookies.get('signing_token');
+  const request = await axios
+    .post(`${process.env.PUBLIC_BASE_API}/auth/reset_password`, data)
+    .then((res) => res)
+    .catch((err) => err.response);
+  if (request.status === 200) return true;
+  else return request.data.message;
+};
