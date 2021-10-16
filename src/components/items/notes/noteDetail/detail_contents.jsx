@@ -114,7 +114,7 @@ export default function DetailContents() {
                   alt={alt}
                   src={src}
                   title={title}
-                  style={{ maxWidth: 475 }}
+                  style={{ maxWidth: '475px' }}
                 />
               ),
             }}
