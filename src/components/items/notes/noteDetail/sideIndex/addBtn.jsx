@@ -1,9 +1,15 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/addBtn.module.css';
-import { preparingModal } from '../../../../../store/atom';
+import {
+  preparingModal,
+  addNewPage,
+  ModifyPageContent,
+} from '../../../../../store/atom';
 import ModalPreparing from '../../../modal/modal_preparing';
 
 export default function AddBtn() {
+  const setAddNewContent = useSetRecoilState(addNewPage);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
   const activeAddTopicModal = () => {
@@ -11,7 +17,8 @@ export default function AddBtn() {
   };
 
   const activeAddPageModal = () => {
-    setShowHiddenModal(true);
+    setAddNewContent(true);
+    setModifyPage(true);
   };
   return (
     <>

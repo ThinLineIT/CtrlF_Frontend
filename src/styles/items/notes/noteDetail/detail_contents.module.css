@@ -119,6 +119,8 @@
   width: 300px;
   height: 3em;
   position: absolute;
+  top: 550px;
+  right: 500px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 500ms, visibility 500ms;
@@ -132,9 +134,6 @@
   font-weight: bolder;
   color: white;
   border-radius: 20px;
-  position: absolute;
-  top: 120px;
-  right: 120px;
 }
 
 .markdown_renderer {
