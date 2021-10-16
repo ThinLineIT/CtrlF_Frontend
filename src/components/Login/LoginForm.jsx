@@ -106,6 +106,15 @@ const LoginForm = () => {
         <span>|</span>
 
         {showHiddenModal && <ModalPreparing />}
+        <a
+          onClick={() => {
+            setShowHiddenModal(true);
+          }}
+          className={styles.login__link}
+        >
+          PASSWORD 찾기
+        </a>
+
         <Link href="/changepassword" as="/changepassword">
           <a className={styles.login__link}>PASSWORD 찾기</a>
         </Link>

@@ -134,6 +134,9 @@
   font-weight: bolder;
   color: white;
   border-radius: 20px;
+  position: absolute;
+  top: 120px;
+  right: 120px;
 }
 
 .markdown_renderer {
