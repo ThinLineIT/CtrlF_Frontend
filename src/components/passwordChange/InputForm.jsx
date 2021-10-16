@@ -1,6 +1,7 @@
 import styles from '../../styles/items/input.module.css';
 import errorStyling from '../../utils/ErrorStyling';
 import { placeholder as PLACEHOLDERS } from '../../constant/placeholder';
+import { mainTitle } from '../../constant/passwordChangeTitle';
 import Timer from './Timer';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
@@ -38,6 +39,7 @@ export default function InputForm({
   };
 
   const resendAuthCode = () => {
+    console.log('jshfire');
     timerStart([]);
   };
 
@@ -46,42 +48,48 @@ export default function InputForm({
     inputMethod(data);
   };
 
-  const passwordChange = () => {
-    move();
-  };
-
   return (
     <div className={styles.back}>
-      <div className={styles.title}>{title}</div>
+      <div className={styles.title}>{mainTitle[`${title}`]}</div>
       {title === 'auth' ? (
         <div className={styles.text}>
           입력하신 이메일에서 코드를 확인해주세요.
-          {isTimeStart && <Timer email={data.email} destroy={timerStop} />}
         </div>
       ) : (
         <div className={styles.text}> </div>
       )}
-      <input
-        className={styles.input}
-        type="text"
-        ref={errInput}
-        onChange={onEmailHandler}
-      />
-      <div ref={errText} className={styles.errtext}></div>
+      <div className={styles.wrap}>
+        <input
+          className={`${styles.input} ${styles.width}`}
+          type="text"
+          ref={errInput}
+          onChange={onEmailHandler}
+        />
+        {isTimeStart && <Timer email={data.email} />}
+      </div>
+      <div className={styles.width}>
+        <div ref={errText} className={styles.errtext}></div>
+      </div>
       {title === 'auth' && (
         <button
-          className={`${styles.btn} ${styles.resend}`}
+          className={`${styles.btn} ${styles.resend} ${styles.width}`}
           onClick={resendAuthCode}
         >
           인증코드 재전송
         </button>
       )}
-      {title === 'pw2' ? (
-        <button className={styles.btn} onClick={moveToNext}>
+      {title === 'pwCheck' ? (
+        <button
+          className={`${styles.btn} ${styles.width}`}
+          onClick={moveToNext}
+        >
           비밀번호 변경
         </button>
       ) : (
-        <button className={styles.btn} onClick={moveToNext}>
+        <button
+          className={`${styles.btn} ${styles.width}`}
+          onClick={moveToNext}
+        >
           다 음
         </button>
       )}

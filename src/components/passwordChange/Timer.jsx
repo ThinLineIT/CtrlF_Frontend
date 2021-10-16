@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { sendAuthCode } from '../../utils/PasswordChange';
 
-export default function Timer({ email, destroy }) {
+export default function Timer({ email }) {
+  const [limit, setLimit] = useState(10);
   const timeRef = useRef(null);
+  const time = useRef(179);
   const [isTimerStarted, setIsTimerStarted] = useState(false);
-  const [minute, setMinute] = useState('03');
+  const [notFirst, setNotFirst] = useState(false);
+  const [minute, setMinute] = useState('03:');
   const [second, setSecond] = useState('00');
   const timerStart = useRecoilValue(setTimerAtom);
   const styles = {
@@ -15,45 +18,50 @@ export default function Timer({ email, destroy }) {
     top: '36.5%',
     right: '15%',
     color: 'red',
+    fontSize: '25px',
   };
 
-  function Timer() {
-    let origin = 180;
-    const auth = setInterval(function () {
-      if (origin < 0) {
-        console.log('ddd');
-        setIsTimerStarted(false);
-        clearTimeout(auth);
-        timeRef.current.innerHTML = '인증 만료';
-      }
-      // else if (destroy === true) {
-      //   clearInterval(auth);
-      // }
-      let min = parseInt(origin / 60);
-      let sec = origin % 60;
-      setMinute(min);
-      setSecond(sec);
-      // console.log('ss', origin);
-      // timeRef.current.innerHTML = min + '분' + sec + '초';
-      origin--;
+  useEffect(() => {
+    console.log('실행하지마');
+    timeRef.current = setInterval(function () {
+      setMinute('0' + parseInt(time.current / 60) + ':');
+      if (time.current % 60 < 10) {
+        setSecond('0' + (time.current % 60));
+      } else setSecond(time.current % 60);
+      time.current--;
     }, 1000);
-  }
+    setLimit(limit - 1);
+    sendAuthCode(email, limit);
+    setNotFirst(true);
+    return () => {
+      clearInterval(timeRef.current);
+    };
+  }, [isTimerStarted]);
 
   useEffect(() => {
-    if (isTimerStarted !== true) {
-      setIsTimerStarted(true);
-      Timer();
-      sendAuthCode(email);
+    if (notFirst !== false) {
+      console.log('실행하지마 제발');
+      clearInterval(timeRef.current);
+      time.current = 180;
+      setMinute('03:');
+      setSecond('00');
+      setIsTimerStarted([]);
     }
-    return () => {
-      clearInterval(Timer);
-    };
   }, [timerStart]);
+
+  useEffect(() => {
+    if (time.current < 0) {
+      setMinute('인증');
+      setSecond('만료');
+      clearInterval(timeRef.current);
+    }
+  }, [second]);
 
   return (
     <>
       <div id="timer" style={styles} ref={timeRef}>
-        {minute}분 {second}초
+        {minute}
+        {second}
       </div>
     </>
   );

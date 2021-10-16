@@ -13,13 +13,14 @@ export const emailApi = async (data) => {
   return true;
 };
 
-export const sendAuthCode = async (data) => {
-  console.log('인증코드 전송');
-  const request = await emailAuthApi(data);
-  if (request.signing_token) {
-    Cookies.set('signing_token', request.signing_token);
-    return true;
-  }
+export const sendAuthCode = async (data, limit) => {
+  if (limit < 0) return;
+  console.log('인증코드 전송', limit);
+  // const request = await emailAuthApi(data);
+  // if (request.signing_token) {
+  //   Cookies.set('signing_token', request.signing_token);
+  //   return true;
+  // }
 };
 
 export const authCodeApi = async (data) => {

@@ -23,7 +23,6 @@
 }
 
 .input {
-  width: 81%;
   border: none;
   border-radius: 20px;
   outline: none;
@@ -40,7 +39,6 @@
   color: white;
   border: none;
   background-color: #8bc8fd;
-  width: 81%;
   margin: 11px 0 55px 0;
   height: 5rem;
 }
@@ -51,5 +49,17 @@
 
 .errtext {
   color: red;
-  height: 22px;
+  font-size: 25px;
+  margin: 15px 0 15px 0;
+}
+
+.width {
+  width: 81%;
+}
+
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }

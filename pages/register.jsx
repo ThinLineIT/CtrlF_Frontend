@@ -40,9 +40,7 @@ export default function Register() {
     const section = document.getElementById('signup');
     section.style.display = 'none';
   };
-  const reAuth = () => {
-    document.getElementById('slide01').checked = true;
-  };
+
   const emailOverlapSuccess = () => {
     document.getElementById('slide02').checked = true;
   };
@@ -62,7 +60,7 @@ export default function Register() {
         <title>회원가입</title>
         <meta name="description"></meta>
       </Head>
-      <ReAuthentication ref={modalRef} reAuth={reAuth} styles={styles} />
+      <ReAuthentication ref={modalRef} />
       <div className={styles.section} id="signup">
         <input type="radio" name="slide" id="slide01" defaultChecked />
         <input type="radio" name="slide" id="slide02" />
