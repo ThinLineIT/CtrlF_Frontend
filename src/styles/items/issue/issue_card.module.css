@@ -3,6 +3,7 @@
   color: white;
   width: 17rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover > .card_hover {

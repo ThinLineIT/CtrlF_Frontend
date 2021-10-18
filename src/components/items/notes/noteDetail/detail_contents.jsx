@@ -29,6 +29,11 @@ export default function DetailContents() {
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
+  const [newPageTitle, setNewPageTitle] = useState(''); // 페이지 생성을 위한 테스트입니다.
+
+  const onPageTitleHandler = (event) => {
+    setNewPageTitle(event.currentTarget.value);
+  };
 
   const copyClipboard = () => {
     const dummy = document.createElement('input');
@@ -68,12 +73,15 @@ export default function DetailContents() {
         </div>
         <div className={styles.icons}>
           {modifyPage ? (
-            <button
-              className={styles.buttonOk}
-              onClick={resetPageContentAndSendData}
-            >
-              확인
-            </button>
+            <div>
+              <button
+                className={styles.buttonOk}
+                onClick={resetPageContentAndSendData}
+              >
+                확인
+              </button>
+              <input type="text" onChange={onPageTitleHandler} />
+            </div>
           ) : (
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />

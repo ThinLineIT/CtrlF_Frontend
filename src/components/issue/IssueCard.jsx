@@ -22,7 +22,7 @@ const IssueCard = ({ title, length, data }) => {
     setIsModalOpen(true);
   };
 
-  switch (data.content_request.type) {
+  switch (data.id) {
     case TYPES.NOTE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
@@ -93,6 +93,19 @@ const IssueCard = ({ title, length, data }) => {
               ISSUE 자세히보기
             </button>
           </div>
+        </div>
+      );
+    default:
+      // 이쪽 분기로 모두 처분
+      return (
+        <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
+          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          <div className={styles.card__title}>{title}</div>
+          <IssueCreatePage
+            onClick={showModal}
+            className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`}
+          />
+          )
         </div>
       );
   }

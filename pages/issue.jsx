@@ -6,6 +6,7 @@ import styles from '../src/styles/Issue.module.css';
 import { checkLogin } from '../src/utils/loginCheck';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
+import { issueList } from '../src/constant/issueMock';
 
 function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
@@ -36,6 +37,7 @@ function Issue() {
   }
 
   useEffect(() => {
+    console.log(issueList);
     checkLogin(setJwt);
     fetchData();
   }, []);
@@ -45,7 +47,7 @@ function Issue() {
       {/* <IssueTag /> */}
       <IssueList
         styles={styles}
-        issues={issues}
+        issues={issueList.issues}
         fetchMoreData={fetchMoreData}
         loading={loading}
       />
