@@ -15,17 +15,18 @@ export const emailApi = async (data) => {
 
 export const sendAuthCode = async (data, limit) => {
   if (limit < 0) return;
-  console.log('인증코드 전송', limit);
-  // const request = await emailAuthApi(data);
-  // if (request.signing_token) {
-  //   Cookies.set('signing_token', request.signing_token);
-  //   return true;
-  // }
+  const request = await emailAuthApi(data);
+  if (request.signing_token) {
+    Cookies.set('signing_token', request.signing_token);
+    return true;
+  }
 };
 
-export const authCodeApi = async (data) => {
-  const authCodeCheck = await authCodeConfirm(data);
-  Cookies.set('signing_token', authCodeCheck.data.signing_token);
+export const authCodeApi = async (code) => {
+  const authCodeCheck = await authCodeConfirm(code);
+  if (authCodeCheck.data.signing_token) {
+    Cookies.set('signing_token', authCodeCheck.data.signing_token);
+  }
   if (authCodeCheck.status === 200) {
     return true;
   } else {

@@ -22,7 +22,6 @@ export default function Timer({ email }) {
   };
 
   useEffect(() => {
-    console.log('실행하지마');
     timeRef.current = setInterval(function () {
       setMinute('0' + parseInt(time.current / 60) + ':');
       if (time.current % 60 < 10) {
@@ -40,7 +39,6 @@ export default function Timer({ email }) {
 
   useEffect(() => {
     if (notFirst !== false) {
-      console.log('실행하지마 제발');
       clearInterval(timeRef.current);
       time.current = 180;
       setMinute('03:');
