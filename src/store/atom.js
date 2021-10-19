@@ -115,7 +115,7 @@ export const topicName = atom({
 
 export const topicIndex = atom({
   key: 'topic_index',
-  default: 1,
+  default: 0,
 });
 
 export const pageList = atom({

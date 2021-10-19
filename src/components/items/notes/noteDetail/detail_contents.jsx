@@ -29,11 +29,17 @@ export default function DetailContents() {
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
-  const [newPageTitle, setNewPageTitle] = useState(''); // 페이지 생성을 위한 테스트입니다.
+  // const [newPageTitle, setNewPageTitle] = useState(''); // 페이지 생성을 위한 테스트입니다.
+  // const [newPageSummary, setNewPageSummary] = useState(''); // 페이지 생성을 위한 테스트입니다.
 
-  const onPageTitleHandler = (event) => {
-    setNewPageTitle(event.currentTarget.value);
-  };
+  // const onPageTitleHandler = (event) => {
+  //   setNewPageTitle(event.currentTarget.value);
+  // };
+
+  // const onPageSummaryHandler = (event) => {
+  //   setNewPageSummary(event.currentTarget.value);
+  // };
+  // // 위 두가지는 임시로 넣어놓은 Input 창입니다.
 
   const copyClipboard = () => {
     const dummy = document.createElement('input');
@@ -80,7 +86,16 @@ export default function DetailContents() {
               >
                 확인
               </button>
-              <input type="text" onChange={onPageTitleHandler} />
+              {/* <input
+                type="text"
+                placeholder="title"
+                onChange={onPageTitleHandler}
+              />
+              <input
+                type="text"
+                placeholder="summary"
+                onChange={onPageSummaryHandler}
+              /> */}
             </div>
           ) : (
             <span className={styles.clipBoard}>

@@ -4,6 +4,7 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
+  topicIndex, // 임시
   modalName,
   topicName,
   menuPageX,
@@ -47,6 +48,8 @@ export default function IndexIndex() {
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
+  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
+
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
 
@@ -89,7 +92,7 @@ export default function IndexIndex() {
         setPageContent(data[0].content);
       }
     });
-
+    setNowTopicIndex(id);
     window.scrollTo(0, 0);
     setTopicTitle(title);
     setModifyPage(false);

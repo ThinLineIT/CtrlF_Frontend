@@ -1,7 +1,15 @@
 import axios from 'axios';
-export function issueHook() {
+export function issueListApi(cursor) {
   const request = axios
-    .get(`${process.env.MOCK_PUBLIC_BASE_API}/issues`)
+    .get(`${process.env.PUBLIC_BASE_API}/issues/?cursor=${cursor}`)
+    .then((res) => res.data)
+    .catch((err) => err.response);
+  return request;
+}
+
+export function issueDetailApi(id) {
+  const request = axios
+    .get(`${process.env.PUBLIC_BASE_API}/issues/${id}`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;

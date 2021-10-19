@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
+  topicIndex, // 임시
   topicName,
   pageContent,
   detailTitle,
@@ -35,6 +36,8 @@ export default function NoteDetail({ note, noteId }) {
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
+  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
+
   function getTopic(id) {
     const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
     Axios.get(API_URL_TOPIC).then((res) => {
@@ -47,6 +50,7 @@ export default function NoteDetail({ note, noteId }) {
 
   function getPage(id) {
     const API_URL_PAGE = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    setNowTopicIndex(id);
     Axios.get(API_URL_PAGE)
       .then((res) => {
         const data = res.data;
