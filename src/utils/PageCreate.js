@@ -7,9 +7,9 @@ export function pageCreateApi(title, summary, content, topic_id) {
     content: content,
     summary: summary,
   };
-  // console.log(data);
-  axios
-    .post(`${process.env.PUBLIC_BASE_API}/pages/`, data)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+  console.log(data);
+  // axios
+  //   .post(`${process.env.PUBLIC_BASE_API}/pages/`, data)
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.log(err));
 }

@@ -4,6 +4,8 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
+  issueDetailPageId,
+  issueDetailTopicId, //임시
   topicIndex, // 임시
   modalName,
   topicName,
@@ -25,6 +27,8 @@ import {
   pageDataList,
 } from '../../../../../store/atom';
 import Axios from 'axios';
+
+import { useEffect } from 'react';
 
 export default function IndexIndex() {
   const pageRef = useRef();
@@ -49,6 +53,8 @@ export default function IndexIndex() {
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
+  const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
+  const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
 
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
@@ -97,6 +103,13 @@ export default function IndexIndex() {
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
+    if (pageId !== '') {
+      setTimeout(function () {
+        document.getElementById(`page${pageId}`).click();
+        setPageId('');
+      }, 1000);
+    }
+    // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
   };
 
   const showPageContent = (title, status, convention, content) => {
@@ -124,6 +137,14 @@ export default function IndexIndex() {
     setModalToggle(false);
   };
 
+  useEffect(() => {
+    if (topicId !== '') {
+      document.getElementById(`topic${topicId}`).click();
+      setTopicId('');
+    }
+    // 만약 클라이언트가 Issue에서 넘어온 상황이라면 실행이 될 예정입니다.
+  }, []);
+
   return (
     <section className={styles.index_index}>
       <div className={styles.index_topic}>
@@ -131,6 +152,7 @@ export default function IndexIndex() {
           {topicData &&
             topicData.map((item) => (
               <li
+                id={`topic${item.id}`} // 선택을 위한 id입니다.
                 key={item.id}
                 className={`${styles.index_topic_li} ${getStyles(
                   item.is_approved
@@ -149,6 +171,7 @@ export default function IndexIndex() {
         <ul className={styles.index_page_ul}>
           {pageData.map((item) => (
             <li
+              id={`page${item.id}`} // 선택을 위한 id입니다.
               key={item.id}
               ref={pageRef}
               className={`${styles.index_page_li} ${getStyles(

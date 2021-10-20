@@ -19,6 +19,8 @@ import {
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
+import { useRouter } from 'next/router';
+
 export default function DetailContents() {
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
@@ -35,7 +37,10 @@ export default function DetailContents() {
   // const onPageTitleHandler = (event) => {
   //   setNewPageTitle(event.currentTarget.value);
   // };
-
+  const router = useRouter();
+  const moveToIssue = () => {
+    router.push('/issue');
+  };
   // const onPageSummaryHandler = (event) => {
   //   setNewPageSummary(event.currentTarget.value);
   // };
@@ -86,6 +91,8 @@ export default function DetailContents() {
               >
                 확인
               </button>
+
+              {/* 임시 이슈 이동 버튼입니다 */}
               {/* <input
                 type="text"
                 placeholder="title"
@@ -100,6 +107,7 @@ export default function DetailContents() {
           ) : (
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
+              <button onClick={moveToIssue}>관련된 이슈 보기</button>
               <span
                 className={`${
                   slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`

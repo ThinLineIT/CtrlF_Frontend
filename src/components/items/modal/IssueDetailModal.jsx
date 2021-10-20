@@ -1,10 +1,14 @@
 import { getUserId } from '../../../utils/userCheck';
+import { useRouter } from 'next/router';
 import {
   issueAccept,
   issueReject,
   issueCancel,
   issueEdit,
 } from '../../../utils/issueHook';
+import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { useEffect } from 'react';
 import DropMenu from '../../items/menu/DropMenu';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 
@@ -13,8 +17,20 @@ export default function IssueDetailModal({
   setIsModalOpen,
   setIsFeatureClicked,
 }) {
+  const setTopicId = useSetRecoilState(issueDetailTopicId);
+  const [pageId, setPageId] = useRecoilState(issueDetailPageId);
+  const router = useRouter();
+
+  useEffect(() => {
+    setTopicId(4);
+    setPageId(12)
+  }, []);
+
+  const openDropDown = () => {};
+
   const closeModal = () => {
-    setIsModalOpen(false);
+    router.push(`/notes/1`);
+    // setIsModalOpen(false);
   };
 
   const acceptIssue = () => {
@@ -66,7 +82,7 @@ export default function IssueDetailModal({
         <div className={`${styles.modal__change} ${styles.contents}`}>
           {data.content} 콘텐츠
         </div>
-        {/* <DropMenu /> */}
+        <DropMenu onClick={openDropDown} />
         <div className={styles.btns}>
           {/* <button className={styles.modal__btn} onClick={editIssue}>
             수정

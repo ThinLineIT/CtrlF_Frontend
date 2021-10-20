@@ -318,3 +318,13 @@ export const pageDataList = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const issueDetailTopicId = atom({
+  key: 'issue_detail_topic_id',
+  default: '',
+});
+
+export const issueDetailPageId = atom({
+  key: 'issue_detail_page_id',
+  default: '',
+});
