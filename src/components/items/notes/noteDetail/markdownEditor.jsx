@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import { useState } from 'react';
+import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { useRecoilValue } from 'recoil';
 import ReactMarkdown from 'react-markdown';
 import { addNewPage } from '../../../../store/atom';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from '../../../../styles/items/notes/noteDetail/markdownEditor.module.css';
 
@@ -59,13 +61,31 @@ export default function MarkdownEditor(props) {
         ) : (
           <ReactMarkdown
             className={styles.preview}
+            rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             // eslint-disable-next-line react/no-children-prop
             children={
               !addNewContent ? (input == null ? content : input) : input
             }
             components={{
-              code: CodeBlock,
+              p: ({ node, children }) => {
+                return <p>{children}</p>;
+              },
+              code({ language, children }) {
+                return (
+                  <SyntaxHighlighter style={docco} language={language}>
+                    {children[0]}
+                  </SyntaxHighlighter>
+                );
+              },
+              image: ({ alt, src, title }) => (
+                <Image
+                  alt={alt}
+                  src={src}
+                  title={title}
+                  style={{ maxWidth: '475px' }}
+                />
+              ),
             }}
           />
         )}
@@ -73,11 +93,3 @@ export default function MarkdownEditor(props) {
     </div>
   );
 }
-
-const CodeBlock = ({ language, value }) => {
-  return (
-    <SyntaxHighlighter language={language ?? null} style={docco}>
-      {value ?? ''}
-    </SyntaxHighlighter>
-  );
-};

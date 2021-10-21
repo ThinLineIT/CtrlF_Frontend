@@ -138,6 +138,11 @@ export const addNewPage = atom({
   default: false,
 });
 
+export const isPageApproved = atom({
+  key: 'is_page_approved',
+  default: true,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({
