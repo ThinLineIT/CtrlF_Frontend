@@ -1,5 +1,4 @@
 .editor_wrap {
-  width: 61%;
   margin: 2em auto;
 }
 
@@ -48,17 +47,27 @@
   margin-top: 1em;
 }
 
-.users_input {
+.users_summary {
   width: 100%;
   height: 6em;
   border: 1px solid #00000028;
   margin: 0 auto;
-  padding-left: 1.2em;
-  padding-bottom: 3em;
+  padding-left: 1.4em;
+  padding-top: 0.6em;
   font-size: 1.1rem;
   font-weight: bold;
   border-radius: 10px/10px;
+  resize: none;
   outline: 0;
+  overflow: auto;
+}
+.users_summary::-webkit-scrollbar {
+  width: 3px;
+  background: none;
+}
+
+.users_summary::-webkit-scrollbar-track {
+  background: none;
 }
 
 .users_textarea {
@@ -75,6 +84,15 @@
   resize: none;
   outline: 0;
   -webkit-appearance: none;
+  overflow: auto;
+}
+.users_textarea::-webkit-scrollbar {
+  width: 3px;
+  background: none;
+}
+
+.users_textarea::-webkit-scrollbar-track {
+  background: none;
 }
 
 .preview {
