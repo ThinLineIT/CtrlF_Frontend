@@ -39,7 +39,6 @@ export default function InputForm({
   };
 
   const resendAuthCode = () => {
-    console.log('jshfire');
     timerStart([]);
   };
 

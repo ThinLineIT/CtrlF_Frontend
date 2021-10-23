@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { sendAuthCode } from '../../utils/PasswordChange';
 
-export default function Timer({ email }) {
+export default function Timer({ email, register }) {
   const [limit, setLimit] = useState(10);
   const timeRef = useRef(null);
   const time = useRef(179);
@@ -13,10 +13,17 @@ export default function Timer({ email }) {
   const [minute, setMinute] = useState('03:');
   const [second, setSecond] = useState('00');
   const timerStart = useRecoilValue(setTimerAtom);
-  const styles = {
+  const pwStyles = {
     position: 'absolute',
     top: '36.5%',
     right: '15%',
+    color: 'red',
+    fontSize: '25px',
+  };
+  const registerStyle = {
+    position: 'absolute',
+    top: '22%',
+    right: '8%',
     color: 'red',
     fontSize: '25px',
   };
@@ -57,7 +64,14 @@ export default function Timer({ email }) {
 
   return (
     <>
-      <div id="timer" style={styles} ref={timeRef}>
+      <div
+        id="timer"
+        style={(function () {
+          if (register) return registerStyle;
+          else return pwStyles;
+        })()}
+        ref={timeRef}
+      >
         {minute}
         {second}
       </div>

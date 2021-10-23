@@ -43,14 +43,16 @@ export default function Email({ styles, emailOverlapSuccess }) {
     <div className={styles.com}>
       <span className={styles.signup__title}>이메일 입력 / 인증</span>
       <div className={styles.signup__text}></div>
-      <input
-        id="email__input"
-        onChange={onEmailHandler}
-        type="text"
-        value={email}
-        placeholder="이메일 입력"
-        className={`${styles.signup__input} ${styles.input}`}
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          id="email__input"
+          onChange={onEmailHandler}
+          type="text"
+          value={email}
+          placeholder="이메일 입력"
+          className={`${styles.signup__input} ${styles.input}`}
+        />
+      </div>
       <div className={styles.error}>
         {!isEmailOverlap && (
           <div
