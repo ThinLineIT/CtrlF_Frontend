@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const signUpApi = (signUpData) => {
   const request = axios
@@ -40,8 +41,10 @@ export const nickNameOverlap = (nick) => {
 };
 
 export const authCodeConfirm = (code) => {
+  const token = Cookies.get('signing_token');
   const CODE = {
     code: code,
+    signing_token: token,
   };
   const request = axios
     .post(`${process.env.PUBLIC_BASE_API}/auth/verification-code/check`, CODE)

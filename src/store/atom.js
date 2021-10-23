@@ -318,3 +318,8 @@ export const pageDataList = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const setTimer = atom({
+  key: 'setTimer',
+  default: false,
+});
