@@ -29,7 +29,6 @@ export default function MarkdownEditor(props) {
   // 위 두가지는 임시로 넣어놓은 Input 창입니다.
 
   const pageCreate = () => {
-    // console.log(newPageTitle, newPageSummary, input, topic_id);
     pageCreateApi(newPageTitle, newPageSummary, input, topic_id);
   };
 

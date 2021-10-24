@@ -101,11 +101,11 @@ const IssueCard = ({ title, length, data }) => {
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
           {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
           <div className={styles.card__title}>{title}</div>
+          <div className={styles.card__context}>{data.content}</div>
           <IssueCreatePage
             onClick={showModal}
             className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`}
           />
-          )
         </div>
       );
   }

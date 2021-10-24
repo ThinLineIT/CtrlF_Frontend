@@ -23,14 +23,15 @@ export default function IssueDetailModal({
 
   useEffect(() => {
     setTopicId(4);
-    setPageId(12)
+    setPageId(12);
   }, []);
 
-  const openDropDown = () => {};
+  const moveToDetail = () => {
+    router.push(`/notes/1`);
+  };
 
   const closeModal = () => {
-    router.push(`/notes/1`);
-    // setIsModalOpen(false);
+    setIsModalOpen(false);
   };
 
   const acceptIssue = () => {
@@ -75,14 +76,15 @@ export default function IssueDetailModal({
     <div className={styles.background}>
       <div className={styles.modal}>
         <div className={styles.modal__title}>Page Create</div>
-        <div className={styles.modal__origin}>{data.title} 타이틀</div>
+        <div className={styles.modal__origin}> {data.title} 타이틀</div>
         <div className={`${styles.modal__change} ${styles.title}`}>
+          {' '}
           {data.content} 콘텐츠
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {data.content} 콘텐츠
+          {data.content}콘텐츠
         </div>
-        <DropMenu onClick={openDropDown} />
+        {/* <DropMenu onClick={openDropDown} /> */}
         <div className={styles.btns}>
           {/* <button className={styles.modal__btn} onClick={editIssue}>
             수정
@@ -96,8 +98,11 @@ export default function IssueDetailModal({
           <button className={styles.modal__btn} onClick={rejectIssue}>
             미승인
           </button>
-          <button className={styles.modal__btn} onClick={closeModal}>
+          <button className={styles.modal__btn} onClick={moveToDetail}>
             자세히 보기
+          </button>
+          <button className={styles.modal__btn} onClick={closeModal}>
+            닫기
           </button>
           {/* {data.content_request.type === 'PAGE' ? (
             <button className={styles.modal__btn} onClick={closeModal}>

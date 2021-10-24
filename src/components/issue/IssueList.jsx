@@ -41,7 +41,7 @@ const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
     <div className={styles.issue__list}>
       {issues &&
         issues.map((v, i) => {
-          return <IssueCard key={i} title={v.title} length={v.id} data={v} />;
+          return <IssueCard key={v.id} title={v.title} length={0} data={v} />;
         })}
     </div>
   );

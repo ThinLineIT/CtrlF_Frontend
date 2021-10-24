@@ -1,19 +1,19 @@
 import axios from 'axios';
-export function issueListApi(cursor) {
-  const request = axios
+export const issueListApi = async (cursor) => {
+  const request = await axios
     .get(`${process.env.PUBLIC_BASE_API}/issues/?cursor=${cursor}`)
     .then((res) => res.data)
-    .catch((err) => err.response);
+    .catch((err) => console.log(err.response));
   return request;
-}
+};
 
-export function issueDetailApi(id) {
-  const request = axios
+export const issueDetailApi = async (id) => {
+  const request = await axios
     .get(`${process.env.PUBLIC_BASE_API}/issues/${id}`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
-}
+};
 
 export function issueAccept() {
   alert('이슈를 승인하겠습니다');

@@ -8,18 +8,16 @@ export async function pageCreateApi(title, summary, content, topic_id) {
     content: content,
     summary: summary,
   };
-  // console.log(data);
   let headers = Cookies.get('token');
-  // console.log(headers);
   const request = await axios({
     url: `${process.env.PUBLIC_BASE_API}pages/`,
     method: 'post',
     headers: {
-      token: headers,
+      Authorization: `Bearer ${headers}`,
     },
     data: data,
   })
     .then((res) => res)
-    .catch((err) => err);
-  console.log(request);
+    .catch((err) => console.log(err.response));
+  location.href = location.href;
 }
