@@ -18,7 +18,7 @@ import {
   modalInputPlaceholder,
 } from '../../../../../store/atom';
 
-export default function SideIndex() {
+export default function SideIndex({ noteId }) {
   const [modalToggle, setModalToggle] = useState(false);
   const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
@@ -71,7 +71,7 @@ export default function SideIndex() {
         </div>
         <div className={styles.index_list_wrap}>
           <IndexIndex />
-          <AddBtn />
+          <AddBtn noteId={noteId} />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
       </div>

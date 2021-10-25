@@ -1,5 +1,6 @@
-import ModalUtils from './modal_utils';
 import { useRef } from 'react';
+import axios from 'axios';
+import ModalUtils from './modal_utils';
 import styles from '../../../styles/items/modal/modal_input.module.css';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import {
@@ -8,15 +9,15 @@ import {
   okBtnActive,
   buttonCancel,
   isModalActive,
-  requestNoteTitle,
-  requestNoteContent,
+  requestIssueTitle,
+  requestIssueContent,
   userRequestDataList,
   isInputShouldActive,
   modalInputPlaceholder,
   modalTextareaPlaceholder,
 } from '../../../store/atom';
 
-export default function ModalInput({ noteName }) {
+export default function ModalInput({ noteName, noteId }) {
   const textareaRef = useRef();
   const noteTitleRef = useRef();
   const isInputActive = useRecoilValue(isInputShouldActive);
@@ -29,8 +30,8 @@ export default function ModalInput({ noteName }) {
   const inputPlaceholder = useRecoilValue(modalInputPlaceholder);
   const textareaPlaceholder = useRecoilValue(modalTextareaPlaceholder);
 
-  const setRequestTitle = useSetRecoilState(requestNoteTitle);
-  const setRequestContent = useSetRecoilState(requestNoteContent);
+  const setRequestTitle = useSetRecoilState(requestIssueTitle);
+  const setRequestContent = useSetRecoilState(requestIssueContent);
   const [requestData, setRequestData] = useRecoilState(userRequestDataList);
 
   const onInputChange = () => {
@@ -53,24 +54,39 @@ export default function ModalInput({ noteName }) {
 
   const closingModalAndSendData = (title, requestTitle, requestContent) => {
     setIsOkBtnActive(false);
-    isInputActive
-      ? setRequestData([
-          ...requestData,
-          {
-            noteName,
-            title,
-            requestTitle,
-            requestContent,
-          },
-        ])
-      : setRequestData([
-          ...requestData,
-          {
-            noteName,
-            title,
-            requestContent,
-          },
-        ]);
+
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}topics/`, {
+        note_id: noteId,
+        title: requestTitle,
+        content: requestContent,
+      })
+      .then((res) => {
+        isInputActive
+          ? setRequestData([
+              ...requestData,
+              {
+                noteName,
+                title,
+                requestTitle,
+                requestContent,
+              },
+            ])
+          : setRequestData([
+              ...requestData,
+              {
+                noteName,
+                title,
+                requestContent,
+              },
+            ]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        console.log('post confirm');
+      });
   };
 
   if (!isOkBtnActive) {
@@ -87,7 +103,7 @@ export default function ModalInput({ noteName }) {
                 type="text"
                 placeholder={inputPlaceholder}
                 onChange={onInputChange}
-                required
+                required={true}
               />
             )}
             <textarea
@@ -96,7 +112,7 @@ export default function ModalInput({ noteName }) {
               name="text"
               placeholder={textareaPlaceholder}
               onChange={onInputChange}
-              required
+              required={true}
             />
             <div className={styles.btn}>
               <button

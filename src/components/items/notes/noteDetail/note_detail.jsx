@@ -72,7 +72,7 @@ export default function NoteDetail({ note, noteId }) {
       )}
       {!isLoading && (
         <div className={styles.wrap}>
-          <SideIndex />
+          <SideIndex noteId={noteId} />
           <DetailContents />
         </div>
       )}

@@ -1,23 +1,19 @@
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
-import { userRequestDataList, preparingModal } from '../../../store/atom';
+import { userRequestDataList } from '../../../store/atom';
 import styles from '../../../styles/items/sidebar/issue.module.css';
 
 export default function Issue() {
   const router = useRouter();
-  const setModalHiiden = useSetRecoilState(preparingModal);
   const requestData = useRecoilValue(userRequestDataList);
 
   useEffect(() => {}, [requestData]);
 
-  // const routeToIssuePage = () => {
-  //   router.push('/requestIssue');
-  // };
-
-  const alertPreparing = () => {
-    setModalHiiden(true);
+  const routeToIssuePage = () => {
+    router.push('/requestIssue');
   };
+
   return (
     <div className={styles.container}>
       <span>
@@ -30,7 +26,7 @@ export default function Issue() {
                 className={`${styles.issues} ${
                   styles[`color_${Math.floor((index / 1) % 15)}`]
                 }`}
-                onClick={alertPreparing}
+                onClick={routeToIssuePage}
               >
                 {' '}
                 {item.noteName ? (
@@ -40,7 +36,7 @@ export default function Issue() {
                 )}
               </div>
             ))}
-          <span className={styles.view_more} onClick={alertPreparing}>
+          <span className={styles.view_more} onClick={routeToIssuePage}>
             <h4>+</h4>
             <h4>VIEW MORE</h4>
           </span>
