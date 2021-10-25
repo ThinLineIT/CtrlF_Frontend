@@ -56,7 +56,7 @@
   padding-top: 0.6em;
   font-size: 1.1rem;
   font-weight: bold;
-  border-radius: 10px/10px;
+  border-radius: 20px/20px;
   resize: none;
   outline: 0;
   overflow: auto;
@@ -103,4 +103,23 @@
   outline: 0;
   font-size: 1.2rem;
   line-height: 2.5rem;
+}
+
+.buttonsContainer {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsContainer li button {
+  font-size: 1.3rem;
+  border: 0.05px solid #d1d1d1;
+  border-radius: 5px;
+  margin: 0 0.2em;
+}
+
+.buttonsContainer li button:hover {
+  color: #b5bdff;
 }

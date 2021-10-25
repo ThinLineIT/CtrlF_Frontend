@@ -8,14 +8,13 @@ import { addNewPage } from '../src/store/atom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from '../src/styles/Editor.module.css';
-import Buttons from '../src/components/editors/buttons';
 
 export default function MarkdownEditor(props) {
   const content = props.contents;
   const contentRef = useRef();
   const [input, setInput] = useState('');
   const [preview, setPreiview] = useState(false);
-  const addNewContent = useRecoilValue(addNewPage);
+  const addNewPageContent = useRecoilValue(addNewPage);
 
   const useTab = (e) => {
     if (e.key == 'Tab') {
@@ -30,23 +29,21 @@ export default function MarkdownEditor(props) {
     }
   };
 
-  const dropFunc = (e) => {
-    e.preventDefault();
-    var data = e.dataTransfer.getData('Text');
-    e.target.appendChild(document.getElementById(data));
-    document.getElementById('demo').innerHTML = '##';
-  };
-
-  const dragOverFunc = (e) => {
-    e.preventDefault();
-  };
-
-  const dragFunc = (e) => {
-    document.getElementById('demo').innerHTML = '####';
-  };
-
-  const dragStartFunc = (e) => {
-    e.dataTransfer.setData('Text', e.target.id);
+  const getCursorPoing = () => {
+    // let value = 'Hi';
+    // let newP = document.createElement('p');
+    // let myElement = document.getElementById('textarea');
+    // console.log(myElement);
+    // let textareaValue = myElement.setAttribute('value', value);
+    // let txtNode = myElement.value;
+    // newP.appendChild(txtNode);
+    // console.log(txtNode);
+    // var h = document.createElement('textarea');
+    // h.setAttribute('value', value);
+    // var t = document.createTextNode(value);
+    // h.appendChild(t);
+    // let startPosition = myElement.selectionStart;
+    // let endPosition = myElement.selectionEnd;
   };
 
   return (
@@ -57,7 +54,8 @@ export default function MarkdownEditor(props) {
         className={styles.users_summary}
         required
         autoComplete="off"
-        autoFocus
+        autoFocus={false}
+        id="summary"
       />
       <span as="h3" className={styles.detail_content}>
         <div className={styles.buttonsWrap}>
@@ -65,7 +63,25 @@ export default function MarkdownEditor(props) {
             <button onClick={() => onChangeStatus('write')}>Write</button>
             <button onClick={() => onChangeStatus('preview')}>Preview</button>
           </span>
-          <Buttons />
+          <ul className={styles.buttonsContainer}>
+            <li>
+              <button onClick={getCursorPoing}>H</button>
+            </li>
+            <li>
+              <button style={{ fontWeight: 'bold' }} onClick={getCursorPoing}>
+                B
+              </button>
+            </li>
+            <li>
+              <button onClick={getCursorPoing}>I</button>
+            </li>
+            <li>
+              <button onClick={getCursorPoing}>Q</button>
+            </li>
+            <li>
+              <button onClick={getCursorPoing}>&#60; &#62;</button>
+            </li>
+          </ul>
         </div>
         {!preview ? (
           <>
@@ -75,27 +91,14 @@ export default function MarkdownEditor(props) {
               ref={contentRef}
               placeholder="page content"
               onKeyDown={useTab}
-              onDrop={(e) => dropFunc(e)}
               onChange={(e) => setInput(e.target.value)}
               className={styles.users_textarea}
               required
               autoFocus={false}
+              id="textarea"
             >
-              <p
-                onDragStart={(e) => dragStartFunc(e)}
-                onDrag={(e) => dragFunc(e)}
-                draggable="true"
-                id="dragtarget"
-              >
-                {addNewContent ? null : content}
-              </p>
+              {addNewPageContent ? null : content}
             </textarea>
-            <div
-              className="droptarget"
-              onDrop={(e) => dropFunc(e)}
-              onDragOver={(e) => dragOverFunc(e)}
-            ></div>
-            <p id="demo"></p>
           </>
         ) : (
           <ReactMarkdown
@@ -104,7 +107,7 @@ export default function MarkdownEditor(props) {
             remarkPlugins={[remarkGfm]}
             // eslint-disable-next-line react/no-children-prop
             children={
-              !addNewContent ? (input == null ? content : input) : input
+              !addNewPageContent ? (input == null ? content : input) : input
             }
             components={{
               p: ({ node, children }) => {

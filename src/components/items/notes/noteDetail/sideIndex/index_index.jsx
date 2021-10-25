@@ -45,7 +45,7 @@ export default function IndexIndex() {
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setContextMenuName = useSetRecoilState(contextMenuName);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
-  const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const setContextMenuState = useSetRecoilState(contextMenuState);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
 
@@ -74,7 +74,7 @@ export default function IndexIndex() {
       setModalName('페이지');
       setModalNameEn('page');
       setContextMenuName('내용 수정');
-      setContextMenuStates('내용 수정');
+      setContextMenuState('내용 수정');
       setModalInputPlaceholder('page title');
     }
   };
