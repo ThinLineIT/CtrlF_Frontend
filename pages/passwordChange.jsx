@@ -21,7 +21,7 @@ export default function PasswordChnage() {
     pw: '',
     pwCheck: '',
   });
-  const test = async () => {
+  const pwChange = async () => {
     const data = {
       new_password: form.pw,
       new_password_confirm: form.pwCheck,
@@ -125,7 +125,7 @@ export default function PasswordChnage() {
               <a>
                 <label className={styles.left} htmlFor="slide-pw"></label>
                 <InputForm
-                  move={test}
+                  move={pwChange}
                   title={'pwCheck'}
                   type={'secret'}
                   inputMethod={setFrom}

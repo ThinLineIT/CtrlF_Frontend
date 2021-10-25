@@ -44,14 +44,16 @@ export default function NickName({ styles, nickNameOverlapSuccess, props }) {
     <div className={styles.com}>
       <span className={styles.signup__title}>닉네임 입력 / 중복확인</span>
       <div className={styles.signup__text}></div>
-      <input
-        value={nickName}
-        onChange={onNickNameHandler}
-        className={`${styles.signup__input} ${styles.input}`}
-        type="text"
-        id="nick__input"
-        placeholder="닉네임 (한글, 영문, 숫자 2~10자)"
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          value={nickName}
+          onChange={onNickNameHandler}
+          className={`${styles.signup__input} ${styles.input}`}
+          type="text"
+          id="nick__input"
+          placeholder="닉네임 (한글, 영문, 숫자 2~10자)"
+        />
+      </div>
       <div className={styles.error}>
         {!nickNameValidation && (
           <div
