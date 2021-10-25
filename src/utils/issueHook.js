@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+
 export const issueListApi = async (cursor) => {
   const request = await axios
     .get(`${process.env.PUBLIC_BASE_API}/issues/?cursor=${cursor}`)
@@ -12,6 +14,24 @@ export const issueDetailApi = async (id) => {
     .get(`${process.env.PUBLIC_BASE_API}/issues/${id}`)
     .then((res) => res.data)
     .catch((err) => err.response);
+  return request;
+};
+
+export const issueApproveApi = async (id) => {
+  const data = {
+    issue_id: id,
+  };
+  let headers = Cookies.get('token');
+  const request = await axios({
+    url: `${process.env.PUBLIC_BASE_API}actions/issue-approve`,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
+    .catch((err) => console.log(err.response));
   return request;
 };
 

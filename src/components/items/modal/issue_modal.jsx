@@ -9,7 +9,6 @@ export default function Modal({ setIsModalOpen, data }) {
   const [loading, setLoading] = useState(false);
 
   const [issueDetail, setIssueDetail] = useState(null);
-  // const [content, setContent] = useState(null);
 
   const fetchIssueDetail = async () => {
     const issueInfo = await issueDetailApi(data.id);

@@ -96,7 +96,7 @@ const IssueCard = ({ title, length, data }) => {
         </div>
       );
     default:
-      // 이쪽 분기로 모두 처분
+      // 이슈의 타입이 정확하지 않기 때문에 이쪽 분기로 모두 처분해서 카드를 나타냅니다.
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
           {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}

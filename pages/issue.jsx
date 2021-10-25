@@ -24,14 +24,14 @@ function Issue() {
       setIssues([...issuest, ...issueList.issues]);
     }
   }
-
-  function fetchMoreData() {
-    setLoading(true);
-    let endCount = pageCount + newIssueNum;
-    setPageCount(endCount);
-    fetchData();
-    setLoading(false);
-  }
+  // 스크롤 기능입니다.
+  // async function fetchMoreData() {
+  //   setLoading(true);
+  //   let endCount = pageCount + newIssueNum;
+  //   await setPageCount(endCount);
+  //   fetchData();
+  //   setLoading(false);
+  // }
 
   useEffect(() => {
     checkLogin(setJwt);
@@ -44,7 +44,7 @@ function Issue() {
       <IssueList
         styles={styles}
         issues={issuest}
-        fetchMoreData={fetchMoreData}
+        // fetchMoreData={fetchMoreData}
         loading={loading}
       />
     </div>

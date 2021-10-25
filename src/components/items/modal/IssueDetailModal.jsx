@@ -1,16 +1,16 @@
 import { getUserId } from '../../../utils/userCheck';
 import { useRouter } from 'next/router';
 import {
-  issueAccept,
+  issueApproveApi,
   issueReject,
   issueCancel,
   issueEdit,
 } from '../../../utils/issueHook';
 import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
-import { useSetRecoilState, useRecoilState } from 'recoil';
-import { useEffect } from 'react';
-import DropMenu from '../../items/menu/DropMenu';
+import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
+// 추후 추가될 DropDown 기능입니다.
+// import DropMenu from '../../items/menu/DropMenu';
 
 export default function IssueDetailModal({
   data,
@@ -18,29 +18,27 @@ export default function IssueDetailModal({
   setIsFeatureClicked,
 }) {
   const setTopicId = useSetRecoilState(issueDetailTopicId);
-  const [pageId, setPageId] = useRecoilState(issueDetailPageId);
+  const setPageId = useSetRecoilState(issueDetailPageId);
   const router = useRouter();
 
-  useEffect(() => {
-    setTopicId(4);
-    setPageId(12);
-  }, []);
-
-  const moveToDetail = () => {
-    router.push(`/notes/1`);
+  const moveToDetail = async () => {
+    await setTopicId(data.topic_id);
+    await setPageId(data.page_id);
+    router.push(`/notes/${data.note_id}`);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const acceptIssue = () => {
+  const acceptIssue = async () => {
     const user_id = getUserId();
-    if (data.owner === user_id) {
-      // API 개발 완료시 교체 예정
-      issueAccept();
-    }
-    setIsFeatureClicked(true);
+    // 현재 이슈 승인 API 에서는 유저의 아이디를 요구하지 않습니다.
+    // if (data.owner === user_id) {}
+    // 승인 권한 문제가 있습니다.
+    const result = await issueApproveApi(data.id);
+    console.log(result);
+    // setIsFeatureClicked(true);
   };
 
   const rejectIssue = () => {
