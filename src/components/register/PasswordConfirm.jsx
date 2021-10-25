@@ -68,13 +68,15 @@ export default function PasswordConfirm({ styles }) {
     <div className={styles.com}>
       <span className={styles.signup__title}>비밀번호 입력 / 확인</span>
       <div className={styles.signup__text}></div>
-      <input
-        onChange={onPasswordConfirmHandler}
-        className={`${styles.signup__input} ${styles.input}`}
-        id="passwordcheck__input"
-        type="password"
-        placeholder="password 확인"
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          onChange={onPasswordConfirmHandler}
+          className={`${styles.signup__input} ${styles.input}`}
+          id="passwordcheck__input"
+          type="password"
+          placeholder="password 확인"
+        />
+      </div>
       <div className={styles.error}>
         {!passwordCheckValidation && (
           <div

@@ -4,7 +4,7 @@ import {
 } from '../../store/atom';
 import { useRecoilState } from 'recoil';
 import { emailReg } from '../../utils/Reg';
-import { overlapApi, emailAuthApi } from '../../utils/SignUpHook';
+import { overlapApi } from '../../utils/SignUpHook';
 import { useState } from 'react';
 import errorStyling from '../../utils/ErrorStyling';
 
@@ -23,7 +23,6 @@ export default function Email({ styles, emailOverlapSuccess }) {
     if (emailReg(email)) {
       const isOverlap = await overlapApi(email);
       if (isOverlap.status === 200) {
-        emailAuthApi(email);
         emailInputElement.style.border = 'none';
         setIsEmailOverlap(true);
         emailOverlapSuccess();
@@ -43,14 +42,16 @@ export default function Email({ styles, emailOverlapSuccess }) {
     <div className={styles.com}>
       <span className={styles.signup__title}>이메일 입력 / 인증</span>
       <div className={styles.signup__text}></div>
-      <input
-        id="email__input"
-        onChange={onEmailHandler}
-        type="text"
-        value={email}
-        placeholder="이메일 입력"
-        className={`${styles.signup__input} ${styles.input}`}
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          id="email__input"
+          onChange={onEmailHandler}
+          type="text"
+          value={email}
+          placeholder="이메일 입력"
+          className={`${styles.signup__input} ${styles.input}`}
+        />
+      </div>
       <div className={styles.error}>
         {!isEmailOverlap && (
           <div
