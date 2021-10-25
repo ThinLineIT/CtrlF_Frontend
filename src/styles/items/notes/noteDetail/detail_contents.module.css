@@ -73,18 +73,13 @@
   padding-left: 1em;
   display: flex;
   align-items: center;
+  outline: none;
 }
-
-.icons_bookmark {
-  background: url('../../../../../public/images/note_detail/bookmark_button.svg')
-    center no-repeat;
-  background-size: cover;
-  position: absolute;
-  top: 120px;
-  right: 120px;
-  width: 2em;
-  height: 2em;
-  margin-top: 0.6em;
+.clipBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .icons_share {
@@ -94,11 +89,17 @@
   width: 3em;
   height: 3em;
   cursor: pointer;
-  margin-right: 5.9em;
+  margin-right: 1.3em;
 }
 
-.clipBoard {
-  position: relative;
+.icons_issue {
+  width: 160px;
+  height: 40px;
+  margin: 10px 0.5em;
+  background-color: #b5bdff;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
 }
 
 .slideActive {
@@ -134,9 +135,6 @@
   font-weight: bolder;
   color: white;
   border-radius: 20px;
-  position: absolute;
-  top: 120px;
-  right: 120px;
 }
 
 .markdown_renderer {

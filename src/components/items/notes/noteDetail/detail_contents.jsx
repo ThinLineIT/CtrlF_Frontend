@@ -3,7 +3,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import MarkdownEditor from './markdownEditor';
+import Editor from '../../../../../pages/Editor';
 import ModalPreparing from '../../modal/modal_preparing';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
@@ -15,6 +15,7 @@ import {
   pageContent,
   okBtnActive,
   preparingModal,
+  isPageApproved,
   ModifyPageContent,
   firstVisiblePageTitle,
 } from '../../../../store/atom';
@@ -29,6 +30,7 @@ export default function DetailContents() {
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
+  const isPageApprove = useRecoilValue(isPageApproved);
 
   const copyClipboard = () => {
     const dummy = document.createElement('input');
@@ -54,6 +56,8 @@ export default function DetailContents() {
     setShowHiddenModal(true);
   };
 
+  console.log(isPageApprove);
+
   return (
     <div className={styles.content}>
       <div className={styles.topicBar}>
@@ -64,7 +68,11 @@ export default function DetailContents() {
           >
             {topicTitle}
           </div>
-          <div className={styles.info_item_page}>{pageTitle}</div>
+          {modifyPage ? (
+            <input className={styles.info_item_page} placeholder="TITLE" />
+          ) : (
+            <div className={styles.info_item_page}>{pageTitle}</div>
+          )}
         </div>
         <div className={styles.icons}>
           {modifyPage ? (
@@ -77,6 +85,9 @@ export default function DetailContents() {
           ) : (
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
+              {!isPageApprove && (
+                <button className={styles.icons_issue}>관련된 이슈 확인</button>
+              )}
               <span
                 className={`${
                   slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
@@ -88,11 +99,11 @@ export default function DetailContents() {
       </div>
       <div
         style={{
-          width: '55vw',
+          width: '90%',
         }}
       >
         {modifyPage ? (
-          <MarkdownEditor contents={PagesContent} />
+          <Editor contents={PagesContent} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}
