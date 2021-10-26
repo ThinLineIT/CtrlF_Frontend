@@ -31,14 +31,16 @@ export default function Password({ styles, passwordFirst }) {
     <div className={styles.com}>
       <span className={styles.signup__title}>비밀번호 입력 / 확인</span>
       <div className={styles.signup__text}></div>
-      <input
-        id="password__input"
-        value={password}
-        onChange={onPasswordHandler}
-        className={`${styles.signup__input} ${styles.input}`}
-        type="password"
-        placeholder="password 입력"
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          id="password__input"
+          value={password}
+          onChange={onPasswordHandler}
+          className={`${styles.signup__input} ${styles.input}`}
+          type="password"
+          placeholder="password 입력"
+        />
+      </div>
       <div className={styles.error}>
         {!passwordValidation && (
           <div

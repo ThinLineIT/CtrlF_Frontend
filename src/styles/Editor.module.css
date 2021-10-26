@@ -1,0 +1,125 @@
+.editor_wrap {
+  margin: 2em auto;
+}
+
+.buttonsWrap {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.2px solid #d1d1d1;
+}
+
+.editor_button {
+  display: flex;
+  padding: 1.5em 0;
+  padding-left: 0.3em;
+}
+
+.editor_button button {
+  width: 5em;
+  height: 3em;
+  margin: 0 1em;
+  font-size: 1rem;
+  border: 1px solid #00000028;
+  border-radius: 15px/15px;
+}
+
+.editor_button button:hover {
+  opacity: 0.8;
+}
+
+.editor_button button:focus {
+  background: #b5bdff;
+}
+
+.editor_button button:first-child {
+  margin: 0;
+}
+
+.detail_content {
+  border: 0.2px solid #d1d1d1;
+  border-radius: 25px;
+  padding: 0.5em 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.users_summary {
+  width: 100%;
+  height: 6em;
+  border: 1px solid #00000028;
+  margin: 0 auto;
+  padding-left: 1.4em;
+  padding-top: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 20px/20px;
+  resize: none;
+  outline: 0;
+  overflow: auto;
+}
+.users_summary::-webkit-scrollbar {
+  width: 3px;
+  background: none;
+}
+
+.users_summary::-webkit-scrollbar-track {
+  background: none;
+}
+
+.users_textarea {
+  width: 100%;
+  min-height: 520px;
+  border: 1px solid #00000028;
+  margin: 1em auto 0 auto;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px/10px;
+  color: black;
+  resize: none;
+  outline: 0;
+  -webkit-appearance: none;
+  overflow: auto;
+}
+.users_textarea::-webkit-scrollbar {
+  width: 3px;
+  background: none;
+}
+
+.users_textarea::-webkit-scrollbar-track {
+  background: none;
+}
+
+.preview {
+  width: 100%;
+  min-height: 520px;
+  border-top: 1px solid #00000028;
+  padding: 20px;
+  outline: 0;
+  font-size: 1.2rem;
+  line-height: 2.5rem;
+}
+
+.buttonsContainer {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsContainer li button {
+  font-size: 1.3rem;
+  border: 0.05px solid #d1d1d1;
+  border-radius: 5px;
+  margin: 0 0.2em;
+}
+
+.buttonsContainer li button:hover {
+  color: #b5bdff;
+}

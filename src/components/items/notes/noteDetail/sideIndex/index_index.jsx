@@ -25,6 +25,7 @@ import {
   firstVisiblePageTitle,
   topicDataList,
   pageDataList,
+  isPageApproved,
 } from '../../../../../store/atom';
 import Axios from 'axios';
 
@@ -48,9 +49,10 @@ export default function IndexIndex() {
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setContextMenuName = useSetRecoilState(contextMenuName);
-  const setContextMenuStates = useSetRecoilState(contextMenuState);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
+  const setContextMenuState = useSetRecoilState(contextMenuState);
   const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
+  const setIsPageApproved = useSetRecoilState(isPageApproved);
 
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
@@ -81,13 +83,16 @@ export default function IndexIndex() {
       setModalName('페이지');
       setModalNameEn('page');
       setContextMenuName('내용 수정');
-      setContextMenuStates('내용 수정');
+      setContextMenuState('내용 수정');
       setModalInputPlaceholder('page title');
     }
   };
 
   const showPageList = (id, status, convention, title) => {
     status == false && ifNotApprovedClicked(convention);
+    if (status == true) {
+      setIsPageApproved(true);
+    }
 
     const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
     Axios.get(API_URL_PG).then((res) => {
@@ -96,6 +101,9 @@ export default function IndexIndex() {
       if (data[0]) {
         setPageTitle(data[0].title);
         setPageContent(data[0].content);
+      }
+      if (data[0].is_approved == false) {
+        setIsPageApproved(false);
       }
     });
     setNowTopicIndex(id);
@@ -114,6 +122,9 @@ export default function IndexIndex() {
 
   const showPageContent = (title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
+    if (status == true) {
+      setIsPageApproved(true);
+    }
     setPageTitle(title);
     setModifyPage(false);
     setPageContent(content);
@@ -128,6 +139,7 @@ export default function IndexIndex() {
     } else if (convention == 'page') {
       setNameState('페이지');
       setModalSyntax('는');
+      setIsPageApproved(false);
     }
     setNotApprovedModalActive(true);
   };

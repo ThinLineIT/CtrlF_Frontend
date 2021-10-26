@@ -1,10 +1,17 @@
-import { authCode as authCodeAtom } from '../../store/atom';
-import { useRecoilState } from 'recoil';
+import {
+  email as emailAtom,
+  authCode as authCodeAtom,
+  setTimer as setTimerAtom,
+} from '../../store/atom';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useState } from 'react';
 import { authCodeConfirm } from '../../utils/SignUpHook';
 import errorStyling from '../../utils/ErrorStyling';
+import Timer from '../passwordChange/Timer';
 
-export default function AuthCode({ styles, authCodeSuccess }) {
+export default function AuthCode({ styles, authCodeSuccess, timer }) {
+  const email = useRecoilValue(emailAtom);
+  const timerStart = useSetRecoilState(setTimerAtom);
   const [authCode, setAuthCode] = useRecoilState(authCodeAtom);
   const [authCodeErrorMessage, setAuthCodeMessage] = useState('');
   const [authCodeValidation, setAuthCodeValidation] = useState('');
@@ -34,20 +41,26 @@ export default function AuthCode({ styles, authCodeSuccess }) {
     }
   };
 
+  const resendAuthCode = () => {
+    timerStart([]);
+  };
   return (
     <div className={styles.com}>
       <span className={styles.signup__title}>이메일 입력 / 인증</span>
       <div className={styles.signup__text}>
         입력하신 이메일에서 코드를 확인해주세요.
       </div>
-      <input
-        id="authcode__input"
-        onChange={onAuthCodeHandler}
-        value={authCode}
-        className={`${styles.signup__input} ${styles.input}`}
-        type="text"
-        placeholder="코드"
-      />
+      <div className={`${styles.wrap}`}>
+        <input
+          id="authcode__input"
+          onChange={onAuthCodeHandler}
+          value={authCode}
+          className={`${styles.signup__input} ${styles.input}`}
+          type="text"
+          placeholder="코드"
+        />
+        {timer && <Timer email={email} register={true} />}
+      </div>
       <div className={styles.error}>
         {!authCodeValidation && (
           <div
@@ -58,6 +71,12 @@ export default function AuthCode({ styles, authCodeSuccess }) {
           </div>
         )}
       </div>
+      <button
+        onClick={resendAuthCode}
+        className={`${styles.btn} ${styles.resend}`}
+      >
+        인증코드 재전송
+      </button>
       <button onClick={authCodeCheck} className={`${styles.btn}`}>
         다 음
       </button>

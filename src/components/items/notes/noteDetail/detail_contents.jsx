@@ -3,7 +3,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import MarkdownEditor from './markdownEditor';
+import Editor from '../../../../../pages/Editor';
 import ModalPreparing from '../../modal/modal_preparing';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
@@ -15,6 +15,7 @@ import {
   pageContent,
   okBtnActive,
   preparingModal,
+  isPageApproved,
   ModifyPageContent,
   firstVisiblePageTitle,
 } from '../../../../store/atom';
@@ -31,20 +32,13 @@ export default function DetailContents() {
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
-  // const [newPageTitle, setNewPageTitle] = useState(''); // 페이지 생성을 위한 테스트입니다.
-  // const [newPageSummary, setNewPageSummary] = useState(''); // 페이지 생성을 위한 테스트입니다.
 
-  // const onPageTitleHandler = (event) => {
-  //   setNewPageTitle(event.currentTarget.value);
-  // };
   const router = useRouter();
   const moveToIssue = () => {
     router.push('/issue');
   };
-  // const onPageSummaryHandler = (event) => {
-  //   setNewPageSummary(event.currentTarget.value);
-  // };
-  // // 위 두가지는 임시로 넣어놓은 Input 창입니다.
+
+  const isPageApprove = useRecoilValue(isPageApproved);
 
   const copyClipboard = () => {
     const dummy = document.createElement('input');
@@ -70,6 +64,8 @@ export default function DetailContents() {
     setShowHiddenModal(true);
   };
 
+  console.log(isPageApprove);
+
   return (
     <div className={styles.content}>
       <div className={styles.topicBar}>
@@ -80,7 +76,11 @@ export default function DetailContents() {
           >
             {topicTitle}
           </div>
-          <div className={styles.info_item_page}>{pageTitle}</div>
+          {modifyPage ? (
+            <input className={styles.info_item_page} placeholder="TITLE" />
+          ) : (
+            <div className={styles.info_item_page}>{pageTitle}</div>
+          )}
         </div>
         <div className={styles.icons}>
           {modifyPage ? (
@@ -91,23 +91,13 @@ export default function DetailContents() {
               >
                 확인
               </button>
-
-              {/* 임시 이슈 이동 버튼입니다 */}
-              {/* <input
-                type="text"
-                placeholder="title"
-                onChange={onPageTitleHandler}
-              />
-              <input
-                type="text"
-                placeholder="summary"
-                onChange={onPageSummaryHandler}
-              /> */}
             </div>
           ) : (
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
-              <button onClick={moveToIssue}>관련된 이슈 보기</button>
+              {!isPageApprove && (
+                <button className={styles.icons_issue}>관련된 이슈 확인</button>
+              )}
               <span
                 className={`${
                   slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
@@ -119,11 +109,11 @@ export default function DetailContents() {
       </div>
       <div
         style={{
-          width: '55vw',
+          width: '90%',
         }}
       >
         {modifyPage ? (
-          <MarkdownEditor contents={PagesContent} />
+          <Editor contents={PagesContent} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}

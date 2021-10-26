@@ -1,0 +1,18 @@
+.buttonsContainer {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsContainer li button {
+  font-size: 1.3rem;
+  border: 0.05px solid #d1d1d1;
+  border-radius: 5px;
+  margin: 0 0.2em;
+}
+
+.buttonsContainer li button:hover {
+  color: #b5bdff;
+}

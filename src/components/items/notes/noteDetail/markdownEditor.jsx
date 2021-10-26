@@ -1,13 +1,15 @@
+import Image from 'next/image';
 import { useState } from 'react';
+import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { useRecoilValue } from 'recoil';
 import ReactMarkdown from 'react-markdown';
 import { addNewPage, topicIndex } from '../../../../store/atom';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from '../../../../styles/items/notes/noteDetail/markdownEditor.module.css';
 
-import { pageCreateApi } from '../../../../utils/PageCreate';
+// import { pageCreateApi } from '../../../../utils/PageCreate';
 
 export default function MarkdownEditor(props) {
   const content = props.contents;
@@ -15,22 +17,22 @@ export default function MarkdownEditor(props) {
   const [preview, setPreiview] = useState(false);
   const addNewContent = useRecoilValue(addNewPage);
 
-  const topic_id = useRecoilValue(topicIndex);
-  const [newPageTitle, setNewPageTitle] = useState(''); // 페이지 생성을 위한 테스트입니다.
-  const [newPageSummary, setNewPageSummary] = useState(''); // 페이지 생성을 위한 테스트입니다.
+  // const topic_id = useRecoilValue(topicIndex);
+  // const [newPageTitle, setNewPageTitle] = useState('');
+  // const [newPageSummary, setNewPageSummary] = useState('');
 
-  const onPageTitleHandler = (event) => {
-    setNewPageTitle(event.currentTarget.value);
-  };
+  // const onPageTitleHandler = (event) => {
+  //   setNewPageTitle(event.currentTarget.value);
+  // };
 
-  const onPageSummaryHandler = (event) => {
-    setNewPageSummary(event.currentTarget.value);
-  };
+  // const onPageSummaryHandler = (event) => {
+  //   setNewPageSummary(event.currentTarget.value);
+  // };
   // 위 두가지는 임시로 넣어놓은 Input 창입니다.
 
-  const pageCreate = () => {
-    pageCreateApi(newPageTitle, newPageSummary, input, topic_id);
-  };
+  // const pageCreate = () => {
+  //   pageCreateApi(newPageTitle, newPageSummary, input, topic_id);
+  // };
 
   const useTab = (e) => {
     if (e.key == 'Tab') {
@@ -47,13 +49,13 @@ export default function MarkdownEditor(props) {
 
   return (
     <div className={styles.editor_wrap}>
-      <input type="text" placeholder="title" onChange={onPageTitleHandler} />
+      {/* <input type="text" placeholder="title" onChange={onPageTitleHandler} />
       <input
         type="text"
         placeholder="summary"
         onChange={onPageSummaryHandler}
       />
-      <button onClick={pageCreate}>페이지 생성하기</button>
+      <button onClick={pageCreate}>페이지 생성하기</button> */}
       <span className={styles.editor_button}>
         <button onClick={() => onChangeStatus('write')}>Write</button>
         <button onClick={() => onChangeStatus('preview')}>Preview</button>
@@ -85,13 +87,31 @@ export default function MarkdownEditor(props) {
         ) : (
           <ReactMarkdown
             className={styles.preview}
+            rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             // eslint-disable-next-line react/no-children-prop
             children={
               !addNewContent ? (input == null ? content : input) : input
             }
             components={{
-              code: CodeBlock,
+              p: ({ node, children }) => {
+                return <p>{children}</p>;
+              },
+              code({ language, children }) {
+                return (
+                  <SyntaxHighlighter style={docco} language={language}>
+                    {children[0]}
+                  </SyntaxHighlighter>
+                );
+              },
+              image: ({ alt, src, title }) => (
+                <Image
+                  alt={alt}
+                  src={src}
+                  title={title}
+                  style={{ maxWidth: '475px' }}
+                />
+              ),
             }}
           />
         )}
@@ -99,11 +119,3 @@ export default function MarkdownEditor(props) {
     </div>
   );
 }
-
-const CodeBlock = ({ language, value }) => {
-  return (
-    <SyntaxHighlighter language={language ?? null} style={docco}>
-      {value ?? ''}
-    </SyntaxHighlighter>
-  );
-};

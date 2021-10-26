@@ -412,12 +412,8 @@
     treeverse "^1.0.4"
     walk-up-path "^1.0.0"
 
-"@npmcli/ci-detect@^1.2.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.4.0.tgz#18478bbaa900c37bfbd8a2006a6262c62e8b0fe1"
-  integrity sha512-3BGrt6FLjqM6br5AhWRKTr3u5GIVkjRYeAFrMp3HjnfICrg4xOrVRwFavKT6tsp++bq5dluL5t8ME/Nha/6c1Q==
-
-"@npmcli/ci-detect@^1.3.0":
+"@npmcli/ci-detect@^1.2.0", "@npmcli/ci-detect@^1.3.0":
+>>>>>>> e5cc749b9fea6078756d25817c618ef5075a9323
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.3.0.tgz#6c1d2c625fb6ef1b9dea85ad0a5afcbef85ef22a"
   integrity sha512-oN3y7FAROHhrAt7Rr7PnTSwrHrZVRTS2ZbyxeQwSSYD0ifwM3YNgQqbaRmjcWoPyq77MjchusjJDspbzMmip1Q==
