@@ -337,3 +337,7 @@ export const setTimer = atom({
   key: 'setTimer',
   default: false,
 });
+export const pageDetailIssueId = atom({
+  key: 'page_detail_issue_id',
+  default: '',
+});

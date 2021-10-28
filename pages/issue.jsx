@@ -6,6 +6,7 @@ import { checkLogin } from '../src/utils/loginCheck';
 import { issueListApi } from '../src/utils/issueHook';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
+import { useRouter } from 'next/router';
 
 function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
@@ -40,6 +41,7 @@ function Issue() {
 
   return (
     <div className="component" id={styles.issue}>
+      {/* 추후 추가될 태그 기능입니다. */}
       {/* <IssueTag /> */}
       <IssueList
         styles={styles}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import IssueCreateNote from '../../../public/images/issue/card/issue_create_note.svg';
 import IssueUpdateNote from '../../../public/images/issue/card/issue_update_note.svg';
 import IssueDeleteNote from '../../../public/images/issue/card/issue_delete_note.svg';
@@ -21,6 +21,10 @@ const IssueCard = ({ title, length, data }) => {
   const showModal = () => {
     setIsModalOpen(true);
   };
+
+  // useEffect(() => {
+  //   if (issueDetailId) setIsModalOpen(true);
+  // }, []);
 
   switch (data.id) {
     case TYPES.NOTE:
@@ -99,7 +103,13 @@ const IssueCard = ({ title, length, data }) => {
       // 이슈의 타입이 정확하지 않기 때문에 이쪽 분기로 모두 처분해서 카드를 나타냅니다.
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal
+              setIsModalOpen={setIsModalOpen}
+              data={data}
+              issueDetailId={issueDetailId}
+            />
+          )}
           <div className={styles.card__title}>{title}</div>
           <div className={styles.card__context}>{data.content}</div>
           <IssueCreatePage

@@ -4,9 +4,10 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
+  pageDetailIssueId, // 이슈 이동을 위한 atom
   issueDetailPageId,
   issueDetailTopicId, //임시
-  topicIndex, // 임시
+  topicIndex, // 페이지 등록을 위한 atom
   modalName,
   topicName,
   menuPageX,
@@ -57,6 +58,7 @@ export default function IndexIndex() {
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
   const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
+  const setIssueId = useSetRecoilState(pageDetailIssueId);
 
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
@@ -88,14 +90,14 @@ export default function IndexIndex() {
     }
   };
 
-  const showPageList = (id, status, convention, title) => {
+  const showPageList = async (id, status, convention, title) => {
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
     }
 
     const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
-    Axios.get(API_URL_PG).then((res) => {
+    await Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
       setPageData(data);
       if (data[0]) {
@@ -115,12 +117,12 @@ export default function IndexIndex() {
       setTimeout(function () {
         document.getElementById(`page${pageId}`).click();
         setPageId('');
-      }, 1000);
+      }, 500);
     }
     // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
   };
 
-  const showPageContent = (title, status, convention, content) => {
+  const showPageContent = (issue_id, title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
@@ -129,6 +131,8 @@ export default function IndexIndex() {
     setModifyPage(false);
     setPageContent(content);
     closeContextMenu();
+    // console.log(issue_id);
+    setIssueId(issue_id);
     window.scrollTo(0, 0);
   };
 
@@ -191,6 +195,7 @@ export default function IndexIndex() {
               )}`}
               onClick={() =>
                 showPageContent(
+                  item.issue_id,
                   item.title,
                   item.is_approved,
                   'page',

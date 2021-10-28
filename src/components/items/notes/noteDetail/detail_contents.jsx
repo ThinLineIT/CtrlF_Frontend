@@ -10,6 +10,7 @@ import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
+  pageDetailIssueId, // 이슈로 이동하기 위한 atom
   topicName,
   modalTitle,
   pageContent,
@@ -24,7 +25,7 @@ import { useRouter } from 'next/router';
 
 export default function DetailContents() {
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
-
+  const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
   const PagesContent = useRecoilValue(pageContent);
@@ -35,7 +36,10 @@ export default function DetailContents() {
 
   const router = useRouter();
   const moveToIssue = () => {
-    router.push('/issue');
+    router.push({
+      pathname: '/issue',
+      query: { issue_id: issueId },
+    });
   };
 
   const isPageApprove = useRecoilValue(isPageApproved);
@@ -63,8 +67,6 @@ export default function DetailContents() {
     setIsOkBtnActive(true);
     setShowHiddenModal(true);
   };
-
-  console.log(isPageApprove);
 
   return (
     <div className={styles.content}>
@@ -96,7 +98,9 @@ export default function DetailContents() {
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
               {!isPageApprove && (
-                <button className={styles.icons_issue}>관련된 이슈 확인</button>
+                <button onClick={moveToIssue} className={styles.icons_issue}>
+                  관련된 이슈 확인
+                </button>
               )}
               <span
                 className={`${
