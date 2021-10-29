@@ -7,17 +7,33 @@ import { issueListApi } from '../src/utils/issueHook';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
 import { useRouter } from 'next/router';
+import Modal from '../src/components/items/modal/issue_modal';
 
 function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
   const [firstFetch, setFirstFetch] = useState(true);
   const [issuest, setIssues] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  const [newIssueNum, setNewIssueNum] = useState(15);
+  // const [newIssueNum, setNewIssueNum] = useState(30);
   const [loading, setLoading] = useState(false);
 
-  async function fetchData() {
-    const issueList = await issueListApi(pageCount);
+  // 페이지에서 넘어온 경우 보여줄 모달창을 위한 코드
+  const router = useRouter(null);
+  const [relatedIssueModal, setRelatedIssueModal] = useState(false);
+  const [relatedIssueId, setRelatedIssueId] = useState(false);
+
+  // 스크롤 기능입니다.
+  async function fetchMoreData() {
+    setLoading(true);
+    let endCount = pageCount + 30;
+    await setPageCount(endCount);
+    fetchData(endCount);
+    setLoading(false);
+  }
+
+  async function fetchData(count) {
+    console.log(count);
+    const issueList = await issueListApi(count);
     if (firstFetch) {
       await setIssues([...issueList.issues]);
       setFirstFetch(false);
@@ -25,28 +41,31 @@ function Issue() {
       setIssues([...issuest, ...issueList.issues]);
     }
   }
-  // 스크롤 기능입니다.
-  // async function fetchMoreData() {
-  //   setLoading(true);
-  //   let endCount = pageCount + newIssueNum;
-  //   await setPageCount(endCount);
-  //   fetchData();
-  //   setLoading(false);
-  // }
+
+  const setModal = async (id) => {
+    await setRelatedIssueId(id);
+    await setRelatedIssueModal(true);
+  };
 
   useEffect(() => {
     checkLogin(setJwt);
-    fetchData();
+    fetchData(pageCount);
+    if (router.query.issue_id) {
+      setModal(router.query.issue_id);
+    }
   }, []);
 
   return (
     <div className="component" id={styles.issue}>
       {/* 추후 추가될 태그 기능입니다. */}
       {/* <IssueTag /> */}
+      {relatedIssueModal && (
+        <Modal setIsModalOpen={setRelatedIssueModal} data={relatedIssueId} />
+      )}
       <IssueList
         styles={styles}
         issues={issuest}
-        // fetchMoreData={fetchMoreData}
+        fetchMoreData={fetchMoreData}
         loading={loading}
       />
     </div>

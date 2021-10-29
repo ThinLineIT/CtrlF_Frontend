@@ -9,17 +9,17 @@ import { useEffect } from 'react';
 
 const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
   // 스크롤 기능압나다 수정 중입니다
-  // const infiniteScroll = () => {
-  //   let scrollHeight = Math.max(
-  //     document.documentElement.scrollHeight,
-  //     document.body.scrollHeight
-  //   );
-  //   let scrollTop = parseInt(document.documentElement.scrollTop);
-  //   let clientHeight = document.documentElement.clientHeight;
-  //   if (scrollTop + clientHeight === scrollHeight && !loading) {
-  //     fetchMoreData();
-  //   }
-  // };
+  const infiniteScroll = () => {
+    let scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    let scrollTop = parseInt(document.documentElement.scrollTop);
+    let clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight === scrollHeight && !loading) {
+      fetchMoreData();
+    }
+  };
 
   useEffect(() => {
     const SVG_LENGTH_MEDIUM = document.getElementsByClassName('svg_medium');
@@ -33,9 +33,9 @@ const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
   }, [issues]);
 
   useEffect(() => {
-    // window.addEventListener('scroll', infiniteScroll);
+    window.addEventListener('scroll', infiniteScroll);
     return () => {
-      // window.removeEventListener('scroll', infiniteScroll);
+      window.removeEventListener('scroll', infiniteScroll);
     };
   });
   return (

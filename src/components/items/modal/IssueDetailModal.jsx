@@ -1,4 +1,3 @@
-import { getUserId } from '../../../utils/userCheck';
 import { useRouter } from 'next/router';
 import {
   issueApproveApi,
@@ -32,42 +31,29 @@ export default function IssueDetailModal({
   };
 
   const acceptIssue = async () => {
-    const user_id = getUserId();
-    // 현재 이슈 승인 API 에서는 유저의 아이디를 요구하지 않습니다.
-    // if (data.owner === user_id) {}
-    // 승인 권한 문제가 있습니다.
     const result = await issueApproveApi(data.id);
     console.log(result);
     // setIsFeatureClicked(true);
   };
 
   const rejectIssue = () => {
-    const user_id = getUserId();
-    if (data.owner === user_id) {
-      // API 개발 완료시 교체 예정
-      issueReject();
-    }
+    // API 개발 완료시 교체 예정
+    //   issueReject();
     setIsFeatureClicked(true);
   };
 
   const CancelIssue = () => {
-    const user_id = getUserId();
-    if (user_id === data.content_request.user_id) {
-      // API 개발 완료시 교체 예정
-      issueCancel();
-    } else {
-      setIsFeatureClicked(true);
-    }
+    // API 개발 완료시 교체 예정
+    issueCancel();
+
+    setIsFeatureClicked(true);
   };
 
   const editIssue = () => {
-    const user_id = getUserId();
-    if (user_id === data.content_request.user_id) {
-      // API 개발 완료시 교체 예정
-      issueEdit();
-    } else {
-      setIsFeatureClicked(true);
-    }
+    // API 개발 완료시 교체 예정
+    issueEdit();
+
+    setIsFeatureClicked(true);
   };
 
   return (

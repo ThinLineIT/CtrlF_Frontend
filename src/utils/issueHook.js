@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export const issueListApi = async (cursor) => {
   const request = await axios
-    .get(`${process.env.PUBLIC_BASE_API}/issues/?cursor=${cursor}`)
+    .get(`${process.env.PUBLIC_BASE_API}issues/?cursor=${cursor}`)
     .then((res) => res.data)
     .catch((err) => console.log(err.response));
   return request;
@@ -11,7 +11,7 @@ export const issueListApi = async (cursor) => {
 
 export const issueDetailApi = async (id) => {
   const request = await axios
-    .get(`${process.env.PUBLIC_BASE_API}/issues/${id}`)
+    .get(`${process.env.PUBLIC_BASE_API}issues/${id}`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;

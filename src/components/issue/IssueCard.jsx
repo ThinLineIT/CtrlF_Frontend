@@ -30,7 +30,9 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.NOTE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateNote className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -54,7 +56,9 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.TOPIC:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateTopic className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -78,7 +82,9 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.PAGE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreatePage className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -106,8 +112,8 @@ const IssueCard = ({ title, length, data }) => {
           {isModalOpen && (
             <Modal
               setIsModalOpen={setIsModalOpen}
-              data={data}
-              issueDetailId={issueDetailId}
+              data={data.id}
+              // issueDetailId={issueDetailId}
             />
           )}
           <div className={styles.card__title}>{title}</div>
