@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import Modal from '../src/components/items/modal/issue_modal';
 import Head from 'next/head';
 
-function Issue() {
+export default function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
   const [firstFetch, setFirstFetch] = useState(true);
   const [issuest, setIssues] = useState([]);
@@ -58,7 +58,6 @@ function Issue() {
     <div className="component" id={styles.issue}>
       <Head>
         <title>ISSUE</title>
-        <meta name="이슈 페이지"></meta>
       </Head>
       {/* 추후 추가될 태그 기능입니다. */}
       {/* <IssueTag /> */}
@@ -74,5 +73,3 @@ function Issue() {
     </div>
   );
 }
-
-export default Issue;
