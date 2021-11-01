@@ -24,8 +24,8 @@ import {
 import { useRouter } from 'next/router';
 
 export default function DetailContents() {
-  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const topicTitle = useRecoilValue(topicName);
   const [slideImg, setSlideImg] = useState(false);
   const PagesContent = useRecoilValue(pageContent);
@@ -34,12 +34,19 @@ export default function DetailContents() {
   const setIsOkBtnActive = useSetRecoilState(okBtnActive);
   const setPageRequestTitle = useSetRecoilState(modalTitle);
 
+  // 이슈로 이동을 위한 라우팅
   const router = useRouter();
   const moveToIssue = () => {
     router.push({
       pathname: '/issue',
       query: { issue_id: issueId },
     });
+  };
+
+  const [pageCreateTitle, setPageCreateTitle] = useState('');
+
+  const onPageTitlehandler = (event) => {
+    setPageCreateTitle(event.target.value);
   };
 
   const isPageApprove = useRecoilValue(isPageApproved);
@@ -79,7 +86,11 @@ export default function DetailContents() {
             {topicTitle}
           </div>
           {modifyPage ? (
-            <input className={styles.info_item_page} placeholder="TITLE" />
+            <input
+              className={styles.info_item_page}
+              onChange={onPageTitlehandler}
+              placeholder="TITLE"
+            />
           ) : (
             <div className={styles.info_item_page}>{pageTitle}</div>
           )}
@@ -117,7 +128,7 @@ export default function DetailContents() {
         }}
       >
         {modifyPage ? (
-          <Editor contents={PagesContent} />
+          <Editor contents={PagesContent} pageCreateTitle={pageCreateTitle} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}

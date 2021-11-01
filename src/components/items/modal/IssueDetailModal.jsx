@@ -8,6 +8,7 @@ import {
 import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
+import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 // 추후 추가될 DropDown 기능입니다.
 // import DropMenu from '../../items/menu/DropMenu';
 
@@ -59,6 +60,9 @@ export default function IssueDetailModal({
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
+        <button className={styles.close} onClick={closeModal}>
+          X
+        </button>
         <div className={styles.modal__title}>Page Create</div>
         <div className={styles.modal__origin}> {data.title} 타이틀</div>
         <div className={`${styles.modal__change} ${styles.title}`}>
@@ -84,9 +88,6 @@ export default function IssueDetailModal({
           </button>
           <button className={styles.modal__btn} onClick={moveToDetail}>
             자세히 보기
-          </button>
-          <button className={styles.modal__btn} onClick={closeModal}>
-            닫기
           </button>
           {/* {data.content_request.type === 'PAGE' ? (
             <button className={styles.modal__btn} onClick={closeModal}>

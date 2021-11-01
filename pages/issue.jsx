@@ -8,13 +8,13 @@ import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
 import { useRouter } from 'next/router';
 import Modal from '../src/components/items/modal/issue_modal';
+import Head from 'next/head';
 
 function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
   const [firstFetch, setFirstFetch] = useState(true);
   const [issuest, setIssues] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  // const [newIssueNum, setNewIssueNum] = useState(30);
   const [loading, setLoading] = useState(false);
 
   // 페이지에서 넘어온 경우 보여줄 모달창을 위한 코드
@@ -32,7 +32,6 @@ function Issue() {
   }
 
   async function fetchData(count) {
-    console.log(count);
     const issueList = await issueListApi(count);
     if (firstFetch) {
       await setIssues([...issueList.issues]);
@@ -57,6 +56,10 @@ function Issue() {
 
   return (
     <div className="component" id={styles.issue}>
+      <Head>
+        <title>ISSUE</title>
+        <meta name="이슈 페이지"></meta>
+      </Head>
       {/* 추후 추가될 태그 기능입니다. */}
       {/* <IssueTag /> */}
       {relatedIssueModal && (

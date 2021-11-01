@@ -21,9 +21,10 @@ export const issueApproveApi = async (id) => {
   const data = {
     issue_id: id,
   };
+  console.log(data);
   let headers = Cookies.get('token');
   const request = await axios({
-    url: `${process.env.PUBLIC_BASE_API}actions/issue-approve`,
+    url: `${process.env.PUBLIC_BASE_API}actions/issue-approve/`,
     method: 'post',
     headers: {
       Authorization: `Bearer ${headers}`,

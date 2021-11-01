@@ -1,5 +1,5 @@
 .background {
-  position: absolute;
+  position: fixed;
   display: flex;
   color: black;
   width: 100%;
@@ -9,6 +9,7 @@
   z-index: 99;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
 .noauth {
@@ -101,4 +102,13 @@
 .noauth__text {
   font-size: 3.625rem;
   font-weight: bold;
+}
+
+.close {
+  font-size: 25px;
+  font-weight: bold;
+  color: grey;
+  position: absolute;
+  top: 52px;
+  left: 32px;
 }
