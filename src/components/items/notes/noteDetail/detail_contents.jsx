@@ -39,7 +39,7 @@ export default function DetailContents() {
   const moveToIssue = () => {
     router.push({
       pathname: '/issue',
-      query: { issue_id: issueId },
+      query: { issueId: issueId },
     });
   };
 

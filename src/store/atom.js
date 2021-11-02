@@ -325,7 +325,7 @@ export const pageDataList = atom({
 });
 
 export const issueDetailTopicId = atom({
-  key: 'issue_detail_topic_id',
+  key: 'issue_detail_topicId',
   default: '',
 });
 
@@ -338,6 +338,6 @@ export const setTimer = atom({
   default: false,
 });
 export const pageDetailIssueId = atom({
-  key: 'page_detail_issue_id',
+  key: 'page_detail_issueId',
   default: '',
 });

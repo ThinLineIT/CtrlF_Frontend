@@ -19,13 +19,13 @@ export default function MarkdownEditor(props) {
   const addNewPageContent = useRecoilValue(addNewPage);
 
   const [pageCreateSummary, setPageCreateSummary] = useState('');
-  const topic_id = useRecoilValue(topicIndex);
+  const topicId = useRecoilValue(topicIndex);
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
   };
 
   const createPage = () => {
-    pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topic_id);
+    pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
   };
 
   const useTab = (e) => {

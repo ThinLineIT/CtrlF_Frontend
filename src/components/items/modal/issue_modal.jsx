@@ -28,7 +28,7 @@ export default function Modal({ setIsModalOpen, data }) {
     <>
       {!isFeatureClicked && loading && (
         <IssueDetailModal
-          data={issueDetail}
+          issue={issueDetail}
           setIsModalOpen={setIsModalOpen}
           setIsFeatureClicked={setIsFeatureClicked}
         />

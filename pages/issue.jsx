@@ -49,8 +49,8 @@ export default function Issue() {
   useEffect(() => {
     checkLogin(setJwt);
     fetchData(pageCount);
-    if (router.query.issue_id) {
-      setModal(router.query.issue_id);
+    if (router.query.issueId) {
+      setModal(router.query.issueId);
     }
   }, []);
 

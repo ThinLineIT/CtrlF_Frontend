@@ -1,9 +1,9 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-export async function pageCreateApi(title, summary, content, topic_id) {
+export async function pageCreateApi(title, summary, content, topicId) {
   const data = {
-    topic_id: topic_id,
+    topic_id: topicId,
     title: title,
     content: content,
     summary: summary,

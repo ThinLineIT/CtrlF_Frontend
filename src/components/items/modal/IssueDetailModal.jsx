@@ -12,7 +12,7 @@ import styles from '../../../styles/items/modal/issue_modal.module.css';
 // import DropMenu from '../../items/menu/DropMenu';
 
 export default function IssueDetailModal({
-  data,
+  issue,
   setIsModalOpen,
   setIsFeatureClicked,
 }) {
@@ -21,9 +21,9 @@ export default function IssueDetailModal({
   const router = useRouter();
 
   const moveToDetail = async () => {
-    await setTopicId(data.topic_id);
-    await setPageId(data.page_id);
-    router.push(`/notes/${data.note_id}`);
+    await setTopicId(issue.topic_id);
+    await setPageId(issue.page_id);
+    router.push(`/notes/${issue.note_id}`);
   };
 
   const closeModal = () => {
@@ -31,7 +31,7 @@ export default function IssueDetailModal({
   };
 
   const acceptIssue = async () => {
-    const result = await issueApproveApi(data.id);
+    const result = await issueApproveApi(issue.id);
     console.log(result);
     // if (result.status === 200) {
     //   setIsModalOpen(false);
@@ -67,13 +67,13 @@ export default function IssueDetailModal({
           X
         </button>
         <div className={styles.modal__title}>type action</div>
-        {/* <div className={styles.modal__origin}> {data.title} 타이틀</div> */}
+        {/* <div className={styles.modal__origin}> {issue.title} 타이틀</div> */}
         <div className={`${styles.modal__change} ${styles.title}`}>
           {' '}
-          {data.title} 타이틀
+          {issue.title} 타이틀
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {data.content}콘텐츠
+          {issue.content}콘텐츠
         </div>
         {/* <DropMenu onClick={openDropDown} /> */}
         <div className={styles.btns}>
@@ -94,7 +94,7 @@ export default function IssueDetailModal({
               미승인
             </button>
           </div>
-          {/* {data.content_request.type === 'PAGE' ? (
+          {/* {issue.content_request.type === 'PAGE' ? (
             <button className={styles.modal__btn} onClick={closeModal}>
               자세히 보기
             </button>

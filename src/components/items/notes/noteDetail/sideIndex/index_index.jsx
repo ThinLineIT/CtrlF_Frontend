@@ -122,7 +122,7 @@ export default function IndexIndex() {
     // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
   };
 
-  const showPageContent = (issue_id, title, status, convention, content) => {
+  const showPageContent = (issueId, title, status, convention, content) => {
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
@@ -131,8 +131,7 @@ export default function IndexIndex() {
     setModifyPage(false);
     setPageContent(content);
     closeContextMenu();
-    // console.log(issue_id);
-    setIssueId(issue_id);
+    setIssueId(issueId);
     window.scrollTo(0, 0);
   };
 
@@ -195,7 +194,7 @@ export default function IndexIndex() {
               )}`}
               onClick={() =>
                 showPageContent(
-                  item.issue_id,
+                  item.issueId,
                   item.title,
                   item.is_approved,
                   'page',
