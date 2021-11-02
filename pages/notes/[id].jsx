@@ -1,17 +1,8 @@
 import Axios from 'axios';
 import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { noteDataList } from '../../src/store/atom';
 import NoteDetail from '../../src/components/items/notes/noteDetail/note_detail';
 
 const Post = ({ item }) => {
-  const setNoteData = useSetRecoilState(noteDataList);
-
-  useEffect(() => {
-    setNoteData(item);
-  }, [item]);
-
   return (
     <>
       {item && (
@@ -20,7 +11,7 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.title}></meta>
           </Head>
-          <NoteDetail note={item} noteId={item.id} />
+          <NoteDetail note={item} />
         </>
       )}
     </>

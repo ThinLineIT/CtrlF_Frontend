@@ -21,42 +21,34 @@ import {
 } from '../../../../store/atom';
 
 export default function DetailContents() {
+  const isPageApprove = useRecoilValue(isPageApproved);
+  const modifyPage = useRecoilValue(ModifyPageContent);
+  const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
   const topicTitle = useRecoilValue(topicName);
-  const [slideImg, setSlideImg] = useState(false);
   const PagesContent = useRecoilValue(pageContent);
-  const modifyPage = useRecoilValue(ModifyPageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
-  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
-  const setPageRequestTitle = useSetRecoilState(modalTitle);
-  const isPageApprove = useRecoilValue(isPageApproved);
 
+  const [slideImg, setSlideImg] = useState(false);
   const copyClipboard = () => {
     const dummy = document.createElement('input');
     const text = location.href;
-
     document.body.appendChild(dummy);
     dummy.value = text;
     dummy.select();
-    document.execCommand('copy');
     document.body.removeChild(dummy);
-
     setSlideImg(true);
     setTimeout(fadeOutSlideImg, 1000);
   };
-
   const fadeOutSlideImg = () => {
     setSlideImg(false);
   };
 
   const resetPageContentAndSendData = () => {
-    setPageRequestTitle('페이지');
-    setIsOkBtnActive(true);
+    setIsUserSubmit(true);
     setShowHiddenModal(true);
   };
-
-  console.log(isPageApprove);
 
   return (
     <div className={styles.content}>

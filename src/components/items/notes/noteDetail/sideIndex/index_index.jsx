@@ -1,58 +1,47 @@
+import Axios from 'axios';
 import RightClickSpan from './rightClick';
 import React, { useRef, useState } from 'react';
 import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
-  modalName,
   topicName,
   menuPageX,
   menuPageY,
-  modalNameEn,
   pageContent,
+  pageDataList,
+  topicDataList,
+  isPageApproved,
   modalUtilsName,
-  contextMenuName,
   isApprovedModal,
   modalUtilsSyntax,
-  contextMenuState,
-  isValidOnMainpage,
   ModifyPageContent,
   contextMenuActive,
-  modalInputPlaceholder,
   firstVisiblePageTitle,
-  topicDataList,
-  pageDataList,
-  isPageApproved,
 } from '../../../../../store/atom';
-import Axios from 'axios';
 
 export default function IndexIndex() {
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
-  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
-  const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setTopicTitle = useSetRecoilState(topicName);
-  const setModalNameEn = useSetRecoilState(modalNameEn);
-  const setNameState = useSetRecoilState(modalUtilsName);
   const setPageContent = useSetRecoilState(pageContent);
+  const setNameState = useSetRecoilState(modalUtilsName);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const setContextMenuName = useSetRecoilState(contextMenuName);
-  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
-  const setContextMenuState = useSetRecoilState(contextMenuState);
-  const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
+  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
 
   const useContextMenu = (event) => {
+    event.preventDefault();
     if (!modalToggle) {
       setShowMenu(true);
       setModalToggle(true);
@@ -60,23 +49,8 @@ export default function IndexIndex() {
       setShowMenu(false);
       setModalToggle(false);
     }
-    event.preventDefault();
-    setIsOnMainPage(false);
     setXPos(`${event.pageX + 5}px`);
     setYPos(`${event.pageY - 115}px`);
-
-    if (event.target.className.includes('topic')) {
-      setModalName('토픽');
-      setModalNameEn('topic');
-      setContextMenuName('이름 수정');
-      setModalInputPlaceholder('topic title');
-    } else if (event.target.className.includes('page')) {
-      setModalName('페이지');
-      setModalNameEn('page');
-      setContextMenuName('내용 수정');
-      setContextMenuState('내용 수정');
-      setModalInputPlaceholder('page title');
-    }
   };
 
   const showPageList = (id, status, convention, title) => {

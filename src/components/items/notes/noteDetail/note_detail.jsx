@@ -1,32 +1,29 @@
 import Axios from 'axios';
+import { useSetRecoilState } from 'recoil';
 import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
 import React, { useState, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
   topicName,
-  pageContent,
   detailTitle,
-  isValidOnMainpage,
+  pageContent,
+  pageDataList,
+  topicDataList,
   ModifyPageContent,
   firstVisiblePageTitle,
-  topicDataList,
-  pageDataList,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note, noteId }) {
-  const { title } = note;
+export default function NoteDetail({ note }) {
+  const { title, id } = note;
   const [isLoading, setIsLoading] = useState(true);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
-  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
 
   useEffect(() => {
     setNoteTitle(title);
     setModifyPage(false);
-    setIsOnMainPage(false);
   }, [note]);
 
   const setTopicTitle = useSetRecoilState(topicName);
@@ -34,6 +31,12 @@ export default function NoteDetail({ note, noteId }) {
   const setPageContent = useSetRecoilState(pageContent);
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
+
+  useEffect(() => {
+    if (id && id > 0) {
+      getTopic(id);
+    }
+  }, [id]);
 
   function getTopic(id) {
     const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
@@ -57,12 +60,6 @@ export default function NoteDetail({ note, noteId }) {
       .then(setIsLoading(false));
   }
 
-  useEffect(() => {
-    if (noteId && noteId > 0) {
-      getTopic(noteId);
-    }
-  }, [noteId]);
-
   return (
     <>
       {isLoading && (
@@ -72,7 +69,7 @@ export default function NoteDetail({ note, noteId }) {
       )}
       {!isLoading && (
         <div className={styles.wrap}>
-          <SideIndex noteId={noteId} />
+          <SideIndex noteId={id} />
           <DetailContents />
         </div>
       )}
