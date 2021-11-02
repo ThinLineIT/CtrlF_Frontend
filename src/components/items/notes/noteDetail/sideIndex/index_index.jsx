@@ -194,7 +194,7 @@ export default function IndexIndex() {
               )}`}
               onClick={() =>
                 showPageContent(
-                  item.issueId,
+                  item.issue_id,
                   item.title,
                   item.is_approved,
                   'page',

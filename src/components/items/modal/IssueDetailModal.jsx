@@ -33,11 +33,11 @@ export default function IssueDetailModal({
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
     console.log(result);
-    // if (result.status === 200) {
-    //   setIsModalOpen(false);
-    // } else {
-    //   setIsFeatureClicked(true);
-    // }
+    if (!result) {
+      setIsFeatureClicked(true);
+    } else {
+      setIsModalOpen(false);
+    }
   };
 
   const rejectIssue = () => {
