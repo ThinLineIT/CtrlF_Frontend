@@ -1,5 +1,5 @@
 import AddBtn from './addBtn';
-import IndexIndex from './index_index';
+import ContentNavigator from './ContentNavigator';
 import RightClickSpan from './rightClick';
 import React, { useState } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
@@ -52,7 +52,7 @@ export default function SideIndex({ noteId }) {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex />
+          <ContentNavigator />
           <AddBtn noteId={noteId} />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}

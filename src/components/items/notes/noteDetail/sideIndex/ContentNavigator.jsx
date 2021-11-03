@@ -20,7 +20,7 @@ import {
   firstVisiblePageTitle,
 } from '../../../../../store/atom';
 
-export default function IndexIndex() {
+export default function ContentNavigator() {
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);

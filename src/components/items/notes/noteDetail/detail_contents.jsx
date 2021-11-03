@@ -11,7 +11,6 @@ import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
   topicName,
-  modalTitle,
   pageContent,
   okBtnActive,
   preparingModal,
