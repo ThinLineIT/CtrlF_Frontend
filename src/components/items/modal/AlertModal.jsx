@@ -11,7 +11,7 @@ export default function AlertModal({ ...props }) {
   const { titleObj, closingModalAndSendData } = {
     ...props,
   };
-  const { mTitle, aTitle, kTitle, issue는 } = titleObj;
+  const { mTitle, eTitle, kTitle, issue는 } = titleObj;
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const requestTitle = useRecoilValue(requestIssueTitle);
@@ -31,7 +31,7 @@ export default function AlertModal({ ...props }) {
     <div className={styles.notes_modal}>
       <div className={styles.modal_overlay}>
         <div className={styles.modal_content}>
-          <h1>ADD {aTitle}</h1>
+          <h1>ADD {eTitle}</h1>
           <span className={styles.plates}>
             {kTitle} 추가를 요청하시겠습니까?
           </span>
