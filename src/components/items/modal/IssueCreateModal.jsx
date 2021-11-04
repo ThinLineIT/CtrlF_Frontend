@@ -17,7 +17,7 @@ export default function IssueCreateModal({ ...props }) {
   const { englishTitle, placeholder } = titleObj;
 
   const textareaRef = useRef();
-  const noteTitleRef = useRef();
+  const titleRef = useRef();
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const [isUserSubmit, setIsUserSubmit] = useRecoilState(okBtnActive);
 
@@ -25,12 +25,15 @@ export default function IssueCreateModal({ ...props }) {
   const setRequestContent = useSetRecoilState(requestIssueContent);
 
   const onInputChange = () => {
-    setRequestTitle(noteTitleRef.current.value);
+    setRequestTitle(titleRef.current.value);
     setRequestContent(textareaRef.current.value);
   };
 
   const changeModalUtilsAndOkBtnActive = () => {
-    setIsUserSubmit(true);
+    if (!titleRef.current.value) alert('제목을 입력해주세요');
+    if (!textareaRef.current.value) alert('내용을 입력해주세요');
+    if (titleRef.current.value && textareaRef.current.value)
+      setIsUserSubmit(true);
   };
 
   const closeModal = () => {
@@ -76,7 +79,7 @@ export default function IssueCreateModal({ ...props }) {
             <input
               type="text"
               required={true}
-              ref={noteTitleRef}
+              ref={titleRef}
               onChange={onInputChange}
               placeholder={placeholder}
               className={styles.users_input}
