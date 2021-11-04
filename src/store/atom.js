@@ -115,7 +115,7 @@ export const topicName = atom({
 
 export const topicIndex = atom({
   key: 'topic_index',
-  default: 1,
+  default: 0,
 });
 
 export const pageList = atom({
@@ -324,7 +324,20 @@ export const pageDataList = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const issueDetailTopicId = atom({
+  key: 'issue_detail_topicId',
+  default: '',
+});
+
+export const issueDetailPageId = atom({
+  key: 'issue_detail_page_id',
+  default: '',
+});
 export const setTimer = atom({
   key: 'setTimer',
   default: false,
+});
+export const pageDetailIssueId = atom({
+  key: 'page_detail_issueId',
+  default: '',
 });

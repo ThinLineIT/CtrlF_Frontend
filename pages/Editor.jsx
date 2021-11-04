@@ -4,10 +4,12 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { useRecoilValue } from 'recoil';
 import ReactMarkdown from 'react-markdown';
-import { addNewPage } from '../src/store/atom';
+import { addNewPage, topicIndex } from '../src/store/atom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from '../src/styles/Editor.module.css';
+
+import { pageCreateApi } from '../src/utils/PageCreate';
 
 export default function MarkdownEditor(props) {
   const content = props.contents;
@@ -15,6 +17,16 @@ export default function MarkdownEditor(props) {
   const [input, setInput] = useState('');
   const [preview, setPreiview] = useState(false);
   const addNewPageContent = useRecoilValue(addNewPage);
+
+  const [pageCreateSummary, setPageCreateSummary] = useState('');
+  const topicId = useRecoilValue(topicIndex);
+  const onPageSummaryHandler = (event) => {
+    setPageCreateSummary(event.target.value);
+  };
+
+  const createPage = () => {
+    pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+  };
 
   const useTab = (e) => {
     if (e.key == 'Tab') {
@@ -48,15 +60,19 @@ export default function MarkdownEditor(props) {
 
   return (
     <div className={styles.editor_wrap}>
-      <textarea
-        type="text"
-        placeholder="summary"
-        className={styles.users_summary}
-        required
-        autoComplete="off"
-        autoFocus={false}
-        id="summary"
-      />
+      <div>
+        <button onClick={createPage}>페이지 생성하기</button>
+        <textarea
+          type="text"
+          placeholder="summary"
+          className={styles.users_summary}
+          required
+          autoComplete="off"
+          autoFocus={false}
+          id="summary"
+          onChange={onPageSummaryHandler}
+        />
+      </div>
       <span as="h3" className={styles.detail_content}>
         <div className={styles.buttonsWrap}>
           <span className={styles.editor_button}>

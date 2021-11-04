@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import IssueCreateNote from '../../../public/images/issue/card/issue_create_note.svg';
 import IssueUpdateNote from '../../../public/images/issue/card/issue_update_note.svg';
 import IssueDeleteNote from '../../../public/images/issue/card/issue_delete_note.svg';
@@ -22,11 +22,17 @@ const IssueCard = ({ title, length, data }) => {
     setIsModalOpen(true);
   };
 
-  switch (data.content_request.type) {
+  // useEffect(() => {
+  //   if (issueDetailId) setIsModalOpen(true);
+  // }, []);
+
+  switch (data.id) {
     case TYPES.NOTE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateNote className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -50,7 +56,9 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.TOPIC:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreateTopic className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -74,7 +82,9 @@ const IssueCard = ({ title, length, data }) => {
     case TYPES.PAGE:
       return (
         <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
-          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} data={data} />}
+          {isModalOpen && (
+            <Modal setIsModalOpen={setIsModalOpen} data={data.id} />
+          )}
           <div className={styles.card__title}>{title}</div>
           {data.content_request.action === ACTIONS.CREATE && (
             <IssueCreatePage className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`} />
@@ -93,6 +103,25 @@ const IssueCard = ({ title, length, data }) => {
               ISSUE 자세히보기
             </button>
           </div>
+        </div>
+      );
+    default:
+      // 이슈의 타입이 정확하지 않기 때문에 이쪽 분기로 모두 처분해서 카드를 나타냅니다.
+      return (
+        <div className={`${styles.card} ${styles[`len_${ISSUE_LENGTH}`]}`}>
+          {isModalOpen && (
+            <Modal
+              setIsModalOpen={setIsModalOpen}
+              data={data.id}
+              // issueDetailId={issueDetailId}
+            />
+          )}
+          <div className={styles.card__title}>{title}</div>
+          <div className={styles.card__context}>{data.content}</div>
+          <IssueCreatePage
+            onClick={showModal}
+            className={`svg_${SIZES[`${ISSUE_LENGTH}`]}`}
+          />
         </div>
       );
   }

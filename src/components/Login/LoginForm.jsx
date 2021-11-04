@@ -47,7 +47,7 @@ const LoginForm = () => {
 
     const success = await loginHook(loginData);
     if (success.token) {
-      Cookies.set('token', success.token.split('.')[1]);
+      Cookies.set('token', success.token);
       localStorage.setItem('user_id', success.user_id);
       router.push('/');
       setloginValidate('');
