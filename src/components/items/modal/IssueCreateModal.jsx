@@ -14,7 +14,7 @@ export default function IssueCreateModal({ ...props }) {
   const { titleObj, noteId } = {
     ...props,
   };
-  const { eTitle, placeholder } = titleObj;
+  const { englishTitle, placeholder } = titleObj;
 
   const textareaRef = useRef();
   const noteTitleRef = useRef();
@@ -72,7 +72,7 @@ export default function IssueCreateModal({ ...props }) {
       <div className={styles.notes_modal}>
         <div className={styles.modal_overlay}>
           <div className={styles.modal_content}>
-            <h1>ADD {eTitle}</h1>
+            <h1>ADD {englishTitle}</h1>
             <input
               type="text"
               required={true}

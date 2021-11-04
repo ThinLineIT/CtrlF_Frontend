@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useSetRecoilState } from 'recoil';
-import SideIndex from './sideIndex/side_index';
 import DetailContents from './detail_contents';
+import SideIndex from './sideIndex/side_index';
 import React, { useState, useEffect } from 'react';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';

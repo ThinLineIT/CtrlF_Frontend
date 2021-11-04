@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from '../../../../../pages/Editor';

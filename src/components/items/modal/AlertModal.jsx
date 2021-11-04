@@ -11,7 +11,7 @@ export default function AlertModal({ ...props }) {
   const { titleObj, closingModalAndSendData } = {
     ...props,
   };
-  const { mTitle, eTitle, kTitle, issue는 } = titleObj;
+  const { modalTitle, englishTitle, koreanTitle, issue는 } = titleObj;
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const requestTitle = useRecoilValue(requestIssueTitle);
@@ -20,7 +20,7 @@ export default function AlertModal({ ...props }) {
   const closeModalAndSendData = () => {
     setModifyPage(false);
     setShowHiddenModal(false);
-    closingModalAndSendData(requestTitle, requestContent, mTitle);
+    closingModalAndSendData(requestTitle, requestContent, modalTitle);
   };
 
   const closeModal = () => {
@@ -31,9 +31,9 @@ export default function AlertModal({ ...props }) {
     <div className={styles.notes_modal}>
       <div className={styles.modal_overlay}>
         <div className={styles.modal_content}>
-          <h1>ADD {eTitle}</h1>
+          <h1>ADD {englishTitle}</h1>
           <span className={styles.plates}>
-            {kTitle} 추가를 요청하시겠습니까?
+            {koreanTitle} 추가를 요청하시겠습니까?
           </span>
           <span className={styles.plates_span}>
             요청된 {issue는}

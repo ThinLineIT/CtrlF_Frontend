@@ -29,16 +29,16 @@ export default function ContentNavigator() {
 
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
+
+  const topicData = useRecoilValue(topicDataList);
   const setTopicTitle = useSetRecoilState(topicName);
   const setPageContent = useSetRecoilState(pageContent);
   const setNameState = useSetRecoilState(modalUtilsName);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
-  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
-
-  const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
+  const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
   const useContextMenu = (event) => {
     event.preventDefault();
