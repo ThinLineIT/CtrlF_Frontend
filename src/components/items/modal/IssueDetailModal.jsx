@@ -32,11 +32,10 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
-    console.log(result);
-    if (!result) {
-      setIsFeatureClicked(true);
-    } else {
+    if (result && result.staus === 200) {
       setIsModalOpen(false);
+    } else {
+      setIsFeatureClicked(true);
     }
   };
 
@@ -67,7 +66,6 @@ export default function IssueDetailModal({
           X
         </button>
         <div className={styles.modal__title}>type action</div>
-        {/* <div className={styles.modal__origin}> {issue.title} 타이틀</div> */}
         <div className={`${styles.modal__change} ${styles.title}`}>
           {' '}
           {issue.title} 타이틀
@@ -83,6 +81,8 @@ export default function IssueDetailModal({
           <button className={styles.modal__btn} onClick={CancelIssue}>
             요청취소
           </button> */}
+
+          {/* Note 혹은 Topic의 이슈인 경우 아래 자세히 보기 버튼은 활성화 되지 않을 예정입니다.  */}
           <button className={styles.modal__btn} onClick={moveToDetail}>
             자세히 보기
           </button>
