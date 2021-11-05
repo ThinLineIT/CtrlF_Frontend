@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import styles from '../../../styles/items/menu/dropmenu.module.css';
-const DropMenu = ({ modalMenu, setModalMenu }) => {
+const DropMenu = ({ dropDownMenu, setDropDownMenu }) => {
   const menuRef = useRef(null);
   useEffect(() => {
     window.addEventListener('click', handleClickOutside);
@@ -9,7 +9,8 @@ const DropMenu = ({ modalMenu, setModalMenu }) => {
     };
   }, []);
   const handleClickOutside = ({ target }) => {
-    if (modalMenu && !menuRef.current.contains(target)) setModalMenu(false);
+    if (dropDownMenu && !menuRef.current.contains(target))
+      setDropDownMenu(false);
   };
   return (
     <div className={styles.menu} ref={menuRef}>

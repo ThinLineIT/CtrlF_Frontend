@@ -3,4 +3,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  width: 157px;
+  top: 40px;
+  left: 20px;
 }
