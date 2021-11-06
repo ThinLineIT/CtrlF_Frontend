@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import RightClickSpan from './rightClick';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
@@ -9,7 +9,6 @@ import {
   issueDetailPageId,
   issueDetailTopicId, //임시
   topicIndex, // 페이지 등록을 위한 atom
-  modalName,
   topicName,
   menuPageX,
   menuPageY,
@@ -35,7 +34,6 @@ export default function ContentNavigator() {
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
 
-  const topicData = useRecoilValue(topicDataList);
   const setTopicTitle = useSetRecoilState(topicName);
   const setPageContent = useSetRecoilState(pageContent);
   const setNameState = useSetRecoilState(modalUtilsName);

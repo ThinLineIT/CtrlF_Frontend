@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from '../../../../../pages/Editor';
 import ModalPreparing from '../../modal/modal_preparing';
