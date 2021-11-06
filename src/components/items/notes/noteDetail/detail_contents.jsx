@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import React, { useState } from 'react';
+import rehypeRaw from 'rehype-raw';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from '../../../../../pages/Editor';
 import ModalPreparing from '../../modal/modal_preparing';
@@ -12,7 +12,6 @@ import styles from '../../../../styles/items/notes/noteDetail/detail_contents.mo
 import {
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   topicName,
-  modalTitle,
   pageContent,
   okBtnActive,
   preparingModal,
@@ -24,15 +23,13 @@ import {
 import { useRouter } from 'next/router';
 
 export default function DetailContents() {
+  const modifyPage = useRecoilValue(ModifyPageContent);
+  const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const topicTitle = useRecoilValue(topicName);
-  const [slideImg, setSlideImg] = useState(false);
   const PagesContent = useRecoilValue(pageContent);
-  const modifyPage = useRecoilValue(ModifyPageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
-  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
-  const setPageRequestTitle = useSetRecoilState(modalTitle);
 
   // 이슈로 이동을 위한 라우팅
   const router = useRouter();
@@ -51,27 +48,23 @@ export default function DetailContents() {
 
   const isPageApprove = useRecoilValue(isPageApproved);
 
+  const [slideImg, setSlideImg] = useState(false);
   const copyClipboard = () => {
     const dummy = document.createElement('input');
     const text = location.href;
-
     document.body.appendChild(dummy);
     dummy.value = text;
     dummy.select();
-    document.execCommand('copy');
     document.body.removeChild(dummy);
-
     setSlideImg(true);
     setTimeout(fadeOutSlideImg, 1000);
   };
-
   const fadeOutSlideImg = () => {
     setSlideImg(false);
   };
 
   const resetPageContentAndSendData = () => {
-    setPageRequestTitle('페이지');
-    setIsOkBtnActive(true);
+    setIsUserSubmit(true);
     setShowHiddenModal(true);
   };
 

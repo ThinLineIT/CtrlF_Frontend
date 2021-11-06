@@ -264,13 +264,13 @@ export const modalMessage = selector({
 
 // users request data
 
-export const requestNoteTitle = atom({
-  key: 'request_note_title',
+export const requestIssueTitle = atom({
+  key: 'request_issue_title',
   default: '',
 });
 
-export const requestNoteContent = atom({
-  key: 'request_note_content',
+export const requestIssueContent = atom({
+  key: 'request_issue_content',
   default: '',
 });
 
