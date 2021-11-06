@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useRef } from 'react';
 import AlertModal from './AlertModal';
+import Cookies from 'js-cookie';
 import styles from '../../../styles/items/modal/modal_input.module.css';
+
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import {
   okBtnActive,
@@ -48,26 +50,44 @@ export default function IssueCreateModal({ ...props }) {
   };
 
   const sendNoteData = (requestTitle, requestContent) => {
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}notes/`, {
-        title: requestTitle,
-        content: requestContent,
-      })
-      .catch(function (error) {
-        console.log(error, 'notes');
-      });
+    let headers = Cookies.get('token');
+
+    const data = {
+      title: requestTitle,
+      reason: requestContent,
+    };
+
+    axios({
+      url: `${process.env.PUBLIC_BASE_API}notes/`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${headers}`,
+      },
+      data: data,
+    })
+      .then((res) => res)
+      .catch((err) => err.response);
   };
 
   const sendTopicData = (requestTitle, requestContent) => {
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}topic/`, {
-        note_id: noteId,
-        title: requestTitle,
-        content: requestContent,
-      })
-      .catch(function (error) {
-        console.log(error, 'topic');
-      });
+    let headers = Cookies.get('token');
+
+    const data = {
+      note_id: noteId,
+      title: requestTitle,
+      reason: requestContent,
+    };
+
+    axios({
+      url: `${process.env.PUBLIC_BASE_API}topic/`,
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${headers}`,
+      },
+      data: data,
+    })
+      .then((res) => res)
+      .catch((err) => err.response);
   };
 
   if (!isUserSubmit) {
