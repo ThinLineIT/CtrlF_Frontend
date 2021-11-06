@@ -33,15 +33,12 @@ export default function NoteDetail({ note }) {
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (id && id > 0) {
       getTopic(id);
     }
   }, [id]);
-=======
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
->>>>>>> dev
 
   function getTopic(id) {
     const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;

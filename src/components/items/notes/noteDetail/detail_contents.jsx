@@ -23,21 +23,13 @@ import {
 import { useRouter } from 'next/router';
 
 export default function DetailContents() {
-<<<<<<< HEAD
-  const isPageApprove = useRecoilValue(isPageApproved);
   const modifyPage = useRecoilValue(ModifyPageContent);
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
-=======
   const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
->>>>>>> dev
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const topicTitle = useRecoilValue(topicName);
   const PagesContent = useRecoilValue(pageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
-<<<<<<< HEAD
-=======
-  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
-  const setPageRequestTitle = useSetRecoilState(modalTitle);
 
   // 이슈로 이동을 위한 라우팅
   const router = useRouter();
@@ -55,7 +47,6 @@ export default function DetailContents() {
   };
 
   const isPageApprove = useRecoilValue(isPageApproved);
->>>>>>> dev
 
   const [slideImg, setSlideImg] = useState(false);
   const copyClipboard = () => {

@@ -5,14 +5,11 @@ import NotApprovedModal from '../../../modal/not_approved_modal';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
-<<<<<<< HEAD:src/components/items/notes/noteDetail/sideIndex/ContentNavigator.jsx
-=======
   pageDetailIssueId, // 이슈 이동을 위한 atom
   issueDetailPageId,
   issueDetailTopicId, //임시
   topicIndex, // 페이지 등록을 위한 atom
   modalName,
->>>>>>> dev:src/components/items/notes/noteDetail/sideIndex/index_index.jsx
   topicName,
   menuPageX,
   menuPageY,
@@ -28,13 +25,7 @@ import {
   firstVisiblePageTitle,
 } from '../../../../../store/atom';
 
-<<<<<<< HEAD:src/components/items/notes/noteDetail/sideIndex/ContentNavigator.jsx
 export default function ContentNavigator() {
-=======
-import { useEffect } from 'react';
-
-export default function IndexIndex() {
->>>>>>> dev:src/components/items/notes/noteDetail/sideIndex/index_index.jsx
   const pageRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
@@ -51,8 +42,6 @@ export default function IndexIndex() {
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
-<<<<<<< HEAD:src/components/items/notes/noteDetail/sideIndex/ContentNavigator.jsx
-=======
 
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
@@ -60,7 +49,6 @@ export default function IndexIndex() {
   const setIssueId = useSetRecoilState(pageDetailIssueId);
 
   const topicData = useRecoilValue(topicDataList);
->>>>>>> dev:src/components/items/notes/noteDetail/sideIndex/index_index.jsx
   const [pageData, setPageData] = useRecoilState(pageDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
