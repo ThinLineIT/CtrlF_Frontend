@@ -10,6 +10,7 @@ import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
+  pageDetailIssueId, // 이슈로 이동하기 위한 atom
   topicName,
   pageContent,
   okBtnActive,
@@ -19,15 +20,42 @@ import {
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
+import { useRouter } from 'next/router';
+
 export default function DetailContents() {
+<<<<<<< HEAD
   const isPageApprove = useRecoilValue(isPageApproved);
   const modifyPage = useRecoilValue(ModifyPageContent);
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
+=======
+  const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
+>>>>>>> dev
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
-
   const topicTitle = useRecoilValue(topicName);
   const PagesContent = useRecoilValue(pageContent);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
+<<<<<<< HEAD
+=======
+  const setIsOkBtnActive = useSetRecoilState(okBtnActive);
+  const setPageRequestTitle = useSetRecoilState(modalTitle);
+
+  // 이슈로 이동을 위한 라우팅
+  const router = useRouter();
+  const moveToIssue = () => {
+    router.push({
+      pathname: '/issue',
+      query: { issueId: issueId },
+    });
+  };
+
+  const [pageCreateTitle, setPageCreateTitle] = useState('');
+
+  const onPageTitlehandler = (event) => {
+    setPageCreateTitle(event.target.value);
+  };
+
+  const isPageApprove = useRecoilValue(isPageApproved);
+>>>>>>> dev
 
   const [slideImg, setSlideImg] = useState(false);
   const copyClipboard = () => {
@@ -60,24 +88,32 @@ export default function DetailContents() {
             {topicTitle}
           </div>
           {modifyPage ? (
-            <input className={styles.info_item_page} placeholder="TITLE" />
+            <input
+              className={styles.info_item_page}
+              onChange={onPageTitlehandler}
+              placeholder="TITLE"
+            />
           ) : (
             <div className={styles.info_item_page}>{pageTitle}</div>
           )}
         </div>
         <div className={styles.icons}>
           {modifyPage ? (
-            <button
-              className={styles.buttonOk}
-              onClick={resetPageContentAndSendData}
-            >
-              확인
-            </button>
+            <div>
+              <button
+                className={styles.buttonOk}
+                onClick={resetPageContentAndSendData}
+              >
+                확인
+              </button>
+            </div>
           ) : (
             <span className={styles.clipBoard}>
               <button className={styles.icons_share} onClick={copyClipboard} />
               {!isPageApprove && (
-                <button className={styles.icons_issue}>관련된 이슈 확인</button>
+                <button onClick={moveToIssue} className={styles.icons_issue}>
+                  관련된 이슈 확인
+                </button>
               )}
               <span
                 className={`${
@@ -94,7 +130,7 @@ export default function DetailContents() {
         }}
       >
         {modifyPage ? (
-          <Editor contents={PagesContent} />
+          <Editor contents={PagesContent} pageCreateTitle={pageCreateTitle} />
         ) : (
           <ReactMarkdown
             className={styles.markdown_renderer}
