@@ -1,33 +1,30 @@
 import Axios from 'axios';
-import SideIndex from './sideIndex/side_index';
-import DetailContents from './detail_contents';
-import React, { useState, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
+import DetailContents from './detail_contents';
+import SideIndex from './sideIndex/side_index';
+import React, { useState, useEffect } from 'react';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
   topicIndex, // 임시
   topicName,
-  pageContent,
   detailTitle,
-  isValidOnMainpage,
+  pageContent,
+  pageDataList,
+  topicDataList,
   ModifyPageContent,
   firstVisiblePageTitle,
-  topicDataList,
-  pageDataList,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note, noteId }) {
-  const { title } = note;
+export default function NoteDetail({ note }) {
+  const { title, id } = note;
   const [isLoading, setIsLoading] = useState(true);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
-  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
 
   useEffect(() => {
     setNoteTitle(title);
     setModifyPage(false);
-    setIsOnMainPage(false);
   }, [note]);
 
   const setTopicTitle = useSetRecoilState(topicName);
@@ -36,6 +33,11 @@ export default function NoteDetail({ note, noteId }) {
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
+  useEffect(() => {
+    if (id && id > 0) {
+      getTopic(id);
+    }
+  }, [id]);
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
 
   function getTopic(id) {
@@ -61,12 +63,6 @@ export default function NoteDetail({ note, noteId }) {
       .then(setIsLoading(false));
   }
 
-  useEffect(() => {
-    if (noteId && noteId > 0) {
-      getTopic(noteId);
-    }
-  }, [noteId]);
-
   return (
     <>
       {isLoading && (
@@ -76,7 +72,7 @@ export default function NoteDetail({ note, noteId }) {
       )}
       {!isLoading && (
         <div className={styles.wrap}>
-          <SideIndex />
+          <SideIndex noteId={id} />
           <DetailContents />
         </div>
       )}

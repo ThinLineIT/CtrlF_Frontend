@@ -1,12 +1,16 @@
-import { useRecoilState } from 'recoil';
-import { preparingModal } from '../../../store/atom';
-import ModalPreparing from '../modal/modal_preparing';
+import { okBtnActive, isModalActive } from '../../../store/atom';
 import styles from '../../../styles/items/sidebar/add_note.module.css';
+import useTitle from '../../../utils/useModal';
+import IssueCreateModal from '../modal/IssueCreateModal';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 
 function AddNote() {
-  const [showHiddenModal, setShowHiidenModal] = useRecoilState(preparingModal);
+  const setIsUserSubmit = useSetRecoilState(okBtnActive);
+  const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
+  const titleObj = useTitle('note');
 
   const activeAddNoteModal = () => {
+    setIsUserSubmit(false);
     setShowHiidenModal(true);
   };
 
@@ -17,7 +21,11 @@ function AddNote() {
           + 노트 추가
         </button>
       </div>
-      {showHiddenModal && <ModalPreparing />}
+      {showHiddenModal && (
+        <>
+          <IssueCreateModal titleObj={titleObj} />
+        </>
+      )}
     </>
   );
 }
