@@ -65,7 +65,9 @@ export default function IssueDetailModal({
         <button className={styles.close} onClick={closeModal}>
           X
         </button>
-        <div className={styles.modal__title}>type action</div>
+        <div className={styles.modal__title}>
+          {issue.related_model_type} {issue.action}
+        </div>
         <div className={`${styles.modal__change} ${styles.title}`}>
           {' '}
           {issue.title} 타이틀
@@ -83,9 +85,13 @@ export default function IssueDetailModal({
           </button> */}
 
           {/* Note 혹은 Topic의 이슈인 경우 아래 자세히 보기 버튼은 활성화 되지 않을 예정입니다.  */}
-          <button className={styles.modal__btn} onClick={moveToDetail}>
-            자세히 보기
-          </button>
+          <div>
+            {issue.related_model_type === 'PAGE' && (
+              <button className={styles.modal__btn} onClick={moveToDetail}>
+                자세히 보기
+              </button>
+            )}
+          </div>
           <div className={styles.permit}>
             <button className={styles.modal__btn} onClick={acceptIssue}>
               승인
