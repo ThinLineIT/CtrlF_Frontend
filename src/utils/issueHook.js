@@ -5,7 +5,7 @@ export const issueListApi = async (cursor) => {
   const request = await axios
     .get(`${process.env.PUBLIC_BASE_API}issues/?cursor=${cursor}`)
     .then((res) => res.data)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   return request;
 };
 
@@ -30,8 +30,8 @@ export const issueApproveApi = async (id) => {
     },
     data: data,
   })
-    .then((res) => console.log(res.response))
-    .catch((err) => console.log(err.response));
+    .then((res) => res.response)
+    .catch((err) => err.response);
   return request;
 };
 

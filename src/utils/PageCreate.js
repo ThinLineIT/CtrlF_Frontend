@@ -6,7 +6,7 @@ export async function pageCreateApi(title, summary, content, topicId) {
     topic_id: topicId,
     title: title,
     content: content,
-    summary: summary,
+    reason: summary,
   };
   let headers = Cookies.get('token');
   const request = await axios({
@@ -18,6 +18,6 @@ export async function pageCreateApi(title, summary, content, topicId) {
     data: data,
   })
     .then((res) => res)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   location.href = location.href;
 }
