@@ -37,7 +37,14 @@ export const authCodeApi = async (code) => {
 export const passwordChangeApi = async (data) => {
   data.signing_token = Cookies.get('signing_token');
   const request = await axios
-    .post(`${process.env.PUBLIC_BASE_API}/auth/reset_password`, data)
+    .post(
+      `${
+        process.env.NODE_ENV === development
+          ? process.env.NEXT_PUBLIC_API_URL
+          : process.env.NEXT_PUBLIC_BUILD_API_URL
+      }/auth/reset_password`,
+      data
+    )
     .then((res) => res)
     .catch((err) => err.response);
   if (request.status === 200) return true;
