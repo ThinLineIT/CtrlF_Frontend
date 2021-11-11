@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 6.83em;
+  margin-top: 5.5em;
   margin-bottom: -1.25em;
 }
 
@@ -24,8 +24,12 @@
   height: 100%;
   border: 1px solid #00000028;
   display: flex;
-  border-radius: 20px/20px;
+  border-radius: 30px/30px;
   overflow: hidden;
+}
+
+.info_item_edit {
+  border-radius: 20px/20px;
 }
 
 .info_item_topic {

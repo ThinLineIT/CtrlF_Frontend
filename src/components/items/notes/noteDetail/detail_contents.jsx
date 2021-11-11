@@ -2,7 +2,7 @@ import Image from 'next/image';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from '../../../../../pages/Editor';
 import useModal from '../../../../utils/useModal';
@@ -15,6 +15,7 @@ import {
   topicName,
   pageContent,
   okBtnActive,
+  isOnEditPage,
   preparingModal,
   isPageApproved,
   ModifyPageContent,
@@ -71,6 +72,11 @@ export default function DetailContents() {
     setShowHiddenModal(true);
   };
 
+  const [isOnEditor, setIsOnEditor] = useRecoilState(isOnEditPage);
+  useEffect(() => {
+    !modifyPage && setIsOnEditor(false);
+  }, [modifyPage]);
+
   return (
     <section className={styles.content}>
       <article
@@ -80,7 +86,7 @@ export default function DetailContents() {
         {topicTitle}
       </article>
       <article className={styles.topBar}>
-        <section className={styles.info_item}>
+        <section className={`${styles.info_item} ${getStyles(isOnEditor)}`}>
           {modifyPage ? (
             <input
               className={styles.info_item_page}
@@ -167,5 +173,11 @@ function getFontSize(status) {
 
   if (status.length >= 15) {
     return styles.fontSmall;
+  }
+}
+
+function getStyles(status) {
+  if (status) {
+    return styles.info_item_edit;
   }
 }
