@@ -73,7 +73,7 @@ export default function IssueDetailModal({
           {issue.title} 타이틀
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {issue.content}콘텐츠
+          {issue.reason}콘텐츠
         </div>
         {/* <DropMenu onClick={openDropDown} /> */}
         <div className={styles.btns}>
