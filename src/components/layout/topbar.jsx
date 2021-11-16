@@ -62,14 +62,14 @@ export default function Topbar() {
             </div>
           </div>
         ) : (
-          <div className={styles.top__signup__list}>
+          <nav className={styles.top__signup__list}>
             <Link href="/login" className={styles.signupLink}>
               <a>로그인 |</a>
             </Link>
             <Link href="/register" className={styles.signupLink}>
               <a>회원가입</a>
             </Link>
-          </div>
+          </nav>
         )}
       </div>
     </header>

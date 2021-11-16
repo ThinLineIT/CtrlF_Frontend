@@ -1,7 +1,7 @@
 import AddBtn from './addBtn';
-import ContentNavigator from './ContentNavigator';
-import RightClickSpan from './rightClick';
 import React, { useState } from 'react';
+import RightClickSpan from './rightClick';
+import ContentNavigator from './ContentNavigator';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
@@ -21,8 +21,8 @@ export default function SideIndex({ noteId }) {
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
 
-  const onRightClick = (event) => {
-    event.preventDefault();
+  const onRightClick = (e) => {
+    e.preventDefault();
     if (!modalToggle) {
       setShowMenu(true);
       setModalToggle(true);
@@ -30,8 +30,8 @@ export default function SideIndex({ noteId }) {
       setShowMenu(false);
       setModalToggle(false);
     }
-    setXPos(`${event.pageX + 5}px`);
-    setYPos(`${event.pageY - 115}px`);
+    setXPos(`${e.pageX + 5}px`);
+    setYPos(`${e.pageY - 115}px`);
   };
 
   const closeContextMenu = () => {
@@ -40,9 +40,9 @@ export default function SideIndex({ noteId }) {
   };
 
   return (
-    <div className={styles.index}>
-      <div className={styles.index_wrap}>
-        <div className={styles.index_title}>
+    <aside className={styles.index}>
+      <article className={styles.index_wrap}>
+        <section className={styles.index_title}>
           <span
             className={styles.index_title_span}
             onContextMenu={onRightClick}
@@ -50,13 +50,13 @@ export default function SideIndex({ noteId }) {
           >
             {noteTitle}
           </span>
-        </div>
-        <div className={styles.index_list_wrap}>
+        </section>
+        <section className={styles.index_list_wrap}>
           <ContentNavigator />
           <AddBtn noteId={noteId} />
-        </div>
+        </section>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
-      </div>
-    </div>
+      </article>
+    </aside>
   );
 }

@@ -1,29 +1,28 @@
 import Link from 'next/link';
+import UseLoader from '../../../utils/useLoader';
+import usePagination from '../../../utils/use_pagination';
 import NotApprovedModal from '../modal/not_approved_modal';
 import styles from '../../../styles/items/notes/note_list.module.css';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   isApprovedModal,
-  noteNumber,
   MyToggle,
   modalUtilsName,
   modalUtilsSyntax,
 } from '../../../store/atom';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import usePagination from '../../../utils/use_pagination';
-import UseLoader from '../../../utils/useLoader';
 
 export default function NoteList() {
   const noteObserver = useRef();
   const [lists, setLists] = useState([]);
   const toggle = useRecoilValue(MyToggle);
   const [noteId, setNoteId] = useState('');
+  const [cursorNumber, setCursorNumber] = useState(0);
   const setNameState = useSetRecoilState(modalUtilsName);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
-  const [cursorNumber, setCursorNumber] = useState(0);
+  const { notes, hasMore, loading } = usePagination(cursorNumber);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
-  const { notes, hasMore, loading } = usePagination(cursorNumber);
 
   useEffect(() => {
     if (toggle === '') {
@@ -66,27 +65,24 @@ export default function NoteList() {
     <div className={styles.container}>
       {lists &&
         lists.map((note, index) => {
+          const { id, title, is_approved } = note;
           if (lists.length === index + 1) {
             return (
               <div
+                key={id}
                 ref={lastNoteElementRef}
-                key={note.id}
                 className={`${styles.container_note} ${getStyles(
-                  note.is_approved
+                  is_approved
                 )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}`}
               >
-                <Link href="/notes/[id]" as={`/notes/${note.id}`}>
+                <Link href="/notes/[id]" as={`/notes/${id}`}>
                   <a
-                    className={styles.link}
                     onClick={(e) =>
-                      ifNotApprovedNoteClicked(
-                        e,
-                        `${note.id}`,
-                        `${note.is_approved}`
-                      )
+                      ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
                     }
+                    className={styles.link}
                   >
-                    {note.title}
+                    {title}
                   </a>
                 </Link>
               </div>
@@ -94,32 +90,28 @@ export default function NoteList() {
           } else {
             return (
               <div
-                key={note.id}
+                key={id}
                 className={`${styles.container_note} ${getStyles(
-                  note.is_approved
+                  is_approved
                 )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}
                 `}
               >
-                <Link href="/notes/[id]" as={`/notes/${note.id}`}>
+                <Link href="/notes/[id]" as={`/notes/${id}`}>
                   <a
-                    className={styles.link}
                     onClick={(e) =>
-                      ifNotApprovedNoteClicked(
-                        e,
-                        `${note.id}`,
-                        `${note.is_approved}`
-                      )
+                      ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
                     }
+                    className={styles.link}
                   >
-                    {note.title}
+                    {title}
                   </a>
                 </Link>
               </div>
             );
           }
         })}
-      <div style={{ padding: '30% 0' }}>{loading && <UseLoader />}</div>
       {notApprovedModalActive && <NotApprovedModal id={noteId} />}
+      <div style={{ padding: '30% 0' }}>{loading && <UseLoader />}</div>
     </div>
   );
 }
