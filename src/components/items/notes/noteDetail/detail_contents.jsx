@@ -1,35 +1,36 @@
 import Image from 'next/image';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from '../../../../../pages/Editor';
-import ModalPreparing from '../../modal/modal_preparing';
+import useModal from '../../../../utils/useModal';
+import IssueCreateModal from '../../modal/IssueCreateModal';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
-  pageDetailIssueId, // 이슈로 이동하기 위한 atom
   topicName,
   pageContent,
   okBtnActive,
+  isOnEditPage,
   preparingModal,
   isPageApproved,
   ModifyPageContent,
+  pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
 } from '../../../../store/atom';
 
-import { useRouter } from 'next/router';
-
 export default function DetailContents() {
-  const modifyPage = useRecoilValue(ModifyPageContent);
-  const setIsUserSubmit = useSetRecoilState(okBtnActive);
-  const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
-  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
   const topicTitle = useRecoilValue(topicName);
   const PagesContent = useRecoilValue(pageContent);
+  const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
+  const modifyPage = useRecoilValue(ModifyPageContent);
+  const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
+  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
 
   // 이슈로 이동을 위한 라우팅
   const router = useRouter();
@@ -55,6 +56,7 @@ export default function DetailContents() {
     document.body.appendChild(dummy);
     dummy.value = text;
     dummy.select();
+    document.execCommand('copy');
     document.body.removeChild(dummy);
     setSlideImg(true);
     setTimeout(fadeOutSlideImg, 1000);
@@ -63,21 +65,28 @@ export default function DetailContents() {
     setSlideImg(false);
   };
 
+  const modalObj = useModal('page');
+
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
     setShowHiddenModal(true);
   };
 
+  const [isOnEditor, setIsOnEditor] = useRecoilState(isOnEditPage);
+  useEffect(() => {
+    !modifyPage && setIsOnEditor(false);
+  }, [modifyPage]);
+
   return (
-    <div className={styles.content}>
-      <div className={styles.topicBar}>
-        <div className={styles.info_item}>
-          <div
-            className={`${styles.info_item_topic} ${getFontSize(topicTitle)}
+    <section className={styles.content}>
+      <article
+        className={`${styles.info_item_topic} ${getFontSize(topicTitle)}
           `}
-          >
-            {topicTitle}
-          </div>
+      >
+        {topicTitle}
+      </article>
+      <article className={styles.topBar}>
+        <section className={`${styles.info_item} ${getStyles(isOnEditor)}`}>
           {modifyPage ? (
             <input
               className={styles.info_item_page}
@@ -87,8 +96,8 @@ export default function DetailContents() {
           ) : (
             <div className={styles.info_item_page}>{pageTitle}</div>
           )}
-        </div>
-        <div className={styles.icons}>
+        </section>
+        <section className={styles.icons}>
           {modifyPage ? (
             <div>
               <button
@@ -106,15 +115,15 @@ export default function DetailContents() {
                   관련된 이슈 확인
                 </button>
               )}
-              <span
+              <aside
                 className={`${
                   slideImg ? `${styles.slideActive}` : `${styles.slideHidden}`
                 }`}
               />
             </span>
           )}
-        </div>
-      </div>
+        </section>
+      </article>
       <div
         style={{
           width: '90%',
@@ -152,8 +161,8 @@ export default function DetailContents() {
           </ReactMarkdown>
         )}
       </div>
-      {showHiddenModal && <ModalPreparing />}
-    </div>
+      {showHiddenModal && <IssueCreateModal modalObj={modalObj} isCreatePage />}
+    </section>
   );
 }
 
@@ -164,5 +173,11 @@ function getFontSize(status) {
 
   if (status.length >= 15) {
     return styles.fontSmall;
+  }
+}
+
+function getStyles(status) {
+  if (status) {
+    return styles.info_item_edit;
   }
 }

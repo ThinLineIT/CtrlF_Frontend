@@ -6,15 +6,17 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.topicBar {
+.topBar {
   max-width: 1270px;
   height: 4em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2.91em 0;
+  margin-top: 5.5em;
+  margin-bottom: -1.25em;
 }
 
 .info_item {
@@ -26,9 +28,18 @@
   overflow: hidden;
 }
 
+.info_item_edit {
+  border-radius: 20px/20px;
+}
+
 .info_item_topic {
-  flex: 1 1 20%;
-  height: 100%;
+  width: 22%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  overflow: hidden;
+  position: absolute;
+  top: -29px;
+  left: 0px;
   background: #b5bdff;
   color: white;
   font-size: 1.7rem;
@@ -36,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  max-height: 65px;
 }
 
 .fontMiddle {
@@ -65,7 +76,6 @@
 }
 
 .info_item_page {
-  flex: 1 1 80%;
   height: 100%;
   background: white;
   font-size: 1.7rem;

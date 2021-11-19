@@ -143,6 +143,11 @@ export const isPageApproved = atom({
   default: true,
 });
 
+export const isOnEditPage = atom({
+  key: 'is_on_edit_page',
+  default: false,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({
