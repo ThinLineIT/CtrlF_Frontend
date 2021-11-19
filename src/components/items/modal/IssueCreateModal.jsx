@@ -58,7 +58,11 @@ export default function IssueCreateModal({ ...props }) {
     };
 
     axios({
-      url: `${process.env.PUBLIC_BASE_API}notes/`,
+      url: `${
+        process.env.NODE_ENV === 'development'
+          ? process.env.NEXT_PUBLIC_API_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+      }notes/`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,
@@ -79,7 +83,11 @@ export default function IssueCreateModal({ ...props }) {
     };
 
     axios({
-      url: `${process.env.PUBLIC_BASE_API}topic/`,
+      url: `${
+        process.env.NODE_ENV === 'development'
+          ? process.env.NEXT_PUBLIC_API_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+      }`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,
