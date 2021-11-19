@@ -6,8 +6,8 @@ export const issueListApi = async (cursor) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
-          : process.env.NEXT_PUBLIC_BUILD_API_URL
+          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }issues/?cursor=${cursor}`
     )
     .then((res) => res.data)
@@ -20,8 +20,8 @@ export const issueDetailApi = async (id) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
-          : process.env.NEXT_PUBLIC_BUILD_API_URL
+          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }issues/${id}`
     )
     .then((res) => res.data)
@@ -37,8 +37,8 @@ export const issueApproveApi = async (id) => {
   const request = await axios({
     url: `${
       process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_API_URL
-        : process.env.NEXT_PUBLIC_BUILD_API_URL
+        ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
     }actions/issue-approve/`,
     method: 'post',
     headers: {

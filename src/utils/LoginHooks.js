@@ -4,8 +4,8 @@ function loginHook(data) {
     .post(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
-          : process.env.NEXT_PUBLIC_BUILD_API_URL
+          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }/auth/login/`,
       data
     )
