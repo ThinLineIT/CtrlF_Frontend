@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import axios from 'axios';
+// import Cookies from 'js-cookie';
 
 export default function Test() {
   useEffect(() => {
@@ -17,17 +18,26 @@ export default function Test() {
     });
   };
 
-  const getUrl = (file) => {
-    if (file && file.size < 50000) {
+  const getUrl = async (file) => {
+    if (file && file.size < 5000000) {
       const body = new FormData();
-      body.set('key', '9ded9154942189df28a59a933807d4d6');
+      // body.set('key', '9ded9154942189df28a59a933807d4d6');
       body.append('image', file);
 
-      return axios({
+      // let headers = Cookies.get('token');
+
+      const result = await axios({
         method: 'post',
-        url: 'https://api.imgbb.com/1/upload',
+        // headers: {
+        //   Authorization: `Bearer ${headers}`,
+        // },
+        url: `${process.env.PUBLIC_BASE_API}actions/images/`,
         data: body,
-      });
+      })
+        .then((res) => res)
+        .catch((err) => err);
+      console.log(result);
+      return result;
     } else alert('파일 용량 초과');
   };
 
@@ -35,7 +45,7 @@ export default function Test() {
     e.preventDefault();
     const { files } = e.dataTransfer;
     getUrl(files[0]).then((res) => {
-      imgAdding(res.data.data.display_url);
+      imgAdding(res.data.image_url);
     });
   };
 
