@@ -9,7 +9,6 @@ import {
 import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
-// 추후 추가될 DropDown 기능입니다.
 import DropMenu from '../../items/menu/DropMenu';
 
 export default function IssueDetailModal({
@@ -38,10 +37,10 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
-    if (!result) {
-      setIsUnathorized(true);
-    } else {
+    if (result && result.staus === 200) {
       setIsModalOpen(false);
+    } else {
+      setIsFeatureClicked(true);
     }
   };
 
@@ -80,19 +79,24 @@ export default function IssueDetailModal({
             />
           )}
         </div>
-        <div className={styles.modal__title}>type action</div>
-        {/* <div className={styles.modal__origin}> {issue.title} 타이틀</div> */}
+        <div className={styles.modal__title}>
+          {issue.related_model_type} {issue.action}
+        </div>
         <div className={`${styles.modal__change} ${styles.title}`}>
           {' '}
           {issue.title} 타이틀
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {issue.content}콘텐츠
+          {issue.reason}콘텐츠
         </div>
         <div className={styles.btns}>
-          <button className={styles.modal__btn} onClick={moveToDetail}>
-            자세히 보기
-          </button>
+          <div>
+            {issue.related_model_type === 'PAGE' && (
+              <button className={styles.modal__btn} onClick={moveToDetail}>
+                자세히 보기
+              </button>
+            )}
+          </div>
           <div className={styles.permit}>
             <button className={styles.modal__btn} onClick={acceptIssue}>
               승인
@@ -101,15 +105,6 @@ export default function IssueDetailModal({
               미승인
             </button>
           </div>
-          {/* {issue.content_request.type === 'PAGE' ? (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              자세히 보기
-            </button>
-          ) : (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              닫기
-            </button>
-          )} */}
         </div>
       </div>
     </div>
