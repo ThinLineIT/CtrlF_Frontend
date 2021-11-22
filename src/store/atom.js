@@ -143,6 +143,11 @@ export const isPageApproved = atom({
   default: true,
 });
 
+export const isOnEditPage = atom({
+  key: 'is_on_edit_page',
+  default: false,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({
@@ -264,13 +269,13 @@ export const modalMessage = selector({
 
 // users request data
 
-export const requestNoteTitle = atom({
-  key: 'request_note_title',
+export const requestIssueTitle = atom({
+  key: 'request_issue_title',
   default: '',
 });
 
-export const requestNoteContent = atom({
-  key: 'request_note_content',
+export const requestIssueContent = atom({
+  key: 'request_issue_content',
   default: '',
 });
 

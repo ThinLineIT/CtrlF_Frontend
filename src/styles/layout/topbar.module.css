@@ -113,10 +113,6 @@
 }
 
 @media screen and (max-width: 92rem) {
-  .container {
-    width: 80%;
-    margin: 0 auto;
-  }
   .top__logo {
     margin: 20px;
   }

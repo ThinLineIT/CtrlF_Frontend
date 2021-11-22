@@ -1,39 +1,28 @@
 import AddBtn from './addBtn';
-import IndexIndex from './index_index';
+import ContentNavigator from './ContentNavigator';
 import RightClickSpan from './rightClick';
 import React, { useState } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
-  modalName,
   menuPageX,
   menuPageY,
-  modalNameEn,
   detailTitle,
-  contextMenuName,
-  contextMenuState,
   contextMenuActive,
-  isValidOnMainpage,
   ModifyPageContent,
-  modalInputPlaceholder,
 } from '../../../../../store/atom';
 
-export default function SideIndex() {
+export default function SideIndex({ noteId }) {
   const [modalToggle, setModalToggle] = useState(false);
-  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
   const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
 
   const noteTitle = useRecoilValue(detailTitle);
-  const setModalName = useSetRecoilState(modalName);
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
-  const setModalNameEn = useSetRecoilState(modalNameEn);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
-  const setContextMenuName = useSetRecoilState(contextMenuName);
-  const setContextMenuStates = useSetRecoilState(contextMenuState);
-  const setModalInputPlaceholder = useSetRecoilState(modalInputPlaceholder);
 
   const onRightClick = (event) => {
+    event.preventDefault();
     if (!modalToggle) {
       setShowMenu(true);
       setModalToggle(true);
@@ -41,20 +30,13 @@ export default function SideIndex() {
       setShowMenu(false);
       setModalToggle(false);
     }
-    event.preventDefault();
     setXPos(`${event.pageX + 5}px`);
     setYPos(`${event.pageY - 115}px`);
-    setModalName('노트');
-    setModalNameEn('note');
-    setIsOnMainPage(false);
-    setContextMenuName('이름 수정');
-    setContextMenuStates('이름 수정');
-    setModalInputPlaceholder('note title');
   };
 
   const closeContextMenu = () => {
-    setModifyPage(false);
     setShowMenu(false);
+    setModifyPage(false);
   };
 
   return (
@@ -70,8 +52,8 @@ export default function SideIndex() {
           </span>
         </div>
         <div className={styles.index_list_wrap}>
-          <IndexIndex />
-          <AddBtn />
+          <ContentNavigator />
+          <AddBtn noteId={noteId} />
         </div>
         {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
       </div>
