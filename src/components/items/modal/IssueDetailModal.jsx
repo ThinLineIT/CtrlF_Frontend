@@ -15,7 +15,7 @@ import DropMenu from '../../items/menu/DropMenu';
 export default function IssueDetailModal({
   issue,
   setIsModalOpen,
-  setIsFeatureClicked,
+  setIsUnathorized,
 }) {
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
@@ -38,9 +38,8 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
-    console.log(result);
     if (!result) {
-      setIsFeatureClicked(true);
+      setIsUnathorized(true);
     } else {
       setIsModalOpen(false);
     }
@@ -49,21 +48,21 @@ export default function IssueDetailModal({
   const rejectIssue = () => {
     // API 개발 완료시 교체 예정
     //   issueReject();
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
-  const CancelIssue = () => {
+  const cancelIssue = () => {
     // API 개발 완료시 교체 예정
     issueCancel();
 
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
   const editIssue = () => {
     // API 개발 완료시 교체 예정
     issueEdit();
 
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
   return (
@@ -91,12 +90,6 @@ export default function IssueDetailModal({
           {issue.content}콘텐츠
         </div>
         <div className={styles.btns}>
-          {/* <button className={styles.modal__btn} onClick={editIssue}>
-            수정
-          </button>
-          <button className={styles.modal__btn} onClick={CancelIssue}>
-            요청취소
-          </button> */}
           <button className={styles.modal__btn} onClick={moveToDetail}>
             자세히 보기
           </button>

@@ -5,7 +5,7 @@ import { issueDetailApi } from '../../../utils/issueHook';
 
 export default function Modal({ setIsModalOpen, data }) {
   const [isLogin, setIsLogin] = useState(true); // 임시 로그인 기능입니다. 교체 예정입니다
-  const [isFeatureClicked, setIsFeatureClicked] = useState(false);
+  const [isUnathorized, setIsUnathorized] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [issueDetail, setIssueDetail] = useState(null);
@@ -26,15 +26,15 @@ export default function Modal({ setIsModalOpen, data }) {
 
   return (
     <>
-      {!isFeatureClicked && loading && (
+      {!isUnathorized && loading && (
         <IssueDetailModal
           issue={issueDetail}
           setIsModalOpen={setIsModalOpen}
-          setIsFeatureClicked={setIsFeatureClicked}
+          setIsUnathorized={setIsUnathorized}
         />
       )}
-      {isLogin && isFeatureClicked && (
-        <NoAuthentification setIsFeatureClicked={setIsFeatureClicked} />
+      {isLogin && isUnathorized && (
+        <NoAuthentification setIsUnathorized={setIsUnathorized} />
       )}
     </>
   );
