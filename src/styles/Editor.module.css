@@ -54,6 +54,7 @@
   border: 1px solid #00000028;
   margin: 0 auto;
   padding-left: 1.4em;
+  padding-right: 1.4em;
   padding-top: 0.6em;
   font-size: 1.1rem;
   font-weight: bold;
@@ -73,12 +74,13 @@
 
 .users_textarea {
   width: 100%;
-  min-height: 520px;
+  min-height: 720px;
   border: 1px solid #00000028;
   margin: 1em auto 0 auto;
   padding-top: 0.6em;
   padding-left: 0.6em;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  line-height: 2.5rem;
   font-weight: bold;
   border-radius: 10px/10px;
   color: black;

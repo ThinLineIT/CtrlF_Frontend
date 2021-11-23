@@ -8,6 +8,7 @@ import { useRouter } from 'next/dist/client/router';
 import styles from '../../../styles/items/modal/not_approved_modal.module.css';
 
 export default function NotApprovedModal(id) {
+  console.log(id);
   const router = useRouter();
   const nameState = useRecoilValue(modalUtilsName);
   const modalSyntax = useRecoilValue(modalUtilsSyntax);
@@ -17,7 +18,7 @@ export default function NotApprovedModal(id) {
     setNotApprovedModalActive(false);
     if (nameState == '노트') {
       router.push({
-        pathname: '/note/[id]',
+        pathname: '/notes/[id]',
         query: { id: id.id },
       });
     }

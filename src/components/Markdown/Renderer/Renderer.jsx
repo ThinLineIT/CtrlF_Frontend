@@ -1,11 +1,10 @@
-import React from 'react';
 import toc from 'remark-toc';
 import gfm from 'remark-gfm';
 import emoji from 'remark-emoji';
 import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
-import styles from './MarkdownViewer.module.css';
+import styles from './Renderer.module.css';
 import 'github-markdown-css/github-markdown.css';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -18,12 +17,13 @@ export default function Renderer(props) {
         <article className={styles.mdContainer}>
           <MarkDownStyle>
             <ReactMarkdown
-              children={`${content}`}
-              className="markdown-body"
               renderers={renderers}
+              className="markdown-body"
               rehypePlugins={[rehypeRaw]}
               plugins={[gfm, emoji, toc]}
-            />
+            >
+              {`${content}`}
+            </ReactMarkdown>
           </MarkDownStyle>
         </article>
       </section>

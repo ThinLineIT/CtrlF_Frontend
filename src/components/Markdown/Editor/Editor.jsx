@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
-import { useState } from 'react';
 import Renderer from '../Renderer/Renderer';
+import { useState, useEffect } from 'react';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import styles from '../../../styles/Editor.module.css';
 import UseEditorBtns from '../../../utils/useEditorBtns';
@@ -66,10 +66,8 @@ export default function MarkdownEditor(props) {
   const useTab = (e) => {
     if (e.key == 'Tab') {
       e.preventDefault();
-      let key = 0;
-      let space = UseEditorBtns(key, samePoint);
       const TextArea = document.getElementById('textarea');
-      insertTextAtCursor(TextArea, space);
+      insertTextAtCursor(TextArea, `  `);
     }
   };
 
@@ -81,6 +79,9 @@ export default function MarkdownEditor(props) {
       : input
     : input;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const WRITE_OR_PREVIEW = ['Write', 'Preview'];
   return (
     <form className={styles.editor_wrap}>
