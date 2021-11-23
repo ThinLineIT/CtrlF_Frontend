@@ -23,7 +23,7 @@ export default function DetailContents() {
 
   const modalObj = useModal('page');
   const topicTitle = useRecoilValue(topicName);
-  const PagesContent = useRecoilValue(pageContent);
+  const pagesContent = useRecoilValue(pageContent);
   const [pageCreateTitle, setPageCreateTitle] = useState('');
   const showHiddenModal = useRecoilValue(preparingModal);
 
@@ -37,9 +37,9 @@ export default function DetailContents() {
       </article>
       <MainContentsTopBar setPageCreateTitle={setPageCreateTitle} />
       {modifyPage ? (
-        <Editor contents={PagesContent} pageCreateTitle={pageCreateTitle} />
+        <Editor contents={pagesContent} pageCreateTitle={pageCreateTitle} />
       ) : (
-        <Renderer contents={PagesContent} />
+        <Renderer contents={pagesContent} />
       )}
       {showHiddenModal && <IssueCreateModal modalObj={modalObj} isCreatePage />}
     </section>

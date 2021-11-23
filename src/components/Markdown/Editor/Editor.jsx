@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Renderer from '../Renderer/Renderer';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import styles from '../../../styles/Editor.module.css';
@@ -40,7 +40,6 @@ export default function MarkdownEditor(props) {
     const selectedText = TextArea.value.substring(sStart, sEnd);
 
     let varBtn = UseEditorBtns(key);
-
     if (sStart == sEnd) {
       varBtn = UseEditorBtns(key, samePoint);
       insertTextAtCursor(TextArea, varBtn);
@@ -74,7 +73,6 @@ export default function MarkdownEditor(props) {
     }
   };
 
-  const contentRef = useRef();
   const content = props.contents;
   const addNewPageContent = useRecoilValue(addNewPage);
   let previewContents = !addNewPageContent
@@ -83,15 +81,12 @@ export default function MarkdownEditor(props) {
       : input
     : input;
 
-  const write_or_preview = ['Write', 'Preview'];
+  const WRITE_OR_PREVIEW = ['Write', 'Preview'];
   return (
     <form className={styles.editor_wrap}>
       <button onClick={createPage}>페이지 생성하기</button>
       <textarea
-        required
         type="text"
-        autoFocus={false}
-        autoComplete="off"
         placeholder="summary"
         onChange={onPageSummaryHandler}
         className={styles.users_summary}
@@ -99,7 +94,7 @@ export default function MarkdownEditor(props) {
       <span as="h3" className={styles.detail_content}>
         <div className={styles.buttonsWrap}>
           <span className={styles.editor_button}>
-            {write_or_preview.map((button, i) => (
+            {WRITE_OR_PREVIEW.map((button, i) => (
               <button
                 key={i}
                 className={styles.statusBtn}
@@ -124,11 +119,8 @@ export default function MarkdownEditor(props) {
         {!preview ? (
           <>
             <textarea
-              required
               id="textarea"
               value={input}
-              ref={contentRef}
-              autoFocus={false}
               onKeyDown={useTab}
               placeholder="page content"
               className={styles.users_textarea}

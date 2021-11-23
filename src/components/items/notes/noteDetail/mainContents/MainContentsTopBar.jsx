@@ -30,13 +30,13 @@ const MainContentsTopBar = (props) => {
 
   const [slideImg, setSlideImg] = useState(false);
   const copyClipboard = () => {
-    const dummy = document.createElement('input');
+    const tempWhat = document.createElement('input');
     const text = location.href;
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
+    document.body.appendChild(tempWhat);
+    tempWhat.value = text;
+    tempWhat.select();
     document.execCommand('copy');
-    document.body.removeChild(dummy);
+    document.body.removeChild(tempWhat);
     setSlideImg(true);
     setTimeout(fadeOutSlideImg, 1000);
   };

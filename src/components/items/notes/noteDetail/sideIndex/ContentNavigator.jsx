@@ -50,8 +50,8 @@ export default function ContentNavigator() {
   const [pageData, setPageData] = useRecoilState(pageDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
-  const useContextMenu = (e) => {
-    e.preventDefault();
+  const useContextMenu = (event) => {
+    event.preventDefault();
     if (!modalToggle) {
       setShowMenu(true);
       setModalToggle(true);
@@ -59,8 +59,8 @@ export default function ContentNavigator() {
       setShowMenu(false);
       setModalToggle(false);
     }
-    setXPos(`${e.pageX + 5}px`);
-    setYPos(`${e.pageY - 115}px`);
+    setXPos(`${event.pageX + 5}px`);
+    setYPos(`${event.pageY - 115}px`);
   };
 
   const showPageList = async (data) => {

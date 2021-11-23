@@ -1,52 +1,64 @@
-import remarkGfm from 'remark-gfm';
+import React from 'react';
+import toc from 'remark-toc';
+import gfm from 'remark-gfm';
+import emoji from 'remark-emoji';
 import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
-import styles from '../../../styles/items/notes/noteDetail/detail_contents.module.css';
+import styles from './MarkdownViewer.module.css';
+import 'github-markdown-css/github-markdown.css';
+import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-const Renderer = (props) => {
+export default function Renderer(props) {
   const content = props.contents;
-  console.log(content);
   return (
-    <ReactMarkdown
-      className={styles.markdown_renderer}
-      rehypePlugins={[rehypeRaw]}
-      remarkPlugins={[remarkGfm]}
-      components={{
-        code: CodeBlock,
-        blockquote: BlockQuote,
-      }}
-      style={{ wordWrap: 'break-word' }}
-    >
-      {content}
-    </ReactMarkdown>
+    <div>
+      <section className={styles.appContainer}>
+        <article className={styles.mdContainer}>
+          <MarkDownStyle>
+            <ReactMarkdown
+              children={`${content}`}
+              className="markdown-body"
+              renderers={renderers}
+              rehypePlugins={[rehypeRaw]}
+              plugins={[gfm, emoji, toc]}
+            />
+          </MarkDownStyle>
+        </article>
+      </section>
+    </div>
   );
+}
+
+const MarkDownStyle = styled.div`
+  margin: 2.8em 1.5em;
+`;
+
+function flatten(text, child) {
+  return typeof child === 'string'
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text);
+}
+
+function headingRenderer({ level, children }) {
+  const childrenArr = React.Children.toArray(children);
+  const text = childrenArr.reduce(flatten, '');
+  const slug = text.toLowerCase().replace(/\./g, '').replace(/\W/g, '-');
+
+  const header = [
+    React.createElement('h' + level, { key: slug, id: slug }, children),
+  ];
+  return header;
+}
+
+const renderers = {
+  code: ({ language, value }) => {
+    return (
+      <SyntaxHighlighter style={prism} language={language}>
+        {value}
+      </SyntaxHighlighter>
+    );
+  },
+  heading: headingRenderer,
 };
-
-export default Renderer;
-
-const Pre = styled.pre`
-  background-color: rgb(249, 249, 251);
-  padding: 2rem;
-  line-height: 1.5rem;
-  margin: 2rem auto;
-`;
-
-function CodeBlock({ children: value }) {
-  return (
-    <Pre>
-      <code>{value}</code>
-    </Pre>
-  );
-}
-
-const BlockQuoteStyle = styled.div`
-  line-height: 3rem;
-  padding: 0.7rem;
-  border-left: 5.5px solid rgb(112, 105, 243);
-  background-color: rgb(249, 249, 251);
-`;
-
-function BlockQuote({ children }) {
-  return <BlockQuoteStyle>{children ?? ''}</BlockQuoteStyle>;
-}
