@@ -1,4 +1,4 @@
-export default function useTitle(modalTitle) {
+export default function useModal(modalTitle) {
   let englishTitle = '';
   let koreanTitle = '';
   let issue는 = '';
@@ -15,12 +15,18 @@ export default function useTitle(modalTitle) {
     issue는 = '토픽은';
     placeholder = 'topic title';
   }
-  let titleObj = {
+  if (modalTitle == 'page') {
+    englishTitle = 'PAGE';
+    koreanTitle = '페이지';
+    issue는 = '페이지는';
+    placeholder = 'page title';
+  }
+  let modalObj = {
     modalTitle,
     englishTitle,
     koreanTitle,
     issue는,
     placeholder,
   };
-  return titleObj;
+  return modalObj;
 }

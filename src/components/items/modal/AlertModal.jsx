@@ -8,10 +8,10 @@ import {
 } from '../../../store/atom';
 
 export default function AlertModal({ ...props }) {
-  const { titleObj, closingModalAndSendData } = {
+  const { modalObj, closingModalAndSendData } = {
     ...props,
   };
-  const { modalTitle, englishTitle, koreanTitle, issue는 } = titleObj;
+  const { modalTitle, englishTitle, koreanTitle, issue는 } = modalObj;
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const requestTitle = useRecoilValue(requestIssueTitle);

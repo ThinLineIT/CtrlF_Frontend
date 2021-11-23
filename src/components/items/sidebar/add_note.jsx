@@ -1,13 +1,13 @@
 import { okBtnActive, isModalActive } from '../../../store/atom';
 import styles from '../../../styles/items/sidebar/add_note.module.css';
-import useTitle from '../../../utils/useModal';
+import useModal from '../../../utils/useModal';
 import IssueCreateModal from '../modal/IssueCreateModal';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 
 function AddNote() {
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
-  const titleObj = useTitle('note');
+  const modalObj = useModal('note');
 
   const activeAddNoteModal = () => {
     setIsUserSubmit(false);
@@ -23,7 +23,7 @@ function AddNote() {
       </div>
       {showHiddenModal && (
         <>
-          <IssueCreateModal titleObj={titleObj} />
+          <IssueCreateModal modalObj={modalObj} />
         </>
       )}
     </>
