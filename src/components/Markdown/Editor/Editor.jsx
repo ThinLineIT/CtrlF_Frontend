@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import Renderer from '../Renderer/Renderer';
 import { useState, useEffect } from 'react';
 import insertTextAtCursor from 'insert-text-at-cursor';
-import styles from '../../../styles/Editor.module.css';
+import styles from '../../../styles/markdown/Editor.module.css';
 import UseEditorBtns from '../../../utils/useEditorBtns';
 import { pageCreateApi } from '../../../utils/PageCreate';
 import { addNewPage, topicIndex } from '../../../store/atom';
