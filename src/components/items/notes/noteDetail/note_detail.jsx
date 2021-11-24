@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { useSetRecoilState } from 'recoil';
-import DetailContents from './detail_contents';
+import DetailContents from './mainContents/detail_contents';
 import SideIndex from './sideIndex/side_index';
 import React, { useState, useEffect } from 'react';
 import UseLoader from '../../../../utils/useLoader';
@@ -11,6 +11,7 @@ import {
   detailTitle,
   pageContent,
   pageDataList,
+  isOnEditPage,
   topicDataList,
   ModifyPageContent,
   firstVisiblePageTitle,
@@ -19,12 +20,14 @@ import {
 export default function NoteDetail({ note }) {
   const { title, id } = note;
   const [isLoading, setIsLoading] = useState(true);
+  const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
 
   useEffect(() => {
     setNoteTitle(title);
     setModifyPage(false);
+    setIsOnEditor(false);
   }, [note]);
 
   const setTopicTitle = useSetRecoilState(topicName);
@@ -38,15 +41,17 @@ export default function NoteDetail({ note }) {
       getTopic(id);
     }
   }, [id]);
+
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
 
   function getTopic(id) {
     const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
     Axios.get(API_URL_TOPIC).then((res) => {
       const data = res.data;
+      const { title, id } = data[0];
       setTopicData(data);
-      setTopicTitle(data[0].title);
-      getPage(data[0].id);
+      setTopicTitle(title);
+      getPage(id);
     });
   }
 
@@ -56,25 +61,25 @@ export default function NoteDetail({ note }) {
     Axios.get(API_URL_PAGE)
       .then((res) => {
         const data = res.data;
+        const { title, content } = data[0];
         setPageData(data);
-        setPageTitle(data[0].title);
-        setPageContent(data[0].content);
+        setPageTitle(title);
+        setPageContent(content);
       })
       .then(setIsLoading(false));
   }
 
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <div style={{ padding: '30% 0' }}>
           <UseLoader />
         </div>
-      )}
-      {!isLoading && (
-        <div className={styles.wrap}>
+      ) : (
+        <main className={styles.wrap}>
           <SideIndex noteId={id} />
           <DetailContents />
-        </div>
+        </main>
       )}
     </>
   );

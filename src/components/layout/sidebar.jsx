@@ -5,10 +5,10 @@ import styles from '../../styles/layout/sideBar.module.css';
 
 export default function SideBar() {
   return (
-    <div className={styles.container}>
+    <aside className={styles.container}>
       <Toggle />
       <AddNote />
       <Issue />
-    </div>
+    </aside>
   );
 }

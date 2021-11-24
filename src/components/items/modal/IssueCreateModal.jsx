@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import AlertModal from './AlertModal';
 import Cookies from 'js-cookie';
 import styles from '../../../styles/items/modal/modal_input.module.css';
@@ -13,13 +13,13 @@ import {
 } from '../../../store/atom';
 
 export default function IssueCreateModal({ ...props }) {
-  const { titleObj, noteId } = {
+  const { modalObj, noteId, isCreatePage } = {
     ...props,
   };
-  const { englishTitle, placeholder } = titleObj;
+  const { englishTitle, placeholder } = modalObj;
 
-  const textareaRef = useRef();
   const titleRef = useRef();
+  const textareaRef = useRef();
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const [isUserSubmit, setIsUserSubmit] = useRecoilState(okBtnActive);
 
@@ -58,7 +58,11 @@ export default function IssueCreateModal({ ...props }) {
     };
 
     axios({
-      url: `${process.env.PUBLIC_BASE_API}notes/`,
+      url: `${
+        process.env.NODE_ENV === 'development'
+          ? process.env.NEXT_PUBLIC_API_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+      }notes/`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,
@@ -79,7 +83,11 @@ export default function IssueCreateModal({ ...props }) {
     };
 
     axios({
-      url: `${process.env.PUBLIC_BASE_API}topic/`,
+      url: `${
+        process.env.NODE_ENV === 'development'
+          ? process.env.NEXT_PUBLIC_API_URL
+          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+      }`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,
@@ -90,49 +98,58 @@ export default function IssueCreateModal({ ...props }) {
       .catch((err) => err.response);
   };
 
-  if (!isUserSubmit) {
-    return (
-      <div className={styles.notes_modal}>
-        <div className={styles.modal_overlay}>
-          <div className={styles.modal_content}>
-            <h1>ADD {englishTitle}</h1>
-            <input
-              type="text"
-              required={true}
-              ref={titleRef}
-              onChange={onInputChange}
-              placeholder={placeholder}
-              className={styles.users_input}
-            />
-            <textarea
-              name="textarea"
-              required={true}
-              ref={textareaRef}
-              onChange={onInputChange}
-              placeholder="요청 내용 설명"
-              className={styles.users_textarea}
-            />
-            <div className={styles.btn}>
-              <button
-                className={styles.ok_button}
-                onClick={changeModalUtilsAndOkBtnActive}
-              >
-                OK
-              </button>
-              <button className={styles.cancel_button} onClick={closeModal}>
-                CANCEL
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
+  if (isCreatePage) {
     return (
       <AlertModal
-        titleObj={titleObj}
+        modalObj={modalObj}
         closingModalAndSendData={closingModalAndSendData}
       />
     );
+  } else {
+    if (!isUserSubmit) {
+      return (
+        <div className={styles.notes_modal}>
+          <div className={styles.modal_overlay}>
+            <div className={styles.modal_content}>
+              <h1>ADD {englishTitle}</h1>
+              <input
+                type="text"
+                ref={titleRef}
+                required={true}
+                onChange={onInputChange}
+                placeholder={placeholder}
+                className={styles.users_input}
+              />
+              <textarea
+                name="textarea"
+                required={true}
+                ref={textareaRef}
+                onChange={onInputChange}
+                placeholder="요청 내용 설명"
+                className={styles.users_textarea}
+              />
+              <div className={styles.btn}>
+                <button
+                  className={styles.ok_button}
+                  onClick={changeModalUtilsAndOkBtnActive}
+                >
+                  OK
+                </button>
+                <button className={styles.cancel_button} onClick={closeModal}>
+                  CANCEL
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <AlertModal
+          modalObj={modalObj}
+          closingModalAndSendData={closingModalAndSendData}
+        />
+      );
+    }
   }
 }

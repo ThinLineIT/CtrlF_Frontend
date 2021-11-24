@@ -3,19 +3,21 @@ import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/addBt
 import {
   addNewPage,
   okBtnActive,
+  isOnEditPage,
   isModalActive,
   ModifyPageContent,
 } from '../../../../../store/atom';
-import useTitle from '../../../../../utils/useModal';
+import useModal from '../../../../../utils/useModal';
 import IssueCreateModal from '../../../modal/IssueCreateModal';
 
 export default function AddBtn({ noteId }) {
+  const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setAddNewContent = useSetRecoilState(addNewPage);
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
-  const titleObj = useTitle('topic');
+  const modalObj = useModal('topic');
 
   const activeAddTopic = () => {
     setIsUserSubmit(false);
@@ -24,9 +26,11 @@ export default function AddBtn({ noteId }) {
   };
 
   const activeAddPage = () => {
+    setIsOnEditor(true);
     setAddNewContent(true);
     setModifyPage(true);
   };
+
   return (
     <>
       <div className={styles.addBtn}>
@@ -35,7 +39,7 @@ export default function AddBtn({ noteId }) {
       </div>
       {showHiddenModal && (
         <div className={styles.notes_modal}>
-          <IssueCreateModal titleObj={titleObj} noteId={noteId} />
+          <IssueCreateModal modalObj={modalObj} noteId={noteId} />
         </div>
       )}
     </>

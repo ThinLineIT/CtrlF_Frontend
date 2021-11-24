@@ -41,10 +41,10 @@ export default function ContentNavigator() {
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
 
-  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
-  const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
-  const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
   const setIssueId = useSetRecoilState(pageDetailIssueId);
+  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
+  const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
+  const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
 
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
@@ -63,7 +63,8 @@ export default function ContentNavigator() {
     setYPos(`${event.pageY - 115}px`);
   };
 
-  const showPageList = async (id, status, convention, title) => {
+  const showPageList = async (data) => {
+    let [id, title, status, convention] = data;
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
@@ -72,12 +73,13 @@ export default function ContentNavigator() {
     const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
     await Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
+      const { title, content, is_approved } = data[0];
       setPageData(data);
       if (data[0]) {
-        setPageTitle(data[0].title);
-        setPageContent(data[0].content);
+        setPageTitle(title);
+        setPageContent(content);
       }
-      if (data[0].is_approved == false) {
+      if (is_approved == false) {
         setIsPageApproved(false);
       }
     });
@@ -95,7 +97,9 @@ export default function ContentNavigator() {
     // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
   };
 
-  const showPageContent = (issueId, title, status, convention, content) => {
+  const showPageContent = (data) => {
+    let [issueId, title, content, status, convention] = data;
+
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
@@ -138,47 +142,47 @@ export default function ContentNavigator() {
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
           {topicData &&
-            topicData.map((item) => (
-              <li
-                id={`topic${item.id}`} // 선택을 위한 id입니다.
-                key={item.id}
-                className={`${styles.index_topic_li} ${getStyles(
-                  item.is_approved
-                )}`}
-                onClick={() =>
-                  showPageList(item.id, item.is_approved, 'topic', item.title)
-                }
-                onContextMenu={useContextMenu}
-              >
-                {item.title}
-              </li>
-            ))}
+            topicData.map((item) => {
+              const { id, title, is_approved } = item;
+              return (
+                <li
+                  id={`topic${id}`} // 선택을 위한 id입니다.
+                  key={id}
+                  className={`${styles.index_topic_li} ${getStyles(
+                    is_approved
+                  )}`}
+                  onClick={() => {
+                    const data = [id, title, is_approved, 'topic'];
+                    showPageList(data);
+                  }}
+                  onContextMenu={useContextMenu}
+                >
+                  {title}
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
-          {pageData.map((item) => (
-            <li
-              id={`page${item.id}`} // 선택을 위한 id입니다.
-              key={item.id}
-              ref={pageRef}
-              className={`${styles.index_page_li} ${getStyles(
-                item.is_approved
-              )}`}
-              onClick={() =>
-                showPageContent(
-                  item.issue_id,
-                  item.title,
-                  item.is_approved,
-                  'page',
-                  item.content
-                )
-              }
-              onContextMenu={useContextMenu}
-            >
-              {item.title}
-            </li>
-          ))}
+          {pageData.map((item) => {
+            const { id, title, is_approved, content, issue_id } = item;
+            return (
+              <li
+                id={`page${id}`} // 선택을 위한 id입니다.
+                key={id}
+                ref={pageRef}
+                className={`${styles.index_page_li} ${getStyles(is_approved)}`}
+                onClick={() => {
+                  const data = [issue_id, title, content, is_approved, 'page'];
+                  showPageContent(data);
+                }}
+                onContextMenu={useContextMenu}
+              >
+                {title}
+              </li>
+            );
+          })}
         </ul>
       </div>
       {showMenu && <RightClickSpan x={xPos} y={yPos} />}

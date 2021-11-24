@@ -143,6 +143,11 @@ export const isPageApproved = atom({
   default: true,
 });
 
+export const isOnEditPage = atom({
+  key: 'is_on_edit_page',
+  default: false,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({
@@ -278,7 +283,7 @@ export const userRequestDataList = atom({
   key: 'user_request_data_list',
   default: [
     {
-      noteName: '운영체제',
+      noteName: 'OS',
       title: '노트 이름 수정 요청',
       requestTitle: '운용 체제',
       requestContent: '이재용도 석방됬는데 운용체제라고 리네임하는건 어때요?',

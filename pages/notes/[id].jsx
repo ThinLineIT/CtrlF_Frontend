@@ -3,13 +3,14 @@ import Head from 'next/head';
 import NoteDetail from '../../src/components/items/notes/noteDetail/note_detail';
 
 const Post = ({ item }) => {
+  const { title } = item;
   return (
     <>
       {item && (
         <>
           <Head>
-            <title>{item.title}</title>
-            <meta name="description" content={item.title}></meta>
+            <title>{title}</title>
+            <meta name="description" content={title}></meta>
           </Head>
           <NoteDetail note={item} />
         </>

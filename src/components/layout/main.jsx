@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
 import SideBar from './sidebar';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import React, { useEffect } from 'react';
 import NoteList from '../items/notes/note_list';
 import styles from '../../styles/layout/main.module.css';
-import { HeaderBar, noteNumber, isModalActive } from '../../store/atom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { noteNumber, isModalActive } from '../../store/atom';
 
 export default function Main() {
-  const header = useRecoilValue(HeaderBar);
-  const number = useRecoilValue(noteNumber);
+  const [number, setNumber] = useRecoilState(noteNumber);
   const setShowHiidenModal = useSetRecoilState(isModalActive);
 
   useEffect(() => {
@@ -15,20 +14,20 @@ export default function Main() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <p className={styles.header__title}>
-          <span>{header}</span> <span>0</span>
-        </p>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.item__list}>
+    <main className={styles.container}>
+      <article className={styles.header}>
+        <section className={styles.header__title}>
+          <span>현재 모아진 아이디어</span> <span>0</span>
+        </section>
+      </article>
+      <article className={styles.body}>
+        <section className={styles.item__list}>
           <NoteList />
-        </div>
-        <div className={styles.sidebar}>
+        </section>
+        <section className={styles.sidebar}>
           <SideBar />
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </main>
   );
 }
