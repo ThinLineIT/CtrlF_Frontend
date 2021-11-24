@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-// import Cookies from 'js-cookie';
 
 export default function Test() {
+  // 파일 탐색기를 찾고 업데이트 발생 시 input_update함수를 실행시킵니다.
   useEffect(() => {
     const input_file = document.getElementById('img-upload');
     input_file.addEventListener('change', input_update);
@@ -11,37 +11,32 @@ export default function Test() {
       input_file.removeEventListener('change', input_update);
     };
   }, []);
-
+  // 파일이 첨부되면 발생하는 함수 입니다.
   const input_update = (e) => {
     getUrl(e.target.files[0]).then((res) => {
-      console.log(res.data);
+      imgAdding(res.data.image_url); // url이 반환됩니다.
     });
   };
 
+  // API를 호출하는 함수입니다.
   const getUrl = async (file) => {
     if (file && file.size < 5000000) {
+      // 임의로 작성한 파일 용량기준입니다.
       const body = new FormData();
-      // body.set('key', '9ded9154942189df28a59a933807d4d6');
       body.append('image', file);
-
-      // let headers = Cookies.get('token');
-
       const result = await axios({
         method: 'post',
-        // headers: {
-        //   Authorization: `Bearer ${headers}`,
-        // },
-        url: `${process.env.PUBLIC_BASE_API}actions/images/`,
+        url: `${process.env.PUBLIC_BASE_API}actions/images/`, // url 주소는 수정이 필요합니다. (배포/개발 버전으로)
         data: body,
       })
         .then((res) => res)
         .catch((err) => err);
-      console.log(result);
       return result;
     } else alert('파일 용량 초과');
   };
 
-  const dropTest = (e) => {
+  //이미지가 드랍 함수입니다.
+  const dropImg = (e) => {
     e.preventDefault();
     const { files } = e.dataTransfer;
     getUrl(files[0]).then((res) => {
@@ -49,8 +44,9 @@ export default function Test() {
     });
   };
 
+  //editor에 url을 삽입합니다.
   const imgAdding = (url) => {
-    const area = document.getElementById('test');
+    const area = document.getElementById('text');
     const origin = area.value;
     const startPoint = area.selectionStart;
     const endPoint = area.selectionEnd;
@@ -64,7 +60,7 @@ export default function Test() {
   return (
     <>
       <input type="file" id="img-upload" />
-      <textarea id="test" onDrop={dropTest}></textarea>
+      <textarea id="text" onDrop={dropImg}></textarea>
     </>
   );
 }
