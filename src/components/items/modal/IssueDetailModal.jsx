@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   issueApproveApi,
@@ -8,17 +9,21 @@ import {
 import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
-// 추후 추가될 DropDown 기능입니다.
-// import DropMenu from '../../items/menu/DropMenu';
+import DropMenu from '../../items/menu/DropMenu';
 
 export default function IssueDetailModal({
   issue,
   setIsModalOpen,
-  setIsFeatureClicked,
+  setIsUnathorized,
 }) {
+  const [dropDownMenu, setDropDownMenu] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
   const router = useRouter();
+
+  const openDropDown = () => {
+    setDropDownMenu(true);
+  };
 
   const moveToDetail = async () => {
     await setTopicId(issue.topic_id);
@@ -42,21 +47,21 @@ export default function IssueDetailModal({
   const rejectIssue = () => {
     // API 개발 완료시 교체 예정
     //   issueReject();
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
-  const CancelIssue = () => {
+  const cancelIssue = () => {
     // API 개발 완료시 교체 예정
     issueCancel();
 
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
   const editIssue = () => {
     // API 개발 완료시 교체 예정
     issueEdit();
 
-    setIsFeatureClicked(true);
+    setIsUnathorized(true);
   };
 
   return (
@@ -65,6 +70,15 @@ export default function IssueDetailModal({
         <button className={styles.close} onClick={closeModal}>
           X
         </button>
+        <div className={styles.drop} onClick={openDropDown}>
+          {dropDownMenu && (
+            <DropMenu
+              onClick={openDropDown}
+              dropDownMenu={dropDownMenu}
+              setDropDownMenu={setDropDownMenu}
+            />
+          )}
+        </div>
         <div className={styles.modal__title}>
           {issue.related_model_type} {issue.action}
         </div>
@@ -75,16 +89,7 @@ export default function IssueDetailModal({
         <div className={`${styles.modal__change} ${styles.contents}`}>
           {issue.reason}콘텐츠
         </div>
-        {/* <DropMenu onClick={openDropDown} /> */}
         <div className={styles.btns}>
-          {/* <button className={styles.modal__btn} onClick={editIssue}>
-            수정
-          </button>
-          <button className={styles.modal__btn} onClick={CancelIssue}>
-            요청취소
-          </button> */}
-
-          {/* Note 혹은 Topic의 이슈인 경우 아래 자세히 보기 버튼은 활성화 되지 않을 예정입니다.  */}
           <div>
             {issue.related_model_type === 'PAGE' && (
               <button className={styles.modal__btn} onClick={moveToDetail}>
@@ -100,15 +105,6 @@ export default function IssueDetailModal({
               미승인
             </button>
           </div>
-          {/* {issue.content_request.type === 'PAGE' ? (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              자세히 보기
-            </button>
-          ) : (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              닫기
-            </button>
-          )} */}
         </div>
       </div>
     </div>
