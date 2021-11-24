@@ -26,7 +26,11 @@ export default function Test() {
       body.append('image', file);
       const result = await axios({
         method: 'post',
-        url: `${process.env.PUBLIC_BASE_API}actions/images/`, // url 주소는 수정이 필요합니다. (배포/개발 버전으로)
+        url: `${
+          process.env.NODE_ENV === 'development'
+            ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+            : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+        }actions/images/`,
         data: body,
       })
         .then((res) => res)
