@@ -5,7 +5,7 @@ export default function UseEditorBtns(key, samePoint) {
   if (key == 'Q') varBtn = '> ';
   if (key == 'B') varBtn = '**';
   if (key == 'I') varBtn = '_';
-  if (key == 'C') varBtn = '`';
+  if (key == 'C') varBtn = '```';
   if (key == 'L') varBtn = '[](url)';
   if (key == 'P') varBtn = '![]()';
   if (key == 'BL') varBtn = '- ';
@@ -15,8 +15,7 @@ export default function UseEditorBtns(key, samePoint) {
   if (sameCursorPoint > 0) {
     if (key == 'B') varBtn = '****';
     if (key == 'I') varBtn = '__';
-    if (key == 'C') varBtn = '``';
-    if (key == 0) varBtn = `  `;
+    if (key == 'C') varBtn = '```\n```';
   }
   return varBtn;
 }
