@@ -2,26 +2,38 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 export default function Test() {
+  // 임의로 작성한 파일 용량기준입니다.
+  const LIMIT = 5000000;
+
   // 파일 탐색기를 찾고 업데이트 발생 시 input_update함수를 실행시킵니다.
   useEffect(() => {
-    const input_file = document.getElementById('img-upload');
-    input_file.addEventListener('change', input_update);
+    const inputFile = document.getElementById('image-upload');
+    inputFile.addEventListener('change', attachImage);
 
     return () => {
-      input_file.removeEventListener('change', input_update);
+      inputFile.removeEventListener('change', attachImage);
     };
   }, []);
+
   // 파일이 첨부되면 발생하는 함수 입니다.
-  const input_update = (e) => {
-    getUrl(e.target.files[0]).then((res) => {
-      imgAdding(res.data.image_url); // url이 반환됩니다.
+  const attachImage = (e) => {
+    uploadImage(e.target.files[0]).then((res) => {
+      imageAdding(res.data.image_url); // url이 반환됩니다.
+    });
+  };
+
+  //이미지 드랍 함수입니다.
+  const dropImage = (e) => {
+    e.preventDefault();
+    const { files } = e.dataTransfer;
+    uploadImage(files[0]).then((res) => {
+      imageAdding(res.data.image_url);
     });
   };
 
   // API를 호출하는 함수입니다.
-  const getUrl = async (file) => {
-    if (file && file.size < 5000000) {
-      // 임의로 작성한 파일 용량기준입니다.
+  const uploadImage = async (file) => {
+    if (file && file.size < LIMIT) {
       const body = new FormData();
       body.append('image', file);
       const result = await axios({
@@ -39,17 +51,8 @@ export default function Test() {
     } else alert('파일 용량 초과');
   };
 
-  //이미지가 드랍 함수입니다.
-  const dropImg = (e) => {
-    e.preventDefault();
-    const { files } = e.dataTransfer;
-    getUrl(files[0]).then((res) => {
-      imgAdding(res.data.image_url);
-    });
-  };
-
   //editor에 url을 삽입합니다.
-  const imgAdding = (url) => {
+  const imageAdding = (url) => {
     const area = document.getElementById('text');
     const origin = area.value;
     const startPoint = area.selectionStart;
@@ -63,8 +66,8 @@ export default function Test() {
 
   return (
     <>
-      <input type="file" id="img-upload" />
-      <textarea id="text" onDrop={dropImg}></textarea>
+      <input type="file" id="image-upload" />
+      <textarea id="text" onDrop={dropImage}></textarea>
     </>
   );
 }
