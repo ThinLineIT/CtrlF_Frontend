@@ -1,134 +1,134 @@
 .editor_wrap {
-  width: 100%;
-  margin: 2em auto;
+    width: 100%;
+    margin: 2em auto;
 }
 
 .buttonsWrap {
-  width: 100%;
-  height: 75px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 0.2px solid #d1d1d1;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.2px solid #d1d1d1;
 }
 
 .editor_button {
-  display: flex;
-  padding: 1.5em 0;
-  padding-left: 0.3em;
+    display: flex;
+    padding: 1.5em 0;
+    padding-left: 0.3em;
 }
 
 .statusBtn {
-  width: 5em;
-  height: 3em;
-  margin: 0 1em;
-  font-size: 1rem;
-  border: 1px solid #00000028;
-  border-radius: 15px/15px;
+    width: 5em;
+    height: 3em;
+    margin: 0 1em;
+    font-size: 1rem;
+    border: 1px solid #00000028;
+    border-radius: 15px/15px;
 }
 
 .statusBtn:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .statusBtn:focus {
-  background: #b5bdff;
+    background: #b5bdff;
 }
 
 .statusBtn:first-child {
-  margin: 0;
+    margin: 0;
 }
 
 .detail_content {
-  border: 0.2px solid #d1d1d1;
-  border-radius: 25px;
-  padding: 0.5em 1em 1em 1em;
-  display: flex;
-  flex-direction: column;
-  margin-top: 1em;
+    border: 0.2px solid #d1d1d1;
+    border-radius: 25px;
+    padding: 0.5em 1em 1em 1em;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
 }
 
 .users_summary {
-  width: 100%;
-  height: 6em;
-  border: 1px solid #00000028;
-  margin: 0 auto;
-  padding-left: 1.4em;
-  padding-right: 1.4em;
-  padding-top: 0.6em;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 20px/20px;
-  resize: none;
-  outline: 0;
-  overflow: auto;
+    width: 100%;
+    height: 6em;
+    border: 1px solid #00000028;
+    margin: 0 auto;
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    padding-top: 0.6em;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 20px/20px;
+    resize: none;
+    outline: 0;
+    overflow: auto;
 }
 .users_summary::-webkit-scrollbar {
-  width: 3px;
-  background: none;
+    width: 3px;
+    background: none;
 }
 
 .users_summary::-webkit-scrollbar-track {
-  background: none;
+    background: none;
 }
 
 .users_textarea {
-  width: 100%;
-  min-height: 720px;
-  border: 1px solid #00000028;
-  margin: 1em auto 0 auto;
-  padding-top: 0.6em;
-  padding-left: 0.6em;
-  font-size: 1rem;
-  line-height: 2.5rem;
-  font-weight: bold;
-  border-radius: 10px/10px;
-  color: black;
-  resize: none;
-  outline: 0;
-  -webkit-appearance: none;
-  overflow: auto;
+    width: 100%;
+    min-height: 720px;
+    border: 1px solid #00000028;
+    margin: 1em auto 0 auto;
+    padding-top: 0.6em;
+    padding-left: 0.6em;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: bold;
+    border-radius: 10px/10px;
+    color: black;
+    resize: none;
+    outline: 0;
+    -webkit-appearance: none;
+    overflow: auto;
 }
 .users_textarea::-webkit-scrollbar {
-  width: 3px;
-  background: none;
+    width: 3px;
+    background: none;
 }
 
 .users_textarea::-webkit-scrollbar-track {
-  background: none;
+    background: none;
 }
 
 .preview {
-  width: 100%;
-  min-height: 520px;
-  border-top: 1px solid #00000028;
-  padding: 20px;
-  outline: 0;
-  font-size: 1.2rem;
-  line-height: 2.5rem;
+    width: 100%;
+    min-height: 520px;
+    border-top: 1px solid #00000028;
+    padding: 20px;
+    outline: 0;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
 }
 
 .buttonsContainer {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn {
-  width: 30px;
-  height: 50%;
-  font-size: 1.3rem;
-  border: 0.05px solid #d1d1d1;
-  border-radius: 5px;
-  margin-left: 8px;
-  cursor: pointer;
+    width: 30px;
+    height: 50%;
+    font-size: 1.3rem;
+    border: 0.05px solid #d1d1d1;
+    border-radius: 5px;
+    margin-left: 8px;
+    cursor: pointer;
 }
 
 .btn:hover {
-  color: #b5bdff;
+    color: #b5bdff;
 }
 
 .codeBlock {
-  font-size: 0.66rem;
+    font-size: 0.66rem;
 }
