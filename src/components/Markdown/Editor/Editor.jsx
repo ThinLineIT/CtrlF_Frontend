@@ -136,7 +136,7 @@ export default function MarkdownEditor(props) {
             ))}
           </span>
           <div className={styles.buttonsContainer}>
-            {btnsObj.allEditBtns.map((button, i) => (
+            {btnsObj.ALL_EDIT_BTNS.map((button, i) => (
               <button
                 key={i}
                 className={styles.btn}

@@ -1,7 +1,4 @@
 class BtnsDict {
-  fistOrderBtns = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
-  allEditBtns = ['H', 'B', 'I', 'Q', 'C', 'CB', 'L', 'P', 'BL', 'NL', 'TL'];
-
   useEditorBtns(key, samePoint) {
     let varBtn = key;
     const sameCursorPoint = samePoint ?? 0;
@@ -26,6 +23,8 @@ class BtnsDict {
     return varBtn;
   }
 
+  static FIRST_ORDER_BTNS = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
+  ALL_EDIT_BTNS = ['H', 'B', 'I', 'Q', 'C', 'CB', 'L', 'P', 'BL', 'NL', 'TL'];
   useElement(input, saveFunc, key) {
     const samePoint = true;
     const TextArea = input;
@@ -36,12 +35,11 @@ class BtnsDict {
 
     let keyBtn = this.useEditorBtns(key);
     if (sStart == sEnd) {
-      console.log('same');
       keyBtn = this.useEditorBtns(key, samePoint);
       TextArea.value =
         origin.substr(0, sStart) + keyBtn + selectedText + origin.substr(sEnd);
     } else {
-      if (this.fistOrderBtns.includes(key)) {
+      if (BtnsDict.FIRST_ORDER_BTNS.includes(key)) {
         TextArea.value =
           origin.substr(0, sStart) +
           keyBtn +
