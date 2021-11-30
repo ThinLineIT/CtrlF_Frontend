@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import MiddleButton from '../button/ButtonMiddle';
+import Button from '../button/Button';
 import styles from '../../../styles/items/modal/modal.module.css';
 import ConfirmModal from './ConfirmModal';
 import Modal from './Modal';
 
-export default function DetailModal(props) {
+export default function UpdataModal(props) {
   const { mainTitle, subTitle, type } = props.modalData;
   const [title, setTitle] = useState(''); // API에 전달하실 title
   const [reason, setReason] = useState(''); // API에 전달하실 reason
@@ -14,8 +14,8 @@ export default function DetailModal(props) {
     setIsConfirmModalOpen(true);
   };
 
-  const closeDetailModal = () => {
-    props.setIsDetailModalOpen(false);
+  const closeUpdateModal = () => {
+    props.setIsUpdateModalOpen(false);
   };
 
   const onTitlehandler = (e) => {
@@ -42,8 +42,12 @@ export default function DetailModal(props) {
             onChange={onReasonHandler}
           />
           <div className={styles.btns}>
-            <MiddleButton methods={showConfirmModal} text={'OK'} />
-            <MiddleButton methods={closeDetailModal} text={'CANCEL'} />
+            <Button methods={showConfirmModal} text={'OK'} width={'135px'} />
+            <Button
+              methods={closeUpdateModal}
+              text={'CANCEL'}
+              width={'135px'}
+            />
           </div>
         </>
       ) : (

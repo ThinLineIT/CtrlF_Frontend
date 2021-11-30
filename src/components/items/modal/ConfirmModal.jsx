@@ -1,4 +1,4 @@
-import ButtonMiddle from '../button/ButtonMiddle';
+import Button from '../button/Button';
 import styles from '../../../styles/items/modal/modal.module.css';
 
 export default function ConfirmModal({ modalData, setIsConfirmModalOpen }) {
@@ -15,11 +15,12 @@ export default function ConfirmModal({ modalData, setIsConfirmModalOpen }) {
         이름 수정이 {modalData.type} Owner에게 전달됩니다.
       </div>
       <div className={styles.btns}>
-        <ButtonMiddle
+        <Button
           text={'OK'}
           //methods={}  API 요청 함수를 넘겨주어 클릭시 API를 요청합니다.
+          width={'135px'}
         />
-        <ButtonMiddle text={'CANCEL'} methods={closeConfirmModal} />
+        <Button text={'CANCEL'} methods={closeConfirmModal} width={'135px'} />
       </div>
     </>
   );

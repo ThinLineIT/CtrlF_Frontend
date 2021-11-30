@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import DetailModal from '../../../modal/DetailModal';
+import UpdateModal from '../../../modal/UpdateModal';
 
 import styled from 'styled-components';
 import ModalPreparing from '../../../modal/modal_preparing';
@@ -18,7 +18,7 @@ export default function RightClickSpan(props) {
   const useContextMenuName = useRecoilValue(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
 
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
 
   const onModify = (e) => {
     // 기존 효범님이 작성하신 코드입니다. 잠시 주석처리해놓았습니다.
@@ -29,7 +29,7 @@ export default function RightClickSpan(props) {
     //   setShowHiddenModal(true);
     // }
 
-    setIsDetailModalOpen(true);
+    setIsUpdateModalOpen(true);
 
     // setShowMenu(false);
   };
@@ -51,10 +51,10 @@ export default function RightClickSpan(props) {
       <span onClick={onModify}>{useContextMenuName}수정 요청</span>
       <span onClick={onDelete}>삭제 요청</span>
       {showHiddenModal && <ModalPreparing />}
-      {isDetailModalOpen && (
-        <DetailModal
+      {isUpdateModalOpen && (
+        <UpdateModal
           modalData={modalData}
-          setIsDetailModalOpen={setIsDetailModalOpen}
+          setIsUpdateModalOpen={setIsUpdateModalOpen}
         />
       )}
     </ContextContainer>
