@@ -17,7 +17,7 @@ export default function NotApprovedModal(id) {
     setNotApprovedModalActive(false);
     if (nameState == '노트') {
       router.push({
-        pathname: '/note/[id]',
+        pathname: '/notes/[id]',
         query: { id: id.id },
       });
     }

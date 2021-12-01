@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import styles from '../../../styles/items/menu/dropmenu.module.css';
-const DropMenu = ({ modalMenu, setModalMenu }) => {
+import ChatBubble from '../../../../public/images/issue/dropdown/chat.svg';
+
+const DropMenu = ({ dropDownMenu, setDropDownMenu }) => {
   const menuRef = useRef(null);
   useEffect(() => {
     window.addEventListener('click', handleClickOutside);
@@ -9,12 +11,17 @@ const DropMenu = ({ modalMenu, setModalMenu }) => {
     };
   }, []);
   const handleClickOutside = ({ target }) => {
-    if (modalMenu && !menuRef.current.contains(target)) setModalMenu(false);
+    if (dropDownMenu && !menuRef.current.contains(target))
+      setDropDownMenu(false);
   };
   return (
     <div className={styles.menu} ref={menuRef}>
-      <div>이슈 수정</div>
-      <div>이슈 요청 취소</div>
+      <ChatBubble />
+      <div className={styles.menu__category}>
+        <div>내용 수정</div>
+        <hr className={styles.menu__devider} />
+        <div>요청 삭제</div>
+      </div>
     </div>
   );
 };
