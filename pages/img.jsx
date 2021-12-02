@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function Test() {
   // 임의로 작성한 파일 용량기준입니다.
-  const LIMIT = 5000000;
+  const LIMIT = 5 * 1024 * 1024;
 
   // 파일 탐색기를 찾고 업데이트 발생 시 input_update함수를 실행시킵니다.
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Test() {
   // 파일이 첨부되면 발생하는 함수 입니다.
   const attachImage = (e) => {
     uploadImage(e.target.files[0]).then((res) => {
-      imageAdding(res.data.image_url); // url이 반환됩니다.
+      insertImageUrl(res.data.image_url); // url이 반환됩니다.
     });
   };
 
@@ -27,7 +27,7 @@ export default function Test() {
     e.preventDefault();
     const { files } = e.dataTransfer;
     uploadImage(files[0]).then((res) => {
-      imageAdding(res.data.image_url);
+      insertImageUrl(res.data.image_url);
     });
   };
 
@@ -52,7 +52,7 @@ export default function Test() {
   };
 
   //editor에 url을 삽입합니다.
-  const imageAdding = (url) => {
+  const insertImageUrl = (url) => {
     const area = document.getElementById('text');
     const origin = area.value;
     const startPoint = area.selectionStart;
