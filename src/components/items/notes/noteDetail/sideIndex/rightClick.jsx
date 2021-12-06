@@ -9,6 +9,9 @@ import {
   contextMenuName,
   contextMenuState,
   contextMenuActive,
+  Pageupdate,
+  isOnEditPage,
+  ModifyPageContent,
 } from '../../../../../store/atom';
 
 export default function RightClickSpan(props) {
@@ -18,19 +21,21 @@ export default function RightClickSpan(props) {
   const useContextMenuName = useRecoilValue(contextMenuName);
   const setContextMenuStates = useSetRecoilState(contextMenuState);
 
+  const setIsOnEditor = useSetRecoilState(isOnEditPage);
+  const setAddNewContent = useSetRecoilState(Pageupdate);
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
+
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
 
   const onModify = (e) => {
-    // 기존 효범님이 작성하신 코드입니다. 잠시 주석처리해놓았습니다.
-    // if (e.target.innerText == '내용 수정') {
-    //   setShowHiddenModal(true);
-    // } else {
-    //   setContextMenuStates('이름 수정');
-    //   setShowHiddenModal(true);
-    // }
-
-    setIsUpdateModalOpen(true);
-
+    if (e.target.innerText == '내용 수정') {
+      setIsOnEditor(true);
+      setAddNewContent(true);
+      setModifyPage(true);
+      setShowMenu(false)
+    } else {      
+      setIsUpdateModalOpen(true);
+    }
     // setShowMenu(false);
   };
 
@@ -48,7 +53,7 @@ export default function RightClickSpan(props) {
 
   return (
     <ContextContainer x={props.x} y={props.y}>
-      <span onClick={onModify}>{useContextMenuName}수정 요청</span>
+      <span onClick={onModify}>{useContextMenuName}</span>
       <span onClick={onDelete}>삭제 요청</span>
       {showHiddenModal && <ModalPreparing />}
       {isUpdateModalOpen && (

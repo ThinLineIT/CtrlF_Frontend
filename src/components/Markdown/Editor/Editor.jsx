@@ -5,7 +5,7 @@ import insertTextAtCursor from 'insert-text-at-cursor';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseEditorBtns from '../../../utils/useEditorBtns';
 import { pageCreateApi } from '../../../utils/PageCreate';
-import { addNewPage, topicIndex } from '../../../store/atom';
+import { addNewPage, topicIndex,Pageupdate } from '../../../store/atom';
 
 export default function MarkdownEditor(props) {
   const [pageCreateSummary, setPageCreateSummary] = useState('');
@@ -15,7 +15,9 @@ export default function MarkdownEditor(props) {
 
   const topicId = useRecoilValue(topicIndex);
   const createPage = () => {
-    pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+    updatePage
+    ?null // 페이지 업데이트 Api
+    :pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
   };
 
   const [input, setInput] = useState('');
@@ -28,7 +30,7 @@ export default function MarkdownEditor(props) {
     event.preventDefault();
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
-  console.log(123)
+  
   const samePoint = true;
   const fistOrderBtns = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
   const allEditBtns = ['H', 'B', 'I', 'Q', 'C', 'L', 'P', 'BL', 'NL', 'TL'];
@@ -73,6 +75,7 @@ export default function MarkdownEditor(props) {
 
   const content = props.contents;
   const addNewPageContent = useRecoilValue(addNewPage);
+  const updatePage = useRecoilValue(Pageupdate);
   let previewContents = !addNewPageContent
     ? input == null
       ? content
@@ -81,6 +84,7 @@ export default function MarkdownEditor(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    updatePage?setInput(content):null
   }, []);
   const WRITE_OR_PREVIEW = ['Write', 'Preview'];
   return (
@@ -88,7 +92,7 @@ export default function MarkdownEditor(props) {
       <button onClick={createPage}>페이지 생성하기</button>
       <textarea
         type="text"
-        placeholder="summary"
+        placeholder={updatePage? "resaon":"summary"}
         onChange={onPageSummaryHandler}
         className={styles.users_summary}
       />
@@ -127,7 +131,7 @@ export default function MarkdownEditor(props) {
               className={styles.users_textarea}
               onChange={(event) => saveContents(event.target.value)}
             >
-              {addNewPageContent ? null : content}
+            
             </textarea>
           </>
         ) : (
