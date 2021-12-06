@@ -28,7 +28,7 @@ export default function MarkdownEditor(props) {
     event.preventDefault();
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
-
+  console.log(123)
   const samePoint = true;
   const fistOrderBtns = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
   const allEditBtns = ['H', 'B', 'I', 'Q', 'C', 'L', 'P', 'BL', 'NL', 'TL'];
