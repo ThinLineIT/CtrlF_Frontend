@@ -1,7 +1,6 @@
 import ButtonIcon from './ButtonIcon/ButtonIcon';
 import styles from '../../../styles/markdown/Editor.module.css';
 import BtnsDict from '../../../utils/useEditorBtns';
-import UseButton from '../../../utils/useButtons';
 
 function EditorBtnItem({ icon, saveContents, inputRef }) {
   const btnsObj = new BtnsDict();
@@ -10,8 +9,7 @@ function EditorBtnItem({ icon, saveContents, inputRef }) {
     if (key === 'Image') {
       inputRef.current.click();
     }
-    const TextArea = document.getElementById('textarea');
-    return btnsObj.useElement(key, TextArea, saveContents);
+    return btnsObj.useElement(key, saveContents);
   };
 
   return (

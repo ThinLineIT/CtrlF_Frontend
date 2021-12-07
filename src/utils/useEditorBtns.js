@@ -66,35 +66,35 @@ class BtnsDict {
     return varBtn;
   }
 
-  useElement(key, textarea, saveFunc) {
+  useElement(key, saveFunc) {
     const samePoint = true;
-    const TextArea = textarea;
+    const TextArea = document.getElementById('textarea');
     const origin = TextArea.value;
     const selectStart = TextArea.selectionStart;
     const selectEnd = TextArea.selectionEnd;
     const selectedText = TextArea.value.substring(selectStart, selectEnd);
 
-    let keyBtn = this.useEditorBtns(key);
+    let formatText = this.useEditorBtns(key);
     if (selectStart == selectEnd) {
-      keyBtn = this.useEditorBtns(key, samePoint);
+      formatText = this.useEditorBtns(key, samePoint);
       TextArea.value =
         origin.substr(0, selectStart) +
-        keyBtn +
+        formatText +
         selectedText +
         origin.substr(selectEnd);
     } else {
       if (BtnsDict.NON_MAPPING_BTNS.includes(key)) {
         TextArea.value =
           origin.substr(0, selectStart) +
-          keyBtn +
+          formatText +
           selectedText +
           origin.substr(selectEnd);
       } else {
         TextArea.value =
           origin.substr(0, selectStart) +
-          keyBtn +
+          formatText +
           selectedText +
-          keyBtn +
+          formatText +
           origin.substr(selectEnd);
         if (key === 'CodeBlock') {
           let firstKey = '```\n';
