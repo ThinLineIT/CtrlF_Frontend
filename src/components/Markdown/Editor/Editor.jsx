@@ -1,14 +1,17 @@
-import axios from 'axios';
 import { useRecoilValue } from 'recoil';
 import Renderer from '../Renderer/Renderer';
-import { useState, useEffect } from 'react';
-import BtnsDict from '../../../utils/useEditorBtns';
+import EditorBtnItem from './EditorBtnItem';
+import { useState, useEffect, useRef } from 'react';
+import { EDIT_BTNS } from '../../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../../utils/PageCreate';
 import { addNewPage, topicIndex } from '../../../store/atom';
 import styles from '../../../styles/markdown/Editor.module.css';
+import UseImageUploader from '../../../utils/useImageUploader';
 
 export default function MarkdownEditor(props) {
+  const inputRef = useRef();
+
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
@@ -30,58 +33,18 @@ export default function MarkdownEditor(props) {
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
 
-  const btnsObj = new BtnsDict();
-  const addFuncButtons = (event, key) => {
-    event.preventDefault();
-    const TextArea = document.getElementById('textarea');
-    return btnsObj.useElement(TextArea, saveContents, key);
-  };
-
   const input_update = (e) => {
-    getUrl(e.target.files[0]).then((res) => {
-      imgAdding(res.data.image_url);
+    UseImageUploader.getUrl(e.target.files[0]).then((res) => {
+      UseImageUploader.imgAdding(res.data.image_url, saveContents);
     });
-  };
-
-  const getUrl = async (file) => {
-    if (file && file.size < 5000000) {
-      const body = new FormData();
-      body.append('image', file);
-      const result = await axios({
-        method: 'post',
-        url: `${
-          process.env.NODE_ENV === 'development'
-            ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
-            : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-        }actions/images/`,
-        data: body,
-      })
-        .then((res) => res)
-        .catch((err) => err);
-      return result;
-    } else alert('파일 용량 초과');
   };
 
   const dropImg = (e) => {
     e.preventDefault();
     const { files } = e.dataTransfer;
-    getUrl(files[0]).then((res) => {
-      imgAdding(res.data.image_url);
+    UseImageUploader.getUrl(files[0]).then((res) => {
+      UseImageUploader.imgAdding(res.data.image_url, saveContents);
     });
-  };
-
-  const imgAdding = (url) => {
-    const TextArea = document.getElementById('textarea');
-    const origin = TextArea.value;
-    const sStart = TextArea.selectionStart;
-    const sEnd = TextArea.selectionEnd;
-
-    TextArea.value =
-      origin.substring(0, sStart) +
-      `![img](${url})` +
-      origin.substring(sEnd, origin.length);
-    saveContents(TextArea.value);
-    TextArea.focus();
   };
 
   const useTab = (e) => {
@@ -101,9 +64,6 @@ export default function MarkdownEditor(props) {
       : input
     : input;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   useEffect(() => {
     const input_file = document.getElementById('img-upload');
     input_file.addEventListener('change', input_update);
@@ -136,16 +96,22 @@ export default function MarkdownEditor(props) {
             ))}
           </span>
           <div className={styles.buttonsContainer}>
-            {btnsObj.ALL_EDIT_BTNS.map((button, i) => (
-              <button
-                key={i}
-                className={styles.btn}
-                onClick={(e) => addFuncButtons(e, button)}
-              >
-                {button}
-              </button>
+            {EDIT_BTNS.map((button, index) => (
+              <EditorBtnItem
+                key={index}
+                icon={button}
+                saveContents={saveContents}
+                inputRef={inputRef}
+              />
             ))}
-            <input type="file" id="img-upload" />
+            <input
+              ref={inputRef}
+              type="file"
+              name="file"
+              accept="image/*"
+              id="img-upload"
+              className={styles.img_upload}
+            />
           </div>
         </div>
         {!preview ? (
