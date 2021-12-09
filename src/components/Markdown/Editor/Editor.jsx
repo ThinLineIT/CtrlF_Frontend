@@ -1,13 +1,17 @@
 import { useRecoilValue } from 'recoil';
 import Renderer from '../Renderer/Renderer';
-import { useState, useEffect } from 'react';
+import EditorBtnItem from './EditorBtnItem';
+import { useState, useEffect, useRef } from 'react';
+import { EDIT_BTNS } from '../../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
-import styles from '../../../styles/markdown/Editor.module.css';
-import UseEditorBtns from '../../../utils/useEditorBtns';
 import { pageCreateApi } from '../../../utils/PageCreate';
 import { addNewPage, topicIndex } from '../../../store/atom';
+import styles from '../../../styles/markdown/Editor.module.css';
+import UseImageUploader from '../../../utils/useImageUploader';
 
 export default function MarkdownEditor(props) {
+  const inputRef = useRef();
+
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
@@ -29,38 +33,18 @@ export default function MarkdownEditor(props) {
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
 
-  const samePoint = true;
-  const fistOrderBtns = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
-  const allEditBtns = ['H', 'B', 'I', 'Q', 'C', 'L', 'P', 'BL', 'NL', 'TL'];
-  const addFuncButtons = (event, key) => {
-    event.preventDefault();
-    const TextArea = document.getElementById('textarea');
-    const sStart = TextArea.selectionStart;
-    const sEnd = TextArea.selectionEnd;
-    const selectedText = TextArea.value.substring(sStart, sEnd);
+  const input_update = (e) => {
+    UseImageUploader.getUrl(e.target.files[0]).then((res) => {
+      UseImageUploader.imgAdding(res.data.image_url, saveContents);
+    });
+  };
 
-    let varBtn = UseEditorBtns(key);
-    if (sStart == sEnd) {
-      varBtn = UseEditorBtns(key, samePoint);
-      insertTextAtCursor(TextArea, varBtn);
-    } else {
-      if (fistOrderBtns.includes(key)) {
-        TextArea.value =
-          TextArea.value.substr(0, sStart) +
-          varBtn +
-          selectedText +
-          TextArea.value.substr(sEnd);
-      } else {
-        TextArea.value =
-          TextArea.value.substr(0, sStart) +
-          varBtn +
-          selectedText +
-          varBtn +
-          TextArea.value.substr(sEnd);
-      }
-      saveContents(TextArea.value);
-    }
-    TextArea.focus();
+  const dropImg = (e) => {
+    e.preventDefault();
+    const { files } = e.dataTransfer;
+    UseImageUploader.getUrl(files[0]).then((res) => {
+      UseImageUploader.imgAdding(res.data.image_url, saveContents);
+    });
   };
 
   const useTab = (e) => {
@@ -72,6 +56,7 @@ export default function MarkdownEditor(props) {
   };
 
   const content = props.contents;
+  const WRITE_OR_PREVIEW = ['Write', 'Preview'];
   const addNewPageContent = useRecoilValue(addNewPage);
   let previewContents = !addNewPageContent
     ? input == null
@@ -80,9 +65,14 @@ export default function MarkdownEditor(props) {
     : input;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const input_file = document.getElementById('img-upload');
+    input_file.addEventListener('change', input_update);
+
+    return () => {
+      input_file.removeEventListener('change', input_update);
+    };
   }, []);
-  const WRITE_OR_PREVIEW = ['Write', 'Preview'];
+
   return (
     <form className={styles.editor_wrap}>
       <button onClick={createPage}>페이지 생성하기</button>
@@ -106,21 +96,29 @@ export default function MarkdownEditor(props) {
             ))}
           </span>
           <div className={styles.buttonsContainer}>
-            {allEditBtns.map((button, i) => (
-              <button
-                key={i}
-                className={styles.btn}
-                onClick={(e) => addFuncButtons(e, button)}
-              >
-                {button}
-              </button>
+            {EDIT_BTNS.map((button, index) => (
+              <EditorBtnItem
+                key={index}
+                icon={button}
+                saveContents={saveContents}
+                inputRef={inputRef}
+              />
             ))}
+            <input
+              ref={inputRef}
+              type="file"
+              name="file"
+              accept="image/*"
+              id="img-upload"
+              className={styles.img_upload}
+            />
           </div>
         </div>
         {!preview ? (
           <>
             <textarea
               id="textarea"
+              onDrop={dropImg}
               value={input}
               onKeyDown={useTab}
               placeholder="page content"
