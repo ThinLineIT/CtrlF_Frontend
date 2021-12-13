@@ -5,13 +5,10 @@ import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../../utils/PageCreate';
-<<<<<<< HEAD
-import { addNewPage, topicIndex,pageupdate } from '../../../store/atom';
-=======
-import { addNewPage, topicIndex } from '../../../store/atom';
+import { addNewPage, topicIndex ,pageupdate} from '../../../store/atom';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseImageUploader from '../../../utils/useImageUploader';
->>>>>>> dev
+
 
 export default function MarkdownEditor(props) {
   const inputRef = useRef();
@@ -41,25 +38,14 @@ export default function MarkdownEditor(props) {
     event.preventDefault();
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
-<<<<<<< HEAD
-  
-  const samePoint = true;
-  const fistOrderBtns = ['H', 'Q', 'L', 'P', 'BL', 'NL', 'TL'];
-  const allEditBtns = ['H', 'B', 'I', 'Q', 'C', 'L', 'P', 'BL', 'NL', 'TL'];
-  const addFuncButtons = (event, key) => {
-    event.preventDefault();
-    const TextArea = document.getElementById('textarea');
-    const sStart = TextArea.selectionStart;
-    const sEnd = TextArea.selectionEnd;
-    const selectedText = TextArea.value.substring(sStart, sEnd);
-=======
+
 
   const input_update = (e) => {
     UseImageUploader.getUrl(e.target.files[0]).then((res) => {
       UseImageUploader.imgAdding(res.data.image_url, saveContents);
     });
   };
->>>>>>> dev
+
 
   const dropImg = (e) => {
     e.preventDefault();
@@ -88,17 +74,16 @@ export default function MarkdownEditor(props) {
     : input;
 
   useEffect(() => {
-<<<<<<< HEAD
-    window.scrollTo(0, 0);
+
     updatePage? setInput(content): null
-=======
+
     const input_file = document.getElementById('img-upload');
     input_file.addEventListener('change', input_update);
 
     return () => {
       input_file.removeEventListener('change', input_update);
     };
->>>>>>> dev
+
   }, []);
 
   return (
