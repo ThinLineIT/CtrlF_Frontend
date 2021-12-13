@@ -44,8 +44,6 @@ export default function RightClickSpan({
     setShowPreparingModal(true);
   };
 
-  // 이 객체를 만드는 과정은 추후 따로 분리하는 작업을 거칠 예정입니다.
-
   return (
     <ContextContainer x={x} y={y}>
       <span onClick={onModify}>{useContextMenuName}</span>
