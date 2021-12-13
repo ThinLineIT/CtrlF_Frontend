@@ -9,7 +9,7 @@ import {
   contextMenuName,
   contextMenuState,
   contextMenuActive,
-  Pageupdate,
+  pageupdate,
   isOnEditPage,
   ModifyPageContent,
 } from '../../../../../store/atom';
@@ -22,7 +22,7 @@ export default function RightClickSpan(props) {
   const setContextMenuStates = useSetRecoilState(contextMenuState);
 
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
-  const setAddNewContent = useSetRecoilState(Pageupdate);
+  const setAddNewContent = useSetRecoilState(pageupdate);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.

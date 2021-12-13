@@ -5,7 +5,7 @@ import insertTextAtCursor from 'insert-text-at-cursor';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseEditorBtns from '../../../utils/useEditorBtns';
 import { pageCreateApi } from '../../../utils/PageCreate';
-import { addNewPage, topicIndex,Pageupdate } from '../../../store/atom';
+import { addNewPage, topicIndex,pageupdate } from '../../../store/atom';
 
 export default function MarkdownEditor(props) {
   const [pageCreateSummary, setPageCreateSummary] = useState('');
@@ -14,10 +14,13 @@ export default function MarkdownEditor(props) {
   };
 
   const topicId = useRecoilValue(topicIndex);
-  const createPage = () => {
-    updatePage
-    ?null // 페이지 업데이트 Api
-    :pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+  
+  const pageSubmit = () => {
+    if(updatePage){
+      null // 페이지 업데이트 Api
+    }else if(addNewPageContent){
+      pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+    }  
   };
 
   const [input, setInput] = useState('');
@@ -75,7 +78,7 @@ export default function MarkdownEditor(props) {
 
   const content = props.contents;
   const addNewPageContent = useRecoilValue(addNewPage);
-  const updatePage = useRecoilValue(Pageupdate);
+  const updatePage = useRecoilValue(pageupdate);
   let previewContents = !addNewPageContent
     ? input == null
       ? content
@@ -84,12 +87,12 @@ export default function MarkdownEditor(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    updatePage?setInput(content):null
+    updatePage? setInput(content): null
   }, []);
   const WRITE_OR_PREVIEW = ['Write', 'Preview'];
   return (
     <form className={styles.editor_wrap}>
-      <button onClick={createPage}>페이지 생성하기</button>
+      <button onClick={pageSubmit}>페이지 생성하기</button>
       <textarea
         type="text"
         placeholder={updatePage? "resaon":"summary"}
