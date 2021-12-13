@@ -5,7 +5,6 @@ import styles from '../../../../../styles/items/notes/noteDetail/detail_contents
 import {
   okBtnActive,
   isOnEditPage,
-  preparingModal,
   isPageApproved,
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
@@ -45,10 +44,8 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
-  const setShowHiddenModal = useSetRecoilState(preparingModal);
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
-    setShowHiddenModal(true);
   };
 
   const modifyPage = useRecoilValue(ModifyPageContent);
@@ -61,6 +58,7 @@ const MainContentsTopBar = (props) => {
       <section className={`${styles.info_item} ${getStyles(isOnEditor)}`}>
         {modifyPage ? (
           <input
+            type="text"
             className={styles.info_item_page}
             onChange={onPageTitlehandler}
             placeholder="TITLE"

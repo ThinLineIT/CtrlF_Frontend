@@ -10,7 +10,7 @@ import {
   topicName,
   pageContent,
   isOnEditPage,
-  preparingModal,
+  isModalActive,
   ModifyPageContent,
 } from '../../../../../store/atom';
 
@@ -25,7 +25,7 @@ export default function DetailContents() {
   const topicTitle = useRecoilValue(topicName);
   const pagesContent = useRecoilValue(pageContent);
   const [pageCreateTitle, setPageCreateTitle] = useState('');
-  const showHiddenModal = useRecoilValue(preparingModal);
+  const showHiddenModal = useRecoilValue(isModalActive);
 
   return (
     <section className={styles.content}>
@@ -37,9 +37,12 @@ export default function DetailContents() {
       </article>
       <MainContentsTopBar setPageCreateTitle={setPageCreateTitle} />
       {modifyPage ? (
-        <Editor contents={pagesContent} pageCreateTitle={pageCreateTitle} />
+        <Editor
+          contents={pagesContent ?? ''}
+          pageCreateTitle={pageCreateTitle}
+        />
       ) : (
-        <Renderer contents={pagesContent} />
+        <Renderer contents={pagesContent ?? ''} />
       )}
       {showHiddenModal && <IssueCreateModal modalObj={modalObj} isCreatePage />}
     </section>

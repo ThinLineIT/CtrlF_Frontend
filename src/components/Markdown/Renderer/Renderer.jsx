@@ -32,6 +32,7 @@ export default function Renderer(props) {
 }
 
 const MarkDownStyle = styled.div`
+  word-break: break-all;
   margin: 2.8em 1.5em;
 `;
 
