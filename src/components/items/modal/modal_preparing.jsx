@@ -3,7 +3,7 @@ import { preparingModal } from '../../../store/atom';
 import styles from '../../../styles/items/modal/modal_preparing.module.css';
 
 export default function ModalPreparing() {
-  const setModalHidden = useSetRecoilState(preparingModal);
+  const setShowPreparingModal = useSetRecoilState(preparingModal);
 
   return (
     <div className={styles.notes_modal}>
@@ -13,7 +13,7 @@ export default function ModalPreparing() {
           <div className={styles.btn}>
             <button
               className={styles.ok_button}
-              onClick={() => setModalHidden(false)}
+              onClick={() => setShowPreparingModal(false)}
             >
               확인
             </button>

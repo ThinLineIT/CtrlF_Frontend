@@ -192,7 +192,7 @@ export const contextMenuState = atom({
 
 export const contextMenuName = atom({
   key: 'context_menu_name', // context_menu 이름 수정 or 내용 수정
-  default: '',
+  default: '이름 수정',
 });
 
 export const modalName = atom({
@@ -337,6 +337,11 @@ export const issueDetailTopicId = atom({
 export const issueDetailPageId = atom({
   key: 'issue_detail_page_id',
   default: '',
+});
+
+export const issueDetailPageVersion_no = atom({
+  key: 'issue_detail_page_version_no',
+  default: null,
 });
 export const setTimer = atom({
   key: 'setTimer',
