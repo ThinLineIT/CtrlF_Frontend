@@ -12,7 +12,7 @@ import UseImageUploader from '../../../utils/useImageUploader';
 
 export default function MarkdownEditor(props) {
   const inputRef = useRef();
-
+  console.log(props)
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);

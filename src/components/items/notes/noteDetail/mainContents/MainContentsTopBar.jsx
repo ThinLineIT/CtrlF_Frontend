@@ -45,10 +45,7 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
-<<<<<<< HEAD
-  const setShowHiddenModal = useSetRecoilState(isModalActive);
-=======
->>>>>>> dev
+
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
   };

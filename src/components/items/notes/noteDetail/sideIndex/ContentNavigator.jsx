@@ -53,23 +53,14 @@ export default function ContentNavigator() {
   const [previousTitle, setPreviousTitle] = useState('');
 
   const handleContext = (event, id) => {
-    event.preventDefault();
-<<<<<<< HEAD
-    if (!modalToggle) {
-      event.target.id.match('page')
-      ?setcontextMenuName('내용 수정')
-      :setcontextMenuName('이름 수정')
-      setShowMenu(true);
-      setModalToggle(true);
-    } else {
-      setShowMenu(false);
-      setModalToggle(false);
-    }
-=======
+    event.preventDefault(); 
+    event.target.id.match('page')
+    ?setcontextMenuName('내용 수정')
+    :setcontextMenuName('이름 수정')
     setTopicId(id);
-    setPreviousTitle(event.target.innerHTML);
+    setPreviousTitle(event.target.innerHTML);  
     showMenu ? setShowMenu(false) : setShowMenu(true);
->>>>>>> dev
+
     setXPos(`${event.pageX + 5}px`);
     setYPos(`${event.pageY - 115}px`);
   };
