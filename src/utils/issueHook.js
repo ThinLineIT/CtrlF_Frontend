@@ -31,7 +31,7 @@ export const issueDetailApi = async (id) => {
 
 export const issueApproveApi = async (id) => {
   const data = {
-    issuId: id,
+    issue_id: id,
   };
   let headers = Cookies.get('token');
   const request = await axios({
@@ -46,7 +46,7 @@ export const issueApproveApi = async (id) => {
     },
     data: data,
   })
-    .then((res) => res.response)
+    .then((res) => res)
     .catch((err) => err.response);
   return request;
 };
