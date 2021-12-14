@@ -1,33 +1,54 @@
 import { useState } from 'react';
-import UpdateModal from '../../../modal/UpdateModal';
-
 import styled from 'styled-components';
+import DetailModal from '../../../modal/DetailModal';
 import ModalPreparing from '../../../modal/modal_preparing';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import {
   preparingModal,
   contextMenuName,
+<<<<<<< HEAD
   contextMenuState,
   contextMenuActive,
   pageupdate,
   isOnEditPage,
+=======
+  addNewPage,
+>>>>>>> dev
   ModifyPageContent,
 } from '../../../../../store/atom';
 
-export default function RightClickSpan(props) {
-  const [showHiddenModal, setShowHiddenModal] = useRecoilState(preparingModal);
-
-  const setShowMenu = useSetRecoilState(contextMenuActive);
+export default function RightClickSpan({
+  previosTitle,
+  noteId,
+  NOTE,
+  x,
+  y,
+  topicId,
+}) {
   const useContextMenuName = useRecoilValue(contextMenuName);
-  const setContextMenuStates = useSetRecoilState(contextMenuState);
+  const [showPreparingModal, setShowPreparingModal] =
+    useRecoilState(preparingModal);
 
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
+
+<<<<<<< HEAD
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setAddNewContent = useSetRecoilState(pageupdate);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
+=======
+  let modalData = {
+    mainTitle: `${NOTE ? '노트' : '토픽'} 이름 수정 요청`,
+    previosTitle: previosTitle,
+    status: NOTE ? 'Note' : 'Topic',
+  };
+>>>>>>> dev
 
+  const setModifyPage = useSetRecoilState(ModifyPageContent);
+  const setAddNewPageContent = useSetRecoilState(addNewPage);
   const onModify = (e) => {
+<<<<<<< HEAD
     if (e.target.innerText == '내용 수정') {
       setIsOnEditor(true);
       setAddNewContent(true);
@@ -37,35 +58,39 @@ export default function RightClickSpan(props) {
       setIsUpdateModalOpen(true);
     }
     // setShowMenu(false);
+=======
+    // if (e.target.innerHTML === '내용 수정') {
+    // setAddNewPageContent(false);
+    // setModifyPage(true);
+    // }
+    setIsDetailModalOpen(true);
+>>>>>>> dev
   };
 
   const onDelete = () => {
-    setShowMenu(false);
-    setShowHiddenModal(true);
-  };
-
-  // 이 객체를 만드는 과정은 추후 따로 분리하는 작업을 거칠 예정입니다.
-  const modalData = {
-    mainTitle: '노트 수정 요청',
-    subTitle: props.noteTitle, // props.noteTitle를 previosTitle로 바꿀 수 있도록 topic의 title을 넘겨주세요
-    type: 'Note', // 우클릭으로 누르는 영역에 따라서 타입값을 전달할 수 있도록 값을 바꿔주세요 ex) note에서 우클릭시 type: "Note"이 전달될 수 있도록
+    setShowPreparingModal(true);
   };
 
   return (
+<<<<<<< HEAD
     <ContextContainer x={props.x} y={props.y}>
+=======
+    <ContextContainer x={x} y={y}>
+>>>>>>> dev
       <span onClick={onModify}>{useContextMenuName}</span>
       <span onClick={onDelete}>삭제 요청</span>
-      {showHiddenModal && <ModalPreparing />}
-      {isUpdateModalOpen && (
-        <UpdateModal
+      {showPreparingModal && <ModalPreparing />}
+      {isDetailModalOpen && (
+        <DetailModal
+          noteId={noteId}
+          topicId={topicId}
           modalData={modalData}
-          setIsUpdateModalOpen={setIsUpdateModalOpen}
+          setIsDetailModalOpen={setIsDetailModalOpen}
         />
       )}
     </ContextContainer>
   );
 }
-
 const ContextContainer = styled.div`
   z-index: 1;
   position: absolute;
@@ -83,14 +108,12 @@ const ContextContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-
   & > span {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 10px;
     border-radius: 5px;
-
     &:hover {
       background-color: #b5bdff;
     }

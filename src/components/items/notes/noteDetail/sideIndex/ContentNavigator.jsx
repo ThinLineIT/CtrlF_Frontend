@@ -20,15 +20,13 @@ import {
   isApprovedModal,
   modalUtilsSyntax,
   ModifyPageContent,
-  contextMenuActive,
   firstVisiblePageTitle,
   contextMenuName,
 } from '../../../../../store/atom';
 
 export default function ContentNavigator() {
   const pageRef = useRef();
-  const [modalToggle, setModalToggle] = useState(false);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const [showMenu, setShowMenu] = useState(false);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
@@ -52,8 +50,11 @@ export default function ContentNavigator() {
   const [pageData, setPageData] = useRecoilState(pageDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
-  const useContextMenu = (event) => {
+  const [previousTitle, setPreviousTitle] = useState('');
+
+  const handleContext = (event, id) => {
     event.preventDefault();
+<<<<<<< HEAD
     if (!modalToggle) {
       event.target.id.match('page')
       ?setcontextMenuName('내용 수정')
@@ -64,18 +65,28 @@ export default function ContentNavigator() {
       setShowMenu(false);
       setModalToggle(false);
     }
+=======
+    setTopicId(id);
+    setPreviousTitle(event.target.innerHTML);
+    showMenu ? setShowMenu(false) : setShowMenu(true);
+>>>>>>> dev
     setXPos(`${event.pageX + 5}px`);
     setYPos(`${event.pageY - 115}px`);
   };
 
   const showPageList = async (data) => {
     let [id, title, status, convention] = data;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
     }
 
-    const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    const API_URL_PG = `${
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+    }topics/${id}/pages`;
     await Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
       const { title, content, is_approved } = data[0];
@@ -89,7 +100,6 @@ export default function ContentNavigator() {
       }
     });
     setNowTopicIndex(id);
-    window.scrollTo(0, 0);
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
@@ -104,6 +114,7 @@ export default function ContentNavigator() {
 
   const showPageContent = (data) => {
     let [issueId, title, content, status, convention] = data;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
@@ -114,7 +125,6 @@ export default function ContentNavigator() {
     setPageContent(content);
     closeContextMenu();
     setIssueId(issueId);
-    window.scrollTo(0, 0);
   };
 
   const ifNotApprovedClicked = (convention) => {
@@ -130,8 +140,7 @@ export default function ContentNavigator() {
   };
 
   const closeContextMenu = () => {
-    setShowMenu(false);
-    setModalToggle(false);
+    if (showMenu) setShowMenu(false);
   };
 
   useEffect(() => {
@@ -160,9 +169,9 @@ export default function ContentNavigator() {
                     const data = [id, title, is_approved, 'topic'];
                     showPageList(data);
                   }}
-                  onContextMenu={useContextMenu}
+                  onContextMenu={(event) => handleContext(event, id)}
                 >
-                  {title}
+                  {title ?? null}
                 </li>
               );
             })}
@@ -182,15 +191,22 @@ export default function ContentNavigator() {
                   const data = [issue_id, title, content, is_approved, 'page'];
                   showPageContent(data);
                 }}
-                onContextMenu={useContextMenu}
+                onContextMenu={handleContext}
               >
-                {title}
+                {title ?? null}
               </li>
             );
           })}
         </ul>
       </div>
-      {showMenu && <RightClickSpan x={xPos} y={yPos} />}
+      {showMenu && (
+        <RightClickSpan
+          previosTitle={previousTitle}
+          x={xPos}
+          y={yPos}
+          topicId={topicId}
+        />
+      )}
       {notApprovedModalActive && <NotApprovedModal />}
     </section>
   );

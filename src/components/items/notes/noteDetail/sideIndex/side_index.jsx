@@ -8,13 +8,11 @@ import {
   menuPageX,
   menuPageY,
   detailTitle,
-  contextMenuActive,
   ModifyPageContent,
 } from '../../../../../store/atom';
 
 export default function SideIndex({ noteId }) {
-  const [modalToggle, setModalToggle] = useState(false);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const [showMenu, setShowMenu] = useState(false);
 
   const noteTitle = useRecoilValue(detailTitle);
   const [xPos, setXPos] = useRecoilState(menuPageX);
@@ -23,19 +21,13 @@ export default function SideIndex({ noteId }) {
 
   const onRightClick = (e) => {
     e.preventDefault();
-    if (!modalToggle) {
-      setShowMenu(true);
-      setModalToggle(true);
-    } else {
-      setShowMenu(false);
-      setModalToggle(false);
-    }
+    showMenu ? setShowMenu(false) : setShowMenu(true);
     setXPos(`${e.pageX + 5}px`);
     setYPos(`${e.pageY - 115}px`);
   };
 
   const closeContextMenu = () => {
-    setShowMenu(false);
+    if (showMenu) setShowMenu(false);
     setModifyPage(false);
   };
 
@@ -48,14 +40,22 @@ export default function SideIndex({ noteId }) {
             onContextMenu={onRightClick}
             onClick={closeContextMenu}
           >
-            {noteTitle}
+            {noteTitle ?? null}
           </span>
         </section>
         <section className={styles.index_list_wrap}>
           <ContentNavigator />
           <AddBtn noteId={noteId} />
         </section>
-        {showMenu && <RightClickSpan noteTitle={noteTitle} x={xPos} y={yPos} />}
+        {showMenu && (
+          <RightClickSpan
+            previosTitle={noteTitle}
+            x={xPos}
+            y={yPos}
+            noteId={noteId}
+            NOTE
+          />
+        )}
       </article>
     </aside>
   );
