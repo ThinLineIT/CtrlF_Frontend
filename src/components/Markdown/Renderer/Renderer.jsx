@@ -4,6 +4,7 @@ import emoji from 'remark-emoji';
 import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import Image from 'next/image';
 import styles from '../../../styles/markdown/Renderer.module.css';
 import 'github-markdown-css/github-markdown.css';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -12,28 +13,36 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 export default function Renderer(props) {
   const content = props.contents;
   return (
-    <div>
-      <section className={styles.appContainer}>
-        <article className={styles.mdContainer}>
-          <MarkDownStyle>
-            <ReactMarkdown
-              renderers={renderers}
-              className="markdown-body"
-              rehypePlugins={[rehypeRaw]}
-              plugins={[gfm, emoji, toc]}
-            >
-              {`${content}`}
-            </ReactMarkdown>
-          </MarkDownStyle>
-        </article>
-      </section>
-    </div>
+    <section className={styles.appContainer}>
+      <article className={styles.mdContainer}>
+        <MarkDownStyle>
+          <ReactMarkdown
+            renderers={renderers}
+            className="markdown-body"
+            rehypePlugins={[rehypeRaw]}
+            plugins={[gfm, emoji, toc]}
+          >
+            {`${content}`}
+          </ReactMarkdown>
+        </MarkDownStyle>
+      </article>
+    </section>
   );
 }
 
 const MarkDownStyle = styled.div`
-  word-break: break-all;
+  & > pre {
+    word-break: break-all;
+    overflow: hidden;
+  }
   margin: 2.8em 1.5em;
+  display: block;
+
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition-delay: 500ms;
 `;
 
 function flatten(text, child) {
@@ -53,6 +62,11 @@ function headingRenderer({ level, children }) {
   return header;
 }
 
+export const ImageBlock = (props) => {
+  const { src } = props;
+  return <Image src={src} alt={src} width={477} />;
+};
+
 const renderers = {
   code: ({ language, value }) => {
     return (
@@ -62,4 +76,5 @@ const renderers = {
     );
   },
   heading: headingRenderer,
+  image: ({ src }) => <ImageBlock src={src} />,
 };

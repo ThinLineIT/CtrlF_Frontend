@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
+  topicName,
   okBtnActive,
   isOnEditPage,
   isPageApproved,
@@ -52,6 +53,7 @@ const MainContentsTopBar = (props) => {
   const isOnEditor = useRecoilValue(isOnEditPage);
   const isPageApprove = useRecoilValue(isPageApproved);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
+  const topicTitle = useRecoilValue(topicName);
 
   return (
     <article className={styles.topBar}>
