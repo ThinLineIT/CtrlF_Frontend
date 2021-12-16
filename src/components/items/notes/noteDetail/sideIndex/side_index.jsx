@@ -22,8 +22,8 @@ export default function SideIndex({ noteId }) {
   const onRightClick = (e) => {
     e.preventDefault();
     showMenu ? setShowMenu(false) : setShowMenu(true);
-    setXPos(`${e.pageX + 5}px`);
-    setYPos(`${e.pageY - 115}px`);
+    setXPos(`${e.screenX + 5}px`);
+    setYPos(`${e.screenY - 115}px`);
   };
 
   const closeContextMenu = () => {

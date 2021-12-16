@@ -59,8 +59,8 @@ export default function ContentNavigator() {
     setTopicId(id);
     setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
-    setXPos(`${event.pageX + 5}px`);
-    setYPos(`${event.pageY - 115}px`);
+    setXPos(`${event.screenX + 5}px`);
+    setYPos(`${event.screenY - 115}px`);
   };
 
   const showPageList = async (data) => {
