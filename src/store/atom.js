@@ -148,6 +148,11 @@ export const isOnEditPage = atom({
   default: false,
 });
 
+export const pageupdate = atom({
+  key: 'page_update',
+  default: false,
+});
+
 // 모달 컴포넌트 & contextMenu
 
 export const isApprovedModal = atom({

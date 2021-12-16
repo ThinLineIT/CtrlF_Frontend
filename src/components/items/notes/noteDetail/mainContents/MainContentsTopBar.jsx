@@ -9,6 +9,7 @@ import {
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
+  isModalActive,
 } from '../../../../../store/atom';
 
 const MainContentsTopBar = (props) => {
@@ -44,6 +45,7 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
+
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
   };
