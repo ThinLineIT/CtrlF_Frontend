@@ -15,6 +15,7 @@ import AuthCode from '../src/components/register/AuthCode';
 import styles from '../src/styles/Register.module.css';
 import ReAuthentication from '../src/components/register/ReAuthentication';
 import { useRef, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 export default function Register() {
   const modalRef = useRef(null);
@@ -32,6 +33,7 @@ export default function Register() {
       nickNameReset('');
       passwordReset('');
       passwordCehckReset('');
+      Cookies.remove('signing_token');
     };
   }, []);
 

@@ -52,6 +52,7 @@ export default function Timer({ email, register }) {
       setIsTimerStarted([]);
     }
     return () => {
+      console.log('aa여기는 2');
       clearInterval(timeRef.current);
     };
   }, [timerStart]);
@@ -62,9 +63,6 @@ export default function Timer({ email, register }) {
       setSecond('만료');
       clearInterval(timeRef.current);
     }
-    return () => {
-      clearInterval(timeRef.current);
-    };
   }, [second]);
 
   return (
