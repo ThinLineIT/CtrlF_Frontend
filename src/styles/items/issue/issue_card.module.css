@@ -33,6 +33,11 @@
   font-weight: bold;
   position: absolute;
   color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 13px;
+  width: 80%;
 }
 
 .card_hover {
