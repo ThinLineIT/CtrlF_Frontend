@@ -4,7 +4,7 @@ import {
 } from '../../store/atom';
 import { useRecoilState } from 'recoil';
 import { emailReg } from '../../utils/Reg';
-import { overlapApi } from '../../utils/SignUpHook';
+import { overlapApi, emailAuthApi } from '../../utils/SignUpHook';
 import { useState } from 'react';
 import errorStyling from '../../utils/ErrorStyling';
 import Cookies from 'js-cookie';
