@@ -48,11 +48,8 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
-<<<<<<< HEAD
   const [modalActive, setModaActive] = useRecoilState(isModalActive);
-=======
 
->>>>>>> f2dde89ef619fae577537704092a5b5e5a69830d
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
     setModaActive(true);
