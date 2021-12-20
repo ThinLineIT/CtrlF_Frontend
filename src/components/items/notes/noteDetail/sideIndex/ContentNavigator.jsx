@@ -26,6 +26,7 @@ import {
   modalUtilsSyntax,
   ModifyPageContent,
   firstVisiblePageTitle,
+  contextMenuName,
 } from '../../../../../store/atom';
 
 export default function ContentNavigator() {
@@ -43,6 +44,7 @@ export default function ContentNavigator() {
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
+  const setcontextMenuName = useSetRecoilState(contextMenuName);
 
   const setIssueId = useSetRecoilState(pageDetailIssueId);
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
@@ -59,9 +61,12 @@ export default function ContentNavigator() {
   const [previousTitle, setPreviousTitle] = useState('');
 
   const handleContext = (event, id) => {
-    event.preventDefault();
+    event.preventDefault(); 
+    event.target.id.match('page')
+    ?setcontextMenuName('내용 수정')
+    :setcontextMenuName('이름 수정')
     setTopicId(id);
-    setPreviousTitle(event.target.innerHTML);
+    setPreviousTitle(event.target.innerHTML);  
     showMenu ? setShowMenu(false) : setShowMenu(true);
     setXPos(`${event.screenX + 5}px`);
     setYPos(`${event.screenY - 115}px`);

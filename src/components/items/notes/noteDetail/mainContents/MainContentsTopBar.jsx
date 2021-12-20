@@ -11,6 +11,7 @@ import {
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
+  isModalActive,
 } from '../../../../../store/atom';
 import IssueCreateModal from '../../../modal/IssueCreateModal';
 
@@ -47,7 +48,11 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
+<<<<<<< HEAD
   const [modalActive, setModaActive] = useRecoilState(isModalActive);
+=======
+
+>>>>>>> f2dde89ef619fae577537704092a5b5e5a69830d
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
     setModaActive(true);
