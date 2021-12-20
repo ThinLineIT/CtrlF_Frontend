@@ -11,7 +11,6 @@ import {
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
-  isModalActive,
 } from '../../../../../store/atom';
 import IssueCreateModal from '../../../modal/IssueCreateModal';
 
