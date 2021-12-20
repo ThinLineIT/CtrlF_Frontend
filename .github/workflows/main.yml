@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  pull_request_target:
+    branches: [CtrlF0.2.0]
+    types: [closed]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: git clone
+        uses: actions/checkout@v2
+
+      - name: yarn install
+        run: yarn install
+
+      - name: build
+        run: npm run build
+
+      - name: AWS 설정
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: S3 Delete
+        run: |
+          aws s3 rm \
+            --recursive \
+            --region ap-northeast-2 \
+            s3://ctrlf.space
+
+      - name: deploy
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            out s3://ctrlf.space
+
+      - name: invalidation
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E2CBE7KFX21DGN \
+            --paths "/*"

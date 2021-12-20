@@ -4,9 +4,10 @@ import {
 } from '../../store/atom';
 import { useRecoilState } from 'recoil';
 import { emailReg } from '../../utils/Reg';
-import { overlapApi } from '../../utils/SignUpHook';
+import { overlapApi, emailAuthApi } from '../../utils/SignUpHook';
 import { useState } from 'react';
 import errorStyling from '../../utils/ErrorStyling';
+import Cookies from 'js-cookie';
 
 export default function Email({ styles, emailOverlapSuccess }) {
   const [email, setEmail] = useRecoilState(emailAtom);
@@ -23,6 +24,8 @@ export default function Email({ styles, emailOverlapSuccess }) {
     if (emailReg(email)) {
       const isOverlap = await overlapApi(email);
       if (isOverlap.status === 200) {
+        const token = await emailAuthApi(email);
+        Cookies.set('signing_token', token.signing_token);
         emailInputElement.style.border = 'none';
         setIsEmailOverlap(true);
         emailOverlapSuccess();

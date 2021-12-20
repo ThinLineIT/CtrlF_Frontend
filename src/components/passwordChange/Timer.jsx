@@ -1,4 +1,3 @@
-import authTimer from '../../utils/authTimer';
 import { setTimer as setTimerAtom } from '../../store/atom';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -52,6 +51,9 @@ export default function Timer({ email, register }) {
       setSecond('00');
       setIsTimerStarted([]);
     }
+    return () => {
+      clearInterval(timeRef.current);
+    };
   }, [timerStart]);
 
   useEffect(() => {
@@ -60,6 +62,9 @@ export default function Timer({ email, register }) {
       setSecond('만료');
       clearInterval(timeRef.current);
     }
+    return () => {
+      clearInterval(timeRef.current);
+    };
   }, [second]);
 
   return (
