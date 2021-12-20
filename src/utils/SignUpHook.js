@@ -30,7 +30,7 @@ export const emailAuthApi = (data) => {
       EMAIL
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   return request;
 };
 
@@ -44,7 +44,7 @@ export const overlapApi = (email) => {
       }auth/signup/email/duplicate/?data=${email}`
     )
     .then((res) => res)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   return request;
 };
 

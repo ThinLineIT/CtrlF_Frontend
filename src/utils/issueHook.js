@@ -46,7 +46,7 @@ export const issueApproveApi = async (id) => {
     },
     data: data,
   })
-    .then((res) => res.response)
+    .then((res) => res)
     .catch((err) => err.response);
   return request;
 };
