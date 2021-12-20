@@ -52,7 +52,6 @@ export default function Timer({ email, register }) {
       setIsTimerStarted([]);
     }
     return () => {
-      console.log('aa여기는 2');
       clearInterval(timeRef.current);
     };
   }, [timerStart]);
