@@ -1,0 +1,65 @@
+.back {
+  margin: 8px;
+  width: 52.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 5px 3px 6px #00000029;
+  border-radius: 25px;
+}
+
+.title {
+  margin-top: 42px;
+  font-size: 2.125rem;
+  font-weight: bold;
+  color: black;
+}
+
+.text {
+  font-size: 1.813rem;
+  color: black;
+  margin-top: 23px;
+}
+
+.input {
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 2px 2px 5px #0000004d;
+  font-size: 1.8rem;
+  margin-top: 13px;
+  height: 5rem;
+  padding-left: 2rem;
+}
+
+.btn {
+  font-size: 2.125rem;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  background-color: #8bc8fd;
+  margin: 11px 0 55px 0;
+  height: 5rem;
+}
+
+.resend {
+  margin: 11px 0 0 0;
+}
+
+.errtext {
+  color: red;
+  font-size: 25px;
+  margin: 15px 0 15px 0;
+}
+
+.width {
+  width: 81%;
+}
+
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}

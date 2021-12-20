@@ -115,7 +115,7 @@ export const topicName = atom({
 
 export const topicIndex = atom({
   key: 'topic_index',
-  default: 1,
+  default: 0,
 });
 
 export const pageList = atom({
@@ -135,6 +135,21 @@ export const ModifyPageContent = atom({
 
 export const addNewPage = atom({
   key: 'add_new_page',
+  default: false,
+});
+
+export const isPageApproved = atom({
+  key: 'is_page_approved',
+  default: true,
+});
+
+export const isOnEditPage = atom({
+  key: 'is_on_edit_page',
+  default: false,
+});
+
+export const pageupdate = atom({
+  key: 'page_update',
   default: false,
 });
 
@@ -259,13 +274,13 @@ export const modalMessage = selector({
 
 // users request data
 
-export const requestNoteTitle = atom({
-  key: 'request_note_title',
+export const requestIssueTitle = atom({
+  key: 'request_issue_title',
   default: '',
 });
 
-export const requestNoteContent = atom({
-  key: 'request_note_content',
+export const requestIssueContent = atom({
+  key: 'request_issue_content',
   default: '',
 });
 
@@ -273,7 +288,7 @@ export const userRequestDataList = atom({
   key: 'user_request_data_list',
   default: [
     {
-      noteName: '운영체제',
+      noteName: 'OS',
       title: '노트 이름 수정 요청',
       requestTitle: '운용 체제',
       requestContent: '이재용도 석방됬는데 운용체제라고 리네임하는건 어때요?',
@@ -317,4 +332,22 @@ export const pageDataList = atom({
   key: 'page_data',
   default: [],
   effects_UNSTABLE: [persistAtom],
+});
+
+export const issueDetailTopicId = atom({
+  key: 'issue_detail_topicId',
+  default: '',
+});
+
+export const issueDetailPageId = atom({
+  key: 'issue_detail_page_id',
+  default: '',
+});
+export const setTimer = atom({
+  key: 'setTimer',
+  default: false,
+});
+export const pageDetailIssueId = atom({
+  key: 'page_detail_issueId',
+  default: '',
 });

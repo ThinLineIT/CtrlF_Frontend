@@ -1,32 +1,33 @@
 import Axios from 'axios';
-import SideIndex from './sideIndex/side_index';
-import DetailContents from './detail_contents';
-import React, { useState, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
+import DetailContents from './mainContents/detail_contents';
+import SideIndex from './sideIndex/side_index';
+import React, { useState, useEffect } from 'react';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
+  topicIndex, // 임시
   topicName,
-  pageContent,
   detailTitle,
-  isValidOnMainpage,
+  pageContent,
+  pageDataList,
+  isOnEditPage,
+  topicDataList,
   ModifyPageContent,
   firstVisiblePageTitle,
-  topicDataList,
-  pageDataList,
 } from '../../../../store/atom';
 
-export default function NoteDetail({ note, noteId }) {
-  const { title } = note;
+export default function NoteDetail({ note }) {
+  const { title, id } = note;
   const [isLoading, setIsLoading] = useState(true);
+  const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
-  const setIsOnMainPage = useSetRecoilState(isValidOnMainpage);
 
   useEffect(() => {
     setNoteTitle(title);
     setModifyPage(false);
-    setIsOnMainPage(false);
+    setIsOnEditor(false);
   }, [note]);
 
   const setTopicTitle = useSetRecoilState(topicName);
@@ -35,46 +36,50 @@ export default function NoteDetail({ note, noteId }) {
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
+  useEffect(() => {
+    if (id && id > 0) {
+      getTopic(id);
+    }
+  }, [id]);
+
+  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
+
   function getTopic(id) {
     const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
     Axios.get(API_URL_TOPIC).then((res) => {
       const data = res.data;
+      const { title, id } = data[0];
       setTopicData(data);
-      setTopicTitle(data[0].title);
-      getPage(data[0].id);
+      setTopicTitle(title);
+      getPage(id);
     });
   }
 
   function getPage(id) {
     const API_URL_PAGE = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    setNowTopicIndex(id);
     Axios.get(API_URL_PAGE)
       .then((res) => {
         const data = res.data;
+        const { title, content } = data[0];
         setPageData(data);
-        setPageTitle(data[0].title);
-        setPageContent(data[0].content);
+        setPageTitle(title);
+        setPageContent(content);
       })
       .then(setIsLoading(false));
   }
 
-  useEffect(() => {
-    if (noteId && noteId > 0) {
-      getTopic(noteId);
-    }
-  }, [noteId]);
-
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <div style={{ padding: '30% 0' }}>
           <UseLoader />
         </div>
-      )}
-      {!isLoading && (
-        <div className={styles.wrap}>
-          <SideIndex />
+      ) : (
+        <main className={styles.wrap}>
+          <SideIndex noteId={id} />
           <DetailContents />
-        </div>
+        </main>
       )}
     </>
   );

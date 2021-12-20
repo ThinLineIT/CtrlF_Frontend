@@ -1,96 +1,110 @@
-import { getUserId } from '../../../utils/userCheck';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
-  issueAccept,
+  issueApproveApi,
   issueReject,
   issueCancel,
   issueEdit,
 } from '../../../utils/issueHook';
+import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
+import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
+import DropMenu from '../../items/menu/DropMenu';
 
 export default function IssueDetailModal({
-  data,
+  issue,
   setIsModalOpen,
-  setIsFeatureClicked,
+  setIsUnathorized,
 }) {
+  const [dropDownMenu, setDropDownMenu] = useState(false);
+  const setTopicId = useSetRecoilState(issueDetailTopicId);
+  const setPageId = useSetRecoilState(issueDetailPageId);
+  const router = useRouter();
+
+  const openDropDown = () => {
+    setDropDownMenu(true);
+  };
+
+  const moveToDetail = async () => {
+    await setTopicId(issue.topic_id);
+    await setPageId(issue.page_id);
+    router.push(`/notes/${issue.note_id}`);
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const acceptIssue = () => {
-    const user_id = getUserId();
-    if (data.owner_id === user_id) {
-      // API 개발 완료시 교체 예정
-      issueAccept();
+  const acceptIssue = async () => {
+    const result = await issueApproveApi(issue.id);
+    if (result && result.status == 200) {
+      setIsModalOpen(false);
+    } else {
+      setIsUnathorized(true);
     }
-    setIsFeatureClicked(true);
   };
 
   const rejectIssue = () => {
-    const user_id = getUserId();
-    if (data.owner_id === user_id) {
-      // API 개발 완료시 교체 예정
-      issueReject();
-    }
-    setIsFeatureClicked(true);
+    // API 개발 완료시 교체 예정
+    //   issueReject();
+    setIsUnathorized(true);
   };
 
-  const CancelIssue = () => {
-    const user_id = getUserId();
-    if (user_id === data.content_request.user_id) {
-      // API 개발 완료시 교체 예정
-      issueCancel();
-    } else {
-      setIsFeatureClicked(true);
-    }
+  const cancelIssue = () => {
+    // API 개발 완료시 교체 예정
+    issueCancel();
+
+    setIsUnathorized(true);
   };
 
   const editIssue = () => {
-    const user_id = getUserId();
-    if (user_id === data.content_request.user_id) {
-      // API 개발 완료시 교체 예정
-      issueEdit();
-    } else {
-      setIsFeatureClicked(true);
-    }
+    // API 개발 완료시 교체 예정
+    issueEdit();
+
+    setIsUnathorized(true);
   };
 
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
-        <div className={styles.modal__title}>
-          {data.content_request.action} {data.content_request.type}
+        <button className={styles.close} onClick={closeModal}>
+          X
+        </button>
+        <div className={styles.drop} onClick={openDropDown}>
+          {dropDownMenu && (
+            <DropMenu
+              onClick={openDropDown}
+              dropDownMenu={dropDownMenu}
+              setDropDownMenu={setDropDownMenu}
+            />
+          )}
         </div>
-        <div className={styles.modal__origin}>{data.title} 타이틀</div>
+        <div className={styles.modal__title}>
+          {issue.related_model_type} {issue.action}
+        </div>
         <div className={`${styles.modal__change} ${styles.title}`}>
-          {data.content} 콘텐츠
+          {' '}
+          {issue.title} 타이틀
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {data.content} 콘텐츠
+          {issue.reason}콘텐츠
         </div>
-
         <div className={styles.btns}>
-          <button className={styles.modal__btn} onClick={editIssue}>
-            수정
-          </button>
-          <button className={styles.modal__btn} onClick={CancelIssue}>
-            요청취소
-          </button>
-          <button className={styles.modal__btn} onClick={acceptIssue}>
-            승인
-          </button>
-          <button className={styles.modal__btn} onClick={rejectIssue}>
-            미승인
-          </button>
-
-          {data.content_request.type === 'PAGE' ? (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              자세히 보기
+          <div>
+            {issue.related_model_type === 'PAGE' && (
+              <button className={styles.modal__btn} onClick={moveToDetail}>
+                자세히 보기
+              </button>
+            )}
+          </div>
+          <div className={styles.permit}>
+            <button className={styles.modal__btn} onClick={acceptIssue}>
+              승인
             </button>
-          ) : (
-            <button className={styles.modal__btn} onClick={closeModal}>
-              닫기
+            <button className={styles.modal__btn} onClick={rejectIssue}>
+              미승인
             </button>
-          )}
+          </div>
         </div>
       </div>
     </div>

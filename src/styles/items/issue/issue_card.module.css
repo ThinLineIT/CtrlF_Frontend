@@ -3,6 +3,8 @@
   color: white;
   width: 17rem;
   overflow: hidden;
+  cursor: pointer;
+  position: relative;
 }
 
 .card:hover > .card_hover {
@@ -47,6 +49,13 @@
   justify-content: center;
   top: -125%;
   display: none;
+}
+
+.card__context {
+  position: absolute;
+  color: black;
+  margin: 60px 0 0 40px;
+  padding-right: 40px;
 }
 
 .detail_btn {

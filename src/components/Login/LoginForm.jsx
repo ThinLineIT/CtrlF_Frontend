@@ -47,7 +47,7 @@ const LoginForm = () => {
 
     const success = await loginHook(loginData);
     if (success.token) {
-      Cookies.set('token', success.token.split('.')[1]);
+      Cookies.set('token', success.token);
       localStorage.setItem('user_id', success.user_id);
       router.push('/');
       setloginValidate('');
@@ -106,14 +106,9 @@ const LoginForm = () => {
         <span>|</span>
 
         {showHiddenModal && <ModalPreparing />}
-        <a
-          onClick={() => {
-            setShowHiddenModal(true);
-          }}
-          className={styles.login__link}
-        >
-          PASSWORD 찾기
-        </a>
+        <Link href="/passwordChange">
+          <a className={styles.login__link}>PASSWORD 찾기</a>
+        </Link>
 
         <span>|</span>
         <Link href="/register">
