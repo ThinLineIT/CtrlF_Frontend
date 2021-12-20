@@ -12,6 +12,7 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export default function Renderer(props) {
   const content = props.contents;
+
   return (
     <section className={styles.appContainer}>
       <article className={styles.mdContainer}>

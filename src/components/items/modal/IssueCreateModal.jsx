@@ -15,7 +15,7 @@ export default function IssueCreateModal({ ...props }) {
   const { modalObj, noteId, isCreatePage } = {
     ...props,
   };
-  const { englishTitle, placeholder } = modalObj;
+  const { englishTitle, placeholder } = modalObj ?? null;
 
   const titleRef = useRef();
   const textareaRef = useRef();
