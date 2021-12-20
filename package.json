@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@egjs/react-infinitegrid": "^3.3.0",
@@ -45,6 +52,10 @@
     "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.3",
+    "prettier": "^2.5.1",
     "yarn-audit-fix": "^7.0.7"
   }
 }
