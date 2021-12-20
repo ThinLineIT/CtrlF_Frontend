@@ -339,7 +339,7 @@ export const issueDetailPageId = atom({
   default: '',
 });
 
-export const issueDetailPageVersion_no = atom({
+export const issueDetailPageVersionNo = atom({
   key: 'issue_detail_page_version_no',
   default: null,
 });

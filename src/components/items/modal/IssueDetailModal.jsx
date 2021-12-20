@@ -23,7 +23,7 @@ export default function IssueDetailModal({
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
-  const setPageVersion_no = useSetRecoilState(issueDetailPageVersion_no);
+  const setPageVersionNo = useSetRecoilState(issueDetailPageVersion_no);
   const router = useRouter();
 
   const openDropDown = () => {
@@ -33,7 +33,7 @@ export default function IssueDetailModal({
   const moveToDetail = async () => {
     await setTopicId(issue.topic_id);
     await setPageId(issue.page_id);
-    await setPageVersion_no(issue.version_no);
+    await setPageVersionNo(issue.version_no);
     router.push(`/notes/${issue.note_id}`);
   };
 
