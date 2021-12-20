@@ -49,15 +49,14 @@ export default function IssueCreateModal({ ...props }) {
     setIsUserSubmit(false);
   };
 
-  const sendNoteData = (requestTitle, requestContent) => {
+  const sendNoteData = async (requestTitle, requestContent) => {
     let headers = Cookies.get('token');
 
     const data = {
       title: requestTitle,
       reason: requestContent,
     };
-
-    axios({
+    await axios({
       url: `${
         process.env.NODE_ENV === 'development'
           ? process.env.NEXT_PUBLIC_API_URL
