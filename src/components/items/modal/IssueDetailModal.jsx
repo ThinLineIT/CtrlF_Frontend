@@ -43,7 +43,7 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
-    if (result && result.staus === 200) {
+    if (result && result.status == 200) {
       setIsModalOpen(false);
     } else {
       setIsUnathorized(true);
