@@ -65,7 +65,8 @@ function headingRenderer({ level, children }) {
 
 export const ImageBlock = (props) => {
   const { src } = props;
-  return <Image src={src} alt={src} width={477} />;
+  const maxWidth = 477;
+  return <Image src={src} alt={src} width={maxWidth} />;
 };
 
 const renderers = {

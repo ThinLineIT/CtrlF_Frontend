@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 
-export const topicListApi = async (id) => {
+export const fetchTopics = async (id) => {
   const request = await axios
     .get(
       `${
@@ -16,7 +16,7 @@ export const topicListApi = async (id) => {
   return request;
 };
 
-export const pageListApi = async (id) => {
+export const fetchPageList = async (id) => {
   const request = await axios
     .get(
       `${
@@ -30,7 +30,7 @@ export const pageListApi = async (id) => {
   return request;
 };
 
-export const pageDetailApi = async (id, versionNo) => {
+export const fetchPageDetail = async (id, versionNo) => {
   const request = await axios
     .get(
       `${

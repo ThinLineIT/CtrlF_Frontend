@@ -1,10 +1,10 @@
-import Axios from 'axios';
 import RightClickSpan from './rightClick';
+import { useScroll } from '../../../../../utils/useScroll';
 import React, { useRef, useState, useEffect } from 'react';
 import NotApprovedModal from '../../../modal/not_approved_modal';
 import {
-  pageListApi,
-  pageDetailApi,
+  fetchPageList,
+  fetchPageDetail,
 } from '../../../../../utils/pageDetailFetch';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
@@ -35,6 +35,7 @@ export default function ContentNavigator() {
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
+  const { scrollY } = useScroll();
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
 
@@ -59,39 +60,22 @@ export default function ContentNavigator() {
   const [previousTitle, setPreviousTitle] = useState('');
 
   const handleContext = (event, id) => {
-    event.preventDefault(); 
+    event.preventDefault();
     event.target.id.match('page')
-    ?setcontextMenuName('내용 수정')
-    :setcontextMenuName('이름 수정')
+      ? setcontextMenuName('내용 수정')
+      : setcontextMenuName('이름 수정');
     setTopicId(id);
-    setPreviousTitle(event.target.innerHTML);  
+    setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
     setXPos(`${event.screenX + 5}px`);
-    setYPos(`${event.screenY - 115}px`);
+    setYPos(
+      scrollY >= 50 ? `${event.screenY - 115}px` : `${event.screenY - 215}px`
+    );
   };
 
-  const showPageList = async (data) => {
-    window.scrollTo(0, 0);
+  const topicNavigatorTapped = (data) => {
     let { id, title, is_approved } = data;
-    closeContextMenu();
-    setNowTopicIndex(id);
-    setTopicTitle(title);
-    setModifyPage(false);
-    is_approved === false && ifNotApprovedClicked('topic');
-    if (is_approved == true) {
-      setIsPageApproved(true);
-    }
-    const pageList = await pageListApi(id) //
-      .then((pages) => {
-        const { title, is_approved, version_no, id } = pages[0];
-        if (is_approved === false) {
-          setIsPageApproved(false);
-        } else {
-          setPageData(pages);
-          setPageTitle(title);
-          showPageContent(id, version_no);
-        }
-      });
+
     if (pageId !== '') {
       setTimeout(function () {
         document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
@@ -99,30 +83,53 @@ export default function ContentNavigator() {
         setPageVersion(null);
       }, 500);
     }
+    is_approved === false
+      ? ifNotApprovedClicked('topic')
+      : setIsPageApproved(true);
+    setShowMenu(false);
+    setTopicTitle(title);
+    setModifyPage(false);
+    setNowTopicIndex(id);
+    window.scrollTo(0, 0);
+
+    getPages(id);
+    //
   };
 
-  const showPageContent = async (pageId, version_no) => {
-    window.scrollTo(0, 0);
-    setModifyPage(false);
-    closeContextMenu();
-    const pageList = await pageDetailApi(pageId, version_no) //
-      .then((page) => {
-        const {
-          title,
-          content,
-          is_approved,
-          issue_id,
-          version_type,
-          version_no,
-        } = page;
-        is_approved == false && ifNotApprovedClicked('page');
-        if (is_approved == true) {
-          setIsPageApproved(true);
-        }
+  const getPages = async (id) => {
+    await fetchPageList(id).then((pages) => {
+      const { title, is_approved, version_no, id } = pages[0];
+      if (is_approved === false) {
+        setIsPageApproved(false);
+      } else {
+        setPageData(pages);
         setPageTitle(title);
-        setPageContent(content);
-        setIssueId(issue_id);
-      });
+        pageNavigatorTapped(id, version_no);
+      }
+    });
+  };
+
+  const pageNavigatorTapped = async (pageId, version_no) => {
+    await fetchPageDetail(pageId, version_no).then((page) => {
+      const {
+        title,
+        content,
+        is_approved,
+        issue_id,
+        version_type,
+        version_no,
+      } = page;
+
+      is_approved == false
+        ? ifNotApprovedClicked('page')
+        : setIsPageApproved(true);
+      setShowMenu(false);
+      setPageTitle(title);
+      setIssueId(issue_id);
+      setModifyPage(false);
+      window.scrollTo(0, 0);
+      setPageContent(content);
+    });
   };
 
   const ifNotApprovedClicked = (convention) => {
@@ -137,16 +144,11 @@ export default function ContentNavigator() {
     setNotApprovedModalActive(true);
   };
 
-  const closeContextMenu = () => {
-    if (showMenu) setShowMenu(false);
-  };
-
   useEffect(() => {
     if (topicId !== '') {
       document.getElementById(`topic${topicId}`).click();
       setTopicId('');
     }
-    // 만약 클라이언트가 Issue에서 넘어온 상황이라면 실행이 될 예정입니다.
   }, []);
 
   return (
@@ -158,7 +160,7 @@ export default function ContentNavigator() {
               const { id, title, is_approved } = item;
               return (
                 <li
-                  id={`topic${id}`} // 선택을 위한 id입니다.
+                  id={`topic${id}`}
                   key={id}
                   className={`${styles.index_topic_li} ${getStyles(
                     is_approved
@@ -169,7 +171,7 @@ export default function ContentNavigator() {
                       title,
                       is_approved,
                     };
-                    showPageList(data);
+                    topicNavigatorTapped(data);
                   }}
                   onContextMenu={(event) => handleContext(event, id)}
                 >
@@ -185,12 +187,12 @@ export default function ContentNavigator() {
             const { id, title, is_approved, version_no } = item;
             return (
               <li
-                id={`page${id}`} // 선택을 위한 id입니다.
+                id={`page${id}`}
                 key={id}
                 ref={pageRef}
                 className={`${styles.index_page_li} ${getStyles(is_approved)}`}
                 onClick={() => {
-                  showPageContent(id, version_no);
+                  pageNavigatorTapped(id, version_no);
                 }}
                 onContextMenu={handleContext}
               >
