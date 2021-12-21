@@ -25,26 +25,22 @@ export default function RightClickSpan({
 
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
 
-
   let modalData = {
     mainTitle: `${NOTE ? '노트' : '토픽'} 이름 수정 요청`,
     previosTitle: previosTitle,
     status: NOTE ? 'Note' : 'Topic',
   };
 
-
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setupdtepage = useSetRecoilState(pageupdate);
   const setAddNewPageContent = useSetRecoilState(addNewPage);
   const onModify = (e) => {
-
     if (e.target.innerHTML === '내용 수정') {
-    setAddNewPageContent(false);
-    setupdtepage(true)
-    setModifyPage(true);
+      setAddNewPageContent(false);
+      setupdtepage(true);
+      setModifyPage(true);
     }
     setIsDetailModalOpen(true);
-
   };
 
   const onDelete = () => {
@@ -52,9 +48,7 @@ export default function RightClickSpan({
   };
 
   return (
-
     <ContextContainer x={x} y={y}>
-
       <span onClick={onModify}>{useContextMenuName}</span>
       <span onClick={onDelete}>삭제 요청</span>
       {showPreparingModal && <ModalPreparing />}
