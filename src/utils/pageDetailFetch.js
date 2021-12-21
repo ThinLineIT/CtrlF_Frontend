@@ -7,7 +7,7 @@ export const topicListApi = async (id) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }notes/${id}/topics`
     )
@@ -21,7 +21,7 @@ export const pageListApi = async (id) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }topics/${id}/pages`
     )
@@ -35,7 +35,7 @@ export const pageDetailApi = async (id, versionNo) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }/pages/${id}?version_no=${versionNo}`
     )
