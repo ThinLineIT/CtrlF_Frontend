@@ -54,6 +54,7 @@
   border: 1px solid #00000028;
   margin: 0 auto;
   padding-left: 1.4em;
+  padding-right: 1.4em;
   padding-top: 0.6em;
   font-size: 1.1rem;
   font-weight: bold;
@@ -73,13 +74,14 @@
 
 .users_textarea {
   width: 100%;
-  min-height: 520px;
+  min-height: 420px;
   border: 1px solid #00000028;
   margin: 1em auto 0 auto;
   padding-top: 0.6em;
   padding-left: 0.6em;
-  font-size: 1.1rem;
-  font-weight: bold;
+  padding-right: 0.6em;
+  font-size: 1rem;
+  line-height: 1.35rem;
   border-radius: 10px/10px;
   color: black;
   resize: none;
@@ -114,13 +116,16 @@
 }
 
 .btn {
-  width: 30px;
-  height: 50%;
+  width: 2.3rem;
+  height: 2.3rem;
   font-size: 1.3rem;
   border: 0.05px solid #d1d1d1;
   border-radius: 5px;
   margin-left: 8px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn:hover {
@@ -129,4 +134,8 @@
 
 .codeBlock {
   font-size: 0.66rem;
+}
+
+.img_upload {
+  display: none;
 }

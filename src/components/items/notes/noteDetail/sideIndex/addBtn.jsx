@@ -26,9 +26,13 @@ export default function AddBtn({ noteId }) {
   };
 
   const activeAddPage = () => {
-    setIsOnEditor(true);
-    setAddNewContent(true);
-    setModifyPage(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      setIsOnEditor(true);
+      setAddNewContent(true);
+      setModifyPage(true);
+    }, 800);
   };
 
   return (

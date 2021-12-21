@@ -118,3 +118,14 @@
 .btns > .permit > .modal__btn {
   margin-left: 16px;
 }
+
+.drop {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 52px;
+  right: 32px;
+  background: no-repeat center url('../../../../public/images/ellipsis-re.png');
+  background-size: contain;
+  cursor: pointer;
+}

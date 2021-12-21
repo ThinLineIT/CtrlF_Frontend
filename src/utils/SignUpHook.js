@@ -6,7 +6,7 @@ export const signUpApi = (signUpData) => {
     .post(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }auth/signup/`,
       signUpData
@@ -24,13 +24,13 @@ export const emailAuthApi = (data) => {
     .post(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }auth/signup/email/`,
       EMAIL
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   return request;
 };
 
@@ -39,12 +39,12 @@ export const overlapApi = (email) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }auth/signup/email/duplicate/?data=${email}`
     )
     .then((res) => res)
-    .catch((err) => console.log(err.response));
+    .catch((err) => err.response);
   return request;
 };
 
@@ -53,7 +53,7 @@ export const nickNameOverlap = (nick) => {
     .get(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }auth/signup/nickname/duplicate/?data=${nick}`
     )
@@ -72,7 +72,7 @@ export const authCodeConfirm = (code) => {
     .post(
       `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
+          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }auth/verification-code/check/`,
       CODE

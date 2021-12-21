@@ -1,8 +1,8 @@
 import styles from '../../styles/items/modal/issue_modal.module.css';
 
-export default function NoAuthentification({ setIsFeatureClicked }) {
+export default function NoAuthentification({ setIsUnathorized }) {
   const backToModal = () => {
-    setIsFeatureClicked(false);
+    setIsUnathorized(false);
   };
   return (
     <div className={styles.background}>

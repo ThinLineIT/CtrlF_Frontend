@@ -8,6 +8,7 @@ import {
   pageDetailIssueId, // 이슈 이동을 위한 atom
   issueDetailPageId,
   issueDetailTopicId, //임시
+  issueDetailPageVersionNo,
   topicIndex, // 페이지 등록을 위한 atom
   topicName,
   menuPageX,
@@ -20,14 +21,13 @@ import {
   isApprovedModal,
   modalUtilsSyntax,
   ModifyPageContent,
-  contextMenuActive,
   firstVisiblePageTitle,
+  contextMenuName,
 } from '../../../../../store/atom';
 
 export default function ContentNavigator() {
   const pageRef = useRef();
-  const [modalToggle, setModalToggle] = useState(false);
-  const [showMenu, setShowMenu] = useRecoilState(contextMenuActive);
+  const [showMenu, setShowMenu] = useState(false);
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
@@ -40,40 +40,49 @@ export default function ContentNavigator() {
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setModalSyntax = useSetRecoilState(modalUtilsSyntax);
   const setIsPageApproved = useSetRecoilState(isPageApproved);
+  const setcontextMenuName = useSetRecoilState(contextMenuName);
 
   const setIssueId = useSetRecoilState(pageDetailIssueId);
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
+  const [pageVesion, setPageVersion] = useRecoilState(issueDetailPageVersionNo); // 자세히보기 기능에서 페이지의 버전 넘버를 위해 작성
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
 
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
-  const useContextMenu = (event) => {
+  const [previousTitle, setPreviousTitle] = useState('');
+
+  const handleContext = (event, id) => {
     event.preventDefault();
-    if (!modalToggle) {
-      setShowMenu(true);
-      setModalToggle(true);
-    } else {
-      setShowMenu(false);
-      setModalToggle(false);
-    }
+    event.target.id.match('page')
+      ? setcontextMenuName('내용 수정')
+      : setcontextMenuName('이름 수정');
+    setTopicId(id);
+    setPreviousTitle(event.target.innerHTML);
+    showMenu ? setShowMenu(false) : setShowMenu(true);
+
     setXPos(`${event.pageX + 5}px`);
     setYPos(`${event.pageY - 115}px`);
   };
 
   const showPageList = async (data) => {
     let [id, title, status, convention] = data;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
       setIsPageApproved(true);
     }
 
-    const API_URL_PG = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    const API_URL_PG = `${
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+    }topics/${id}/pages`; // version_no & version_type이 답긴 page detail api로 변경해야 합니다.
     await Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
-      const { title, content, is_approved } = data[0];
+      const { title, content, is_approved, version_no, version_type } = data[0]; // version_no & version_type을 함께 받아옵니다.
       setPageData(data);
       if (data[0]) {
         setPageTitle(title);
@@ -84,14 +93,14 @@ export default function ContentNavigator() {
       }
     });
     setNowTopicIndex(id);
-    window.scrollTo(0, 0);
     setTopicTitle(title);
     setModifyPage(false);
     closeContextMenu();
     if (pageId !== '') {
       setTimeout(function () {
-        document.getElementById(`page${pageId}`).click();
+        document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
         setPageId('');
+        setPageVersion(null);
       }, 500);
     }
     // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
@@ -99,6 +108,7 @@ export default function ContentNavigator() {
 
   const showPageContent = (data) => {
     let [issueId, title, content, status, convention] = data;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     status == false && ifNotApprovedClicked(convention);
     if (status == true) {
@@ -109,7 +119,6 @@ export default function ContentNavigator() {
     setPageContent(content);
     closeContextMenu();
     setIssueId(issueId);
-    window.scrollTo(0, 0);
   };
 
   const ifNotApprovedClicked = (convention) => {
@@ -125,8 +134,7 @@ export default function ContentNavigator() {
   };
 
   const closeContextMenu = () => {
-    setShowMenu(false);
-    setModalToggle(false);
+    if (showMenu) setShowMenu(false);
   };
 
   useEffect(() => {
@@ -155,9 +163,9 @@ export default function ContentNavigator() {
                     const data = [id, title, is_approved, 'topic'];
                     showPageList(data);
                   }}
-                  onContextMenu={useContextMenu}
+                  onContextMenu={(event) => handleContext(event, id)}
                 >
-                  {title}
+                  {title ?? null}
                 </li>
               );
             })}
@@ -177,15 +185,22 @@ export default function ContentNavigator() {
                   const data = [issue_id, title, content, is_approved, 'page'];
                   showPageContent(data);
                 }}
-                onContextMenu={useContextMenu}
+                onContextMenu={handleContext}
               >
-                {title}
+                {title ?? null}
               </li>
             );
           })}
         </ul>
       </div>
-      {showMenu && <RightClickSpan x={xPos} y={yPos} />}
+      {showMenu && (
+        <RightClickSpan
+          previosTitle={previousTitle}
+          x={xPos}
+          y={yPos}
+          topicId={topicId}
+        />
+      )}
       {notApprovedModalActive && <NotApprovedModal />}
     </section>
   );
