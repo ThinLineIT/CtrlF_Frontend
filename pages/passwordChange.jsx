@@ -29,6 +29,9 @@ export default function PasswordChnage() {
     pwCheck: '',
   });
   const pwChange = async () => {
+    if (!passwordReg(form.pwCheck)) {
+      return '비밀번호를 다시 입력해주세요';
+    }
     const data = {
       new_password: form.pw,
       new_password_confirm: form.pwCheck,
