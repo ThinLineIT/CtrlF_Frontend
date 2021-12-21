@@ -22,7 +22,11 @@ const Post = ({ item }) => {
 export default Post;
 
 export async function getStaticPaths() {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes?cursor=0`;
+  const apiUrl = `${
+    process.env.NODE_ENV === 'development'
+      ? process.env.NEXT_PUBLIC_API_URL
+      : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+  }notes?cursor=0`;
   const res = await Axios.get(apiUrl);
   const data = res.data.notes;
   return {
@@ -37,7 +41,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const id = context.params.id;
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}`;
+  const apiUrl = `${
+    process.env.NODE_ENV === 'development'
+      ? process.env.NEXT_PUBLIC_API_URL
+      : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+  }notes/${id}`;
   const res = await Axios.get(apiUrl);
   const data = res.data;
 

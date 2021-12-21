@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 import AlertModal from './AlertModal';
 import Cookies from 'js-cookie';
 import styles from '../../../styles/items/modal/modal_input.module.css';
-
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import {
   okBtnActive,
@@ -32,10 +31,12 @@ export default function IssueCreateModal({ ...props }) {
   };
 
   const changeModalUtilsAndOkBtnActive = () => {
-    if (!titleRef.current.value) alert('제목을 입력해주세요');
-    if (!textareaRef.current.value) alert('내용을 입력해주세요');
-    if (titleRef.current.value && textareaRef.current.value)
+    let alertNoContent = titleRef.current.value && textareaRef.current.value;
+    if (!alertNoContent) {
+      alert('아래의 내용을 모두 입력해주세요');
+    } else {
       setIsUserSubmit(true);
+    }
   };
 
   const closeModal = () => {
@@ -86,7 +87,7 @@ export default function IssueCreateModal({ ...props }) {
         process.env.NODE_ENV === 'development'
           ? process.env.NEXT_PUBLIC_API_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }`,
+      }topics/`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,

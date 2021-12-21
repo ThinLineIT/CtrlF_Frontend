@@ -8,6 +8,7 @@ import {
   pageDetailIssueId, // 이슈 이동을 위한 atom
   issueDetailPageId,
   issueDetailTopicId, //임시
+  issueDetailPageVersionNo,
   topicIndex, // 페이지 등록을 위한 atom
   topicName,
   menuPageX,
@@ -44,6 +45,7 @@ export default function ContentNavigator() {
   const setIssueId = useSetRecoilState(pageDetailIssueId);
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
+  const [pageVesion, setPageVersion] = useRecoilState(issueDetailPageVersionNo); // 자세히보기 기능에서 페이지의 버전 넘버를 위해 작성
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
 
   const topicData = useRecoilValue(topicDataList);
@@ -77,10 +79,10 @@ export default function ContentNavigator() {
       process.env.NODE_ENV === 'development'
         ? process.env.NEXT_PUBLIC_API_URL
         : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }topics/${id}/pages`;
+    }topics/${id}/pages`; // version_no & version_type이 답긴 page detail api로 변경해야 합니다.
     await Axios.get(API_URL_PG).then((res) => {
       const data = res.data;
-      const { title, content, is_approved } = data[0];
+      const { title, content, is_approved, version_no, version_type } = data[0]; // version_no & version_type을 함께 받아옵니다.
       setPageData(data);
       if (data[0]) {
         setPageTitle(title);
@@ -96,8 +98,9 @@ export default function ContentNavigator() {
     closeContextMenu();
     if (pageId !== '') {
       setTimeout(function () {
-        document.getElementById(`page${pageId}`).click();
+        document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
         setPageId('');
+        setPageVersion(null);
       }, 500);
     }
     // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.

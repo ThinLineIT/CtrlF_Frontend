@@ -6,7 +6,11 @@ import {
   issueCancel,
   issueEdit,
 } from '../../../utils/issueHook';
-import { issueDetailTopicId, issueDetailPageId } from '../../../store/atom';
+import {
+  issueDetailTopicId,
+  issueDetailPageId,
+  issueDetailPageVersion_no,
+} from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 import DropMenu from '../../items/menu/DropMenu';
@@ -19,6 +23,7 @@ export default function IssueDetailModal({
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
+  const setPageVersionNo = useSetRecoilState(issueDetailPageVersion_no);
   const router = useRouter();
 
   const openDropDown = () => {
@@ -28,6 +33,7 @@ export default function IssueDetailModal({
   const moveToDetail = async () => {
     await setTopicId(issue.topic_id);
     await setPageId(issue.page_id);
+    await setPageVersionNo(issue.version_no);
     router.push(`/notes/${issue.note_id}`);
   };
 
@@ -84,10 +90,10 @@ export default function IssueDetailModal({
         </div>
         <div className={`${styles.modal__change} ${styles.title}`}>
           {' '}
-          {issue.title} 타이틀
+          {issue.title}
         </div>
         <div className={`${styles.modal__change} ${styles.contents}`}>
-          {issue.reason}콘텐츠
+          {issue.reason}
         </div>
         <div className={styles.btns}>
           <div>

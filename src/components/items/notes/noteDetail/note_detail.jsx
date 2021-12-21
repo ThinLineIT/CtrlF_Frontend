@@ -45,18 +45,32 @@ export default function NoteDetail({ note }) {
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
 
   function getTopic(id) {
-    const API_URL_TOPIC = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}/topics`;
-    Axios.get(API_URL_TOPIC).then((res) => {
-      const data = res.data;
-      const { title, id } = data[0];
-      setTopicData(data);
-      setTopicTitle(title);
-      getPage(id);
-    });
+    const API_URL_TOPIC = `${
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+    }notes/${id}/topics`;
+    Axios.get(API_URL_TOPIC)
+      .then((res) => {
+        const data = res.data;
+        const { title, id } = data[0];
+        setTopicData(data);
+        setTopicTitle(title);
+        getPage(id);
+      })
+      .catch((err) => {
+        setTopicData('data');
+        setTopicTitle('');
+        setIsLoading(false);
+      });
   }
 
   function getPage(id) {
-    const API_URL_PAGE = `${process.env.NEXT_PUBLIC_API_URL}topics/${id}/pages`;
+    const API_URL_PAGE = `${
+      process.env.NODE_ENV === 'development'
+        ? process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
+    }topics/${id}/pages`;
     setNowTopicIndex(id);
     Axios.get(API_URL_PAGE)
       .then((res) => {
@@ -66,7 +80,12 @@ export default function NoteDetail({ note }) {
         setPageTitle(title);
         setPageContent(content);
       })
-      .then(setIsLoading(false));
+      .then(setIsLoading(false))
+      .catch((err) => {
+        setPageData('');
+        setPageTitle('');
+        setPageContent('');
+      });
   }
 
   return (
