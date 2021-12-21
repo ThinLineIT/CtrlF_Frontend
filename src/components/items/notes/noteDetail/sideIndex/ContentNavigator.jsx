@@ -12,7 +12,7 @@ import {
   pageDetailIssueId, // 이슈 이동을 위한 atom
   issueDetailPageId,
   issueDetailTopicId, //임시
-  issueDetailPageVersion_no,
+  issueDetailPageVersionNo,
   topicIndex, // 페이지 등록을 위한 atom
   topicName,
   menuPageX,
@@ -49,9 +49,7 @@ export default function ContentNavigator() {
   const setIssueId = useSetRecoilState(pageDetailIssueId);
   const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
   const [pageId, setPageId] = useRecoilState(issueDetailPageId); // 자세히보기 기능을 위해 임시로 작성
-  const [pageVesion, setPageVersion] = useRecoilState(
-    issueDetailPageVersion_no
-  ); // 자세히보기 기능에서 페이지의 버전 넘버를 위해 작성
+  const [pageVesion, setPageVersion] = useRecoilState(issueDetailPageVersionNo); // 자세히보기 기능에서 페이지의 버전 넘버를 위해 작성
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
 
   const topicData = useRecoilValue(topicDataList);
@@ -96,7 +94,7 @@ export default function ContentNavigator() {
       });
     if (pageId !== '') {
       setTimeout(function () {
-        document.getElementById(`page${pageId}`).click();
+        document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
         setPageId('');
         setPageVersion(null);
       }, 500);
