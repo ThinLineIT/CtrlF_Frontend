@@ -11,7 +11,7 @@ import { passwordReg } from '../src/utils/Reg';
 import ReAuthentication from '../src/components/register/ReAuthentication';
 import Cookies from 'js-cookie';
 
-export default function PasswordChnage() {
+export default function PasswordChange() {
   useEffect(() => {
     return () => {
       Cookies.remove('signing_token');
