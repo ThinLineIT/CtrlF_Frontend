@@ -60,7 +60,7 @@ export default function IssueCreateModal({ ...props }) {
     await axios({
       url: `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
+          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }notes/`,
       method: 'post',
@@ -85,7 +85,7 @@ export default function IssueCreateModal({ ...props }) {
     axios({
       url: `${
         process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
+          ? process.env.NEXT_PUBLIC_DEVELOP_API_BASE_URL
           : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
       }topics/`,
       method: 'post',
