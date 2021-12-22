@@ -62,9 +62,6 @@ export default function Timer({ email, register }) {
       setSecond('만료');
       clearInterval(timeRef.current);
     }
-    return () => {
-      clearInterval(timeRef.current);
-    };
   }, [second]);
 
   return (

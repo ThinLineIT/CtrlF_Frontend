@@ -6,11 +6,18 @@ import {
 import { useRouter } from 'next/router';
 import InputForm from '../src/components/passwordChange/InputForm';
 import styles from '../src/styles/PasswordChange.module.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { passwordReg } from '../src/utils/Reg';
 import ReAuthentication from '../src/components/register/ReAuthentication';
+import Cookies from 'js-cookie';
 
-export default function PasswordChnage() {
+export default function PasswordChange() {
+  useEffect(() => {
+    return () => {
+      Cookies.remove('signing_token');
+    };
+  }, []);
+
   const router = useRouter();
   const modalRef = useRef(null);
   const [isTimeStart, setIsTimeStart] = useState(false);
@@ -22,6 +29,9 @@ export default function PasswordChnage() {
     pwCheck: '',
   });
   const pwChange = async () => {
+    if (!passwordReg(form.pwCheck)) {
+      return '비밀번호를 다시 입력해주세요';
+    }
     const data = {
       new_password: form.pw,
       new_password_confirm: form.pwCheck,
