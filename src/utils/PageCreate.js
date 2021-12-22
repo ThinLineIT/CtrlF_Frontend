@@ -10,11 +10,7 @@ export async function pageCreateApi(title, summary, content, topicId) {
   };
   let headers = Cookies.get('token');
   const request = await axios({
-    url: `${
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }pages/`,
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/`,
     method: 'post',
     headers: {
       Authorization: `Bearer ${headers}`,

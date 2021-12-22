@@ -3,13 +3,7 @@ import Cookies from 'js-cookie';
 
 export const issueListApi = async (cursor) => {
   const request = await axios
-    .get(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }issues/?cursor=${cursor}`
-    )
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/?cursor=${cursor}`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
@@ -17,13 +11,7 @@ export const issueListApi = async (cursor) => {
 
 export const issueDetailApi = async (id) => {
   const request = await axios
-    .get(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }issues/${id}`
-    )
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/${id}`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
@@ -35,11 +23,7 @@ export const issueApproveApi = async (id) => {
   };
   let headers = Cookies.get('token');
   const request = await axios({
-    url: `${
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }actions/issue-approve/`,
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-approve/`,
     method: 'post',
     headers: {
       Authorization: `Bearer ${headers}`,

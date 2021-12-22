@@ -19,20 +19,13 @@ export default function usePagination(cursorNumber, query) {
     setError(false);
     let cancel;
     axios
-      .get(
-        `${
-          process.env.NODE_ENV === 'development'
-            ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-            : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-        }notes/`,
-        {
-          params: {
-            cursor: cursorNumber,
-            q: query,
-          },
-          cancelToken: new axios.CancelToken((c) => (cancel = c)),
-        }
-      )
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}notes/`, {
+        params: {
+          cursor: cursorNumber,
+          q: query,
+        },
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      })
       .then((res) => {
         const notes = res.data.notes;
         setNotes((prevNotes) => {

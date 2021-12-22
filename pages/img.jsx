@@ -38,11 +38,7 @@ export default function Test() {
       body.append('image', file);
       const result = await axios({
         method: 'post',
-        url: `${
-          process.env.NODE_ENV === 'development'
-            ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-            : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-        }actions/images/`,
+        url: `${process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL}actions/images/`,
         data: body,
       })
         .then((res) => res)
