@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/addBtn.module.css';
 import {
@@ -7,7 +8,6 @@ import {
   isModalActive,
   ModifyPageContent,
 } from '../../../../../store/atom';
-import useModal from '../../../../../utils/useModal';
 import IssueCreateModal from '../../../modal/IssueCreateModal';
 
 export default function AddBtn({ noteId }) {
@@ -16,8 +16,6 @@ export default function AddBtn({ noteId }) {
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
-
-  const modalObj = useModal('topic');
 
   const activeAddTopic = () => {
     setIsUserSubmit(false);
@@ -43,7 +41,7 @@ export default function AddBtn({ noteId }) {
       </div>
       {showHiddenModal && (
         <div className={styles.notes_modal}>
-          <IssueCreateModal modalObj={modalObj} noteId={noteId} />
+          <IssueCreateModal noteId={noteId} issue={'topic'} />
         </div>
       )}
     </>

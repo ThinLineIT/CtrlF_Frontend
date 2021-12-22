@@ -197,12 +197,8 @@ export default function ContentNavigator() {
                 }}
                 onContextMenu={handleContext}
               >
-<<<<<<< Updated upstream
-                {title ?? null}
-=======
                 {title.slice(0, 26) ?? null}
                 {title.length > 26 && '...'}
->>>>>>> Stashed changes
               </li>
             );
           })}

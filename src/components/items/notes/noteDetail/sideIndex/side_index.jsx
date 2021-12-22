@@ -51,11 +51,12 @@ export default function SideIndex({ noteId }) {
         </section>
         {showMenu && (
           <RightClickSpan
-            previosTitle={noteTitle}
-            x={xPos}
-            y={yPos}
-            noteId={noteId}
-            NOTE
+          NOTE
+          x={xPos}
+          y={yPos}
+          noteId={noteId}
+          previosTitle={noteTitle}
+          setShowMenu={setShowMenu}
           />
         )}
       </article>

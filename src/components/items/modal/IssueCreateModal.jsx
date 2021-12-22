@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import AlertModal from './AlertModal';
 import Cookies from 'js-cookie';
+import useModal from '../../../utils/useModal';
 import styles from '../../../styles/items/modal/modal_input.module.css';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import {
@@ -12,10 +13,9 @@ import {
 } from '../../../store/atom';
 
 export default function IssueCreateModal({ ...props }) {
-  const { modalObj, noteId, isCreatePage } = {
+  const { noteId, issue, isCreatePage } = {
     ...props,
   };
-  const { englishTitle, placeholder } = modalObj ?? null;
 
   const titleRef = useRef();
   const textareaRef = useRef();
@@ -90,10 +90,20 @@ export default function IssueCreateModal({ ...props }) {
       .catch((err) => err.response);
   };
 
+  const [modalTextData, setModalTextData] = useState({});
+  const [englishTitle, setEnglishTitle] = useState('');
+  const [placeholder, setPlaceHolder] = useState('');
+  useEffect(() => {
+    const modalData = useModal(issue);
+    setModalTextData(modalData);
+    setEnglishTitle(modalData.englishTitle);
+    setPlaceHolder(modalData.placeholder);
+  }, []);
+
   if (isCreatePage) {
     return (
       <AlertModal
-        modalObj={modalObj}
+        issue={issue}
         closingModalAndSendData={closingModalAndSendData}
       />
     );
@@ -135,10 +145,10 @@ export default function IssueCreateModal({ ...props }) {
           </div>
         </div>
       );
-    } else {
+    } else if (isUserSubmit) {
       return (
         <AlertModal
-          modalObj={modalObj}
+          issue={issue}
           closingModalAndSendData={closingModalAndSendData}
         />
       );

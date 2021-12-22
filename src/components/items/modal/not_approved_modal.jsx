@@ -15,12 +15,12 @@ export default function NotApprovedModal(id) {
 
   const closeModalAndGoNoteDetailPage = () => {
     setNotApprovedModalActive(false);
-    if (nameState == '노트') {
-      router.push({
-        pathname: '/notes/[id]',
-        query: { id: id.id },
-      });
-    }
+    // if (nameState == '노트') {
+    //   router.push({
+    //     pathname: '/notes/[id]',
+    //     query: { id: id.id },
+    //   });
+    // }
   };
 
   return (

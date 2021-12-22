@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../../modal/DetailModal';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
@@ -17,6 +17,7 @@ export default function RightClickSpan({
   x,
   y,
   topicId,
+  setShowMenu,
 }) {
   const useContextMenuName = useRecoilValue(contextMenuName);
   const [showPreparingModal, setShowPreparingModal] =
@@ -33,17 +34,19 @@ export default function RightClickSpan({
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setupdtepage = useSetRecoilState(pageupdate);
   const setAddNewPageContent = useSetRecoilState(addNewPage);
-  const onModify = (e) => {
-    if (e.target.innerHTML === '내용 수정') {
+
+  const onModify = () => {
+    if (useContextMenuName === '이름 수정') {
+      setIsDetailModalOpen(true);
+    } else if (useContextMenuName === '내용 수정') {
       setAddNewPageContent(false);
       setupdtepage(true);
       setModifyPage(true);
     }
-    setIsDetailModalOpen(true);
   };
 
   const onDelete = () => {
-    setShowPreparingModal(true);
+    setShowMenu(false);
   };
 
   return (

@@ -3,7 +3,6 @@ import useModal from '../../../../../utils/useModal';
 import MainContentsTopBar from './MainContentsTopBar';
 import Editor from '../../../../Markdown/Editor/Editor';
 import Renderer from '../../../../Markdown/Renderer/Renderer';
-import IssueCreateModal from '../../../modal/IssueCreateModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {

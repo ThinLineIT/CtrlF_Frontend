@@ -1,6 +1,7 @@
 .content {
   flex: 1 1 73.5%;
   width: 100%;
+  min-width: 570px;
   margin: 2em auto;
   padding: 2em 4em;
   height: 100%;
