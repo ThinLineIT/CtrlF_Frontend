@@ -5,27 +5,26 @@ import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../../utils/PageCreate';
-import { addNewPage, topicIndex ,pageupdate} from '../../../store/atom';
+import { addNewPage, topicIndex, pageupdate } from '../../../store/atom';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseImageUploader from '../../../utils/useImageUploader';
 
-
 export default function MarkdownEditor(props) {
   const inputRef = useRef();
-  console.log(props)
+  console.log(props);
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
   };
 
   const topicId = useRecoilValue(topicIndex);
-  
+
   const pageSubmit = () => {
-    if(updatePage){
-      null // 페이지 업데이트 Api
-    }else if(addNewPageContent){
+    if (updatePage) {
+      null; // 페이지 업데이트 Api
+    } else if (addNewPageContent) {
       pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
-    }  
+    }
   };
 
   const [input, setInput] = useState('');
@@ -39,13 +38,11 @@ export default function MarkdownEditor(props) {
     status == 'Write' ? setPreiview(false) : setPreiview(true);
   };
 
-
   const input_update = (e) => {
     UseImageUploader.getUrl(e.target.files[0]).then((res) => {
       UseImageUploader.imgAdding(res.data.image_url, saveContents);
     });
   };
-
 
   const dropImg = (e) => {
     e.preventDefault();
@@ -74,8 +71,7 @@ export default function MarkdownEditor(props) {
     : input;
 
   useEffect(() => {
-
-    updatePage? setInput(content): null
+    updatePage ? setInput(content) : null;
 
     const input_file = document.getElementById('img-upload');
     input_file.addEventListener('change', input_update);
@@ -83,7 +79,6 @@ export default function MarkdownEditor(props) {
     return () => {
       input_file.removeEventListener('change', input_update);
     };
-
   }, []);
 
   return (
@@ -91,7 +86,7 @@ export default function MarkdownEditor(props) {
       <button onClick={pageSubmit}>페이지 생성하기</button>
       <textarea
         type="text"
-        placeholder={updatePage? "resaon":"summary"}
+        placeholder={updatePage ? 'resaon' : 'summary'}
         onChange={onPageSummaryHandler}
         className={styles.users_summary}
       />
@@ -137,9 +132,7 @@ export default function MarkdownEditor(props) {
               placeholder="page content"
               className={styles.users_textarea}
               onChange={(event) => saveContents(event.target.value)}
-            >
-            
-            </textarea>
+            ></textarea>
           </>
         ) : (
           <Renderer contents={previewContents} />

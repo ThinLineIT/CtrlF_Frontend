@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -21,3 +22,4 @@ export async function pageCreateApi(title, summary, content, topicId) {
     .catch((err) => err.response);
   location.href = location.href;
 }
+
