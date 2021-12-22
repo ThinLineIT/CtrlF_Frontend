@@ -73,8 +73,8 @@ export default function ContentNavigator() {
     );
   };
 
-  const topicNavigatorTapped = (data) => {
-    let { id, title, is_approved } = data;
+  const topicNavigatorTapped = (topic) => {
+    let { id, title, is_approved } = topic;
 
     if (pageId !== '') {
       setTimeout(function () {
@@ -93,7 +93,6 @@ export default function ContentNavigator() {
     window.scrollTo(0, 0);
 
     getPages(id);
-    //
   };
 
   const getPages = async (id) => {
