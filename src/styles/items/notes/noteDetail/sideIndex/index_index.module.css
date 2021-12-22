@@ -80,6 +80,7 @@
   font-size: 1.2rem;
   font-weight: bolder;
   margin: 0.35em 1em;
+  margin-left: 0.6em;
   cursor: pointer;
   word-break: break-all;
 }

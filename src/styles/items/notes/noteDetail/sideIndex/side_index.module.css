@@ -46,3 +46,9 @@
   flex-direction: column;
   background-color: white;
 }
+
+@media screen and (max-width: 1440px) {
+  .index_title {
+    margin-top: 9.7em;
+  }
+}
