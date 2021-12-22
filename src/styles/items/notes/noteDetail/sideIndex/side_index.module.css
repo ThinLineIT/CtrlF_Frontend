@@ -5,7 +5,6 @@
 }
 
 .index_wrap {
-  max-height: 100vh;
   position: sticky;
   top: 0em;
   width: 100%;
@@ -45,10 +44,4 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-}
-
-@media screen and (max-width: 1440px) {
-  .index_title {
-    margin-top: 9.7em;
-  }
 }

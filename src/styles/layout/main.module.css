@@ -29,7 +29,6 @@
   line-height: 7.9rem;
   font-size: 2.5rem;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -65,15 +64,24 @@
 
 @media screen and (max-width: 70rem) {
   .header {
-    display: none;
   }
-  .body {
-    width: 70%;
+  .header__title {
+    height: 10vh;
+    font-size: 1.4rem;
   }
+
+  .header__title span:last-child {
+    font-size: 1.4rem;
+  }
+
   .sidebar {
-    display: none;
-  }
-  .item__list {
-    flex: 1 1 100%;
+    min-width: 200px;
+    height: 30em;
+    position: sticky;
+    top: 5em;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-top: 1em;
   }
 }
