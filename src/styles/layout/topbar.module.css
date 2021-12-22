@@ -60,7 +60,7 @@
 }
 
 .top__signup__list {
-  padding: 2em;
+  min-width: 8rem;
   margin: 0 2em;
 }
 .top__signup__list a {
