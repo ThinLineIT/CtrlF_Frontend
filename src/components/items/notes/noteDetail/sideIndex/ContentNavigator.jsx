@@ -210,6 +210,7 @@ export default function ContentNavigator() {
           x={xPos}
           y={yPos}
           topicId={topicId}
+          setShowMenu={setShowMenu}
         />
       )}
       {notApprovedModalActive && <NotApprovedModal />}

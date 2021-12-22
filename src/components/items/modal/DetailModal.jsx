@@ -24,6 +24,7 @@ export default function DetailModal(props) {
   };
 
   const closeDetailModal = () => {
+    props.setShowMenu(false);
     props.setIsDetailModalOpen(false);
   };
 
