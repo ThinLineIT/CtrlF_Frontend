@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
+  topicName,
   okBtnActive,
   isOnEditPage,
   isPageApproved,
+  isModalActive,
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
-  isModalActive,
 } from '../../../../../store/atom';
+import IssueCreateModal from '../../../modal/IssueCreateModal';
 
 const MainContentsTopBar = (props) => {
   // 이슈로 이동을 위한 라우팅
@@ -45,15 +47,18 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
+  const [modalActive, setModaActive] = useRecoilState(isModalActive);
 
   const resetPageContentAndSendData = () => {
     setIsUserSubmit(true);
+    setModaActive(true);
   };
 
   const modifyPage = useRecoilValue(ModifyPageContent);
   const isOnEditor = useRecoilValue(isOnEditPage);
   const isPageApprove = useRecoilValue(isPageApproved);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
+  const topicTitle = useRecoilValue(topicName);
 
   return (
     <article className={styles.topBar}>
@@ -94,6 +99,7 @@ const MainContentsTopBar = (props) => {
             />
           </span>
         )}
+        {modalActive && <IssueCreateModal isCreatePage />}
       </section>
     </article>
   );

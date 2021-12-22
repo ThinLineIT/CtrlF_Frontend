@@ -1,8 +1,12 @@
-import Axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import DetailContents from './mainContents/detail_contents';
 import SideIndex from './sideIndex/side_index';
 import React, { useState, useEffect } from 'react';
+import {
+  fetchTopics,
+  fetchPageList,
+  fetchPageDetail,
+} from '../../../../utils/pageDetailFetch';
 import UseLoader from '../../../../utils/useLoader';
 import styles from '../../../../styles/items/notes/noteDetail/note_detail.module.css';
 import {
@@ -24,17 +28,38 @@ export default function NoteDetail({ note }) {
   const setNoteTitle = useSetRecoilState(detailTitle);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
 
-  useEffect(() => {
-    setNoteTitle(title);
-    setModifyPage(false);
-    setIsOnEditor(false);
-  }, [note]);
-
   const setTopicTitle = useSetRecoilState(topicName);
   const setPageData = useSetRecoilState(pageDataList);
   const setPageContent = useSetRecoilState(pageContent);
   const setTopicData = useSetRecoilState(topicDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
+  const setNowTopicIndex = useSetRecoilState(topicIndex);
+
+  async function getTopic(noteId) {
+    const topicList = await fetchTopics(noteId).then((topics) => {
+      const { title, id } = topics[0];
+      setTopicData(topics);
+      setTopicTitle(title);
+      getPage(id);
+    });
+  }
+
+  async function getPage(topicId) {
+    await fetchPageList(topicId).then((pages) => {
+      const { title, id, version_no } = pages[0];
+      setPageData(pages);
+      setPageTitle(title);
+      setIsLoading(false);
+      getPageBody(id, version_no);
+    });
+  }
+
+  async function getPageBody(pageId, version_no) {
+    await fetchPageDetail(pageId, version_no).then((page) => {
+      const { content } = page;
+      setPageContent(content);
+    });
+  }
 
   useEffect(() => {
     if (id && id > 0) {
@@ -42,51 +67,11 @@ export default function NoteDetail({ note }) {
     }
   }, [id]);
 
-  const setNowTopicIndex = useSetRecoilState(topicIndex); // 페이지 추가를 위해 임시로 작성합니다
-
-  function getTopic(id) {
-    const API_URL_TOPIC = `${
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_API_URL
-        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }notes/${id}/topics`;
-    Axios.get(API_URL_TOPIC)
-      .then((res) => {
-        const data = res.data;
-        const { title, id } = data[0];
-        setTopicData(data);
-        setTopicTitle(title);
-        getPage(id);
-      })
-      .catch((err) => {
-        setTopicData('data');
-        setTopicTitle('');
-        setIsLoading(false);
-      });
-  }
-
-  function getPage(id) {
-    const API_URL_PAGE = `${
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_API_URL
-        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }topics/${id}/pages`;
-    setNowTopicIndex(id);
-    Axios.get(API_URL_PAGE)
-      .then((res) => {
-        const data = res.data;
-        const { title, content } = data[0];
-        setPageData(data);
-        setPageTitle(title);
-        setPageContent(content);
-      })
-      .then(setIsLoading(false))
-      .catch((err) => {
-        setPageData('');
-        setPageTitle('');
-        setPageContent('');
-      });
-  }
+  useEffect(() => {
+    setNoteTitle(title);
+    setModifyPage(false);
+    setIsOnEditor(false);
+  }, [note]);
 
   return (
     <>

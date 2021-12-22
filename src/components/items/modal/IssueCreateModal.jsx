@@ -15,7 +15,7 @@ export default function IssueCreateModal({ ...props }) {
   const { modalObj, noteId, isCreatePage } = {
     ...props,
   };
-  const { englishTitle, placeholder } = modalObj;
+  const { englishTitle, placeholder } = modalObj ?? null;
 
   const titleRef = useRef();
   const textareaRef = useRef();
@@ -58,11 +58,7 @@ export default function IssueCreateModal({ ...props }) {
       reason: requestContent,
     };
     await axios({
-      url: `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }notes/`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}notes/`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,
@@ -83,11 +79,7 @@ export default function IssueCreateModal({ ...props }) {
     };
 
     axios({
-      url: `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_API_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }topics/`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}topics/`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${headers}`,

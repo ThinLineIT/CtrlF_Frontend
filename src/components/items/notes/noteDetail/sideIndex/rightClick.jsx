@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-// import DetailModal from '../../../modal/DetailModal';
-import ModalPreparing from '../../../modal/modal_preparing';
+import DetailModal from '../../../modal/DetailModal';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import {
   preparingModal,
@@ -51,15 +50,14 @@ export default function RightClickSpan({
     <ContextContainer x={x} y={y}>
       <span onClick={onModify}>{useContextMenuName}</span>
       <span onClick={onDelete}>삭제 요청</span>
-      {showPreparingModal && <ModalPreparing />}
-      {/* {isDetailModalOpen && (
+      {isDetailModalOpen && (
         <DetailModal
           noteId={noteId}
           topicId={topicId}
           modalData={modalData}
           setIsDetailModalOpen={setIsDetailModalOpen}
         />
-      )} */}
+      )}
     </ContextContainer>
   );
 }

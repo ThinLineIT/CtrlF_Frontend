@@ -1,7 +1,11 @@
-import Axios from 'axios';
 import RightClickSpan from './rightClick';
+import { useScroll } from '../../../../../utils/useScroll';
 import React, { useRef, useState, useEffect } from 'react';
 import NotApprovedModal from '../../../modal/not_approved_modal';
+import {
+  fetchPageList,
+  fetchPageDetail,
+} from '../../../../../utils/pageDetailFetch';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
 import {
@@ -31,6 +35,7 @@ export default function ContentNavigator() {
   const [notApprovedModalActive, setNotApprovedModalActive] =
     useRecoilState(isApprovedModal);
 
+  const { scrollY } = useScroll();
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
 
@@ -62,40 +67,15 @@ export default function ContentNavigator() {
     setTopicId(id);
     setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
-
-    setXPos(`${event.pageX + 5}px`);
-    setYPos(`${event.pageY - 115}px`);
+    setXPos(`${event.screenX + 5}px`);
+    setYPos(
+      scrollY >= 50 ? `${event.screenY - 115}px` : `${event.screenY - 215}px`
+    );
   };
 
-  const showPageList = async (data) => {
-    let [id, title, status, convention] = data;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    status == false && ifNotApprovedClicked(convention);
-    if (status == true) {
-      setIsPageApproved(true);
-    }
+  const topicNavigatorTapped = (topic) => {
+    let { id, title, is_approved } = topic;
 
-    const API_URL_PG = `${
-      process.env.NODE_ENV === 'development'
-        ? process.env.NEXT_PUBLIC_API_URL
-        : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-    }topics/${id}/pages`; // version_no & version_type이 답긴 page detail api로 변경해야 합니다.
-    await Axios.get(API_URL_PG).then((res) => {
-      const data = res.data;
-      const { title, content, is_approved, version_no, version_type } = data[0]; // version_no & version_type을 함께 받아옵니다.
-      setPageData(data);
-      if (data[0]) {
-        setPageTitle(title);
-        setPageContent(content);
-      }
-      if (is_approved == false) {
-        setIsPageApproved(false);
-      }
-    });
-    setNowTopicIndex(id);
-    setTopicTitle(title);
-    setModifyPage(false);
-    closeContextMenu();
     if (pageId !== '') {
       setTimeout(function () {
         document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
@@ -103,22 +83,52 @@ export default function ContentNavigator() {
         setPageVersion(null);
       }, 500);
     }
-    // 임시입니다. 이 함수는 추후 분기를 나누워 구현될 예정입니다.
+    is_approved === false
+      ? ifNotApprovedClicked('topic')
+      : setIsPageApproved(true);
+    setShowMenu(false);
+    setTopicTitle(title);
+    setModifyPage(false);
+    setNowTopicIndex(id);
+    window.scrollTo(0, 0);
+
+    getPages(id);
   };
 
-  const showPageContent = (data) => {
-    let [issueId, title, content, status, convention] = data;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const getPages = async (id) => {
+    await fetchPageList(id).then((pages) => {
+      const { title, is_approved, version_no, id } = pages[0];
+      if (is_approved === false) {
+        setIsPageApproved(false);
+      } else {
+        setPageData(pages);
+        setPageTitle(title);
+        pageNavigatorTapped(id, version_no);
+      }
+    });
+  };
 
-    status == false && ifNotApprovedClicked(convention);
-    if (status == true) {
-      setIsPageApproved(true);
-    }
-    setPageTitle(title);
-    setModifyPage(false);
-    setPageContent(content);
-    closeContextMenu();
-    setIssueId(issueId);
+  const pageNavigatorTapped = async (pageId, version_no) => {
+    await fetchPageDetail(pageId, version_no).then((page) => {
+      const {
+        title,
+        content,
+        is_approved,
+        issue_id,
+        version_type,
+        version_no,
+      } = page;
+
+      is_approved == false
+        ? ifNotApprovedClicked('page')
+        : setIsPageApproved(true);
+      setShowMenu(false);
+      setPageTitle(title);
+      setIssueId(issue_id);
+      setModifyPage(false);
+      window.scrollTo(0, 0);
+      setPageContent(content);
+    });
   };
 
   const ifNotApprovedClicked = (convention) => {
@@ -133,16 +143,11 @@ export default function ContentNavigator() {
     setNotApprovedModalActive(true);
   };
 
-  const closeContextMenu = () => {
-    if (showMenu) setShowMenu(false);
-  };
-
   useEffect(() => {
     if (topicId !== '') {
       document.getElementById(`topic${topicId}`).click();
       setTopicId('');
     }
-    // 만약 클라이언트가 Issue에서 넘어온 상황이라면 실행이 될 예정입니다.
   }, []);
 
   return (
@@ -154,14 +159,18 @@ export default function ContentNavigator() {
               const { id, title, is_approved } = item;
               return (
                 <li
-                  id={`topic${id}`} // 선택을 위한 id입니다.
+                  id={`topic${id}`}
                   key={id}
                   className={`${styles.index_topic_li} ${getStyles(
                     is_approved
                   )}`}
                   onClick={() => {
-                    const data = [id, title, is_approved, 'topic'];
-                    showPageList(data);
+                    const data = {
+                      id,
+                      title,
+                      is_approved,
+                    };
+                    topicNavigatorTapped(data);
                   }}
                   onContextMenu={(event) => handleContext(event, id)}
                 >
@@ -174,16 +183,15 @@ export default function ContentNavigator() {
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
           {pageData.map((item) => {
-            const { id, title, is_approved, content, issue_id } = item;
+            const { id, title, is_approved, version_no } = item;
             return (
               <li
-                id={`page${id}`} // 선택을 위한 id입니다.
+                id={`page${id}`}
                 key={id}
                 ref={pageRef}
                 className={`${styles.index_page_li} ${getStyles(is_approved)}`}
                 onClick={() => {
-                  const data = [issue_id, title, content, is_approved, 'page'];
-                  showPageContent(data);
+                  pageNavigatorTapped(id, version_no);
                 }}
                 onContextMenu={handleContext}
               >

@@ -1,23 +1,34 @@
 import axios from 'axios';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 
-export const issueListApi = async (cursor) => {
+export const fetchTopics = async (id) => {
   const request = await axios
-    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/?cursor=${cursor}`)
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}notes/${id}/topics`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
 };
 
-export const issueDetailApi = async (id) => {
+export const fetchPageList = async (id) => {
   const request = await axios
-    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/${id}`)
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}topics/${id}/pages`)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
 };
 
-export const issueApproveApi = async (id) => {
+export const fetchPageDetail = async (id, versionNo) => {
+  const request = await axios
+    .get(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/pages/${id}?version_no=${versionNo}`
+    )
+    .then((res) => res.data)
+    .catch((err) => err.response);
+  return request;
+};
+
+export const ApproveApi = async (id) => {
   const data = {
     issue_id: +id,
   };
@@ -30,23 +41,7 @@ export const issueApproveApi = async (id) => {
     },
     data: data,
   })
-    .then((res) => res)
+    .then((res) => res.response)
     .catch((err) => err.response);
   return request;
 };
-
-export function issueAccept() {
-  alert('이슈를 승인하겠습니다');
-}
-
-export function issueReject() {
-  alert('이슈를 미승인하겠습니다');
-}
-
-export function issueCancel() {
-  alert('이슈를 취소합니다');
-}
-
-export function issueEdit() {
-  alert('이슈를 수정합니다');
-}

@@ -44,7 +44,6 @@ export default function DetailContents() {
       ) : (
         <Renderer contents={pagesContent ?? ''} />
       )}
-      {showHiddenModal && <IssueCreateModal modalObj={modalObj} isCreatePage />}
     </section>
   );
 }

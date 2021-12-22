@@ -1,16 +1,10 @@
+
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const signUpApi = (signUpData) => {
   const request = axios
-    .post(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }auth/signup/`,
-      signUpData
-    )
+    .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}auth/signup/`, signUpData)
     .then((res) => res)
     .catch((err) => err.response);
   return request;
@@ -21,14 +15,7 @@ export const emailAuthApi = (data) => {
     email: data,
   };
   const request = axios
-    .post(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }auth/signup/email/`,
-      EMAIL
-    )
+    .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}auth/signup/email/`, EMAIL)
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
@@ -37,11 +24,7 @@ export const emailAuthApi = (data) => {
 export const overlapApi = (email) => {
   const request = axios
     .get(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }auth/signup/email/duplicate/?data=${email}`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}auth/signup/email/duplicate/?data=${email}`
     )
     .then((res) => res)
     .catch((err) => err.response);
@@ -51,11 +34,7 @@ export const overlapApi = (email) => {
 export const nickNameOverlap = (nick) => {
   const request = axios
     .get(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }auth/signup/nickname/duplicate/?data=${nick}`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}auth/signup/nickname/duplicate/?data=${nick}`
     )
     .then((res) => res)
     .catch((err) => err.response);
@@ -70,11 +49,7 @@ export const authCodeConfirm = (code) => {
   };
   const request = axios
     .post(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.NEXT_PUBLIC_STAGING_API_BASE_URL
-          : process.env.NEXT_PUBLIC_RELEASE_API_BASE_URL
-      }auth/verification-code/check/`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}auth/verification-code/check/`,
       CODE
     )
     .then((res) => res)

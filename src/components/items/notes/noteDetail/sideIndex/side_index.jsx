@@ -2,6 +2,7 @@ import AddBtn from './addBtn';
 import React, { useState } from 'react';
 import RightClickSpan from './rightClick';
 import ContentNavigator from './ContentNavigator';
+import { useScroll } from '../../../../../utils/useScroll';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
@@ -13,6 +14,7 @@ import {
 
 export default function SideIndex({ noteId }) {
   const [showMenu, setShowMenu] = useState(false);
+  const { scrollY } = useScroll();
 
   const noteTitle = useRecoilValue(detailTitle);
   const [xPos, setXPos] = useRecoilState(menuPageX);
@@ -22,8 +24,8 @@ export default function SideIndex({ noteId }) {
   const onRightClick = (e) => {
     e.preventDefault();
     showMenu ? setShowMenu(false) : setShowMenu(true);
-    setXPos(`${e.pageX + 5}px`);
-    setYPos(`${e.pageY - 115}px`);
+    setXPos(`${e.screenX + 5}px`);
+    setYPos(scrollY >= 50 ? `${e.screenY - 115}px` : `${e.screenY - 215}px`);
   };
 
   const closeContextMenu = () => {

@@ -1,6 +1,8 @@
 .appContainer {
+  width: 80%;
   padding-bottom: 64px;
 }
+
 .mdContainer {
   padding-top: 16px;
   padding-bottom: 16px;
