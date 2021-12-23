@@ -11,7 +11,7 @@ export default function Issue() {
   useEffect(() => {}, [requestData]);
 
   const routeToIssuePage = () => {
-    router.push('/requestIssue');
+    router.push('/issue');
   };
 
   return (

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../../modal/DetailModal';
+import ModalPreparing from '../../../modal/modal_preparing';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import {
   preparingModal,
@@ -17,11 +18,9 @@ export default function RightClickSpan({
   x,
   y,
   topicId,
+  setShowMenu,
 }) {
   const useContextMenuName = useRecoilValue(contextMenuName);
-  const [showPreparingModal, setShowPreparingModal] =
-    useRecoilState(preparingModal);
-
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
 
   let modalData = {
@@ -33,15 +32,18 @@ export default function RightClickSpan({
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const setupdtepage = useSetRecoilState(pageupdate);
   const setAddNewPageContent = useSetRecoilState(addNewPage);
-  const onModify = (e) => {
-    if (e.target.innerHTML === '내용 수정') {
+
+  const onModify = () => {
+    if (useContextMenuName === '이름 수정') {
+      setIsDetailModalOpen(true);
+    } else if (useContextMenuName === '내용 수정') {
       setAddNewPageContent(false);
       setupdtepage(true);
       setModifyPage(true);
     }
-    setIsDetailModalOpen(true);
   };
 
+  const [showPreparingModal, setShowPreparingModal] = useState(false);
   const onDelete = () => {
     setShowPreparingModal(true);
   };
@@ -55,7 +57,14 @@ export default function RightClickSpan({
           noteId={noteId}
           topicId={topicId}
           modalData={modalData}
+          setShowMenu={setShowMenu}
           setIsDetailModalOpen={setIsDetailModalOpen}
+        />
+      )}
+      {showPreparingModal && (
+        <ModalPreparing
+          setShowPreparingModal={setShowPreparingModal}
+          setShowMenu={setShowMenu}
         />
       )}
     </ContextContainer>

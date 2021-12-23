@@ -110,6 +110,7 @@ export default function ContentNavigator() {
 
   const pageNavigatorTapped = async (pageId, version_no) => {
     await fetchPageDetail(pageId, version_no).then((page) => {
+      console.log(page);
       const {
         title,
         content,
@@ -183,6 +184,7 @@ export default function ContentNavigator() {
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
           {pageData.map((item) => {
+            // console.log(item);
             const { id, title, is_approved, version_no } = item;
             return (
               <li
@@ -195,7 +197,8 @@ export default function ContentNavigator() {
                 }}
                 onContextMenu={handleContext}
               >
-                {title.slice(0, 25) ?? null}
+                {title.slice(0, 26) ?? null}
+                {title.length > 26 && '...'}
               </li>
             );
           })}
@@ -208,6 +211,7 @@ export default function ContentNavigator() {
           y={yPos}
           setShowMenu={setShowMenu}
           topicId={topicId}
+          setShowMenu={setShowMenu}
         />
       )}
       {notApprovedModalActive && <NotApprovedModal />}

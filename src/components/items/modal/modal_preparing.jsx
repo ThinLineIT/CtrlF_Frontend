@@ -2,9 +2,7 @@ import { useSetRecoilState } from 'recoil';
 import { preparingModal } from '../../../store/atom';
 import styles from '../../../styles/items/modal/modal_preparing.module.css';
 
-export default function ModalPreparing() {
-  const setShowPreparingModal = useSetRecoilState(preparingModal);
-
+export default function ModalPreparing({ setShowPreparingModal, setShowMenu }) {
   return (
     <div className={styles.notes_modal}>
       <div className={styles.modal_overlay}>
@@ -13,7 +11,10 @@ export default function ModalPreparing() {
           <div className={styles.btn}>
             <button
               className={styles.ok_button}
-              onClick={() => setShowPreparingModal(false)}
+              onClick={() => {
+                setShowPreparingModal(false);
+                setShowMenu(false);
+              }}
             >
               확인
             </button>
