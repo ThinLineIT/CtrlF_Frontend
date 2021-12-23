@@ -11,10 +11,10 @@ import {
   requestIssueTitle,
   requestIssueContent,
 } from '../../../store/atom';
-import { postNoteApi, postTopicApi } from '../../../utils/pageDetailFetch';
+import { noteCreateApi, topicCreateApi } from '../../../utils/pageDetailFetch';
 
 export default function IssueCreateModal({ ...props }) {
-  const { noteId, issue, isCreatePage } = {
+  const { noteId, issue } = {
     ...props,
   };
 
@@ -56,7 +56,7 @@ export default function IssueCreateModal({ ...props }) {
       title: requestTitle,
       reason: requestContent,
     };
-    await postNoteApi(data).then((res) => console.log(res));
+    await noteCreateApi(data).then((res) => console.log(res));
   };
 
   const sendTopicData = async (requestTitle, requestContent) => {
@@ -65,8 +65,7 @@ export default function IssueCreateModal({ ...props }) {
       title: requestTitle,
       reason: requestContent,
     };
-
-    await postTopicApi(data).then((res) => console.log(res));
+    await topicCreateApi(data).then((res) => console.log(res));
   };
 
   const [modalTitle, setModalTitle] = useState('');
@@ -77,59 +76,49 @@ export default function IssueCreateModal({ ...props }) {
     setPlaceHolder(modalData.placeholder);
   }, []);
 
-  if (isCreatePage) {
+  if (!isUserSubmit) {
     return (
-      <AlertModal
-        issue={issue}
-        isCreatePage={isCreatePage}
-        closingModalAndSendData={closingModalAndSendData}
-      />
-    );
-  } else {
-    if (!isUserSubmit) {
-      return (
-        <div className={styles.notes_modal}>
-          <div className={styles.modal_overlay}>
-            <div className={styles.modal_content}>
-              <h1>ADD {modalTitle}</h1>
-              <input
-                type="text"
-                ref={titleRef}
-                required={true}
-                onChange={onInputChange}
-                placeholder={placeholder}
-                className={styles.users_input}
-              />
-              <textarea
-                name="textarea"
-                required={true}
-                ref={textareaRef}
-                onChange={onInputChange}
-                placeholder="요청 내용 설명"
-                className={styles.users_textarea}
-              />
-              <div className={styles.btn}>
-                <button
-                  className={styles.ok_button}
-                  onClick={changeModalUtilsAndOkBtnActive}
-                >
-                  OK
-                </button>
-                <button className={styles.cancel_button} onClick={closeModal}>
-                  CANCEL
-                </button>
-              </div>
+      <div className={styles.notes_modal}>
+        <div className={styles.modal_overlay}>
+          <div className={styles.modal_content}>
+            <h1>ADD {modalTitle}</h1>
+            <input
+              type="text"
+              ref={titleRef}
+              required={true}
+              onChange={onInputChange}
+              placeholder={placeholder}
+              className={styles.users_input}
+            />
+            <textarea
+              name="textarea"
+              required={true}
+              ref={textareaRef}
+              onChange={onInputChange}
+              placeholder="요청 내용 설명"
+              className={styles.users_textarea}
+            />
+            <div className={styles.btn}>
+              <button
+                className={styles.ok_button}
+                onClick={changeModalUtilsAndOkBtnActive}
+              >
+                OK
+              </button>
+              <button className={styles.cancel_button} onClick={closeModal}>
+                CANCEL
+              </button>
             </div>
           </div>
         </div>
-      );
-    } else if (isUserSubmit) {
-      return (
-        <AlertModal
-          issue={issue}
-          closingModalAndSendData={closingModalAndSendData}
-        />
-      );
-    }
+      </div>
+    );
+  } else if (isUserSubmit) {
+    return (
+      <AlertModal
+        issue={issue}
+        closingModalAndSendData={closingModalAndSendData}
+      />
+    );
   }
 }

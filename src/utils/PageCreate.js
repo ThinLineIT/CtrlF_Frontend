@@ -1,14 +1,7 @@
-
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-export async function pageCreateApi(title, summary, content, topicId) {
-  const data = {
-    topic_id: topicId,
-    title: title,
-    content: content,
-    reason: summary,
-  };
+export async function pageCreateApi(data) {
   let headers = Cookies.get('token');
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/`,
@@ -20,6 +13,5 @@ export async function pageCreateApi(title, summary, content, topicId) {
   })
     .then((res) => res)
     .catch((err) => err.response);
-  location.href = location.href;
+  return request;
 }
-

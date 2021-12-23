@@ -28,7 +28,7 @@ export const fetchPageDetail = async (id, versionNo) => {
   return request;
 };
 
-export const postNoteApi = async (data) => {
+export const noteCreateApi = async (data) => {
   let headers = Cookies.get('token');
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}notes/`,
@@ -44,7 +44,7 @@ export const postNoteApi = async (data) => {
   return request;
 };
 
-export const postTopicApi = async (data) => {
+export const topicCreateApi = async (data) => {
   let headers = Cookies.get('token');
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}topics/`,
@@ -59,11 +59,11 @@ export const postTopicApi = async (data) => {
   return request;
 };
 
-export const postPageApi = async (data) => {
+export const pageUpdateApi = async (pageId, data) => {
   let headers = Cookies.get('token');
   const request = await axios({
-    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/`,
-    method: 'post',
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/${pageId}`,
+    method: 'put',
     headers: {
       Authorization: `Bearer ${headers}`,
     },

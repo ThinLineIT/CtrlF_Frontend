@@ -8,9 +8,11 @@ import { pageCreateApi } from '../../../utils/PageCreate';
 import { addNewPage, topicIndex, pageupdate } from '../../../store/atom';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseImageUploader from '../../../utils/useImageUploader';
+import { pageUpdateApi } from '../../../utils/pageDetailFetch';
 
 export default function MarkdownEditor(props) {
   const inputRef = useRef();
+  const { pageCreateTitle } = props;
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
@@ -18,11 +20,24 @@ export default function MarkdownEditor(props) {
 
   const topicId = useRecoilValue(topicIndex);
 
-  const pageSubmit = () => {
-    if (updatePage) {
-      null; // 페이지 업데이트 Api
-    } else if (addNewPageContent) {
-      pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+  const pageSubmit = (e) => {
+    e.preventDefault();
+    if (!updatePage) {
+      const postingData = {
+        topic_id: +topicId,
+        title: pageCreateTitle,
+        content: input,
+        reason: pageCreateSummary,
+      };
+      pageCreateApi(postingData).then((res) => console.log(res));
+    } else if (updatePage) {
+      console.log(id);
+      // const newPostingData = {
+      //   new_title: pageCreateTitle,
+      //   new_content: input,
+      //   reason: pageCreateSummary,
+      // };
+      // pageUpdateApi(id, data)
     }
   };
 
@@ -82,7 +97,9 @@ export default function MarkdownEditor(props) {
 
   return (
     <form className={styles.editor_wrap}>
-      <button onClick={pageSubmit}>페이지 생성하기</button>
+      <button onClick={pageSubmit} id="pageCreate" style={{ display: 'none' }}>
+        페이지 생성하기
+      </button>
       <textarea
         type="text"
         placeholder={updatePage ? 'resaon' : 'summary'}
