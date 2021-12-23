@@ -97,7 +97,8 @@ export default function ContentNavigator() {
 
   const getPages = async (id) => {
     await fetchPageList(id).then((pages) => {
-      const { title, is_approved, version_no, id } = pages[0];
+      if (!pages[0]) return;
+      const { title, is_approved, version_no, id } = pages[0] ?? null;
       if (is_approved === false) {
         setIsPageApproved(false);
       } else {

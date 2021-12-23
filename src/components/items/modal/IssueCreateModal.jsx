@@ -11,6 +11,7 @@ import {
   requestIssueTitle,
   requestIssueContent,
 } from '../../../store/atom';
+import { postNoteApi, postTopicApi } from '../../../utils/pageDetailFetch';
 
 export default function IssueCreateModal({ ...props }) {
   const { noteId, issue, isCreatePage } = {
@@ -51,43 +52,21 @@ export default function IssueCreateModal({ ...props }) {
   };
 
   const sendNoteData = async (requestTitle, requestContent) => {
-    let headers = Cookies.get('token');
-
     const data = {
       title: requestTitle,
       reason: requestContent,
     };
-    await axios({
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}notes/`,
-      method: 'post',
-      headers: {
-        Authorization: `Bearer ${headers}`,
-      },
-      data: data,
-    })
-      .then((res) => res)
-      .catch((err) => err.response);
+    await postNoteApi(data).then((res) => console.log(res));
   };
 
-  const sendTopicData = (requestTitle, requestContent) => {
-    let headers = Cookies.get('token');
-
+  const sendTopicData = async (requestTitle, requestContent) => {
     const data = {
       note_id: noteId,
       title: requestTitle,
       reason: requestContent,
     };
 
-    axios({
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}topics/`,
-      method: 'post',
-      headers: {
-        Authorization: `Bearer ${headers}`,
-      },
-      data: data,
-    })
-      .then((res) => res)
-      .catch((err) => err.response);
+    await postTopicApi(data).then((res) => console.log(res));
   };
 
   const [modalTitle, setModalTitle] = useState('');
@@ -102,6 +81,7 @@ export default function IssueCreateModal({ ...props }) {
     return (
       <AlertModal
         issue={issue}
+        isCreatePage={isCreatePage}
         closingModalAndSendData={closingModalAndSendData}
       />
     );

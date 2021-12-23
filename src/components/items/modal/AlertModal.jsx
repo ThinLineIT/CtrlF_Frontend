@@ -29,11 +29,13 @@ export default function AlertModal({ ...props }) {
     setShowHiddenModal(false);
   };
 
+  const [modalTitle, setModalTitle] = useState('');
   const [modalTextData, setModalTextData] = useState({});
   useEffect(() => {
     const modalData = useModal(issue);
+    setModalTitle(modalData.modalTitle);
     setModalTextData(modalData);
-  });
+  }, []);
 
   return (
     <div className={styles.notes_modal}>

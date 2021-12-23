@@ -28,20 +28,48 @@ export const fetchPageDetail = async (id, versionNo) => {
   return request;
 };
 
-export const ApproveApi = async (id) => {
-  const data = {
-    issue_id: +id,
-  };
+export const postNoteApi = async (data) => {
   let headers = Cookies.get('token');
   const request = await axios({
-    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-approve/`,
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}notes/`,
     method: 'post',
     headers: {
       Authorization: `Bearer ${headers}`,
     },
     data: data,
   })
-    .then((res) => res.response)
+    .then((res) => res)
+    .catch((err) => err.response);
+
+  return request;
+};
+
+export const postTopicApi = async (data) => {
+  let headers = Cookies.get('token');
+  const request = await axios({
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}topics/`,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
+    .catch((err) => err.response);
+  return request;
+};
+
+export const postPageApi = async (data) => {
+  let headers = Cookies.get('token');
+  const request = await axios({
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/`,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
     .catch((err) => err.response);
   return request;
 };
