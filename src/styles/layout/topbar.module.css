@@ -2,17 +2,16 @@
   z-index: 99;
   width: 100%;
   max-height: 150px;
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.404);
 }
 .container__wrap {
   width: 81%;
-  height: 7em;
+  height: 6em;
   text-align: center;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-sizing: border-box;
 }
 
 .top__logo {
@@ -60,7 +59,7 @@
 }
 
 .top__signup__list {
-  padding: 2em;
+  min-width: 8rem;
   margin: 0 2em;
 }
 .top__signup__list a {
@@ -112,34 +111,48 @@
   display: none;
 }
 
-@media screen and (max-width: 92rem) {
-  .top__logo {
-    margin: 20px;
-  }
-}
-
-@media screen and (max-width: 70rem) {
+@media screen and (max-width: 768px) {
   .container {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  .container__wrap {
-    margin: 0 auto;
-  }
-  .top__logo {
-    flex: 1 1 30%;
-    margin: 0;
-    padding: 0;
-  }
-  .top__signup__list {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 70px;
+  }
+
+  .container__wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
   }
+
+  .top__logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 2.5em;
+  }
+  .top__logo__img {
+    margin: 0 auto;
+    width: 163px;
+    height: 51px;
+  }
+  .top__logo__title {
+    color: rgb(255, 255, 255);
+    height: 100%;
+    text-shadow: 4px 4px 7px rgba(128, 128, 128, 0.8);
+    background: #ffffff 0% 0% no-repeat padding-box;
+    font-size: 2.8rem;
+    margin: 0;
+  }
+
   .searchbar {
-    flex: 1 1 70%;
-    width: 33em;
+    display: none;
+  }
+
+  .top__signup__list {
+    display: none;
   }
 }
