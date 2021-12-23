@@ -195,7 +195,7 @@ export default function ContentNavigator() {
                 }}
                 onContextMenu={handleContext}
               >
-                {title ?? null}
+                {title.slice(0, 25) ?? null}
               </li>
             );
           })}
@@ -206,6 +206,7 @@ export default function ContentNavigator() {
           previosTitle={previousTitle}
           x={xPos}
           y={yPos}
+          setShowMenu={setShowMenu}
           topicId={topicId}
         />
       )}

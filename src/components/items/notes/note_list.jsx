@@ -68,45 +68,43 @@ export default function NoteList() {
           const { id, title, is_approved } = note;
           if (lists.length === index + 1) {
             return (
-              <div
-                key={id}
-                ref={lastNoteElementRef}
-                className={`${styles.container_note} ${getStyles(
-                  is_approved
-                )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}`}
-              >
-                <Link href="/notes/[id]" as={`/notes/${id}`}>
-                  <a
-                    onClick={(e) =>
-                      ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
-                    }
-                    className={styles.link}
+              <Link href="/notes/[id]" as={`/notes/${id}`} key={id}>
+                <a
+                  onClick={(e) =>
+                    ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
+                  }
+                  className={styles.link}
+                >
+                  <div
+                    ref={lastNoteElementRef}
+                    className={`${styles.container_note} ${getStyles(
+                      is_approved
+                    )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}`}
                   >
-                    {title}
-                  </a>
-                </Link>
-              </div>
+                    <span>{title}</span>
+                  </div>
+                </a>
+              </Link>
             );
           } else {
             return (
-              <div
-                key={id}
-                className={`${styles.container_note} ${getStyles(
-                  is_approved
-                )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}
+              <Link href="/notes/[id]" as={`/notes/${id}`} key={id}>
+                <a
+                  onClick={(e) =>
+                    ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
+                  }
+                  className={styles.link}
+                >
+                  <div
+                    className={`${styles.container_note} ${getStyles(
+                      is_approved
+                    )} ${styles[`color_${Math.floor((index / 5) % 15)}`]}
                 `}
-              >
-                <Link href="/notes/[id]" as={`/notes/${id}`}>
-                  <a
-                    onClick={(e) =>
-                      ifNotApprovedNoteClicked(e, `${id}`, `${is_approved}`)
-                    }
-                    className={styles.link}
                   >
-                    {title}
-                  </a>
-                </Link>
-              </div>
+                    <span>{title}</span>
+                  </div>
+                </a>
+              </Link>
             );
           }
         })}
