@@ -90,13 +90,11 @@ export default function IssueCreateModal({ ...props }) {
       .catch((err) => err.response);
   };
 
-  const [modalTextData, setModalTextData] = useState({});
-  const [englishTitle, setEnglishTitle] = useState('');
+  const [modalTitle, setModalTitle] = useState('');
   const [placeholder, setPlaceHolder] = useState('');
   useEffect(() => {
     const modalData = useModal(issue);
-    setModalTextData(modalData);
-    setEnglishTitle(modalData.englishTitle);
+    setModalTitle(modalData.mainTitle);
     setPlaceHolder(modalData.placeholder);
   }, []);
 
@@ -113,7 +111,7 @@ export default function IssueCreateModal({ ...props }) {
         <div className={styles.notes_modal}>
           <div className={styles.modal_overlay}>
             <div className={styles.modal_content}>
-              <h1>ADD {englishTitle}</h1>
+              <h1>ADD {modalTitle}</h1>
               <input
                 type="text"
                 ref={titleRef}

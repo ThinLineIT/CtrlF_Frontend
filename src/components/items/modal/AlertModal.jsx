@@ -29,25 +29,19 @@ export default function AlertModal({ ...props }) {
     setShowHiddenModal(false);
   };
 
-  const [issueState, setIssueStatus] = useState('');
-  useEffect(() => {
-    setIssueStatus(issue);
-  });
-
   const [modalTextData, setModalTextData] = useState({});
   useEffect(() => {
     const modalData = useModal(issue);
     setModalTextData(modalData);
   });
 
-  console.log(issueState);
   return (
     <div className={styles.notes_modal}>
       <div className={styles.modal_overlay}>
         <div className={styles.modal_content}>
           {modalTextData && (
             <>
-              <h1>ADD {modalTextData.englishTitle}</h1>
+              <h1>ADD {modalTextData.mainTitle}</h1>
               <span className={styles.plates}>
                 {modalTextData.koreanTitle} 추가를 요청하시겠습니까?
               </span>
