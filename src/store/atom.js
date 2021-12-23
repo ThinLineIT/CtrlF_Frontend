@@ -118,6 +118,12 @@ export const topicIndex = atom({
   default: 0,
 });
 
+export const pageId = atom({
+  key: 'page_id',
+  default: 0,
+});
+pageId;
+
 export const pageList = atom({
   key: 'page_list',
   default: [],
