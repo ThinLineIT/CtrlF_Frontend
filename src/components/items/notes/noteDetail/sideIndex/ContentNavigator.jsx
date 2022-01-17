@@ -97,7 +97,8 @@ export default function ContentNavigator() {
 
   const getPages = async (id) => {
     await fetchPageList(id).then((pages) => {
-      const { title, is_approved, version_no, id } = pages[0];
+      if (!pages[0]) return;
+      const { title, is_approved, version_no, id } = pages[0] ?? null;
       if (is_approved === false) {
         setIsPageApproved(false);
       } else {
@@ -110,8 +111,8 @@ export default function ContentNavigator() {
 
   const pageNavigatorTapped = async (pageId, version_no) => {
     await fetchPageDetail(pageId, version_no).then((page) => {
-      console.log(page);
       const {
+        id,
         title,
         content,
         is_approved,
@@ -123,6 +124,7 @@ export default function ContentNavigator() {
       is_approved == false
         ? ifNotApprovedClicked('page')
         : setIsPageApproved(true);
+      setPageId(id);
       setShowMenu(false);
       setPageTitle(title);
       setIssueId(issue_id);
@@ -184,7 +186,6 @@ export default function ContentNavigator() {
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
           {pageData.map((item) => {
-            // console.log(item);
             const { id, title, is_approved, version_no } = item;
             return (
               <li

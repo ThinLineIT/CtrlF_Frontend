@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   issueApproveApi,
-  issueReject,
   issueCancel,
   issueEdit,
 } from '../../../utils/issueHook';

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import Renderer from '../Renderer/Renderer';
 import EditorBtnItem from './EditorBtnItem';
@@ -5,24 +6,47 @@ import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../../utils/PageCreate';
-import { addNewPage, topicIndex, pageupdate } from '../../../store/atom';
+import {
+  addNewPage,
+  topicIndex,
+  pageupdate,
+  issueDetailPageId,
+} from '../../../store/atom';
 import styles from '../../../styles/markdown/Editor.module.css';
 import UseImageUploader from '../../../utils/useImageUploader';
+import { pageUpdateApi } from '../../../utils/pageDetailFetch';
 
 export default function MarkdownEditor(props) {
   const inputRef = useRef();
+  const { pageCreateTitle } = props;
   const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
     setPageCreateSummary(event.target.value);
   };
 
+  const router = useRouter();
   const topicId = useRecoilValue(topicIndex);
+  const nowPageId = useRecoilValue(issueDetailPageId);
 
   const pageSubmit = () => {
-    if (updatePage) {
-      null; // 페이지 업데이트 Api
-    } else if (addNewPageContent) {
-      pageCreateApi(props.pageCreateTitle, pageCreateSummary, input, topicId);
+    const { id } = router.query;
+    if (!updatePage) {
+      const postingData = {
+        topic_id: +topicId,
+        title: pageCreateTitle,
+        content: input,
+        reason: pageCreateSummary,
+      };
+      pageCreateApi(postingData);
+    } else if (updatePage) {
+      const newPostingData = {
+        new_title: pageCreateTitle,
+        new_content: input,
+        reason: pageCreateSummary,
+      };
+      pageUpdateApi(nowPageId, newPostingData).then(() =>
+        router.push(`/notes/${id}`)
+      );
     }
   };
 
@@ -82,7 +106,13 @@ export default function MarkdownEditor(props) {
 
   return (
     <form className={styles.editor_wrap}>
-      <button onClick={pageSubmit}>페이지 생성하기</button>
+      <button
+        onClick={(e) => pageSubmit(e)}
+        id="pageCreate"
+        style={{ display: 'none' }}
+      >
+        페이지 생성하기
+      </button>
       <textarea
         type="text"
         placeholder={updatePage ? 'resaon' : 'summary'}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styles from '../../../../../styles/items/notes/noteDetail/sideIndex/addBtn.module.css';
 import {
+  pageupdate,
   addNewPage,
   okBtnActive,
   isOnEditPage,
@@ -11,6 +12,7 @@ import {
 import IssueCreateModal from '../../../modal/IssueCreateModal';
 
 export default function AddBtn({ noteId }) {
+  const setUpdatePage = useSetRecoilState(pageupdate);
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setAddNewContent = useSetRecoilState(addNewPage);
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
@@ -29,6 +31,7 @@ export default function AddBtn({ noteId }) {
     setTimeout(() => {
       setIsOnEditor(true);
       setAddNewContent(true);
+      setUpdatePage(false);
       setModifyPage(true);
     }, 800);
   };

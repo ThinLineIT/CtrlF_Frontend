@@ -7,12 +7,10 @@ import {
   okBtnActive,
   isOnEditPage,
   isPageApproved,
-  isModalActive,
   ModifyPageContent,
   pageDetailIssueId, // 이슈로 이동하기 위한 atom
   firstVisiblePageTitle,
 } from '../../../../../store/atom';
-import IssueCreateModal from '../../../modal/IssueCreateModal';
 
 const MainContentsTopBar = (props) => {
   // 이슈로 이동을 위한 라우팅
@@ -47,14 +45,15 @@ const MainContentsTopBar = (props) => {
   };
 
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
-  const [modalActive, setModaActive] = useRecoilState(isModalActive);
-
   const resetPageContentAndSendData = () => {
-    setIsUserSubmit(true);
-    setModaActive(true);
+    document.getElementById('pageCreate').click();
+    setTimeout(() => {
+      setIsUserSubmit(true);
+      setModifyPage(false);
+    }, 1000); // 추후 수정 예정, 지금은 임의로 비동기적으로 처리합니다.
   };
 
-  const modifyPage = useRecoilValue(ModifyPageContent);
+  const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
   const isOnEditor = useRecoilValue(isOnEditPage);
   const isPageApprove = useRecoilValue(isPageApproved);
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
@@ -99,7 +98,6 @@ const MainContentsTopBar = (props) => {
             />
           </span>
         )}
-        {modalActive && <IssueCreateModal isCreatePage />}
       </section>
     </article>
   );

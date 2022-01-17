@@ -13,27 +13,28 @@ export default function AlertModal({ ...props }) {
   const { issue, closingModalAndSendData } = {
     ...props,
   };
-
   const setShowHiddenModal = useSetRecoilState(isModalActive);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const requestTitle = useRecoilValue(requestIssueTitle);
   const requestContent = useRecoilValue(requestIssueContent);
 
   const closeModalAndSendData = () => {
+    closingModalAndSendData(requestTitle, requestContent, modalTitle);
     setModifyPage(false);
     setShowHiddenModal(false);
-    closingModalAndSendData(requestTitle, requestContent, modalTitle);
   };
 
   const closeModal = () => {
     setShowHiddenModal(false);
   };
 
+  const [modalTitle, setModalTitle] = useState('');
   const [modalTextData, setModalTextData] = useState({});
   useEffect(() => {
     const modalData = useModal(issue);
+    setModalTitle(modalData.modalTitle);
     setModalTextData(modalData);
-  });
+  }, []);
 
   return (
     <div className={styles.notes_modal}>
