@@ -9,7 +9,7 @@ import {
 import {
   issueDetailTopicId,
   issueDetailPageId,
-  issueDetailPageVersion_no,
+  issueDetailPageVersionNo,
 } from '../../../store/atom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
@@ -23,7 +23,7 @@ export default function IssueDetailModal({
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
-  const setPageVersionNo = useSetRecoilState(issueDetailPageVersion_no);
+  const setPageVersionNo = useSetRecoilState(issueDetailPageVersionNo);
   const router = useRouter();
 
   const openDropDown = () => {
