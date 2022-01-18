@@ -9,7 +9,6 @@ import { isJwtActive } from '../src/store/atom';
 import { useRouter } from 'next/router';
 import Modal from '../src/components/items/modal/issue_modal';
 import Head from 'next/head';
-import axios from 'axios';
 
 export default function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
