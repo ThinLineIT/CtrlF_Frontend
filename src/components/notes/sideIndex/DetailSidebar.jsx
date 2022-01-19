@@ -1,8 +1,8 @@
-import AddBtn from './addBtn';
+import NewBtns from './NewBtns';
 import React, { useState } from 'react';
-import RightClickSpan from './rightClick';
-import ContentNavigator from './ContentNavigator';
-import { useScroll } from '../../../utils/useScroll';
+import ContextMenu from './ContextMenu';
+import Navigator from './Navigator';
+import { useScroll } from '../../../hooks/useScroll';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/items/notes/noteDetail/sideIndex/side_index.module.css';
 import {
@@ -12,7 +12,7 @@ import {
   ModifyPageContent,
 } from '../../../store/atom';
 
-export default function SideIndex({ noteId }) {
+export default function DetailSidebar({ noteId }) {
   const [showMenu, setShowMenu] = useState(false);
   const { scrollY } = useScroll();
 
@@ -46,11 +46,11 @@ export default function SideIndex({ noteId }) {
           </span>
         </section>
         <section className={styles.index_list_wrap}>
-          <ContentNavigator />
-          <AddBtn noteId={noteId} />
+          <Navigator />
+          <NewBtns noteId={noteId} />
         </section>
         {showMenu && (
-          <RightClickSpan
+          <ContextMenu
             NOTE
             x={xPos}
             y={yPos}

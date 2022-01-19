@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import styles from '../../styles/items/sidebar/toggle.module.css';
 import usePagination from '../../hooks/use_pagination';
 
-export default function Toggle() {
+export default function ToggleSwitch() {
   const focusIn = useRef();
   const focusOut = useRef();
   const MAKER_WHITE = '#ffffff';

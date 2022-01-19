@@ -13,7 +13,7 @@ import {
 
 import { pageDetailIssueId } from '../../../store/issueAtom'; // 이슈로 이동하기 위한 atom}
 
-const MainContentsTopBar = (props) => {
+const DetailTopBar = (props) => {
   // 이슈로 이동을 위한 라우팅
   const router = useRouter();
   const issueId = useRecoilValue(pageDetailIssueId); // 이슈로 이동하기 위한 atom
@@ -104,7 +104,7 @@ const MainContentsTopBar = (props) => {
   );
 };
 
-export default MainContentsTopBar;
+export default DetailTopBar;
 
 function getStyles(status) {
   if (status) {

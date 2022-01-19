@@ -1,14 +1,14 @@
-import Issue from '../../components/sidebar/issue';
-import Toggle from '../../components/sidebar/toggle';
-import AddNote from '../../components/sidebar/add_note';
-import styles from '../../styles/layout/sideBar.module.css';
+import IssueBox from '../../components/sidebar/IssueBox';
+import ToggleSwitch from '../../components/sidebar/ToggleSwitch';
+import NewNoteBtn from '../../components/sidebar/NewNoteBtn';
+import styles from '../../styles/layout/sidebar.module.css';
 
 export default function SideBar() {
   return (
     <aside className={styles.container}>
-      <Toggle />
-      <AddNote />
-      <Issue />
+      <ToggleSwitch />
+      <NewNoteBtn />
+      <IssueBox />
     </aside>
   );
 }

@@ -1,4 +1,4 @@
-import IssueTagBtn from '../../components/issue/IssueTagBtn';
+import IssueTagBtn from '../../components/issue/issue_tag_btn';
 
 const IssueTagList = ({ styles }) => {
   return (

@@ -1,11 +1,11 @@
 import SideBar from '../sidebar/sidebar';
 import React, { useEffect } from 'react';
-import NoteList from '../notes/note_list';
+import NoteList from '../notes/NoteList';
 import styles from '../../styles/layout/main.module.css';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { noteNumber, isModalActive } from '../../store/atom';
 
-export default function Main() {
+export default function HomePage() {
   const [number, setNumber] = useRecoilState(noteNumber);
   const setShowHiidenModal = useSetRecoilState(isModalActive);
 

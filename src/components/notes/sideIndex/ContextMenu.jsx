@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../items/modal/DetailModal';
-import ModalPreparing from '../../items/modal/modal_preparing';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import PreparingModal from '../../items/modal/PreparingModal';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
-  preparingModal,
   contextMenuName,
   addNewPage,
   ModifyPageContent,
   pageupdate,
 } from '../../../store/atom';
 
-export default function RightClickSpan({
+export default function ContextMenu({
   previosTitle,
   noteId,
   NOTE,
@@ -62,7 +61,7 @@ export default function RightClickSpan({
         />
       )}
       {showPreparingModal && (
-        <ModalPreparing
+        <PreparingModal
           setShowPreparingModal={setShowPreparingModal}
           setShowMenu={setShowMenu}
         />

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import styles from '../../../styles/items/notes/noteDetail/sideIndex/addBtn.module.css';
+import styles from '../../../styles/items/notes/noteDetail/sideIndex/new_btns.module.css';
 import {
   pageupdate,
   addNewPage,
@@ -11,7 +10,7 @@ import {
 } from '../../../store/atom';
 import IssueCreateModal from '../../items/modal/IssueCreateModal';
 
-export default function AddBtn({ noteId }) {
+export default function NewBtns({ noteId }) {
   const setUpdatePage = useSetRecoilState(pageupdate);
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setAddNewContent = useSetRecoilState(addNewPage);
