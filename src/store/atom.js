@@ -31,46 +31,6 @@ export const isJwtActive = atom({
   default: false,
 });
 
-export const email = atom({
-  key: 'email',
-  default: '',
-});
-
-export const password = atom({
-  key: 'password',
-  default: '',
-});
-
-export const passwordCheck = atom({
-  key: 'passwordCheck',
-  default: '',
-});
-
-export const nickName = atom({
-  key: 'nickName',
-  default: '',
-});
-
-export const authCode = atom({
-  key: 'AuthCode',
-  default: '',
-});
-
-export const isOverlaped = atom({
-  key: 'isOverlaped',
-  default: false,
-});
-
-export const isNickOverlaped = atom({
-  key: 'isNickOverlaped',
-  default: '',
-});
-
-export const isPwValidated = atom({
-  key: 'isPwValidated',
-  default: '',
-});
-
 // Note Detail
 
 export const detailTitle = atom({
@@ -314,12 +274,6 @@ export const backToEmail = atom({
 
 const { persistAtom } = recoilPersist();
 
-export const filterList = atom({
-  key: 'filterList',
-  default: [],
-  effects_UNSTABLE: [persistAtom],
-});
-
 // 실제 api
 
 export const noteDataList = atom({
@@ -338,27 +292,4 @@ export const pageDataList = atom({
   key: 'page_data',
   default: [],
   effects_UNSTABLE: [persistAtom],
-});
-
-export const issueDetailTopicId = atom({
-  key: 'issue_detail_topicId',
-  default: '',
-});
-
-export const issueDetailPageId = atom({
-  key: 'issue_detail_page_id',
-  default: '',
-});
-
-export const issueDetailPageVersionNo = atom({
-  key: 'issue_detail_page_version_no',
-  default: null,
-});
-export const setTimer = atom({
-  key: 'setTimer',
-  default: false,
-});
-export const pageDetailIssueId = atom({
-  key: 'page_detail_issueId',
-  default: '',
 });

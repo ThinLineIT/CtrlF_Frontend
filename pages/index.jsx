@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
-import Main from '../src/components/layout/main';
+import Main from '../src/container/homepage/main';
 
 export default function Home() {
   const setJwt = useSetRecoilState(isJwtActive);

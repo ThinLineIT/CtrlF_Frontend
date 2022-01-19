@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { filterList as filterListAtom } from '../../store/atom';
+import { filterList as filterListAtom } from '../../store/issueAtom';
 import styles from '../../styles/items/issue/issue_tag.module.css';
 
 export default function IssueSelectedTagBtn({ name }) {

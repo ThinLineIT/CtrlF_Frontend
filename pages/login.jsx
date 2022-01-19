@@ -1,4 +1,4 @@
-import LoginForm from '../src/components/Login/LoginForm';
+import LoginForm from '../src/container/Login/LoginForm';
 import Head from 'next/head';
 
 function Login() {

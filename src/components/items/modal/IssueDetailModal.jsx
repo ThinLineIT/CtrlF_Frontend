@@ -9,10 +9,10 @@ import {
   issueDetailTopicId,
   issueDetailPageId,
   issueDetailPageVersionNo,
-} from '../../../store/atom';
+} from '../../../store/issueAtom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
-import DropMenu from '../../items/menu/DropMenu';
+import DropMenu from '../menu/IssueDropMenu';
 
 export default function IssueDetailModal({
   issue,

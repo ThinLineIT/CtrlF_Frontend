@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import { useState, useEffect } from 'react';
-import { filterList as filterListAtom } from '../../store/atom';
+import { filterList as filterListAtom } from '../../store/issueAtom';
 import styles from '../../styles/items/issue/issue_tag.module.css';
 
 const IssueTagBtn = ({ name }) => {

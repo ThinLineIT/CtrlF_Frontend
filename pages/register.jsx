@@ -5,15 +5,15 @@ import {
   nickName,
   password,
   passwordCheck,
-} from '../src/store/atom';
+} from '../src/store/registerAtom';
 import { useSetRecoilState } from 'recoil';
-import Email from '../src/components/register/Email';
-import Password from '../src/components/register/Password';
-import PasswordConfirm from '../src/components/register/PasswordConfirm';
-import NickName from '../src/components/register/NickName';
-import AuthCode from '../src/components/register/AuthCode';
+import Email from '../src/container/register/Email';
+import Password from '../src/container/register/Password';
+import PasswordConfirm from '../src/container/register/PasswordConfirm';
+import NickName from '../src/container/register/NickName';
+import AuthCode from '../src/container/register/AuthCode';
 import styles from '../src/styles/Register.module.css';
-import ReAuthentication from '../src/components/register/ReAuthentication';
+import ReAuthentication from '../src/container/register/ReAuthentication';
 import { useRef, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 

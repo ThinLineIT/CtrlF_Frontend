@@ -1,7 +1,6 @@
-
 import axios from 'axios';
-import { emailReg } from '../utils/Reg';
-import { emailAuthApi, overlapApi, authCodeConfirm } from './SignUpHook';
+import { emailReg } from './reg';
+import { emailAuthApi, overlapApi, authCodeConfirm } from './signUpApi';
 import Cookies from 'js-cookie';
 
 export const emailApi = async (data) => {
