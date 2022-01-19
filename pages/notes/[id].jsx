@@ -1,9 +1,11 @@
 import Axios from 'axios';
 import Head from 'next/head';
-import NoteDetail from '../../src/components/items/notes/noteDetail/note_detail';
+import NoteDetail from '../../src/container/notes/note_detail';
 
 const Post = ({ item }) => {
   const { title } = item;
+
+  console.log(title);
   return (
     <>
       {item && (

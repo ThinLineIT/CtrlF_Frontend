@@ -2,13 +2,13 @@ import {
   emailApi,
   authCodeApi,
   passwordChangeApi,
-} from '../src/utils/PasswordChange';
+} from '../src/utils/passwordChange';
 import { useRouter } from 'next/router';
-import InputForm from '../src/components/passwordChange/InputForm';
+import InputForm from '../src/container/passwordChange/InputForm';
 import styles from '../src/styles/PasswordChange.module.css';
 import { useState, useRef, useEffect } from 'react';
-import { passwordReg } from '../src/utils/Reg';
-import ReAuthentication from '../src/components/register/ReAuthentication';
+import { passwordReg } from '../src/utils/reg';
+import ReAuthentication from '../src/container/register/ReAuthentication';
 import Cookies from 'js-cookie';
 
 export default function PasswordChange() {

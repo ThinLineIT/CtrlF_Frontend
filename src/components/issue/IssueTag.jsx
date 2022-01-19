@@ -1,4 +1,4 @@
-import IssueTagList from './IssueTagList';
+import IssueTagList from '../../container/issue/IssueTagList';
 import IssueTagInput from './IssueTagInput';
 import styles from '../../styles/items/issue/issue_tag.module.css';
 

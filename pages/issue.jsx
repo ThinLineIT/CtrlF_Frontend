@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import IssueList from '../src/components/issue/IssueList';
+import IssueList from '../src/container/issue/IssueList';
 import IssueTag from '../src/components/issue/IssueTag';
 import styles from '../src/styles/Issue.module.css';
 import { checkLogin } from '../src/utils/loginCheck';
