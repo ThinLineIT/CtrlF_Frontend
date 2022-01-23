@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import { okBtnActive, isModalActive } from '../../store/atom';
 import styles from '../../styles/items/sidebar/add_note.module.css';
 import IssueCreateModal from '../items/modal/IssueCreateModal';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 
-function AddNote() {
+function NewNoteBtn() {
   const setIsUserSubmit = useSetRecoilState(okBtnActive);
   const [showHiddenModal, setShowHiidenModal] = useRecoilState(isModalActive);
 
@@ -29,4 +28,4 @@ function AddNote() {
   );
 }
 
-export default AddNote;
+export default NewNoteBtn;

@@ -12,7 +12,7 @@ import {
   pageupdate,
   issueDetailPageId,
 } from '../../store/atom';
-import styles from '../../styles/markdown/Editor.module.css';
+import styles from '../../styles/markdown/editor.module.css';
 import UseImageUploader from '../../utils/useImageUploader';
 import { pageUpdateApi } from '../../utils/pageDetailFetch';
 

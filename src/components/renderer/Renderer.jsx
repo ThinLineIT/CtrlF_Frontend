@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
-import styles from '../../styles/markdown/Renderer.module.css';
+import styles from '../../styles/markdown/renderer.module.css';
 import 'github-markdown-css/github-markdown.css';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';

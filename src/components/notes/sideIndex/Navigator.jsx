@@ -1,7 +1,7 @@
-import RightClickSpan from './rightClick';
-import { useScroll } from '../../../utils/useScroll';
+import ContextMenu from './ContextMenu';
+import { useScroll } from '../../../hooks/useScroll';
 import React, { useRef, useState, useEffect } from 'react';
-import NotApprovedModal from '../../items/modal/not_approved_modal';
+import NotApprovedModal from '../../items/modal/NotApprovedModal';
 import { fetchPageList, fetchPageDetail } from '../../../utils/pageDetailFetch';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/items/notes/noteDetail/sideIndex/index_index.module.css';
@@ -29,7 +29,7 @@ import {
   issueDetailPageVersionNo,
 } from '../../../store/issueAtom';
 
-export default function ContentNavigator() {
+export default function Navigator() {
   const pageRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const [notApprovedModalActive, setNotApprovedModalActive] =
@@ -206,7 +206,7 @@ export default function ContentNavigator() {
         </ul>
       </div>
       {showMenu && (
-        <RightClickSpan
+        <ContextMenu
           previosTitle={previousTitle}
           x={xPos}
           y={yPos}
