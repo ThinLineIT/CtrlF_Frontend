@@ -6,12 +6,8 @@ import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../utils/PageCreate';
-import {
-  addNewPage,
-  topicIndex,
-  pageupdate,
-  issueDetailPageId,
-} from '../../store/atom';
+import { addNewPage, topicIndex, pageupdate } from '../../store/atom';
+import { issueDetailPageId } from '../../store/issueAtom';
 import styles from '../../styles/markdown/editor.module.css';
 import UseImageUploader from '../../utils/useImageUploader';
 import { pageUpdateApi } from '../../utils/pageDetailFetch';

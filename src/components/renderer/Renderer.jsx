@@ -18,7 +18,7 @@ export default function Renderer(props) {
       <article className={styles.mdContainer}>
         <MarkDownStyle>
           <ReactMarkdown
-            renderers={renderers}
+            components={renderers}
             className="markdown-body"
             rehypePlugins={[rehypeRaw]}
             plugins={[gfm, emoji, toc]}
@@ -70,11 +70,20 @@ export const ImageBlock = (props) => {
 };
 
 const renderers = {
-  code: ({ language, value }) => {
-    return (
-      <SyntaxHighlighter style={prism} language={language}>
-        {value}
-      </SyntaxHighlighter>
+  code({ node, inline, className, children, ...props }) {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+      <SyntaxHighlighter
+        children={String(children).replace(/\n$/, '')}
+        style={prism}
+        language={match[1]}
+        PreTag="div"
+        {...props}
+      />
+    ) : (
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
   heading: headingRenderer,
