@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import styles from '../src/styles/Register.module.css';
+import styles from '../src/styles/register.module.css';
 
 export default function ConfirmPage() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import styles from '../../../styles/items/menu/dropmenu.module.css';
+import styles from '../../../styles/items/menu/drop_menu.module.css';
 import ChatBubble from '../../../../public/images/issue/dropdown/chat.svg';
 
 const DropMenu = ({ dropDownMenu, setDropDownMenu }) => {

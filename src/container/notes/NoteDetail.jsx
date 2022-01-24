@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
-import DetailContents from '../../components/notes/mainContents/detail_contents';
-import SideIndex from '../../components/notes/sideIndex/side_index';
+import MainContents from '../../components/notes/mainContents/MainContents';
+import DetailSidebar from '../../components/notes/sideIndex/DetailSidebar';
 import React, { useState, useEffect } from 'react';
 import {
   fetchTopics,
@@ -81,8 +81,8 @@ export default function NoteDetail({ note }) {
         </div>
       ) : (
         <main className={styles.wrap}>
-          <SideIndex noteId={id} />
-          <DetailContents />
+          <DetailSidebar noteId={id} />
+          <MainContents />
         </main>
       )}
     </>

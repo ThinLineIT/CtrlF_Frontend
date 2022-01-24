@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router';
 import { userRequestDataList } from '../../store/atom';
 import styles from '../../styles/items/sidebar/issue.module.css';
 
-export default function Issue() {
+export default function IssueBox() {
   const router = useRouter();
   const requestData = useRecoilValue(userRequestDataList);
 

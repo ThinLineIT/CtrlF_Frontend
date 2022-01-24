@@ -1,8 +1,6 @@
-import { useSetRecoilState } from 'recoil';
-import { preparingModal } from '../../../store/atom';
 import styles from '../../../styles/items/modal/modal_preparing.module.css';
 
-export default function ModalPreparing({ setShowPreparingModal, setShowMenu }) {
+export default function PreparingModal({ setShowPreparingModal, setShowMenu }) {
   return (
     <div className={styles.notes_modal}>
       <div className={styles.modal_overlay}>

@@ -5,7 +5,7 @@ import {
 } from '../src/utils/passwordChange';
 import { useRouter } from 'next/router';
 import InputForm from '../src/container/passwordChange/InputForm';
-import styles from '../src/styles/PasswordChange.module.css';
+import styles from '../src/styles/password_change.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { passwordReg } from '../src/utils/reg';
 import ReAuthentication from '../src/container/register/ReAuthentication';

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import IssueList from '../src/container/issue/IssueList';
-import IssueTag from '../src/components/issue/IssueTag';
-import styles from '../src/styles/Issue.module.css';
+import styles from '../src/styles/issue.module.css';
 import { checkLogin } from '../src/utils/loginCheck';
 import { issueListApi } from '../src/utils/issueHook';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
 import { useRouter } from 'next/router';
-import Modal from '../src/components/items/modal/issue_modal';
+import Modal from '../src/components/items/modal/IssueModal';
 import Head from 'next/head';
 
 export default function Issue() {

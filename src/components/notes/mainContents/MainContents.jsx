@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MainContentsTopBar from './MainContentsTopBar';
+import DetailTopBar from './DetailTopBar';
 import Editor from '../../Editor/Editor';
 import Renderer from '../../Renderer/Renderer';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -11,7 +11,7 @@ import {
   ModifyPageContent,
 } from '../../../store/atom';
 
-export default function DetailContents() {
+export default function MainContents() {
   const modifyPage = useRecoilValue(ModifyPageContent);
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function DetailContents() {
       >
         {topicTitle}
       </article>
-      <MainContentsTopBar setPageCreateTitle={setPageCreateTitle} />
+      <DetailTopBar setPageCreateTitle={setPageCreateTitle} />
       {modifyPage ? (
         <Editor
           contents={pagesContent ?? ''}

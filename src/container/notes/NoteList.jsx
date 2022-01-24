@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import UseLoader from '../../utils/useLoader';
 import usePagination from '../../hooks/use_pagination';
-import NotApprovedModal from '../../components/items/modal/not_approved_modal';
+import NotApprovedModal from '../../components/items/modal/NotApprovedModal';
 import styles from '../../styles/items/notes/note_list.module.css';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';

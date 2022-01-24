@@ -1,5 +1,5 @@
 import ButtonIcon from './ButtonIcon/ButtonIcon';
-import styles from '../../styles/markdown/Editor.module.css';
+import styles from '../../styles/markdown/editor.module.css';
 import BtnsDict from '../../utils/useEditorBtns';
 
 function EditorBtnItem({ icon, saveContents, inputRef }) {
