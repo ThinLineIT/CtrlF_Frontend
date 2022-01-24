@@ -27,8 +27,7 @@ export default function Issue() {
     setLoading(true);
     if (!stopScrollApi) {
       let endCount = pageCount + 30;
-      await setPageCount(endCount);
-      fetchData(endCount);
+      setPageCount(endCount);
     }
   }
 
@@ -52,6 +51,10 @@ export default function Issue() {
       setModal(router.query.issueId);
     }
   }, []);
+
+  useEffect(() => {
+    fetchData(pageCount);
+  }, [pageCount]);
 
   return (
     <div className="component" id={styles.issue}>
