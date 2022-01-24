@@ -185,3 +185,9 @@
 .dropdownContainer span:hover {
   color: #b5bdff;
 }
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 2em 1em;
+  }
+}

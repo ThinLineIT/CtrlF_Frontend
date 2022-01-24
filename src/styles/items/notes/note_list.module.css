@@ -135,11 +135,10 @@
   display: none;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1024px) {
   .container_note span {
     grid-column: 1;
     grid-row: 4/6;
-    padding-top: 1.55rem;
     padding-left: 1rem;
     font-size: 0.75rem;
     font-weight: 700;
@@ -161,7 +160,6 @@
   }
 
   .container_note {
-    padding-top: 1.2em;
     padding-right: 0.5em;
     font-size: 0.75rem;
     font-weight: 700;
