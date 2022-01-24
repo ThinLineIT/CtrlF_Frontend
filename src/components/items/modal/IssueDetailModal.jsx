@@ -4,7 +4,7 @@ import {
   issueApproveApi,
   issueCancel,
   issueEdit,
-} from '../../../utils/issueHook';
+} from '../../../utils/issueApi';
 import {
   issueDetailTopicId,
   issueDetailPageId,
