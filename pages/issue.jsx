@@ -52,7 +52,7 @@ export default function Issue() {
   }, []);
 
   useEffect(() => {
-    fetchData(pageCount);
+    if (pageCount != 0) fetchData(pageCount);
   }, [pageCount]);
 
   return (
