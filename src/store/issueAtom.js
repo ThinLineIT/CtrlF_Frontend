@@ -10,12 +10,12 @@ export const filterList = atom({
 
 export const issueDetailTopicId = atom({
   key: 'issue_detail_topicId',
-  default: '',
+  default: null,
 });
 
 export const issueDetailPageId = atom({
   key: 'issue_detail_page_id',
-  default: '',
+  default: null,
 });
 
 export const issueDetailPageVersionNo = atom({
