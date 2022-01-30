@@ -4,7 +4,7 @@ import {
   largeSvgDrawer,
   extraSvgDrawer,
   smallSvgDrawer,
-} from '../../utils/svgDraw';
+} from '../../utils/svgDrawUtils';
 import { useEffect } from 'react';
 
 const IssueList = ({ styles, issues, fetchMoreData, loading }) => {

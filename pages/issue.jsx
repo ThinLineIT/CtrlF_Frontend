@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import IssueList from '../src/container/issue/IssueList';
 import styles from '../src/styles/issue.module.css';
 import { checkLogin } from '../src/utils/loginCheck';
-import { issueListApi } from '../src/utils/issueHook';
+import { issueListApi } from '../src/utils/issueApi';
 import { useSetRecoilState } from 'recoil';
 import { isJwtActive } from '../src/store/atom';
 import { useRouter } from 'next/router';

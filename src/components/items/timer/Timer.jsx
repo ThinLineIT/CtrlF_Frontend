@@ -1,7 +1,7 @@
 import { setTimer as setTimerAtom } from '../../../store/registerAtom';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { sendAuthCode } from '../../../utils/passwordChange';
+import { sendAuthCode } from '../../../utils/pwChangeUtils';
 
 export default function Timer({ email, register }) {
   const [limit, setLimit] = useState(10);
