@@ -12,6 +12,7 @@ import Head from 'next/head';
 export default function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
   const [issues, setIssues] = useState([]);
+  const [nextCursor, setNextCursor] = useState(0);
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [stopScrollApi, setStopScrollApi] = useState(false);
@@ -21,7 +22,7 @@ export default function Issue() {
   const [relatedIssueId, setRelatedIssueId] = useState(false);
 
   // 스크롤 기능입니다.
-  async function fetchMoreData() {
+  function fetchMoreData() {
     if (loading) return;
     setLoading(true);
     if (!stopScrollApi) {
@@ -31,9 +32,11 @@ export default function Issue() {
   }
 
   async function fetchData(count) {
-    const issueList = await issueListApi(count).then((res) => res.issues);
+    const { issueList, next_cursor } = await issueListApi(count).then(
+      (res) => res
+    );
     await setIssues([...issues, ...issueList]);
-    await setStopScrollApi(issueList.length <= 0);
+    await setStopScrollApi(issueList.length < 30);
     await setLoading(false);
   }
 
