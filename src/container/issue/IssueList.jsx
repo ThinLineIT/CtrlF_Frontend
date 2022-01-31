@@ -4,7 +4,7 @@ import {
   largeSvgDrawer,
   extraSvgDrawer,
   smallSvgDrawer,
-} from '../../utils/SvgDraw';
+} from '../../utils/svgDrawUtils';
 import { useEffect, useState } from 'react';
 
 const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
@@ -55,7 +55,7 @@ const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
             );
           })}
       </div>
-      {!loading && <div ref={setTarget}>끝!</div>}
+      {!loading && <div ref={setTarget}> </div>}
     </>
   );
 };

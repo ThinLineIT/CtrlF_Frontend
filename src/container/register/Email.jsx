@@ -5,7 +5,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { emailReg } from '../../utils/reg';
 import { overlapApi, emailAuthApi } from '../../utils/signUpApi';
-import { sendAuthCode } from '../../utils/passwordChange';
+import { sendAuthCode } from '../../utils/pwChangeUtils';
 import { useState } from 'react';
 import errorStyling from '../../utils/errorStyling';
 import Cookies from 'js-cookie';

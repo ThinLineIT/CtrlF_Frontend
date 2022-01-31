@@ -77,11 +77,7 @@ export default function Navigator() {
     let { id, title, is_approved } = topic;
 
     if (pageId !== '') {
-      setTimeout(function () {
-        document.getElementById(`page${pageId}`).click(); // 여기서 version_no를 체크해주는게 필요할 것 같습니다.
-        setPageId('');
-        setPageVersion(null);
-      }, 500);
+      setPageVersion(null); // 미구현 항목
     }
     is_approved === false
       ? ifNotApprovedClicked('topic')
@@ -147,11 +143,18 @@ export default function Navigator() {
   };
 
   useEffect(() => {
-    if (topicId !== '') {
+    if (topicId != null) {
       document.getElementById(`topic${topicId}`).click();
-      setTopicId('');
+      setTopicId(null);
     }
   }, []);
+
+  useEffect(() => {
+    if (pageId != null) {
+      document.getElementById(`page${pageId}`).click();
+      setPageId(null);
+    }
+  }, [topicId]);
 
   return (
     <section className={styles.index_index}>

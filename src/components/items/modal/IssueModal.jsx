@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import NoAuthentification from '../../issue/NoAuthentification';
 import IssueDetailModal from './IssueDetailModal';
-import { issueDetailApi } from '../../../utils/issueHook';
+import { issueDetailApi } from '../../../utils/issueApi';
 
 export default function Modal({ setIsModalOpen, data }) {
   const [isLogin, setIsLogin] = useState(true); // 임시 로그인 기능입니다. 교체 예정입니다

@@ -2,7 +2,7 @@ import {
   emailApi,
   authCodeApi,
   passwordChangeApi,
-} from '../src/utils/passwordChange';
+} from '../src/utils/pwChangeUtils';
 import { useRouter } from 'next/router';
 import InputForm from '../src/container/passwordChange/InputForm';
 import styles from '../src/styles/password_change.module.css';
