@@ -10,8 +10,9 @@ import {
   addNewPage,
   topicIndex,
   pageupdate,
-  issueDetailPageId,
+  currentPageId,
 } from '../../store/atom';
+import { issueDetailPageId } from '../../store/issueAtom';
 import styles from '../../styles/markdown/editor.module.css';
 import UseImageUploader from '../../utils/useImageUploader';
 import { pageUpdateApi } from '../../utils/pageDetailFetch';
@@ -26,7 +27,8 @@ export default function MarkdownEditor(props) {
 
   const router = useRouter();
   const topicId = useRecoilValue(topicIndex);
-  const nowPageId = useRecoilValue(issueDetailPageId);
+  //const nowPageId = useRecoilValue(issueDetailPageId); 이건 사용하면 안됩니다...
+  const nowPageId = useRecoilValue(currentPageId);
 
   const pageSubmit = () => {
     const { id } = router.query;
@@ -44,9 +46,8 @@ export default function MarkdownEditor(props) {
         new_content: input,
         reason: pageCreateSummary,
       };
-      pageUpdateApi(nowPageId, newPostingData).then(() =>
-        router.push(`/notes/${id}`)
-      );
+      // console.log(newPostingData, nowPageId);
+      pageUpdateApi(nowPageId, newPostingData);
     }
   };
 
@@ -107,7 +108,10 @@ export default function MarkdownEditor(props) {
   return (
     <form className={styles.editor_wrap}>
       <button
-        onClick={(e) => pageSubmit(e)}
+        onClick={(e) => {
+          e.preventDefault();
+          pageSubmit();
+        }}
         id="pageCreate"
         style={{ display: 'none' }}
       >

@@ -61,6 +61,7 @@ export const topicCreateApi = async (data) => {
 
 export const pageUpdateApi = async (pageId, data) => {
   let headers = Cookies.get('token');
+
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/${pageId}/`,
     method: 'put',

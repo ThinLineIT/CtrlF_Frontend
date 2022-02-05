@@ -9,6 +9,7 @@ import {
   pageContent,
   isOnEditPage,
   ModifyPageContent,
+  firstVisiblePageTitle,
 } from '../../../store/atom';
 
 export default function MainContents() {
@@ -17,10 +18,10 @@ export default function MainContents() {
   useEffect(() => {
     !modifyPage && setIsOnEditor(false);
   }, [modifyPage]);
-
+  const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const topicTitle = useRecoilValue(topicName);
   const pagesContent = useRecoilValue(pageContent);
-  const [pageCreateTitle, setPageCreateTitle] = useState('');
+  const [pageCreateTitle, setPageCreateTitle] = useState(pageTitle);
 
   return (
     <section className={styles.content}>
@@ -30,7 +31,10 @@ export default function MainContents() {
       >
         {topicTitle}
       </article>
-      <DetailTopBar setPageCreateTitle={setPageCreateTitle} />
+      <DetailTopBar
+        pageCreateTitle={pageCreateTitle}
+        setPageCreateTitle={setPageCreateTitle}
+      />
       {modifyPage ? (
         <Editor
           contents={pagesContent ?? ''}

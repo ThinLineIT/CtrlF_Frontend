@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/notes/noteDetail/detail_contents.module.css';
@@ -49,7 +49,7 @@ const DetailTopBar = (props) => {
   const resetPageContentAndSendData = () => {
     document.getElementById('pageCreate').click();
     setTimeout(() => {
-      setIsUserSubmit(true);
+      // setIsUserSubmit(true);
       setModifyPage(false);
     }, 1000); // 추후 수정 예정, 지금은 임의로 비동기적으로 처리합니다.
   };
@@ -60,6 +60,10 @@ const DetailTopBar = (props) => {
   const pageTitle = useRecoilValue(firstVisiblePageTitle);
   const topicTitle = useRecoilValue(topicName);
 
+  useEffect(() => {
+    setPageCreateTitle(pageTitle);
+  }, [modifyPage]);
+
   return (
     <article className={styles.topBar}>
       <section className={`${styles.info_item} ${getStyles(isOnEditor)}`}>
@@ -69,6 +73,7 @@ const DetailTopBar = (props) => {
             className={styles.info_item_page}
             onChange={onPageTitlehandler}
             placeholder="TITLE"
+            defaultValue={pageTitle}
           />
         ) : (
           <div className={styles.info_item_page}>{pageTitle}</div>
