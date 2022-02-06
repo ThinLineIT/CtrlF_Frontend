@@ -57,7 +57,6 @@ export default function NoteDetail({ note }) {
   async function getPageBody(pageId, version_no) {
     await fetchPageDetail(pageId, version_no).then((page) => {
       const { content } = page;
-      console.log(content);
       setPageContent(content);
     });
   }
