@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import Renderer from '../renderer/Renderer';
-import EditorBtnItem from './EditorBtnItem';
+// import EditorBtnItem from './EditorBtnItem';
 import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
@@ -130,12 +130,13 @@ export default function MarkdownEditor(props) {
           </span>
           <div className={styles.buttonsContainer}>
             {EDIT_BTNS.map((button, index) => (
-              <EditorBtnItem
-                key={index}
-                icon={button}
-                saveContents={saveContents}
-                inputRef={inputRef}
-              />
+              // <EditorBtnItem
+              //   key={index}
+              //   icon={button}
+              //   saveContents={saveContents}
+              //   inputRef={inputRef}
+              // />
+              <span key={index}>{button}</span>
             ))}
             <input
               ref={inputRef}
@@ -157,7 +158,7 @@ export default function MarkdownEditor(props) {
               placeholder="page content"
               className={styles.users_textarea}
               onChange={(event) => saveContents(event.target.value)}
-            ></textarea>
+            />
           </>
         ) : (
           <Renderer contents={previewContents} />

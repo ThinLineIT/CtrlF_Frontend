@@ -22,6 +22,8 @@ export default function MainContents() {
   const pagesContent = useRecoilValue(pageContent);
   const [pageCreateTitle, setPageCreateTitle] = useState('');
 
+  console.log(pagesContent);
+
   return (
     <section className={styles.content}>
       <article

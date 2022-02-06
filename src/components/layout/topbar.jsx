@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
 
-export default function Topbar() {
+function Topbar() {
   const logOutRef = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
@@ -58,3 +58,5 @@ export default function Topbar() {
     </header>
   );
 }
+
+export default React.memo(Topbar);

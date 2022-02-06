@@ -190,4 +190,14 @@
   .content {
     padding: 2em 1em;
   }
+
+  .info_item_topic {
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    min-width: 140px;
+  }
+  .info_item_page {
+    font-size: 1.3rem;
+  }
 }

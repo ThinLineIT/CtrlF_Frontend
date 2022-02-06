@@ -36,7 +36,7 @@ export default function NoteDetail({ note }) {
   const setNowTopicIndex = useSetRecoilState(topicIndex);
 
   async function getTopic(noteId) {
-    const topicList = await fetchTopics(noteId).then((topics) => {
+    await fetchTopics(noteId).then((topics) => {
       const { title, id } = topics[0];
       setTopicData(topics);
       setTopicTitle(title);
@@ -57,6 +57,7 @@ export default function NoteDetail({ note }) {
   async function getPageBody(pageId, version_no) {
     await fetchPageDetail(pageId, version_no).then((page) => {
       const { content } = page;
+      console.log(content);
       setPageContent(content);
     });
   }

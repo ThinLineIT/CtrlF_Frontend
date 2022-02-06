@@ -17,6 +17,10 @@
   cursor: pointer;
 }
 
+.top__logo img {
+  width: 200px;
+}
+
 .top__signup__list {
   min-width: 8rem;
   margin: 0 2em;

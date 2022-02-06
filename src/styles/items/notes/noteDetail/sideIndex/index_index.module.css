@@ -7,7 +7,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1em 0em 1em 3em;
+  padding: 1em 0em 1em 1.5em;
   border-right: 0.7px solid #00000028;
   overflow: hidden;
 }
@@ -46,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em 0em 1em 0em;
+  padding: 1em 0em 1em 0.5em;
   overflow-y: auto;
 }
 
@@ -75,7 +75,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bolder;
   margin: 0.35em 1em;
   margin-left: 0.6em;
@@ -101,4 +101,14 @@
 
 .dark {
   color: #00000028;
+}
+
+@media (max-width: 1024px) {
+  .index_topic_li {
+    font-size: 0.75rem;
+  }
+
+  .index_page_li {
+    font-size: 0.875rem;
+  }
 }
