@@ -31,7 +31,6 @@ export default function Issue() {
   }
 
   async function fetchData(count) {
-    console.log(count);
     const issueList = await issueListApi(count);
     setIssues([...issues, ...issueList.issues]);
     setPageCount(issueList.next_cursor);
