@@ -26,18 +26,17 @@ export default function Issue() {
     if (loading) return;
     setLoading(true);
     if (!stopScrollApi) {
-      let endCount = pageCount + 30;
-      setPageCount(endCount);
+      fetchData(pageCount);
     }
   }
 
   async function fetchData(count) {
-    const { issueList, next_cursor } = await issueListApi(count).then(
-      (res) => res
-    );
-    await setIssues([...issues, ...issueList]);
-    await setStopScrollApi(issueList.length < 30);
-    await setLoading(false);
+    console.log(count);
+    const issueList = await issueListApi(count);
+    setIssues([...issues, ...issueList.issues]);
+    setPageCount(issueList.next_cursor);
+    setStopScrollApi(issueList.issues.length < 30);
+    setLoading(false);
   }
 
   const setModal = async (id) => {
@@ -53,10 +52,6 @@ export default function Issue() {
       setModal(router.query.issueId);
     }
   }, []);
-
-  useEffect(() => {
-    if (pageCount != 0) fetchData(pageCount);
-  }, [pageCount]);
 
   return (
     <div className="component" id={styles.issue}>
