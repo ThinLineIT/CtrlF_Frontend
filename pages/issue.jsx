@@ -11,33 +11,31 @@ import Head from 'next/head';
 
 export default function Issue() {
   const setJwt = useSetRecoilState(isJwtActive);
-  const [firstFetch, setFirstFetch] = useState(true);
-  const [issuest, setIssues] = useState([]);
+  const [issues, setIssues] = useState([]);
+  const [nextCursor, setNextCursor] = useState(0);
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const [stopScrollApi, setStopScrollApi] = useState(false);
   // 페이지에서 넘어온 경우 보여줄 모달창을 위한 코드
   const router = useRouter(null);
   const [relatedIssueModal, setRelatedIssueModal] = useState(false);
   const [relatedIssueId, setRelatedIssueId] = useState(false);
 
   // 스크롤 기능입니다.
-  async function fetchMoreData() {
+  function fetchMoreData() {
+    if (loading) return;
     setLoading(true);
-    let endCount = pageCount + 30;
-    await setPageCount(endCount);
-    fetchData(endCount);
-    setLoading(false);
+    if (!stopScrollApi) {
+      fetchData(pageCount);
+    }
   }
 
   async function fetchData(count) {
     const issueList = await issueListApi(count);
-    if (firstFetch) {
-      await setIssues([...issueList.issues]);
-      setFirstFetch(false);
-    } else {
-      setIssues([...issuest, ...issueList.issues]);
-    }
+    setIssues([...issues, ...issueList.issues]);
+    setPageCount(issueList.next_cursor);
+    setStopScrollApi(issueList.issues.length < 30);
+    setLoading(false);
   }
 
   const setModal = async (id) => {
@@ -46,6 +44,7 @@ export default function Issue() {
   };
 
   useEffect(() => {
+    setLoading(true);
     checkLogin(setJwt);
     fetchData(pageCount);
     if (router.query.issueId) {
@@ -65,7 +64,7 @@ export default function Issue() {
       )}
       <IssueList
         styles={styles}
-        issues={issuest}
+        issues={issues}
         fetchMoreData={fetchMoreData}
         loading={loading}
       />

@@ -5,21 +5,29 @@ import {
   extraSvgDrawer,
   smallSvgDrawer,
 } from '../../utils/svgDrawUtils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
-  // 스크롤 기능압나다 수정 중입니다
-  const infiniteScroll = () => {
-    let scrollHeight = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight
-    );
-    let scrollTop = parseInt(document.documentElement.scrollTop);
-    let clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight === scrollHeight && !loading) {
-      fetchMoreData();
+  const [target, setTarget] = useState('');
+
+  const onIntersect = async ([entry], observer) => {
+    if (entry.isIntersecting && !loading) {
+      observer.unobserve(entry.target);
+      await fetchMoreData();
+      observer.observe(entry.target);
     }
   };
+
+  useEffect(() => {
+    let observer;
+    if (target) {
+      observer = new IntersectionObserver(onIntersect, {
+        threshold: 1,
+      });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
 
   useEffect(() => {
     const SVG_LENGTH_MEDIUM = document.getElementsByClassName('svg_medium');
@@ -32,27 +40,23 @@ const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
     smallSvgDrawer(SVG_LENGTH_SMALL);
   }, [issues]);
 
-  useEffect(() => {
-    window.addEventListener('scroll', infiniteScroll);
-    return () => {
-      window.removeEventListener('scroll', infiniteScroll);
-    };
-  });
   return (
-    <div className={styles.issue__list}>
-      {issues &&
-        issues.map((v, i) => {
-          return (
-            <IssueCard
-              key={v.id}
-              title={v.title}
-              length={v.reason.length}
-              data={v}
-            />
-          );
-          // content의 길이에 따라서 SVG Background의 길이가 달라집니다 현재는 임의 값 0으로 넣었기 때문에 추후 issue type이 추가된다면 수정하겠습니다.
-        })}
-    </div>
+    <>
+      <div id="issue__list" className={styles.issue__list}>
+        {issues &&
+          issues.map((v, i) => {
+            return (
+              <IssueCard
+                key={v.id}
+                title={v.title}
+                length={v.reason.length}
+                data={v}
+              />
+            );
+          })}
+      </div>
+      {!loading && <div ref={setTarget}> </div>}
+    </>
   );
 };
 
