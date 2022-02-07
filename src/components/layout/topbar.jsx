@@ -6,9 +6,7 @@ import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
 
-export default function Topbar() {
-  const formRef = useRef();
-  const inputRef = useRef();
+function Topbar() {
   const logOutRef = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
@@ -35,21 +33,6 @@ export default function Topbar() {
             />
           </a>
         </Link>
-        <form ref={formRef} className={styles.searchbar}>
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="검색어를 입력해주세요"
-            className={styles.searchbar__input}
-          />
-          <button className={styles.searchbar__submit}>
-            <img
-              className={styles.searchbar__btn__img}
-              src="/images/search.png"
-              alt="search"
-            />
-          </button>
-        </form>
         {jwt ? (
           <div className={styles.signup_btn}>
             <button className={styles.login__button} onClick={localClear} />
@@ -75,3 +58,5 @@ export default function Topbar() {
     </header>
   );
 }
+
+export default React.memo(Topbar);
