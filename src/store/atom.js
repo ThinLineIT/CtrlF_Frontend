@@ -288,3 +288,13 @@ export const pageDataList = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const currentPageId = atom({
+  key: 'current_page_id',
+  default: null,
+});
+
+export const currentTopicId = atom({
+  key: 'current_topic_id',
+  default: null,
+});

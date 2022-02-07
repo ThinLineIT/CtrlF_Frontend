@@ -20,6 +20,8 @@ import {
   ModifyPageContent,
   firstVisiblePageTitle,
   contextMenuName,
+  currentPageId,
+  currentTopicId,
 } from '../../../store/atom';
 
 import {
@@ -53,18 +55,22 @@ export default function Navigator() {
   const [pageVesion, setPageVersion] = useRecoilState(issueDetailPageVersionNo); // 자세히보기 기능에서 페이지의 버전 넘버를 위해 작성
   const [topicId, setTopicId] = useRecoilState(issueDetailTopicId); // 자세히보기 기능을 위해 임시로 작성
 
+  const [nowPageId, setNowPageId] = useRecoilState(currentPageId);
+  const [nowTopiceId, setNowTopicId] = useRecoilState(currentTopicId); // 페이지 업데이트를 위한 atom을 별도로 사용
+
   const topicData = useRecoilValue(topicDataList);
   const [pageData, setPageData] = useRecoilState(pageDataList);
   const setPageTitle = useSetRecoilState(firstVisiblePageTitle);
 
   const [previousTitle, setPreviousTitle] = useState('');
 
-  const handleContext = (event, id) => {
+  const handleContext = (event, id, type) => {
     event.preventDefault();
     event.target.id.match('page')
       ? setcontextMenuName('내용 수정')
       : setcontextMenuName('이름 수정');
-    setTopicId(id);
+    if (type === 'page') setNowPageId(id);
+    else setNowTopicId(id);
     setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
     setXPos(`${event.screenX + 5}px`);
@@ -87,7 +93,6 @@ export default function Navigator() {
     setModifyPage(false);
     setNowTopicIndex(id);
     window.scrollTo(0, 0);
-
     getPages(id);
   };
 
@@ -120,7 +125,7 @@ export default function Navigator() {
       is_approved == false
         ? ifNotApprovedClicked('page')
         : setIsPageApproved(true);
-      setPageId(id);
+      setNowPageId(id);
       setShowMenu(false);
       setPageTitle(title);
       setIssueId(issue_id);
@@ -142,19 +147,24 @@ export default function Navigator() {
     setNotApprovedModalActive(true);
   };
 
+  function pageIdClick() {
+    const intervalId = setInterval(() => {
+      let pageDocument = document.getElementById(`page${pageId}`);
+      if (pageDocument != null) {
+        pageDocument.click();
+        setPageId(null);
+        clearInterval(intervalId);
+      }
+    }, 100);
+  }
+
   useEffect(() => {
     if (topicId != null) {
       document.getElementById(`topic${topicId}`).click();
       setTopicId(null);
+      pageIdClick();
     }
   }, []);
-
-  useEffect(() => {
-    if (pageId != null) {
-      document.getElementById(`page${pageId}`).click();
-      setPageId(null);
-    }
-  }, [topicId]);
 
   return (
     <section className={styles.index_index}>
@@ -178,7 +188,9 @@ export default function Navigator() {
                     };
                     topicNavigatorTapped(data);
                   }}
-                  onContextMenu={(event) => handleContext(event, id)}
+                  onContextMenu={(event) => {
+                    handleContext(event, id);
+                  }}
                 >
                   {title ?? null}
                 </li>
@@ -199,7 +211,7 @@ export default function Navigator() {
                 onClick={() => {
                   pageNavigatorTapped(id, version_no);
                 }}
-                onContextMenu={handleContext}
+                onContextMenu={(event) => handleContext(event, id, 'page')}
               >
                 {title.slice(0, 26) ?? null}
                 {title.length > 26 && '...'}
