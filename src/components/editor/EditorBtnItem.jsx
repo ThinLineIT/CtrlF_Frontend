@@ -3,13 +3,13 @@ import styles from '../../styles/markdown/editor.module.css';
 import BtnsDict from '../../utils/useEditorBtns';
 
 function EditorBtnItem({ icon, saveContents, inputRef }) {
-  const btnsObj = new BtnsDict();
+  const btnsObj = new BtnsDict() ?? null;
   const addFuncButtons = (event, key) => {
     event.preventDefault();
     if (key === 'Image') {
       inputRef.current.click();
     }
-    return btnsObj.useElement(key, saveContents);
+    return btnsObj?.useElement(key, saveContents);
   };
 
   return (

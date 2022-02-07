@@ -6,12 +6,14 @@ import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { pageCreateApi } from '../../utils/PageCreate';
+
 import {
   addNewPage,
   topicIndex,
   pageupdate,
   currentPageId,
 } from '../../store/atom';
+
 import { issueDetailPageId } from '../../store/issueAtom';
 import styles from '../../styles/markdown/editor.module.css';
 import UseImageUploader from '../../utils/useImageUploader';
@@ -144,6 +146,7 @@ export default function MarkdownEditor(props) {
                 saveContents={saveContents}
                 inputRef={inputRef}
               />
+              // <span key={index}>{button}</span>
             ))}
             <input
               ref={inputRef}
@@ -165,7 +168,7 @@ export default function MarkdownEditor(props) {
               placeholder="page content"
               className={styles.users_textarea}
               onChange={(event) => saveContents(event.target.value)}
-            ></textarea>
+            />
           </>
         ) : (
           <Renderer contents={previewContents} />
