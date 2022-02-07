@@ -6,11 +6,6 @@ export const List = atom({
   default: [],
 });
 
-export const noteNumber = atom({
-  key: 'noteNumber',
-  default: 0,
-});
-
 export const MyToggle = atom({
   key: 'toggle',
   default: '',
