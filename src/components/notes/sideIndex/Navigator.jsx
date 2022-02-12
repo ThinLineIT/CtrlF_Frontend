@@ -227,7 +227,6 @@ export default function Navigator() {
           y={yPos}
           setShowMenu={setShowMenu}
           topicId={topicId}
-          setShowMenu={setShowMenu}
         />
       )}
       {notApprovedModalActive && <NotApprovedModal />}

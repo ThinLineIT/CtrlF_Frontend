@@ -16,7 +16,7 @@ export default function Button({ text, methods, width }) {
       type="button"
       value={text}
       onClick={clickMethod}
-      className={styles.button}
+      className={styles.middle}
     />
   );
 }
