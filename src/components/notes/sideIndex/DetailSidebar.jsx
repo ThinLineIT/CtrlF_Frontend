@@ -24,8 +24,8 @@ export default function DetailSidebar({ noteId }) {
   const onRightClick = (e) => {
     e.preventDefault();
     showMenu ? setShowMenu(false) : setShowMenu(true);
-    setXPos(`${e.screenX + 5}px`);
-    setYPos(scrollY >= 50 ? `${e.screenY - 115}px` : `${e.screenY - 215}px`);
+    setXPos(`${e.pageX}px`);
+    setYPos(`${e.pageY}px`);
   };
 
   const closeContextMenu = () => {
