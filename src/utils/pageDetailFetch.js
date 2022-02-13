@@ -20,7 +20,9 @@ export const fetchPageList = async (id) => {
 
 export const fetchPageDetail = async (id, versionNo) => {
   const request = await axios
-    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}pages/${id}/${versionNo}`)
+    .get(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}pages/${id}/?version_no=${versionNo}`
+    )
     .then((res) => res.data)
     .catch((err) => err.response);
   return request;
