@@ -73,10 +73,8 @@ export default function Navigator() {
     else setNowTopicId(id);
     setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
-    setXPos(`${event.screenX + 5}px`);
-    setYPos(
-      scrollY >= 50 ? `${event.screenY - 115}px` : `${event.screenY - 215}px`
-    );
+    setXPos(`${event.pageX}px`);
+    setYPos(`${event.pageY}px`);
   };
 
   const topicNavigatorTapped = (topic) => {
