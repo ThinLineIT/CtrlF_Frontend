@@ -21,7 +21,7 @@ export default function ConfirmModal({
     <>
       <div className={styles.space}></div>
 
-      {action === '삭제' ? (
+      {action === 'delete' ? (
         <>
           <div className={styles.modal__title_sub}>
             {type == '토픽' ? `토픽을` : `${type}를`} 삭제하시겠습니까?
@@ -34,10 +34,10 @@ export default function ConfirmModal({
       ) : (
         <>
           <div className={styles.modal__title_sub}>
-            {type} 이름을 {action}하시겠습니까?
+            {type} 이름을 수정 하시겠습니까?
           </div>
           <div className={styles.text}>
-            이름 {action}요청이 Owner에게 전달됩니다.
+            이름 수정 요청이 Owner에게 전달됩니다.
           </div>
         </>
       )}

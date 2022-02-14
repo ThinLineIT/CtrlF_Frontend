@@ -3,6 +3,7 @@ import styles from '../../../styles/items/modal/modal.module.css';
 import Modal from './Modal';
 import Button from '../button/Button';
 import ConfirmModal from './ConfirmModal';
+import wordConverter from '../../../utils/wordConverter';
 
 export default function DeleteModal({
   originTitle,
@@ -10,7 +11,7 @@ export default function DeleteModal({
   closeDeleteModal,
   id,
 }) {
-  // type은 해당 타입을 의미합니다. ex 노트, 토픽, 페이지 (한글)
+  // type은 해당 타입을 의미합니다. ex 노트, 토픽, 페이지
   // originTitle은 해당 게시물의 이름을 의미합니다.
 
   const [deleteReason, setDeleteReason] = useState(''); // 식제할 이유입니다.
@@ -46,8 +47,8 @@ export default function DeleteModal({
         </>
       ) : (
         <ConfirmModal
-          action={'삭제'}
-          type={type}
+          action="delete"
+          type={wordConverter(type)}
           modalData={{ id, type, reason: deleteReason }}
           setIsConfirmModalOpen={setIsConfirmModalOpen}
           setCloseDeleteModal={closeDeleteModal}
