@@ -8,12 +8,11 @@ import wordConverter from '../../../utils/wordConverter';
 export default function DeleteModal({
   originTitle,
   type,
-  closeDeleteModal,
+  setShowDeleteModal,
   id,
 }) {
   // type은 해당 타입을 의미합니다. ex 노트, 토픽, 페이지
   // originTitle은 해당 게시물의 이름을 의미합니다.
-
   const [deleteReason, setDeleteReason] = useState(''); // 식제할 이유입니다.
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
@@ -38,7 +37,9 @@ export default function DeleteModal({
           <div className={styles.btns}>
             <Button methods={confirmModalOpen} text={'OK'} width={'135px'} />
             <Button
-              methods={() => closeDeleteModal(false)}
+              methods={() => {
+                setShowDeleteModal(false);
+              }}
               //   바깥영역에서 상태를 false로 바꿔주시면 종료되는 로직을 생각했습니다.
               text={'CANCEL'}
               width={'135px'}
@@ -51,7 +52,7 @@ export default function DeleteModal({
           type={wordConverter(type)}
           modalData={{ id, type, reason: deleteReason }}
           setIsConfirmModalOpen={setIsConfirmModalOpen}
-          setCloseDeleteModal={closeDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
         />
       )}
     </Modal>

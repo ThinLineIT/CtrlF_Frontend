@@ -55,8 +55,10 @@ export default function DetailSidebar({ noteId }) {
             x={xPos}
             y={yPos}
             noteId={noteId}
-            previosTitle={noteTitle}
+            dataTitle={noteTitle}
             setShowMenu={setShowMenu}
+            dataType="note"
+            dataId={noteId}
           />
         )}
       </article>

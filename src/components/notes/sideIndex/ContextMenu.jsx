@@ -2,6 +2,7 @@ import { useState, memo } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../items/modal/DetailModal';
 import PreparingModal from '../../items/modal/PreparingModal';
+import DeleteModal from '../../items/modal/DeleteModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   contextMenuName,
@@ -18,6 +19,9 @@ function ContextMenu({
   y,
   topicId,
   setShowMenu,
+  dataType,
+  dataId,
+  dataTitle,
 }) {
   const useContextMenuName = useRecoilValue(contextMenuName);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
@@ -42,9 +46,9 @@ function ContextMenu({
     }
   };
 
-  const [showPreparingModal, setShowPreparingModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const onDelete = () => {
-    setShowPreparingModal(true);
+    setShowDeleteModal(true);
   };
 
   return (
@@ -60,10 +64,12 @@ function ContextMenu({
           setIsDetailModalOpen={setIsDetailModalOpen}
         />
       )}
-      {showPreparingModal && (
-        <PreparingModal
-          setShowPreparingModal={setShowPreparingModal}
-          setShowMenu={setShowMenu}
+      {showDeleteModal && (
+        <DeleteModal
+          type={dataType}
+          id={dataId}
+          setShowDeleteModal={setShowDeleteModal}
+          originTitle={dataTitle}
         />
       )}
     </ContextContainer>
@@ -73,6 +79,7 @@ function ContextMenu({
 export default memo(ContextMenu);
 
 const ContextContainer = styled.div`
+  z-index: 1;
   position: absolute;
   top: ${(props) => props.y};
   left: ${(props) => props.x};

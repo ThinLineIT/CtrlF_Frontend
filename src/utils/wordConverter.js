@@ -1,5 +1,5 @@
 export default function wordConverter(type) {
   if (type === 'note') return '노트';
-  else if (type === '토픽') return '토픽';
-  else '페이지';
+  else if (type === 'topic') return '토픽';
+  else return '페이지';
 }
