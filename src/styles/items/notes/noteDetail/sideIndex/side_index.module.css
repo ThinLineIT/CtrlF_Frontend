@@ -4,7 +4,7 @@
 }
 
 .index_wrap {
-  position: sticky;
+  /* position: sticky; */
   top: 0em;
   width: 100%;
   display: flex;
@@ -31,7 +31,6 @@
   font-size: 2.5rem;
   font-weight: 1000;
   padding: 0 1rem;
-  position: relative;
 }
 
 .index_list_wrap {

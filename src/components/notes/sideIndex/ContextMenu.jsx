@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import styled from 'styled-components';
 import DetailModal from '../../items/modal/DetailModal';
 import PreparingModal from '../../items/modal/PreparingModal';
@@ -10,7 +10,7 @@ import {
   pageupdate,
 } from '../../../store/atom';
 
-export default function ContextMenu({
+function ContextMenu({
   previosTitle,
   noteId,
   NOTE,
@@ -69,23 +69,24 @@ export default function ContextMenu({
     </ContextContainer>
   );
 }
+
+export default memo(ContextMenu);
+
 const ContextContainer = styled.div`
-  z-index: 1;
   position: absolute;
   top: ${(props) => props.y};
   left: ${(props) => props.x};
   width: 120px;
   height: 5em;
-  cursor: pointer;
   font-size: 1.1rem;
   background: white;
   border: 0.2px solid rgba(185, 185, 185, 0.315);
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border-radius: 5px;
+  cursor: pointer;
+
   & > span {
     width: 100%;
     display: flex;
