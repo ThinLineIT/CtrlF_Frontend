@@ -64,13 +64,24 @@ export default function Navigator() {
 
   const [previousTitle, setPreviousTitle] = useState('');
 
-  const handleContext = (event, id, type) => {
+  const [currentDataType, setCurrentDataType] = useState('');
+  const [currentDataId, setCurrentDataId] = useState('');
+  const [currentDataTitle, setCurrentDataTitle] = useState('');
+
+  const handleContext = (event, id, type, title) => {
     event.preventDefault();
     event.target.id.match('page')
       ? setcontextMenuName('내용 수정')
       : setcontextMenuName('이름 수정');
-    if (type === 'page') setNowPageId(id);
-    else setNowTopicId(id);
+    if (type === 'page') {
+      setNowPageId(id);
+    } else {
+      setNowTopicId(id);
+    }
+    setCurrentDataId(id);
+    setCurrentDataType(type);
+    setCurrentDataTitle(title);
+
     setPreviousTitle(event.target.innerHTML);
     showMenu ? setShowMenu(false) : setShowMenu(true);
     setXPos(`${event.pageX}px`);
@@ -187,7 +198,7 @@ export default function Navigator() {
                     topicNavigatorTapped(data);
                   }}
                   onContextMenu={(event) => {
-                    handleContext(event, id);
+                    handleContext(event, id, 'topic', title);
                   }}
                 >
                   {title ?? null}
@@ -209,7 +220,9 @@ export default function Navigator() {
                 onClick={() => {
                   pageNavigatorTapped(id, version_no);
                 }}
-                onContextMenu={(event) => handleContext(event, id, 'page')}
+                onContextMenu={(event) =>
+                  handleContext(event, id, 'page', title)
+                }
               >
                 {title.slice(0, 26) ?? null}
                 {title.length > 26 && '...'}
@@ -225,7 +238,9 @@ export default function Navigator() {
           y={yPos}
           setShowMenu={setShowMenu}
           topicId={topicId}
-          setShowMenu={setShowMenu}
+          dataId={currentDataId}
+          dataType={currentDataType}
+          dataTitle={currentDataTitle}
         />
       )}
       {notApprovedModalActive && <NotApprovedModal />}

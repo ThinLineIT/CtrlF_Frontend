@@ -25,6 +25,7 @@
   top: 50%;
   left: 62%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 }
 
 .modal__title_main {

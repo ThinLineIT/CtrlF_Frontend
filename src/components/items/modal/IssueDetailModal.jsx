@@ -42,6 +42,7 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
+    console.log(result);
     if (result && result.status == 200) {
       setIsModalOpen(false);
     } else {

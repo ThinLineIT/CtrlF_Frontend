@@ -52,6 +52,7 @@ export default function UpdataModal(props) {
         </>
       ) : (
         <ConfirmModal
+          action={'수정'}
           modalData={{ type: type }}
           setIsConfirmModalOpen={setIsConfirmModalOpen}
         />
