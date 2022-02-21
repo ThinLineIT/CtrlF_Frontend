@@ -42,9 +42,9 @@ export default function IssueDetailModal({
 
   const acceptIssue = async () => {
     const result = await issueApproveApi(issue.id);
-    console.log(result);
-    if (result && result.status == 200) {
+    if (result && (result.status == 200 || result.status == 204)) {
       setIsModalOpen(false);
+      router.reload();
     } else {
       setIsUnathorized(true);
     }
