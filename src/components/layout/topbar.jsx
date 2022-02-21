@@ -1,10 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import router from 'next/router';
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
+
+import LOGO from '../../../public/images/mainlogo.svg';
 
 function Topbar() {
   const logOutRef = useRef();
@@ -26,10 +29,12 @@ function Topbar() {
       <div className={styles.container__wrap}>
         <Link href="/">
           <a className={styles.top__logo}>
-            <img
+            <Image
               className={styles.top__logo__img}
-              src="/images/mainLogo.png"
+              src={LOGO}
               alt="logo"
+              width={200}
+              height={63}
             />
           </a>
         </Link>
