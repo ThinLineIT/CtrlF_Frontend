@@ -1,6 +1,6 @@
 import { useState, memo } from 'react';
 import styled from 'styled-components';
-import DetailModal from '../../items/modal/DetailModal';
+import UpdateModal from '../../items/modal/UpdateModal';
 import PreparingModal from '../../items/modal/PreparingModal';
 import DeleteModal from '../../items/modal/DeleteModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -24,7 +24,7 @@ function ContextMenu({
   dataTitle,
 }) {
   const useContextMenuName = useRecoilValue(contextMenuName);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 모달창을 열고 닫는 상태값입니다.
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   let modalData = {
     mainTitle: `${NOTE ? '노트' : '토픽'} 이름 수정 요청`,
@@ -38,7 +38,7 @@ function ContextMenu({
 
   const onModify = () => {
     if (useContextMenuName === '이름 수정') {
-      setIsDetailModalOpen(true);
+      setIsUpdateModalOpen(true);
     } else if (useContextMenuName === '내용 수정') {
       setAddNewPageContent(false);
       setupdtepage(true);
@@ -55,13 +55,12 @@ function ContextMenu({
     <ContextContainer x={x} y={y}>
       <span onClick={onModify}>{useContextMenuName}</span>
       <span onClick={onDelete}>삭제 요청</span>
-      {isDetailModalOpen && (
-        <DetailModal
-          noteId={noteId}
-          topicId={topicId}
-          modalData={modalData}
-          setShowMenu={setShowMenu}
-          setIsDetailModalOpen={setIsDetailModalOpen}
+      {isUpdateModalOpen && (
+        <UpdateModal
+          id={dataId}
+          type={dataType}
+          originTitle={dataTitle}
+          setIsUpdateModalOpen={setIsUpdateModalOpen}
         />
       )}
       {showDeleteModal && (
