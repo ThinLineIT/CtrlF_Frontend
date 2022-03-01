@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   issueApproveApi,
-  issueCancel,
+  issueCloseApi,
   issueEdit,
+  issueDeleteApi,
 } from '../../../utils/issueApi';
 import {
   issueDetailTopicId,
@@ -20,6 +21,7 @@ export default function IssueDetailModal({
   setIsUnathorized,
 }) {
   const [dropDownMenu, setDropDownMenu] = useState(false);
+  const [isIssueEdit, setIsIssueEdit] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
   const setPageVersionNo = useSetRecoilState(issueDetailPageVersionNo);
@@ -56,11 +58,26 @@ export default function IssueDetailModal({
     setIsUnathorized(true);
   };
 
-  const cancelIssue = () => {
-    // API 개발 완료시 교체 예정
-    issueCancel();
+  const closeIssue = async () => {
+    const result = await issueCloseApi(issue.id);
+    console.log(result);
+    if (result && result.status == 200) {
+      setIsModalOpen(false);
+      router.reload();
+    } else {
+      setIsUnathorized(true);
+    }
+  };
 
-    setIsUnathorized(true);
+  const deleteIssue = async () => {
+    const result = await issueDeleteApi(issue.id);
+    console.log(result);
+    if (result && result.status == 200) {
+      setIsModalOpen(false);
+      router.reload();
+    } else {
+      setIsUnathorized(true);
+    }
   };
 
   const editIssue = () => {
@@ -82,6 +99,8 @@ export default function IssueDetailModal({
               onClick={openDropDown}
               dropDownMenu={dropDownMenu}
               setDropDownMenu={setDropDownMenu}
+              closeIssue={closeIssue}
+              deleteIssue={deleteIssue}
             />
           )}
         </div>

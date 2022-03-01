@@ -35,6 +35,46 @@ export const issueApproveApi = async (id) => {
   return request;
 };
 
+export const issueCloseApi = async (id) => {
+  const data = {
+    issue_id: id,
+  };
+
+  let headers = Cookies.get('token');
+
+  const request = await axios({
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-close/`,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
+    .catch((err) => err.response);
+  return request;
+};
+
+export const issueDeleteApi = async (id) => {
+  const data = {
+    issue_id: id,
+  };
+
+  let headers = Cookies.get('token');
+
+  const request = await axios({
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-delete/`,
+    method: 'delete',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
+    .catch((err) => err.response);
+  return request;
+};
+
 export function issueAccept() {
   alert('이슈를 승인하겠습니다');
 }
