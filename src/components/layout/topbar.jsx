@@ -29,13 +29,14 @@ function Topbar() {
       <div className={styles.container__wrap}>
         <Link href="/">
           <a className={styles.top__logo}>
-            <Image
+            {/* <Image
               className={styles.top__logo__img}
               src={LOGO}
               alt="logo"
               width={200}
               height={63}
-            />
+            /> */}
+            로고
           </a>
         </Link>
         {jwt ? (
