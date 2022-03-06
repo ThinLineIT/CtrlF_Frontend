@@ -1,4 +1,5 @@
 .index {
+  z-index: 99;
   flex: 1 1 26.5%;
   background-color: #b5bdff;
 }
