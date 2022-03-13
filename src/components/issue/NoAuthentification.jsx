@@ -7,7 +7,7 @@ export default function NoAuthentification({ setIsUnathorized }) {
   return (
     <div className={styles.background}>
       <div className={styles.noauth}>
-        <div className={styles.noauth__text}>권한이 없습니다</div>
+        <div className={styles.noauth__text}>잘못된 요청입니다.</div>
         <button className={styles.noauth__back} onClick={backToModal}>
           이전
         </button>

@@ -5,6 +5,7 @@ import ChatBubble from '../../../../public/images/issue/dropdown/chat.svg';
 
 const DropMenu = ({
   dropDownMenu,
+  setIssueEditMode,
   setDropDownMenu,
   closeIssue,
   deleteIssue,
@@ -17,25 +18,19 @@ const DropMenu = ({
     };
   }, []);
   const handleClickOutside = ({ target }) => {
-    if (dropDownMenu && !menuRef.current.contains(target))
+    if (
+      menuRef.current != null &&
+      dropDownMenu &&
+      !menuRef.current.contains(target)
+    )
       setDropDownMenu(false);
   };
   return (
     <ContextContainer ref={menuRef}>
-      <span>내용 수정</span>
+      <span onClick={() => setIssueEditMode(true)}>내용 수정</span>
       <span onClick={deleteIssue}>요청 삭제</span>
       <span onClick={closeIssue}>이슈 닫기</span>
     </ContextContainer>
-    // <div className={styles.menu} ref={menuRef}>
-    //   <ChatBubble />
-    //   <div className={styles.menu__category}>
-    //     <div>내용 수정</div>
-    //     <hr className={styles.menu__devider} />
-    //     <div>요청 삭제</div>
-    //     <hr className={styles.menu__devider} />
-    //     <div>이슈 닫기</div>
-    //   </div>
-    // </div>
   );
 };
 

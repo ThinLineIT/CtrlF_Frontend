@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import {
   issueApproveApi,
   issueCloseApi,
-  issueEdit,
   issueDeleteApi,
+  issueRejectApi,
 } from '../../../utils/issueApi';
 import {
   issueDetailTopicId,
@@ -14,6 +14,8 @@ import {
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 import DropMenu from '../menu/IssueDropMenu';
+import IssueEditor from './IssueEditor';
+import IssueDetailContent from './IssueDetatilContent';
 
 export default function IssueDetailModal({
   issue,
@@ -21,7 +23,8 @@ export default function IssueDetailModal({
   setIsUnathorized,
 }) {
   const [dropDownMenu, setDropDownMenu] = useState(false);
-  const [isIssueEdit, setIsIssueEdit] = useState(false);
+
+  const [issueEditMode, setIssueEditMode] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
   const setPageVersionNo = useSetRecoilState(issueDetailPageVersionNo);
@@ -52,15 +55,17 @@ export default function IssueDetailModal({
     }
   };
 
-  const rejectIssue = () => {
-    // API 개발 완료시 교체 예정
-    //   issueReject();
-    setIsUnathorized(true);
+  const rejectIssue = async () => {
+    const result = await issueRejectApi(issue.id);
+    if (result && result.status == 200) {
+      setIsModalOpen(false);
+    } else {
+      setIsUnathorized(true);
+    }
   };
 
   const closeIssue = async () => {
     const result = await issueCloseApi(issue.id);
-    console.log(result);
     if (result && result.status == 200) {
       setIsModalOpen(false);
       router.reload();
@@ -71,7 +76,6 @@ export default function IssueDetailModal({
 
   const deleteIssue = async () => {
     const result = await issueDeleteApi(issue.id);
-    console.log(result);
     if (result && result.status == 200) {
       setIsModalOpen(false);
       router.reload();
@@ -80,57 +84,34 @@ export default function IssueDetailModal({
     }
   };
 
-  const editIssue = () => {
-    // API 개발 완료시 교체 예정
-    issueEdit();
-
-    setIsUnathorized(true);
-  };
-
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
-        <button className={styles.close} onClick={closeModal}>
-          X
-        </button>
-        <div className={styles.drop} onClick={openDropDown}>
-          {dropDownMenu && (
-            <DropMenu
-              onClick={openDropDown}
-              dropDownMenu={dropDownMenu}
-              setDropDownMenu={setDropDownMenu}
-              closeIssue={closeIssue}
-              deleteIssue={deleteIssue}
-            />
-          )}
-        </div>
-        <div className={styles.modal__title}>
-          {issue.related_model_type} {issue.action}
-        </div>
-        <div className={`${styles.modal__change} ${styles.title}`}>
-          {' '}
-          {issue.title}
-        </div>
-        <div className={`${styles.modal__change} ${styles.contents}`}>
-          {issue.reason}
-        </div>
-        <div className={styles.btns}>
-          <div>
-            {issue.related_model_type === 'PAGE' && (
-              <button className={styles.modal__btn} onClick={moveToDetail}>
-                자세히 보기
-              </button>
+        {!issueEditMode && (
+          <div className={styles.drop} onClick={openDropDown}>
+            {dropDownMenu && (
+              <DropMenu
+                onClick={openDropDown}
+                dropDownMenu={dropDownMenu}
+                setDropDownMenu={setDropDownMenu}
+                closeIssue={closeIssue}
+                deleteIssue={deleteIssue}
+                setIssueEditMode={setIssueEditMode}
+              />
             )}
           </div>
-          <div className={styles.permit}>
-            <button className={styles.modal__btn} onClick={acceptIssue}>
-              승인
-            </button>
-            <button className={styles.modal__btn} onClick={rejectIssue}>
-              미승인
-            </button>
-          </div>
-        </div>
+        )}
+        {issueEditMode ? (
+          <IssueEditor issue={issue} />
+        ) : (
+          <IssueDetailContent
+            issue={issue}
+            closeModal={closeModal}
+            moveToDetail={moveToDetail}
+            acceptIssue={acceptIssue}
+            rejectIssue={rejectIssue}
+          />
+        )}
       </div>
     </div>
   );
