@@ -75,3 +75,7 @@
 .space {
   height: 69px;
 }
+
+.modal__change {
+  padding-left: 20px;
+}
