@@ -37,20 +37,35 @@ export default function NoteDetail({ note }) {
 
   async function getTopic(noteId) {
     await fetchTopics(noteId).then((topics) => {
-      const { title, id } = topics[0];
-      setTopicData(topics);
-      setTopicTitle(title);
-      getPage(id);
+      if (topics[0]?.title) {
+        const { title, id } = topics[0];
+        setTopicData(topics);
+        setTopicTitle(title);
+        getPage(id);
+      } else {
+        setTopicData([]);
+        setTopicTitle('');
+        setPageData([]);
+        setPageContent('');
+        setIsLoading(false);
+      }
     });
   }
 
   async function getPage(topicId) {
     await fetchPageList(topicId).then((pages) => {
-      const { title, id, version_no } = pages[0];
-      setPageData(pages);
-      setPageTitle(title);
-      setIsLoading(false);
-      getPageBody(id, version_no);
+      if (pages[0]?.title) {
+        const { title, id, version_no } = pages[0];
+        setPageData(pages);
+        setPageTitle(title);
+        setIsLoading(false);
+        getPageBody(id, version_no);
+      } else {
+        setPageData([]);
+        setPageTitle('');
+        setPageContent('');
+        setIsLoading(false);
+      }
     });
   }
 
