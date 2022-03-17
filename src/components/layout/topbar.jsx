@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
 
-// import LOGO from '../../../public/images/mainlogo.svg';
+import LOGO from '../../../public/images/mainlogo.svg';
 
 function Topbar() {
   const logOutRef = useRef();
