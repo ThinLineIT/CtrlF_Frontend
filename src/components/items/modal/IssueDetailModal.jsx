@@ -102,7 +102,7 @@ export default function IssueDetailModal({
           </div>
         )}
         {issueEditMode ? (
-          <IssueEditor issue={issue} />
+          <IssueEditor issue={issue} setIssueEditMode={setIssueEditMode} />
         ) : (
           <IssueDetailContent
             issue={issue}

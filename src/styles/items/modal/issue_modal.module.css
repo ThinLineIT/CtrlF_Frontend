@@ -85,8 +85,12 @@
   height: 269px;
 }
 
+.edit {
+  padding: 31px;
+}
+
 .title {
-  padding: 22px 27px 22px 27px;
+  padding: 20px 27px 22px 27px;
   height: 78px;
   margin-bottom: 25px;
 }

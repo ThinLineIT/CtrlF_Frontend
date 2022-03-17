@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { issueUpdateApi } from '../../../utils/issueApi';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 
-export default function IssueEditor({ issue }) {
+export default function IssueEditor({ issue, setIssueEditMode }) {
   const [title, setTitle] = useState(issue.title);
   const [reason, setReason] = useState(issue.reason);
 
@@ -15,12 +15,24 @@ export default function IssueEditor({ issue }) {
   };
 
   const updateIssue = () => {
-    issueUpdateApi(issue.id, title, reason); // 페이지인 경우 분리시켜야합니다.
+    // issueUpdateApi(issue.id, title, reason);
+
+    console.log();
+  };
+
+  const backToContent = () => {
+    if (issue.title !== title || reason !== issue.reason) {
+      console.log('ssss');
+    } else {
+      setIssueEditMode(false);
+    }
   };
 
   return (
     <>
-      <button className={styles.close}>{'<'}</button>
+      <button className={styles.close} onClick={backToContent}>
+        {'<'}
+      </button>
       <div className={styles.modal__title}>
         {issue.related_model_type} {issue.action}
       </div>
@@ -36,11 +48,11 @@ export default function IssueEditor({ issue }) {
           onChange={onTitleHandler}
         />
       )}
-      <input
-        className={`${styles.modal__change} ${styles.contents}`}
+      <textarea
+        className={`${styles.modal__change} ${styles.contents} ${styles.edit}`}
         value={reason}
         onChange={onReasonHandler}
-      />
+      ></textarea>
       <div className={styles.btns}>
         <div></div>
         <div className={styles.permit}>
