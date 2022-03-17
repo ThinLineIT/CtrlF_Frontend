@@ -8,13 +8,13 @@ import { isModalActive } from '../../store/atom';
 
 function HomePage({ res }) {
   const [issueNum, setIssueNum] = useState(null);
-  const setShowHiidenModal = useSetRecoilState(isModalActive);
+  const setShowHiddenModal = useSetRecoilState(isModalActive);
 
   useEffect(() => {
     if (issueNum) return;
     let cancel;
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/issue-count/`, {
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}issues/count/`, {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {
@@ -31,7 +31,7 @@ function HomePage({ res }) {
   }, []);
 
   useEffect(() => {
-    setShowHiidenModal(false);
+    setShowHiddenModal(false);
   }, []);
 
   return (
