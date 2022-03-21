@@ -180,7 +180,7 @@ export default function Navigator() {
       <div className={styles.index_topic}>
         <ul className={styles.index_topic_ul}>
           {topicData &&
-            topicData.map((item) => {
+            topicData?.map((item) => {
               const { id, title, is_approved } = item;
               return (
                 <li
@@ -201,7 +201,7 @@ export default function Navigator() {
                     handleContext(event, id, 'topic', title);
                   }}
                 >
-                  {title ?? null}
+                  {title ?? '토픽'}
                 </li>
               );
             })}
@@ -209,26 +209,29 @@ export default function Navigator() {
       </div>
       <div className={styles.index_page}>
         <ul className={styles.index_page_ul}>
-          {pageData.map((item) => {
-            const { id, title, is_approved, version_no } = item;
-            return (
-              <li
-                id={`page${id}`}
-                key={id}
-                ref={pageRef}
-                className={`${styles.index_page_li} ${getStyles(is_approved)}`}
-                onClick={() => {
-                  pageNavigatorTapped(id, version_no);
-                }}
-                onContextMenu={(event) =>
-                  handleContext(event, id, 'page', title)
-                }
-              >
-                {title.slice(0, 26) ?? null}
-                {title.length > 26 && '...'}
-              </li>
-            );
-          })}
+          {pageData &&
+            pageData?.map((item) => {
+              const { id, title, is_approved, version_no } = item;
+              return (
+                <li
+                  id={`page${id}`}
+                  key={id}
+                  ref={pageRef}
+                  className={`${styles.index_page_li} ${getStyles(
+                    is_approved
+                  )}`}
+                  onClick={() => {
+                    pageNavigatorTapped(id, version_no);
+                  }}
+                  onContextMenu={(event) =>
+                    handleContext(event, id, 'page', title)
+                  }
+                >
+                  {title.slice(0, 26) ?? '페이지'}
+                  {title.length > 26 && '...'}
+                </li>
+              );
+            })}
         </ul>
       </div>
       {showMenu && (
