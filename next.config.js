@@ -6,4 +6,5 @@ module.exports = {
     loader: 'imgix',
     path: 'https://noop/',
   },
+  reactStrictMode: false,
 };
