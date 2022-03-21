@@ -1,11 +1,8 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import styles from '../../../styles/items/menu/drop_menu.module.css';
-import ChatBubble from '../../../../public/images/issue/dropdown/chat.svg';
 
 const DropMenu = ({
   dropDownMenu,
-  setIssueEditMode,
   setDropDownMenu,
   closeIssue,
   deleteIssue,
@@ -27,7 +24,7 @@ const DropMenu = ({
   };
   return (
     <ContextContainer ref={menuRef}>
-      <span onClick={() => setIssueEditMode(true)}>내용 수정</span>
+      <span>내용 수정</span>
       <span onClick={deleteIssue}>요청 삭제</span>
       <span onClick={closeIssue}>이슈 닫기</span>
     </ContextContainer>

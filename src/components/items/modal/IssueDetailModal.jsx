@@ -14,7 +14,6 @@ import {
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 import DropMenu from '../menu/IssueDropMenu';
-import IssueEditor from './IssueEditor';
 import IssueDetailContent from './IssueDetatilContent';
 
 export default function IssueDetailModal({
@@ -24,7 +23,6 @@ export default function IssueDetailModal({
 }) {
   const [dropDownMenu, setDropDownMenu] = useState(false);
 
-  const [issueEditMode, setIssueEditMode] = useState(false);
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
   const setPageVersionNo = useSetRecoilState(issueDetailPageVersionNo);
@@ -87,31 +85,25 @@ export default function IssueDetailModal({
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
-        {!issueEditMode && (
-          <div className={styles.drop} onClick={openDropDown}>
-            {dropDownMenu && (
-              <DropMenu
-                onClick={openDropDown}
-                dropDownMenu={dropDownMenu}
-                setDropDownMenu={setDropDownMenu}
-                closeIssue={closeIssue}
-                deleteIssue={deleteIssue}
-                setIssueEditMode={setIssueEditMode}
-              />
-            )}
-          </div>
-        )}
-        {issueEditMode ? (
-          <IssueEditor issue={issue} setIssueEditMode={setIssueEditMode} />
-        ) : (
-          <IssueDetailContent
-            issue={issue}
-            closeModal={closeModal}
-            moveToDetail={moveToDetail}
-            acceptIssue={acceptIssue}
-            rejectIssue={rejectIssue}
-          />
-        )}
+        <div className={styles.drop} onClick={openDropDown}>
+          {dropDownMenu && (
+            <DropMenu
+              onClick={openDropDown}
+              dropDownMenu={dropDownMenu}
+              setDropDownMenu={setDropDownMenu}
+              closeIssue={closeIssue}
+              deleteIssue={deleteIssue}
+            />
+          )}
+        </div>
+
+        <IssueDetailContent
+          issue={issue}
+          closeModal={closeModal}
+          moveToDetail={moveToDetail}
+          acceptIssue={acceptIssue}
+          rejectIssue={rejectIssue}
+        />
       </div>
     </div>
   );
