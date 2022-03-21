@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   issueApproveApi,
   issueCloseApi,
   issueDeleteApi,
   issueRejectApi,
+  issuePermissionCheckApi,
 } from '../../../utils/issueApi';
 import {
   issueDetailTopicId,
@@ -37,6 +38,11 @@ export default function IssueDetailModal({
     await setPageId(issue.page_id);
     await setPageVersionNo(issue.version_no);
     router.push(`/notes/${issue.note_id}`);
+  };
+
+  const updatePermissionCheck = async () => {
+    const result = await issuePermissionCheckApi(issue.id);
+    console.log(result);
   };
 
   const closeModal = () => {
@@ -88,6 +94,7 @@ export default function IssueDetailModal({
         <div className={styles.drop} onClick={openDropDown}>
           {dropDownMenu && (
             <DropMenu
+              updatePermissionCheck={updatePermissionCheck}
               onClick={openDropDown}
               dropDownMenu={dropDownMenu}
               setDropDownMenu={setDropDownMenu}

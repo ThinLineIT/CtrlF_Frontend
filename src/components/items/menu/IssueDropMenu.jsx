@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const DropMenu = ({
   dropDownMenu,
   setDropDownMenu,
+  updatePermissionCheck,
   closeIssue,
   deleteIssue,
 }) => {
@@ -24,7 +25,7 @@ const DropMenu = ({
   };
   return (
     <ContextContainer ref={menuRef}>
-      <span>내용 수정</span>
+      <span onClick={updatePermissionCheck}>내용 수정</span>
       <span onClick={deleteIssue}>요청 삭제</span>
       <span onClick={closeIssue}>이슈 닫기</span>
     </ContextContainer>

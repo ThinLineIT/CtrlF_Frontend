@@ -102,9 +102,26 @@ export const issueUpdateApi = async (id, title, reason, content) => {
     new_content: content,
     reason,
   };
-
+  let headers = Cookies.get('token');
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-update/`,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${headers}`,
+    },
+    data: data,
+  })
+    .then((res) => res)
+    .catch((err) => err.response);
+  return request;
+};
+
+export const issuePermissionCheckApi = async (id) => {
+  let headers = Cookies.get('token');
+  const data = { id: id };
+
+  const request = await axios({
+    url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-update-permission-check/`,
     method: 'post',
     headers: {
       Authorization: `Bearer ${headers}`,
