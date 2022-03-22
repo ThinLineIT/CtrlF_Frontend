@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from '../../../styles/items/modal/modal.module.css';
 import Modal from './Modal';
 import Button from '../button/Button';
-import ConfirmModal from './ConfirmModal';
+import DeleteConfirmModal from './DeleteConfirmModal';
 import wordConverter from '../../../utils/wordConverter';
 
 export default function DeleteModal({
@@ -44,7 +44,7 @@ export default function DeleteModal({
           </div>
         </>
       ) : (
-        <ConfirmModal
+        <DeleteConfirmModal
           type={wordConverter(type)}
           modalData={{ id, type, reason: deleteReason }}
           setIsConfirmModalOpen={setIsConfirmModalOpen}
