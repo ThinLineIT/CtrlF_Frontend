@@ -10,9 +10,9 @@ export default function Modal(props) {
 
   return (
     <div className={styels.backgorund}>
-      <div className={styels.modal} ref={modalRef}>
+      <article className={styels.modal} ref={modalRef}>
         {props.children}
-      </div>
+      </article>
     </div>
   );
 }

@@ -5,8 +5,8 @@ const DropMenu = ({
   dropDownMenu,
   setDropDownMenu,
   updatePermissionCheck,
-  closeIssue,
-  deleteIssue,
+  setConfirm,
+  setIsDelete,
 }) => {
   const menuRef = useRef(null);
   useEffect(() => {
@@ -23,11 +23,20 @@ const DropMenu = ({
     )
       setDropDownMenu(false);
   };
+
+  const setDeleteConfrim = () => {
+    setConfirm(true);
+    setIsDelete(true);
+  };
+  const setCloseConfrim = () => {
+    setConfirm(true);
+    setIsDelete(false);
+  };
   return (
     <ContextContainer ref={menuRef}>
       <span onClick={updatePermissionCheck}>내용 수정</span>
-      <span onClick={deleteIssue}>요청 삭제</span>
-      <span onClick={closeIssue}>이슈 닫기</span>
+      <span onClick={setDeleteConfrim}>요청 삭제</span>
+      <span onClick={setCloseConfrim}>이슈 닫기</span>
     </ContextContainer>
   );
 };

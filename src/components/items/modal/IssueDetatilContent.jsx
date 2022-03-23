@@ -5,6 +5,7 @@ export default function IssueDetailContent({
   closeModal,
   moveToDetail,
   acceptIssue,
+  title,
   rejectIssue,
 }) {
   return (
@@ -13,9 +14,7 @@ export default function IssueDetailContent({
         X
       </button>
 
-      <div className={styles.modal__title}>
-        {issue.related_model_type} {issue.action}
-      </div>
+      <div className={styles.modal__title}>{title}</div>
       <div className={`${styles.modal__change} ${styles.title}`}>
         {' '}
         {issue.title}

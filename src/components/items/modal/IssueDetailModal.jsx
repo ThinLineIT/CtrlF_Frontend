@@ -16,13 +16,19 @@ import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
 import DropMenu from '../menu/IssueDropMenu';
 import IssueDetailContent from './IssueDetatilContent';
+import IssueConfirmModal from './IssueConfirmModal';
 
 export default function IssueDetailModal({
   issue,
   setIsModalOpen,
+  setModalText,
   setIsUnathorized,
+  setIsApproved,
+  title,
 }) {
   const [dropDownMenu, setDropDownMenu] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
@@ -33,16 +39,16 @@ export default function IssueDetailModal({
     setDropDownMenu(true);
   };
 
-  const moveToDetail = async () => {
-    await setTopicId(issue.topic_id);
-    await setPageId(issue.page_id);
-    await setPageVersionNo(issue.version_no);
+  const moveToDetail = () => {
+    setTopicId(issue.topic_id);
+    setPageId(issue.page_id);
+    setPageVersionNo(issue.version_no);
     router.push(`/notes/${issue.note_id}`);
   };
 
   const updatePermissionCheck = async () => {
     const result = await issuePermissionCheckApi(issue.id);
-    console.log(result);
+    if (!result.data.has_permission) setIsApproved(true);
   };
 
   const closeModal = () => {
@@ -55,6 +61,7 @@ export default function IssueDetailModal({
       setIsModalOpen(false);
       router.reload();
     } else {
+      setModalText(result.data.message);
       setIsUnathorized(true);
     }
   };
@@ -64,6 +71,7 @@ export default function IssueDetailModal({
     if (result && result.status == 200) {
       setIsModalOpen(false);
     } else {
+      setModalText(result.data.message);
       setIsUnathorized(true);
     }
   };
@@ -74,6 +82,7 @@ export default function IssueDetailModal({
       setIsModalOpen(false);
       router.reload();
     } else {
+      setModalText(result.data.message);
       setIsUnathorized(true);
     }
   };
@@ -84,6 +93,7 @@ export default function IssueDetailModal({
       setIsModalOpen(false);
       router.reload();
     } else {
+      setModalText(result.data.message);
       setIsUnathorized(true);
     }
   };
@@ -91,26 +101,46 @@ export default function IssueDetailModal({
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
-        <div className={styles.drop} onClick={openDropDown}>
-          {dropDownMenu && (
-            <DropMenu
-              updatePermissionCheck={updatePermissionCheck}
-              onClick={openDropDown}
-              dropDownMenu={dropDownMenu}
-              setDropDownMenu={setDropDownMenu}
-              closeIssue={closeIssue}
-              deleteIssue={deleteIssue}
+        {confirm ? (
+          isDelete ? (
+            <IssueConfirmModal
+              title={title}
+              isDelete={isDelete}
+              setConfirm={setConfirm}
+              actionMethod={deleteIssue}
             />
-          )}
-        </div>
-
-        <IssueDetailContent
-          issue={issue}
-          closeModal={closeModal}
-          moveToDetail={moveToDetail}
-          acceptIssue={acceptIssue}
-          rejectIssue={rejectIssue}
-        />
+          ) : (
+            <IssueConfirmModal
+              title={title}
+              isDelete={isDelete}
+              setConfirm={setConfirm}
+              actionMethod={closeIssue}
+            />
+          )
+        ) : (
+          <>
+            <div className={styles.drop} onClick={openDropDown}>
+              {dropDownMenu && (
+                <DropMenu
+                  updatePermissionCheck={updatePermissionCheck}
+                  onClick={openDropDown}
+                  dropDownMenu={dropDownMenu}
+                  setDropDownMenu={setDropDownMenu}
+                  setConfirm={setConfirm}
+                  setIsDelete={setIsDelete}
+                />
+              )}
+            </div>
+            <IssueDetailContent
+              issue={issue}
+              title={title}
+              closeModal={closeModal}
+              moveToDetail={moveToDetail}
+              acceptIssue={acceptIssue}
+              rejectIssue={rejectIssue}
+            />
+          </>
+        )}
       </div>
     </div>
   );

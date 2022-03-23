@@ -12,7 +12,7 @@
   cursor: default;
 }
 
-.noauth {
+.confirm {
   background-color: white;
   width: 1096px;
   display: flex;
@@ -95,19 +95,27 @@
   margin-bottom: 25px;
 }
 
-.noauth__back {
-  margin-top: 60px;
+.confirm__btn {
   background-color: #8bc8fd;
   font-size: 1.427rem;
   width: 213px;
   border-radius: 30px;
-  padding: 13px 75px 13px 75px;
+  padding: 13px 0 13px 0;
   color: white;
+  margin-bottom: 70px;
+  margin-right: 20px;
 }
 
-.noauth__text {
-  font-size: 3.625rem;
+.confirm_title {
   font-weight: bold;
+  font-size: 3.5rem;
+  margin: 50px 0;
+}
+
+.confirm__text {
+  margin-bottom: 60px;
+
+  font-size: 2rem;
 }
 
 .close {

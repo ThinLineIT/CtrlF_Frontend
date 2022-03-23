@@ -61,6 +61,8 @@
   color: black;
   margin: 60px 0 0 40px;
   padding-right: 40px;
+  font-size: 1.3rem;
+  word-break: break-all;
 }
 
 .detail_btn {

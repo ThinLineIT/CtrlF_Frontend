@@ -118,7 +118,7 @@ export const issueUpdateApi = async (id, title, reason, content) => {
 
 export const issuePermissionCheckApi = async (id) => {
   let headers = Cookies.get('token');
-  const data = { id: id };
+  const data = { issue_id: id };
 
   const request = await axios({
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}actions/issue-update-permission-check/`,
