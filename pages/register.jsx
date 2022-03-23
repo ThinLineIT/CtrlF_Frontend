@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import {
   email,
   authCode,
@@ -25,6 +26,7 @@ export default function Register() {
   const nickNameReset = useSetRecoilState(nickName);
   const passwordReset = useSetRecoilState(password);
   const passwordCehckReset = useSetRecoilState(passwordCheck);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -74,6 +76,10 @@ export default function Register() {
           <ul className={styles.slidelist}>
             <li>
               <a>
+                <label
+                  onClick={() => router.back()}
+                  className={styles.left}
+                ></label>
                 <Email
                   styles={styles}
                   emailOverlapSuccess={emailOverlapSuccess}
@@ -91,7 +97,6 @@ export default function Register() {
                   authCodeSuccess={authCodeSuccess}
                   timer={timer}
                 />
-                <label htmlFor="slide03" className={styles.right}></label>
               </a>
             </li>
             <li>
@@ -101,14 +106,12 @@ export default function Register() {
                   styles={styles}
                   nickNameOverlapSuccess={nickNameOverlapSuccess}
                 />
-                <label htmlFor="slide04" className={styles.right}></label>
               </a>
             </li>
             <li>
               <a>
                 <label htmlFor="slide03" className={styles.left}></label>
                 <Password styles={styles} passwordFirst={passwordFirst} />
-                <label htmlFor="slide05" className={styles.right}></label>
               </a>
             </li>
             <li>
