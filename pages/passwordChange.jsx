@@ -3,6 +3,7 @@ import {
   authCodeApi,
   passwordChangeApi,
 } from '../src/utils/pwChangeUtils';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import InputForm from '../src/container/passwordChange/InputForm';
 import styles from '../src/styles/password_change.module.css';
@@ -79,6 +80,9 @@ export default function PasswordChange() {
   };
   return (
     <div className="component">
+      <Head>
+        <title>비밀번호 찾기</title>
+      </Head>
       <ReAuthentication ref={modalRef} />
       <div className={styles.section} id="passwordchange">
         <input type="radio" name="slide" id="slide-email" defaultChecked />
@@ -89,7 +93,10 @@ export default function PasswordChange() {
           <ul className={styles.slidelist}>
             <li>
               <a>
-                <label className={styles.left} htmlFor=""></label>
+                <label
+                  className={styles.left}
+                  onClick={() => router.back()}
+                ></label>
                 <InputForm
                   move={moveToAuth}
                   title={'email'}
