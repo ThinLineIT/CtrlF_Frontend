@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DetailTopBar from './DetailTopBar';
 import Editor from '../../Editor/Editor';
-import Renderer from '../../Renderer';
+import Renderer from '../../renderer';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/notes/noteDetail/detail_contents.module.css';
 import {
