@@ -94,23 +94,12 @@ const LoginForm = () => {
       </form>
       <div className={styles.login__button__extra}>
         {showHiddenModal && <PreparingModal />}
-        <a
-          onClick={() => {
-            setShowHiddenModal(true);
-          }}
-          className={styles.login__link}
-        >
-          ID 찾기
-        </a>
-
-        <span>|</span>
-
-        {showHiddenModal && <PreparingModal />}
         <Link href="/passwordChange">
           <a className={styles.login__link}>PASSWORD 찾기</a>
         </Link>
 
         <span>|</span>
+
         <Link href="/register">
           <a className={styles.login__link}>회원가입</a>
         </Link>

@@ -9,6 +9,7 @@ import {
   menuPageX,
   menuPageY,
   detailTitle,
+  contextMenuName,
   ModifyPageContent,
 } from '../../../store/atom';
 
@@ -20,10 +21,12 @@ export default function DetailSidebar({ noteId }) {
   const [xPos, setXPos] = useRecoilState(menuPageX);
   const [yPos, setYPos] = useRecoilState(menuPageY);
   const setModifyPage = useSetRecoilState(ModifyPageContent);
+  const setcontextMenuName = useSetRecoilState(contextMenuName);
 
   const onRightClick = (e) => {
     e.preventDefault();
     showMenu ? setShowMenu(false) : setShowMenu(true);
+    setcontextMenuName('이름 수정');
     setXPos(`${e.pageX}px`);
     setYPos(`${e.pageY}px`);
   };
