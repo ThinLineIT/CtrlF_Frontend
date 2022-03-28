@@ -1,4 +1,5 @@
-import { useSetRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import MainContents from '../../components/notes/mainContents/MainContents';
 import DetailSidebar from '../../components/notes/sideIndex/DetailSidebar';
 import React, { useState, useEffect } from 'react';
@@ -23,10 +24,11 @@ import {
 
 export default function NoteDetail({ note }) {
   const { title, id } = note;
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const setIsOnEditor = useSetRecoilState(isOnEditPage);
   const setNoteTitle = useSetRecoilState(detailTitle);
-  const setModifyPage = useSetRecoilState(ModifyPageContent);
+  const [modifyPage, setModifyPage] = useRecoilState(ModifyPageContent);
 
   const setTopicTitle = useSetRecoilState(topicName);
   const setPageData = useSetRecoilState(pageDataList);
@@ -85,9 +87,14 @@ export default function NoteDetail({ note }) {
 
   useEffect(() => {
     setNoteTitle(title);
-    setModifyPage(false);
     setIsOnEditor(false);
   }, [note]);
+
+  useEffect(() => {
+    return () => {
+      setModifyPage(false);
+    };
+  }, []);
 
   return (
     <>

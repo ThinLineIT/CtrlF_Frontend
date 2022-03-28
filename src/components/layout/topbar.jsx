@@ -26,11 +26,14 @@ function Topbar() {
   return (
     <header className={styles.container}>
       <div className={styles.container__wrap}>
-        <Link href="/">
-          <a className={styles.top__logo}>
-            <LOGO />
-          </a>
-        </Link>
+        <div
+          style={{ width: '220px', height: '65px', cursor: 'pointer' }}
+          onClick={() => {
+            router.push('/');
+          }}
+        >
+          <LOGO />
+        </div>
         {jwt ? (
           <div className={styles.signup_btn}>
             <button className={styles.login__button} onClick={localClear} />

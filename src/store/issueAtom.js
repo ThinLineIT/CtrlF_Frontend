@@ -27,3 +27,8 @@ export const pageDetailIssueId = atom({
   key: 'page_detail_issueId',
   default: '',
 });
+
+export const pageIssue = atom({
+  key: 'page_detail_issueId',
+  default: '',
+});

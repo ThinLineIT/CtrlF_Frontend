@@ -11,6 +11,7 @@ import {
   issueDetailTopicId,
   issueDetailPageId,
   issueDetailPageVersionNo,
+  pageIssue,
 } from '../../../store/issueAtom';
 import { useSetRecoilState } from 'recoil';
 import styles from '../../../styles/items/modal/issue_modal.module.css';
@@ -33,6 +34,7 @@ export default function IssueDetailModal({
   const setTopicId = useSetRecoilState(issueDetailTopicId);
   const setPageId = useSetRecoilState(issueDetailPageId);
   const setPageVersionNo = useSetRecoilState(issueDetailPageVersionNo);
+  const setPageIssue = useSetRecoilState(pageIssue);
   const router = useRouter();
 
   const openDropDown = () => {
@@ -46,9 +48,18 @@ export default function IssueDetailModal({
     router.push(`/notes/${issue.note_id}`);
   };
 
+  const editIssue = () => {
+    router.push(`/notes/${issue.note_id}?edit=${issue.id}`);
+  };
+
   const updatePermissionCheck = async () => {
     const result = await issuePermissionCheckApi(issue.id);
-    if (!result.data.has_permission) setIsApproved(true);
+    if (!result.data.has_permission) {
+      setIsUnathorized(true);
+    } else {
+      setPageIssue(issue);
+      editIssue();
+    }
   };
 
   const closeModal = () => {

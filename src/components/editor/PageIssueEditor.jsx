@@ -1,60 +1,25 @@
-import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import Renderer from '../renderer';
+import Renderer from '../renderer/EditRenderer';
 import EditorBtnItem from './EditorBtnItem';
 import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
 import insertTextAtCursor from 'insert-text-at-cursor';
-import { pageCreateApi } from '../../utils/PageCreate';
-
-import {
-  addNewPage,
-  topicIndex,
-  pageupdate,
-  currentPageId,
-} from '../../store/atom';
 
 import styles from '../../styles/markdown/editor.module.css';
 import UseImageUploader from '../../utils/useImageUploader';
-import { pageUpdateApi } from '../../utils/pageDetailFetch';
 
-export default function MarkdownEditor(props) {
+export default function PageIssueEditor({
+  contents,
+  setContents,
+  reason,
+  setReason,
+}) {
   const inputRef = useRef();
-  const { pageCreateTitle } = props;
-  const [pageCreateSummary, setPageCreateSummary] = useState('');
   const onPageSummaryHandler = (event) => {
-    setPageCreateSummary(event.target.value);
+    setReason(event.target.value);
   };
 
-  const router = useRouter();
-  const topicId = useRecoilValue(topicIndex);
-  //const nowPageId = useRecoilValue(issueDetailPageId); 이건 사용하면 안됩니다...
-  const nowPageId = useRecoilValue(currentPageId);
-
-  const pageSubmit = () => {
-    const { id } = router.query;
-    if (!updatePage) {
-      const postingData = {
-        topic_id: topicId,
-        title: pageCreateTitle,
-        content: input,
-        reason: pageCreateSummary,
-      };
-      pageCreateApi(postingData);
-    } else if (updatePage) {
-      const newPostingData = {
-        new_title: pageCreateTitle,
-        new_content: input,
-        reason: pageCreateSummary,
-      };
-      // console.log(newPostingData, nowPageId);
-      pageUpdateApi(nowPageId, newPostingData);
-    }
-  };
-
-  const [input, setInput] = useState('');
   const saveContents = (data) => {
-    setInput(data);
+    setContents(data);
   };
 
   const [preview, setPreiview] = useState(false);
@@ -85,19 +50,9 @@ export default function MarkdownEditor(props) {
     }
   };
 
-  const content = props.contents;
   const WRITE_OR_PREVIEW = ['Write', 'Preview'];
-  const addNewPageContent = useRecoilValue(addNewPage);
-  const updatePage = useRecoilValue(pageupdate);
-  let previewContents = !addNewPageContent
-    ? input == null
-      ? content
-      : input
-    : input;
 
   useEffect(() => {
-    updatePage ? setInput(content) : null;
-
     const input_file = document.getElementById('img-upload');
     input_file.addEventListener('change', input_update);
 
@@ -108,21 +63,12 @@ export default function MarkdownEditor(props) {
 
   return (
     <form className={styles.editor_wrap}>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          pageSubmit();
-        }}
-        id="pageCreate"
-        style={{ display: 'none' }}
-      >
-        페이지 생성하기
-      </button>
       <textarea
         type="text"
-        placeholder={updatePage ? 'resaon' : 'summary'}
+        placeholder="resaon"
         onChange={onPageSummaryHandler}
         className={styles.users_summary}
+        value={reason}
       />
       <span as="h3" className={styles.detail_content}>
         <div className={styles.buttonsWrap}>
@@ -161,7 +107,7 @@ export default function MarkdownEditor(props) {
             <textarea
               id="textarea"
               onDrop={dropImg}
-              value={input}
+              value={contents}
               onKeyDown={useTab}
               placeholder="page content"
               className={styles.users_textarea}
@@ -169,7 +115,7 @@ export default function MarkdownEditor(props) {
             />
           </>
         ) : (
-          <Renderer contents={previewContents} />
+          <Renderer contents={contents} />
         )}
       </span>
     </form>
