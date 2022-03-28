@@ -9,8 +9,11 @@ import styles from '../../styles/markdown/renderStyle.module.css';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-export default function Renderer(props) {
-  const content = props.contents;
+import { useRecoilValue } from 'recoil';
+import { pageContent } from '../../store/atom';
+
+export default function Renderer() {
+  const content = useRecoilValue(pageContent);
 
   return (
     <MarkDownStyle>

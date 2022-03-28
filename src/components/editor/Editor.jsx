@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
-import Renderer from '../renderer/Renderer';
+import Renderer from '../renderer';
 import EditorBtnItem from './EditorBtnItem';
 import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
