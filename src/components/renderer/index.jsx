@@ -16,13 +16,16 @@ export default function Renderer() {
   const content = useRecoilValue(pageContent);
 
   return (
-    <ReactMarkdown
-      children={content}
-      components={renderers}
-      className={styles.markdown}
-      rehypePlugins={[rehypeRaw]}
-      plugins={[gfm, emoji, toc]}
-    />
+    <MarkDownStyle>
+      <ReactMarkdown
+        components={renderers}
+        className={styles.markdown}
+        rehypePlugins={[rehypeRaw]}
+        plugins={[gfm, emoji, toc]}
+      >
+        {`${content}`}
+      </ReactMarkdown>
+    </MarkDownStyle>
   );
 }
 
