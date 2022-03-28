@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
-import Renderer from '../renderer/Renderer';
+import Renderer from '../renderer';
 import EditorBtnItem from './EditorBtnItem';
 import { useState, useEffect, useRef } from 'react';
 import { EDIT_BTNS } from '../../utils/useEditorBtns';
@@ -36,7 +36,7 @@ export default function MarkdownEditor(props) {
     const { id } = router.query;
     if (!updatePage) {
       const postingData = {
-        topic_id: +topicId,
+        topic_id: topicId,
         title: pageCreateTitle,
         content: input,
         reason: pageCreateSummary,
@@ -146,7 +146,6 @@ export default function MarkdownEditor(props) {
                 saveContents={saveContents}
                 inputRef={inputRef}
               />
-              // <span key={index}>{button}</span>
             ))}
             <input
               ref={inputRef}
