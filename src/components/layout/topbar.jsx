@@ -6,8 +6,6 @@ import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
 
-import LOGO from '../../../public/images/mainlogo.svg';
-
 function Topbar() {
   const logOutRef = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
@@ -20,6 +18,7 @@ function Topbar() {
   const onLogOut = () => {
     setJwt(false);
     removeCookie('token');
+    localStorage.removeItem('user_id');
     router.push('/');
   };
 

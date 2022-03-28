@@ -81,6 +81,7 @@
   margin-left: 0.6em;
   cursor: pointer;
   word-break: break-all;
+  transition: transform 200ms ease-in-out;
 }
 
 .index_page_li:first-child {
@@ -92,11 +93,7 @@
 }
 
 .index_page_li:hover {
-  transform: scale(1.03, 1.01);
-}
-
-.index_page_li:focus {
-  transform: scale(1.03, 1.01);
+  transform: translateY(-1px);
 }
 
 .dark {

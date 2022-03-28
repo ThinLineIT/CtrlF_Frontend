@@ -13,7 +13,7 @@ import Password from '../src/container/register/Password';
 import PasswordConfirm from '../src/container/register/PasswordConfirm';
 import NickName from '../src/container/register/NickName';
 import AuthCode from '../src/container/register/AuthCode';
-import styles from '../src/styles/register.module.css';
+import styles from '../src/styles/Register.module.css';
 import ReAuthentication from '../src/container/register/ReAuthentication';
 import { useRef, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';

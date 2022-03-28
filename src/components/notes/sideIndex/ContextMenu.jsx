@@ -1,7 +1,6 @@
 import { useState, memo } from 'react';
 import styled from 'styled-components';
 import UpdateModal from '../../items/modal/UpdateModal';
-import PreparingModal from '../../items/modal/PreparingModal';
 import DeleteModal from '../../items/modal/DeleteModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -9,20 +8,19 @@ import {
   addNewPage,
   ModifyPageContent,
   pageupdate,
+  isJwtActive,
 } from '../../../store/atom';
 
 function ContextMenu({
   previosTitle,
-  noteId,
   NOTE,
   x,
   y,
-  topicId,
-  setShowMenu,
   dataType,
   dataId,
   dataTitle,
 }) {
+  const isJwt = useRecoilValue(isJwtActive);
   const useContextMenuName = useRecoilValue(contextMenuName);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
@@ -37,6 +35,7 @@ function ContextMenu({
   const setAddNewPageContent = useSetRecoilState(addNewPage);
 
   const onModify = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     if (useContextMenuName === '이름 수정') {
       setIsUpdateModalOpen(true);
     } else if (useContextMenuName === '내용 수정') {
@@ -48,6 +47,7 @@ function ContextMenu({
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const onDelete = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     setShowDeleteModal(true);
   };
 
@@ -99,6 +99,7 @@ const ContextContainer = styled.div`
     justify-content: center;
     padding: 10px;
     border-radius: 5px;
+    transition: background-color 200ms ease-in-out;
     &:hover {
       background-color: #b5bdff;
     }
