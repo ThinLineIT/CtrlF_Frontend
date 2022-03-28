@@ -73,7 +73,7 @@ const DetailTopBar = (props) => {
             className={styles.info_item_page}
             onChange={onPageTitlehandler}
             placeholder="TITLE"
-            defaultValue={pageTitle}
+            defaultValue={isOnEditor ? '' : pageTitle}
           />
         ) : (
           <div className={styles.info_item_page}>{pageTitle}</div>

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import router from 'next/router';
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
@@ -29,14 +28,7 @@ function Topbar() {
       <div className={styles.container__wrap}>
         <Link href="/">
           <a className={styles.top__logo}>
-            {/* <Image
-              className={styles.top__logo__img}
-              src={LOGO}
-              alt="logo"
-              width={200}
-              height={63}
-            /> */}
-            로고
+            <LOGO />
           </a>
         </Link>
         {jwt ? (
