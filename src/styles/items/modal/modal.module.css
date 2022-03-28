@@ -13,19 +13,19 @@
 }
 
 .modal {
-  cursor: default;
+  background-color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 982px; */
-  background-color: white;
-  box-shadow: 1px 1px 3px #0000004d;
+  cursor: default;
   border-radius: 32px;
-  position: fixed;
+  box-shadow: 1px 1px 3px #0000004d;
   top: 50%;
-  left: 62%;
+  left: 55%;
   transform: translate(-50%, -50%);
   z-index: 999;
+  position: fixed;
 }
 
 .modal__title_main {
