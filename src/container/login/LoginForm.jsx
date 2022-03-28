@@ -1,5 +1,5 @@
 import loginApi from '../../utils/loginApi';
-import ModalPreparing from '../../components/items/modal/PreparingModal';
+import PreparingModal from '../../components/items/modal/PreparingModal';
 import Link from 'next/link';
 import styles from '../../styles/Login.module.css';
 import Cookies from 'js-cookie';

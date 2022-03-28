@@ -1,7 +1,6 @@
 import { useState, memo } from 'react';
 import styled from 'styled-components';
 import UpdateModal from '../../items/modal/UpdateModal';
-import PreparingModal from '../../items/modal/PreparingModal';
 import DeleteModal from '../../items/modal/DeleteModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -18,8 +17,6 @@ function ContextMenu({
   NOTE,
   x,
   y,
-  topicId,
-  setShowMenu,
   dataType,
   dataId,
   dataTitle,
@@ -103,6 +100,7 @@ const ContextContainer = styled.div`
     justify-content: center;
     padding: 10px;
     border-radius: 5px;
+    transition: background-color 200ms ease-in-out;
     &:hover {
       background-color: #b5bdff;
     }
