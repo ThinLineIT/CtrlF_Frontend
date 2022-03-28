@@ -6,8 +6,6 @@ import { useCookies } from 'react-cookie';
 import { isJwtActive } from '../../store/atom';
 import styles from '../../styles/layout/topbar.module.css';
 
-import LOGO from '../../../public/images/mainlogo.svg';
-
 function Topbar() {
   const logOutRef = useRef();
   const [jwt, setJwt] = useRecoilState(isJwtActive);
@@ -20,6 +18,7 @@ function Topbar() {
   const onLogOut = () => {
     setJwt(false);
     removeCookie('token');
+    localStorage.removeItem('user_id');
     router.push('/');
   };
 
@@ -27,9 +26,7 @@ function Topbar() {
     <header className={styles.container}>
       <div className={styles.container__wrap}>
         <Link href="/">
-          <a className={styles.top__logo}>
-            <LOGO />
-          </a>
+          <a className={styles.top__logo}>{/* <LOGO /> */}</a>
         </Link>
         {jwt ? (
           <div className={styles.signup_btn}>
