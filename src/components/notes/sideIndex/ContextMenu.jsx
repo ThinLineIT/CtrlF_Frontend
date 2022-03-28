@@ -13,7 +13,6 @@ import {
 
 function ContextMenu({
   previosTitle,
-  noteId,
   NOTE,
   x,
   y,
