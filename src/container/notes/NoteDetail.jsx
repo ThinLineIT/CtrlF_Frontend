@@ -41,6 +41,7 @@ export default function NoteDetail({ note }) {
         const { title, id } = topics[0];
         setTopicData(topics);
         setTopicTitle(title);
+        setNowTopicIndex(id);
         getPage(id);
       } else {
         setTopicData([]);

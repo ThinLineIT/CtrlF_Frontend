@@ -36,7 +36,7 @@ export default function MarkdownEditor(props) {
     const { id } = router.query;
     if (!updatePage) {
       const postingData = {
-        topic_id: +topicId,
+        topic_id: topicId,
         title: pageCreateTitle,
         content: input,
         reason: pageCreateSummary,
@@ -146,7 +146,6 @@ export default function MarkdownEditor(props) {
                 saveContents={saveContents}
                 inputRef={inputRef}
               />
-              // <span key={index}>{button}</span>
             ))}
             <input
               ref={inputRef}

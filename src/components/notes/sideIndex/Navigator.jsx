@@ -100,7 +100,7 @@ export default function Navigator() {
     setShowMenu(false);
     setTopicTitle(title);
     setModifyPage(false);
-    setNowTopicIndex(id);
+    setNowTopicIndex(+id);
     window.scrollTo(0, 0);
     getPages(id);
   };
@@ -121,15 +121,7 @@ export default function Navigator() {
 
   const pageNavigatorTapped = async (pageId, version_no) => {
     await fetchPageDetail(pageId, version_no).then((page) => {
-      const {
-        id,
-        title,
-        content,
-        is_approved,
-        issue_id,
-        version_type,
-        version_no,
-      } = page;
+      const { id, title, content, is_approved, issue_id } = page;
 
       is_approved == false
         ? ifNotApprovedClicked('page')
