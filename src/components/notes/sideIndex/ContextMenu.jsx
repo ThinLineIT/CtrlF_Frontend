@@ -9,6 +9,7 @@ import {
   addNewPage,
   ModifyPageContent,
   pageupdate,
+  isJwtActive,
 } from '../../../store/atom';
 
 function ContextMenu({
@@ -23,6 +24,7 @@ function ContextMenu({
   dataId,
   dataTitle,
 }) {
+  const isJwt = useRecoilValue(isJwtActive);
   const useContextMenuName = useRecoilValue(contextMenuName);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
@@ -37,6 +39,7 @@ function ContextMenu({
   const setAddNewPageContent = useSetRecoilState(addNewPage);
 
   const onModify = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     if (useContextMenuName === '이름 수정') {
       setIsUpdateModalOpen(true);
     } else if (useContextMenuName === '내용 수정') {
@@ -48,6 +51,7 @@ function ContextMenu({
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const onDelete = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     setShowDeleteModal(true);
   };
 

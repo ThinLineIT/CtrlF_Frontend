@@ -1,9 +1,10 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/items/notes/noteDetail/sideIndex/new_btns.module.css';
 import {
   pageupdate,
   addNewPage,
   okBtnActive,
+  isJwtActive,
   isOnEditPage,
   isModalActive,
   ModifyPageContent,
@@ -18,13 +19,17 @@ export default function NewBtns({ noteId }) {
   const setModifyPage = useSetRecoilState(ModifyPageContent);
   const [showHiddenModal, setShowHiddenModal] = useRecoilState(isModalActive);
 
+  const isJwt = useRecoilValue(isJwtActive);
+
   const activeAddTopic = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     setIsUserSubmit(false);
     setModifyPage(false);
     setShowHiddenModal(true);
   };
 
   const activeAddPage = () => {
+    if (!isJwt) return alert('로그인 후 이용이 가능합니다');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
