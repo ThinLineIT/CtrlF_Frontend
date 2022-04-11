@@ -1,0 +1,20 @@
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 157px;
+  top: 20px;
+  right: 0px;
+}
+
+.menu__category {
+  position: absolute;
+  font-size: 23px;
+  top: 60px;
+  left: 48px;
+}
+
+.menu__devider {
+  margin: 11px 0;
+  width: 100px;
+}

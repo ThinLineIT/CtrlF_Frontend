@@ -1,0 +1,143 @@
+.background {
+  position: fixed;
+  display: flex;
+  color: black;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.confirm {
+  background-color: white;
+  width: 1096px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 109px 0 109px 0;
+  border-radius: 32px;
+  box-shadow: 1px 1px 3px #0000004d;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1096px;
+  background-color: white;
+  box-shadow: 1px 1px 3px #0000004d;
+  border-radius: 32px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal__title {
+  font-size: 3.648rem;
+  font-weight: bold;
+  padding: 14px 0 20px 0;
+  margin-top: 1.813rem;
+}
+
+.modal__btn {
+  background-color: #8bc8fd;
+  color: white;
+  width: 135px;
+  font-size: 1.4rem;
+  padding: 17px 0 17px 0;
+  border-radius: 15px;
+}
+
+.modal__origin {
+  font-size: 2.188rem;
+  color: #8bc8fd;
+  font-weight: bold;
+  margin: 8px 0 10px 0;
+}
+
+.modal__change {
+  width: 1041px;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  font-size: 2.125rem;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 44px 0px 55px 0;
+  padding: 0 27px;
+  width: 100%;
+}
+
+.contents {
+  padding: 31px 37px 31px 37px;
+  height: 269px;
+}
+
+.edit {
+  padding: 31px;
+}
+
+.title {
+  padding: 20px 27px 22px 27px;
+  height: 78px;
+  margin-bottom: 25px;
+}
+
+.confirm__btn {
+  background-color: #8bc8fd;
+  font-size: 1.427rem;
+  width: 213px;
+  border-radius: 30px;
+  padding: 13px 0 13px 0;
+  color: white;
+  margin-bottom: 70px;
+  margin-right: 20px;
+}
+
+.confirm_title {
+  font-weight: bold;
+  font-size: 3.5rem;
+  margin: 50px 0;
+}
+
+.confirm__text {
+  margin-bottom: 60px;
+
+  font-size: 2rem;
+}
+
+.close {
+  font-size: 25px;
+  font-weight: bold;
+  color: grey;
+  position: absolute;
+  top: 52px;
+  left: 32px;
+}
+
+.btns > .permit > .modal__btn {
+  margin-left: 16px;
+}
+
+.drop {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 52px;
+  right: 32px;
+  background: no-repeat center url('../../../../public/images/ellipsis-re.png');
+  background-size: contain;
+  cursor: pointer;
+}

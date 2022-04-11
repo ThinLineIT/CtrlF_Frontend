@@ -1,0 +1,203 @@
+.content {
+  flex: 1 1 73.5%;
+  width: 100%;
+  min-width: 570px;
+  margin: 2em auto;
+  padding: 2em 4em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.topBar {
+  max-width: 1270px;
+  height: 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5.5em;
+  margin-bottom: -1.25em;
+}
+
+.info_item {
+  width: 80%;
+  height: 100%;
+  border: 1px solid #00000028;
+  display: flex;
+  border-radius: 30px/30px;
+  overflow: hidden;
+}
+
+.info_item_edit {
+  border-radius: 20px/20px;
+}
+
+.info_item_topic {
+  width: 22%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  background: #b5bdff;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 65px;
+}
+
+.fontMiddle {
+  flex: 1 1 20%;
+  height: 100%;
+  background: #b5bdff;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fontSmall {
+  flex: 1 1 20%;
+  height: 100%;
+  background: #b5bdff;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1.7em;
+}
+
+.info_item_page {
+  width: 100%;
+  height: 100%;
+  background: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding-left: 1em;
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+.clipBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.icons_share {
+  background: url('../../../../../public/images/note_detail/share_button.svg')
+    center no-repeat;
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  margin-right: 1.3em;
+}
+
+.icons_issue {
+  width: 160px;
+  height: 40px;
+  margin: 10px 0.5em;
+  background-color: #b5bdff;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+}
+
+.slideActive {
+  width: 300px;
+  height: 3em;
+  border-radius: 30px/30px;
+  background: url('../../../../../public/images/share_text_bar.svg') center
+    no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 550px;
+  right: 500px;
+  opacity: 0.84;
+  transition: opacity 500ms;
+}
+
+.slideHidden {
+  width: 300px;
+  height: 3em;
+  position: absolute;
+  top: 550px;
+  right: 500px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms, visibility 500ms;
+}
+
+.buttonOk {
+  width: 100px;
+  height: 40px;
+  margin: 10px 0.5em;
+  background-color: #b5bdff;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+}
+
+.dropdownContainer {
+  position: absolute;
+  padding: 0 1em;
+  top: 192px;
+  right: 16.9%;
+  width: 13%;
+  height: 400px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid #d4d4d4;
+  background: white;
+  flex-grow: 1;
+  border-top-right-radius: 30px;
+  transition: opacity 500ms;
+  cursor: pointer;
+}
+
+.dropdownHidden {
+  display: none;
+  visibility: hidden;
+  transition: opacity 500ms;
+}
+
+.dropdownFlex {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: space-between;
+}
+
+.dropdownContainer span:hover {
+  color: #b5bdff;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 2em 1em;
+  }
+
+  .info_item_topic {
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    min-width: 140px;
+  }
+  .info_item_page {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,53 @@
+.notes_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  text-align: center;
+  width: 411px;
+  height: 299px;
+  background: rgba(255, 255, 255, 1);
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
+}
+
+.modal_content h1 {
+  font-size: 2.1rem;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.plates {
+  font-size: 1.5rem;
+  line-height: 1.9rem;
+}
+
+.modal_ok_button {
+  width: 80px;
+  height: 40px;
+  margin: 10px auto;
+  background-color: #4db7e6;
+  font-weight: bolder;
+  color: white;
+  border-radius: 20px;
+}

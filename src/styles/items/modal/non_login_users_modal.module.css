@@ -1,0 +1,61 @@
+.notes_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  text-align: center;
+  width: 379px;
+  height: 299px;
+  padding: 1em;
+  background: rgba(255, 255, 255, 1);
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.19);
+}
+
+.plates {
+  padding: 0 1.5em;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 3rem;
+  margin-bottom: -10px;
+  color: black;
+}
+
+.to_login_button {
+  width: 85%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: #4db7e6;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  border-radius: 30px/30px;
+  margin-bottom: -15px;
+}
+
+.non_login_ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

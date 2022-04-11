@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="193" height="180.798" viewBox="0 0 193 180.798">
+  <defs>
+    <filter id="말풍선" x="0" y="0" width="193" height="180.798" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#말풍선)">
+    <path id="말풍선-2" data-name="말풍선" d="M2273-1680a20,20,0,0,1-20-20v-87a20,20,0,0,1,20-20h88.4l8.979-16.249a3,3,0,0,1,5.251,0L2384.6-1807H2390a20,20,0,0,1,20,20v87a20,20,0,0,1-20,20Z" transform="translate(-2235 1842.8)" fill="#fff"/>
+  </g>
+</svg>
