@@ -72,7 +72,6 @@ export default function Timer({ email, register }) {
           if (register) return registerStyle;
           else return pwStyles;
         })()}
-        ref={timeRef}
       >
         {minute}
         {second}
