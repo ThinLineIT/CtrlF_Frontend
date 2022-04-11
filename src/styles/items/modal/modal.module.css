@@ -22,7 +22,7 @@
   border-radius: 32px;
   box-shadow: 1px 1px 3px #0000004d;
   top: 50%;
-  left: 55%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
   position: fixed;

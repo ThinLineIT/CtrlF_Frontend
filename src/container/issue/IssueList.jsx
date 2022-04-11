@@ -22,7 +22,7 @@ const IssueList = ({ styles, issues, fetchMoreData, loading }) => {
     let observer;
     if (target) {
       observer = new IntersectionObserver(onIntersect, {
-        threshold: 1,
+        threshold: 0,
       });
       observer.observe(target);
     }

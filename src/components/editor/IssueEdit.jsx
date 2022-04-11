@@ -43,9 +43,9 @@ export default function IssueEdit({ setIsPageIssueEdit }) {
       setIsPageIssueEdit(false);
     }
     return () => {
-      console.log(router.asPath.split('?')[0]);
-      router.replace(router.asPath.split('?')[0]);
-      // setIssue("")
+      // console.log(router.asPath.split('?')[0]);
+      // router.replace(router.asPath.split('?')[0]);
+      setIssue('');
     };
   }, [modifyPage]);
 

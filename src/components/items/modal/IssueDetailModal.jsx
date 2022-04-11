@@ -49,7 +49,10 @@ export default function IssueDetailModal({
   };
 
   const editIssue = () => {
-    router.push(`/notes/${issue.note_id}?edit=${issue.id}`);
+    // router.push(
+    //   `/notes/${issue.note_id}?edit=${issue.id}`,
+    //   `/notes/${issue.note_id}`
+    // ); TODO: 기능 다시 고민
   };
 
   const updatePermissionCheck = async () => {
