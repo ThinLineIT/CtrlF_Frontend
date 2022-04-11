@@ -4,11 +4,10 @@
 
 .index_topic {
   flex: 1 1 45%;
-  min-width: 175px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1em 0em 1em 3em;
+  padding: 1em 0em 1em 1.5em;
   border-right: 0.7px solid #00000028;
   overflow: hidden;
 }
@@ -47,18 +46,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em 0em 1em 0em;
-  min-width: 213px;
+  padding: 1em 0em 1em 0.5em;
   overflow-y: auto;
 }
 
 .index_page_ul {
   width: 100%;
   height: 570px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: auto;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(70px, auto));
+  row-gap: 10px;
+  overflow-y: auto;
   margin-top: 0.2em;
 }
 
@@ -77,10 +75,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bolder;
   margin: 0.35em 1em;
+  margin-left: 0.6em;
   cursor: pointer;
+  word-break: break-all;
+  transition: transform 200ms ease-in-out;
 }
 
 .index_page_li:first-child {
@@ -92,13 +93,19 @@
 }
 
 .index_page_li:hover {
-  transform: scale(1.03, 1.01);
-}
-
-.index_page_li:focus {
-  transform: scale(1.03, 1.01);
+  transform: translateY(-1px);
 }
 
 .dark {
   color: #00000028;
+}
+
+@media (max-width: 1024px) {
+  .index_topic_li {
+    font-size: 0.75rem;
+  }
+
+  .index_page_li {
+    font-size: 0.875rem;
+  }
 }

@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { filterList as filterListAtom } from '../../store/atom';
+import { filterList as filterListAtom } from '../../store/issueAtom';
 import IssueSelectedTagBtn from '../../components/issue/IssueSelectedTagBtn';
 import IssueFilterBtn from '../../../public/images/issue/issueTag/issue_search_button.svg';
 

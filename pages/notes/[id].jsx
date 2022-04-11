@@ -1,26 +1,19 @@
 import Axios from 'axios';
 import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { noteDataList } from '../../src/store/atom';
-import NoteDetail from '../../src/components/items/notes/noteDetail/note_detail';
+import NoteDetail from '../../src/container/notes/NoteDetail';
 
 const Post = ({ item }) => {
-  const setNoteData = useSetRecoilState(noteDataList);
-
-  useEffect(() => {
-    setNoteData(item);
-  }, [item]);
+  const { title } = item;
 
   return (
     <>
       {item && (
         <>
           <Head>
-            <title>{item.title}</title>
-            <meta name="description" content={item.title}></meta>
+            <title>{title}</title>
+            <meta name="description" content={title}></meta>
           </Head>
-          <NoteDetail note={item} noteId={item.id} />
+          <NoteDetail note={item} />
         </>
       )}
     </>
@@ -30,7 +23,7 @@ const Post = ({ item }) => {
 export default Post;
 
 export async function getStaticPaths() {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes?cursor=0`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}notes?cursor=0`;
   const res = await Axios.get(apiUrl);
   const data = res.data.notes;
   return {
@@ -45,7 +38,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const id = context.params.id;
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}notes/${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}notes/${id}`;
   const res = await Axios.get(apiUrl);
   const data = res.data;
 

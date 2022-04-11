@@ -1,4 +1,4 @@
-import styles from '../../src/styles/utils/useLoader.module.css';
+import styles from '../../src/styles/utils/use_loader.module.css';
 
 export default function UseLoader() {
   return (

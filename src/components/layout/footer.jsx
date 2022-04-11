@@ -1,11 +1,9 @@
 import React from 'react';
-import TopbarLogo from '../../../public/images/Ctrl_F.svg';
-import LogoTitle from '../../../public/images/logotitle.svg';
 import styles from '../../styles/layout/footer.module.css';
 
 export default function Footer() {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container}>
       <a
         href="https://github.com/ThinLineIT"
         target="_blank"
@@ -27,6 +25,6 @@ export default function Footer() {
           />
         </span>
       </a>
-    </div>
+    </footer>
   );
 }

@@ -1,30 +1,33 @@
 import Head from 'next/head';
-
+import { useRouter } from 'next/router';
 import {
   email,
   authCode,
   nickName,
   password,
   passwordCheck,
-} from '../src/store/atom';
+} from '../src/store/registerAtom';
 import { useSetRecoilState } from 'recoil';
-
-import Email from '../src/components/register/Email';
-import Password from '../src/components/register/Password';
-import PasswordConfirm from '../src/components/register/PasswordConfirm';
-import NickName from '../src/components/register/NickName';
-import AuthCode from '../src/components/register/AuthCode';
+import Email from '../src/container/register/Email';
+import Password from '../src/container/register/Password';
+import PasswordConfirm from '../src/container/register/PasswordConfirm';
+import NickName from '../src/container/register/NickName';
+import AuthCode from '../src/container/register/AuthCode';
 import styles from '../src/styles/Register.module.css';
-import ReAuthentication from '../src/components/register/ReAuthentication';
-import { useRef, useEffect } from 'react';
+import ReAuthentication from '../src/container/register/ReAuthentication';
+import { useRef, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 export default function Register() {
   const modalRef = useRef(null);
+  const [timer, setTimer] = useState(false);
   const emailReset = useSetRecoilState(email);
   const authCodeReset = useSetRecoilState(authCode);
   const nickNameReset = useSetRecoilState(nickName);
   const passwordReset = useSetRecoilState(password);
   const passwordCehckReset = useSetRecoilState(passwordCheck);
+  const router = useRouter();
+
   useEffect(() => {
     return () => {
       emailReset('');
@@ -32,6 +35,7 @@ export default function Register() {
       nickNameReset('');
       passwordReset('');
       passwordCehckReset('');
+      Cookies.remove('signing_token');
     };
   }, []);
 
@@ -40,11 +44,10 @@ export default function Register() {
     const section = document.getElementById('signup');
     section.style.display = 'none';
   };
-  const reAuth = () => {
-    document.getElementById('slide01').checked = true;
-  };
+
   const emailOverlapSuccess = () => {
     document.getElementById('slide02').checked = true;
+    setTimer(true);
   };
   const authCodeSuccess = () => {
     document.getElementById('slide03').checked = true;
@@ -62,7 +65,7 @@ export default function Register() {
         <title>회원가입</title>
         <meta name="description"></meta>
       </Head>
-      <ReAuthentication ref={modalRef} reAuth={reAuth} styles={styles} />
+      <ReAuthentication ref={modalRef} />
       <div className={styles.section} id="signup">
         <input type="radio" name="slide" id="slide01" defaultChecked />
         <input type="radio" name="slide" id="slide02" />
@@ -73,18 +76,27 @@ export default function Register() {
           <ul className={styles.slidelist}>
             <li>
               <a>
+                <label
+                  onClick={() => router.back()}
+                  className={styles.left}
+                ></label>
                 <Email
                   styles={styles}
                   emailOverlapSuccess={emailOverlapSuccess}
                 />
-                <label htmlFor="slide02" className={styles.right}></label>
+                <label htmlFor="slide02" className={styles.right}>
+                  asdasdsa
+                </label>
               </a>
             </li>
             <li>
               <a>
                 <label onClick={modal} className={styles.left}></label>
-                <AuthCode styles={styles} authCodeSuccess={authCodeSuccess} />
-                <label htmlFor="slide03" className={styles.right}></label>
+                <AuthCode
+                  styles={styles}
+                  authCodeSuccess={authCodeSuccess}
+                  timer={timer}
+                />
               </a>
             </li>
             <li>
@@ -94,14 +106,12 @@ export default function Register() {
                   styles={styles}
                   nickNameOverlapSuccess={nickNameOverlapSuccess}
                 />
-                <label htmlFor="slide04" className={styles.right}></label>
               </a>
             </li>
             <li>
               <a>
                 <label htmlFor="slide03" className={styles.left}></label>
                 <Password styles={styles} passwordFirst={passwordFirst} />
-                <label htmlFor="slide05" className={styles.right}></label>
               </a>
             </li>
             <li>

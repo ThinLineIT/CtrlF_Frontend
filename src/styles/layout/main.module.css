@@ -29,7 +29,6 @@
   line-height: 7.9rem;
   font-size: 2.5rem;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -49,30 +48,34 @@
 }
 
 .item__list {
-  flex: 1 1 81%;
+  flex: 1 1 80%;
 }
 
 .sidebar {
-  flex: 1 1 19%;
+  flex: 1 1 20%;
   height: 30em;
   position: sticky;
   top: 5em;
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+  margin-top: 1em;
 }
 
-@media screen and (max-width: 70rem) {
+@media screen and (max-width: 1024px) {
   .header {
-    display: none;
+    min-height: 4em;
   }
-  .body {
-    width: 70%;
+  .header__title {
+    font-size: 1.4rem;
+    line-height: 2rem;
   }
+
+  .header__title span:last-child {
+    font-size: 1.4rem;
+  }
+
   .sidebar {
     display: none;
-  }
-  .item__list {
-    flex: 1 1 100%;
   }
 }

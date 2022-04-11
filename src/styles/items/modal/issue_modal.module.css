@@ -1,5 +1,5 @@
 .background {
-  position: absolute;
+  position: fixed;
   display: flex;
   color: black;
   width: 100%;
@@ -9,9 +9,10 @@
   z-index: 99;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
-.noauth {
+.confirm {
   background-color: white;
   width: 1096px;
   display: flex;
@@ -43,7 +44,7 @@
 .modal__title {
   font-size: 3.648rem;
   font-weight: bold;
-  padding: 20px 0 20px 0;
+  padding: 14px 0 20px 0;
   margin-top: 1.813rem;
 }
 
@@ -51,7 +52,6 @@
   background-color: #8bc8fd;
   color: white;
   width: 135px;
-  margin-right: 16px;
   font-size: 1.4rem;
   padding: 17px 0 17px 0;
   border-radius: 15px;
@@ -73,8 +73,11 @@
 }
 
 .btns {
-  align-self: flex-end;
-  margin: 44px 11px 55px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 44px 0px 55px 0;
+  padding: 0 27px;
+  width: 100%;
 }
 
 .contents {
@@ -82,23 +85,59 @@
   height: 269px;
 }
 
+.edit {
+  padding: 31px;
+}
+
 .title {
-  padding: 22px 27px 22px 27px;
+  padding: 20px 27px 22px 27px;
   height: 78px;
   margin-bottom: 25px;
 }
 
-.noauth__back {
-  margin-top: 60px;
+.confirm__btn {
   background-color: #8bc8fd;
   font-size: 1.427rem;
   width: 213px;
   border-radius: 30px;
-  padding: 13px 75px 13px 75px;
+  padding: 13px 0 13px 0;
   color: white;
+  margin-bottom: 70px;
+  margin-right: 20px;
 }
 
-.noauth__text {
-  font-size: 3.625rem;
+.confirm_title {
   font-weight: bold;
+  font-size: 3.5rem;
+  margin: 50px 0;
+}
+
+.confirm__text {
+  margin-bottom: 60px;
+
+  font-size: 2rem;
+}
+
+.close {
+  font-size: 25px;
+  font-weight: bold;
+  color: grey;
+  position: absolute;
+  top: 52px;
+  left: 32px;
+}
+
+.btns > .permit > .modal__btn {
+  margin-left: 16px;
+}
+
+.drop {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 52px;
+  right: 32px;
+  background: no-repeat center url('../../../../public/images/ellipsis-re.png');
+  background-size: contain;
+  cursor: pointer;
 }
