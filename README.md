@@ -1,5 +1,5 @@
 # CTRLF_Frontend
-![Ctrlf_Logo](/assets/Ctrlf_Logo_e5qwtcgu1.png)
+![Ctrlf_Logo](/public/images/LOGO.png)
 
 # Contributor
 <a href="https://github.com/ThinLineIT/CtrlF_Frontend/graphs/contributors">
